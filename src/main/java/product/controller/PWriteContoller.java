@@ -7,8 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PWriteContoller {
 
-	private final String command = "write.prd";
-	private final String getPage = "";
+	private final String command = "pWrite.prd";
+	private final String getPage = "productWriteForm";
 	private final String gotoPage = "";
 	
 	@RequestMapping(value = command)

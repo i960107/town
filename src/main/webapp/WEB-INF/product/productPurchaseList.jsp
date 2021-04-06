@@ -7,4 +7,4 @@
 <br>
 PPurchaseController -> productPurchaseList.jsp<br>
 
-<h3>구매 내역 리스트 </h3>
+<h3>나의 당근 구매 내역 리스트 </h3>

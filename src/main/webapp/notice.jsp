@@ -4,7 +4,7 @@
 <%@ include file="./WEB-INF/member/memberMyPageTop.jsp"%>
 
 
-Notice.jsp <br>
+notice.jsp <br>
 
 <h3>공지사항</h3>
 
