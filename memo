@@ -98,3 +98,14 @@ CREATE TABLE  town_board  (
 	 reg_date 	date	DEFAULT sysdate	NULL,
 	 readcount 	number		NULL);
 );
+select * from member;
+select * from member_deal;
+select * from member_deal_review;
+select * from manner_temp;
+select * from product;
+select * from product_like;
+select * from product_keyword;
+select * from product_category;
+select * from town_board;
+select * from town_board_like;
+select * from town_board_category;
