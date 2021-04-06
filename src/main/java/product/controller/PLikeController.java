@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PLikeController {
 
-	private final String command = "likeList.prd";
+	private final String command = "like.prd";
 	private final String getPage = "productLikeList";
+	private final String gotoPage = "redirect:saleList.prd";
 	
 	@RequestMapping(value=command)
 	public String doAction() {
