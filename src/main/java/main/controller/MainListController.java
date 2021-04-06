@@ -1,19 +1,17 @@
-package product.controller;
+package main.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class PSaleController {
-	
-	//상품 목록
-	private final String command = "saleList.prd";
-	private final String getPage = "productSaleList";
+public class MainListController {
+	private final String command = "/main.mk";
+	private final String getPage = "mainList";
 	
 	@RequestMapping(value=command)
+	
 	public String doAction() {
-		
 		return getPage;
+		
 	}
-
 }

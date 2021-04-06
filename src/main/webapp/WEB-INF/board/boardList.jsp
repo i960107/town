@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ include file="./../common/main_top.jsp" %>
 <%@include file="../common/common.jsp"%>
+
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -27,7 +29,11 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${pageContext.request.contextPath}/resources/css/styles.css"
 	rel="stylesheet" />
+<<<<<<< HEAD
 <link rel="stylesheet">
+=======
+	
+>>>>>>> ad326e8482c745f0e139cad1d6f823f69bad6d6c
 </head>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/jquery.js">
@@ -194,3 +200,5 @@
 <!-- Core theme JS-->
 </body>
 </html>
+
+<%@ include file="./../common/main_bottom.jsp" %>
