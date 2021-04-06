@@ -2,17 +2,23 @@ package product.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class PLikeController {
 
+	//ªÛ«∞ ¬Ú«œ±‚
 	private final String command = "like.prd";
 	private final String getPage = "productLikeList";
 	private final String gotoPage = "redirect:saleList.prd";
 	
 	@RequestMapping(value=command)
-	public String doAction() {
-		return getPage;
+	public ModelAndView doAction() {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(getPage);
+		
+		return mav;
 	}
 			
 }
