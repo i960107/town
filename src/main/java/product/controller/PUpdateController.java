@@ -9,7 +9,7 @@ public class PUpdateController {
 
 	//상품 정보 변경, 거래상태 변경
 	private final String command = "update.prd";
-	private final String getPage = "";
+	private final String getPage = "productUpdate";
 	private final String gotoPage = "";
 	
 	@RequestMapping(value = command)
