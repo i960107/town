@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PLikeController {
 
-	//»óÇ° ÂòÇÏ±â
+	//ìƒí’ˆ ì°œí•˜ê¸°
 	private final String command = "like.prd";
 	private final String getPage = "productLikeList";
 	private final String gotoPage = "redirect:detail.prd";
@@ -16,7 +16,7 @@ public class PLikeController {
 	
 	@RequestMapping(value=command)
 	public ModelAndView doAction(
-			@RequestParam(value = "no", required = false) int no //ÀÓ½Ã false DB»ı¼ºµÇ¸é Áö¿ö¾ßÇÔ
+			@RequestParam(value = "no", required = false) int no //ï¿½Ó½ï¿½ false DBï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			) {
 		
 		ModelAndView mav = new ModelAndView();

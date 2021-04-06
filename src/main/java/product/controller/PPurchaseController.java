@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PPurchaseController {
 
-	//±¸¸Å »óÇ° ¸ñ·Ï
+	//êµ¬ë§¤ìƒí’ˆ ëª©ë¡ë³´ê¸°
 	private final String command = "purchaseList.prd";
 	private final String getPage = "productPurchaseList";
 	

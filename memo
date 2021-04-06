@@ -1,102 +1,102 @@
 drop table member cascade constraints;
 CREATE TABLE member (
-	id	varchar2(50)	DEFAULT null	NOT NULL,
-	pw	varchar2(30)		NULL,
-	name	varchar2(15)		NULL,
-	gender	varchar2(6)	DEFAULT null	NULL,
-	phone_number	varchar2(50)	DEFAULT null	NULL,
-	email	varchar2(100)	DEFAULT null	NULL,
-	address	varchar2(120)	DEFAULT null	NULL,
-	address1	varchar2(40)	DEFAULT null	NULL,
-	address2	varchar2(40)	DEFAULT null	NULL,
-	address3	varchar2(40)	DEFAULT null	NULL,
-	image	varchar2(100)		NULL,
-	member_status	number	DEFAULT 1	NULL,
-	authority	number		NULL
+ id varchar2(50) DEFAULT null NOT NULL,
+ pw varchar2(30)  NULL,
+ name varchar2(15)  NULL,
+ gender varchar2(6) DEFAULT null NULL,
+ phone_number varchar2(50) DEFAULT null NULL,
+ email varchar2(100) DEFAULT null NULL,
+ address varchar2(120) DEFAULT null NULL,
+ address1 varchar2(40) DEFAULT null NULL,
+ address2 varchar2(40) DEFAULT null NULL,
+ address3 varchar2(40) DEFAULT null NULL,
+ image varchar2(100)  NULL,
+ member_status number DEFAULT 1 NULL,
+ authority number  NULL
 );
 drop table member_deal cascade constraints;
 CREATE TABLE member_deal (
-	no	number	DEFAULT 0	NOT NULL,
-	product_no	number	DEFAULT 0	NOT NULL,
-	seller_id	varchar2(50)	DEFAULT null	NOT NULL,
-	buyer_id	varchar2(50)	DEFAULT null	NULL,
-	deal_status	number	DEFAULT 1	NULL,
-	deal_date	date	DEFAULT null	NULL
+ no number DEFAULT 0 NOT NULL,
+ product_no number DEFAULT 0 NOT NULL,
+ seller_id varchar2(50) DEFAULT null NOT NULL,
+ buyer_id varchar2(50) DEFAULT null NULL,
+ deal_status number DEFAULT 1 NULL,
+ deal_date date DEFAULT null NULL
 );
 drop table manner_temp cascade constraints;
 CREATE TABLE manner_temp (
-	id	varchar2(50)	DEFAULT null	NOT NULL,
-	manner_temp	number	DEFAULT 0	NULL
+ id varchar2(50) DEFAULT null NOT NULL,
+ manner_temp number DEFAULT 0 NULL
 );
 drop table product cascade constraints;
 CREATE TABLE product (
-	no	number	DEFAULT 0	NOT NULL,
-	seller_id	varchar2(50)	DEFAULT null	NULL,
-	 subject 	varchar2(250)		NULL,
-	 category 	number	DEFAULT 0	NOT NULL,
-	 address 	varchar2(120)	DEFAULT null	NULL,
-	 image1 	varchar2(100)	DEFAULT null	NULL,
-	 image2 	varchar2(100)	DEFAULT null	NULL,
-	 image3 	varchar2(100)	DEFAULT null	NULL,
-	 contents 	varchar2(250)		NULL,
-	 price 	number		NULL,
-	 refund_availability 	number	DEFAULT 1	NULL,
-	 reg_date 	date	DEFAULT sysdate	NULL,
-	 deal_status 	number	DEFAULT 1	NULL,
-	 readcount 	number		NULL
+ no number DEFAULT 0 NOT NULL,
+ seller_id varchar2(50) DEFAULT null NULL,
+  subject  varchar2(250)  NULL,
+  category  number DEFAULT 0 NOT NULL,
+  address  varchar2(120) DEFAULT null NULL,
+  image1  varchar2(100) DEFAULT null NULL,
+  image2  varchar2(100) DEFAULT null NULL,
+  image3  varchar2(100) DEFAULT null NULL,
+  contents  varchar2(250)  NULL,
+  price  number  NULL,
+  refund_availability  number DEFAULT 1 NULL,
+  reg_date  date DEFAULT sysdate NULL,
+  deal_status  number DEFAULT 1 NULL,
+  readcount  number  NULL
 );
 drop table product_like cascade constraints;
 CREATE TABLE  product_like  (
-	 no 	number	DEFAULT 0	NOT NULL,
-	 product_no 	number	DEFAULT 0	NOT NULL,
-	 user_id 	varchar2(50)	DEFAULT null	NULL
+  no  number DEFAULT 0 NOT NULL,
+  product_no  number DEFAULT 0 NOT NULL,
+  user_id  varchar2(50) DEFAULT null NULL
 );
 drop table product_keyword cascade constraints;
 CREATE TABLE  product_keyword  (
-	 keyword 	varchar2(50)		NOT NULL,
-	 count 	number		NULL
+  keyword  varchar2(50)  NOT NULL,
+  count  number  NULL
 );
 drop table town_board_like cascade constraints;
 CREATE TABLE  town_board_like  (
-	 no 	number	DEFAULT 0	NOT NULL,
-	 town_board_no 	number	DEFAULT 0	NULL,
-	 user_id 	varchar2(50)	DEFAULT null	NOT NULL
+  no  number DEFAULT 0 NOT NULL,
+  town_board_no  number DEFAULT 0 NULL,
+  user_id  varchar2(50) DEFAULT null NOT NULL
 );
 drop table product_category cascade constraints;
 CREATE TABLE  product_category  (
-	 no 	number	DEFAULT 0	NOT NULL,
-	 category_name 	varchar2(50)		NULL
+  no  number DEFAULT 0 NOT NULL,
+  category_name  varchar2(50)  NULL
 );
 drop table town_board_category cascade constraints;
 CREATE TABLE  town_board_category  (
-	 no 	number	DEFAULT 0	NOT NULL,
-	 category_name 	varchar2(50)		NULL
+  no  number DEFAULT 0 NOT NULL,
+  category_name  varchar2(50)  NULL
 );
 drop table member_deal_review cascade constraints;
 CREATE TABLE  member_deal_review  (
-	 no 	number	DEFAULT 0	NOT NULL,
-	 seller_id 	varchar2(50)	DEFAULT null	NOT NULL,
-	 buyer_id 	varchar2(50)	DEFAULT null	NULL,
-	 contents 	varchar2(250)		NULL,
-	 rating 	number		NULL,
-	 reg_date 	date	DEFAULT sysdate	NULL
+  no  number DEFAULT 0 NOT NULL,
+  seller_id  varchar2(50) DEFAULT null NOT NULL,
+  buyer_id  varchar2(50) DEFAULT null NULL,
+  contents  varchar2(250)  NULL,
+  rating  number  NULL,
+  reg_date  date DEFAULT sysdate NULL
 );
 drop table town_board cascade constraints;
 CREATE TABLE  town_board  (
-	 no 	number	DEFAULT 0	NOT NULL,
-	 writer 	varchar2(50)	DEFAULT null	NOT NULL,
-	 address 	varchar2(120)	DEFAULT null	NULL,
-	 subject 	varchar2(250)		NULL,
-	 category 	number	DEFAULT 0	NOT NULL,
-	 contents 	varchar2(250)		NULL,
-	 image1 	varchar2(100)	DEFAULT null	NULL,
-	 image2 	varchar2(100)	DEFAULT null	NULL,
-	 image3 	varchar2(100)	DEFAULT null	NULL,
-	 ref 	number		NULL,
-	 re_level 	number		NULL,
-	 re_step 	number		NULL,
-	 reg_date 	date	DEFAULT sysdate	NULL,
-	 readcount 	number		NULL);
+  no  number DEFAULT 0 NOT NULL,
+  writer  varchar2(50) DEFAULT null NOT NULL,
+  address  varchar2(120) DEFAULT null NULL,
+  subject  varchar2(250)  NULL,
+  category  number DEFAULT 0 NOT NULL,
+  contents  varchar2(250)  NULL,
+  image1  varchar2(100) DEFAULT null NULL,
+  image2  varchar2(100) DEFAULT null NULL,
+  image3  varchar2(100) DEFAULT null NULL,
+  ref  number  NULL,
+  re_level  number  NULL,
+  re_step  number  NULL,
+  reg_date  date DEFAULT sysdate NULL,
+  readcount  number  NULL);
 );
 select * from member;
 select * from member_deal;

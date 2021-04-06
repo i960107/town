@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PUpdateController {
 
-	//»óÇ° Á¤º¸ º¯°æ, °Å·¡»óÅÂ º¯°æ
+	//ìƒí’ˆ ìˆ˜ì •, ê±°ë˜ ìƒíƒœ ë³€ê²½
 	private final String command = "update.prd";
 	private final String getPage = "productUpdate";
 	private final String gotoPage = "";

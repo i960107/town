@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PSaleController {
 	
-	//»óÇ° ¸ñ·Ï
+	//ì „ì²´ ìƒí’ˆ ëª©ë¡ ë³´ê¸°
 	private final String command = "saleList.prd";
 	private final String getPage = "productSaleList";
 	

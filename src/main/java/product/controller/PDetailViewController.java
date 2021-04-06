@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PDetailViewController {
 
-	//»óÇ° »ó¼¼º¸±â
+	//ìƒí’ˆ ìƒì„¸ë³´ê¸°
 	private final String command = "detail.prd";
 	private final String getPage = "productDetailView";
 	private final String gotoPage = "";
