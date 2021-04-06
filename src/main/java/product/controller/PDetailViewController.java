@@ -9,8 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PDetailViewController {
 
-	private final String command = "DetailView.prd";
-	private final String getPage = "";
+	//상품 상세보기
+	private final String command = "detail.prd";
+	private final String getPage = "productDetailView";
 	private final String gotoPage = "";
 	
 	@RequestMapping(value = command)
