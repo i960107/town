@@ -109,3 +109,5 @@ select * from product_category;
 select * from town_board;
 select * from town_board_like;
 select * from town_board_category;
+commit;
+
