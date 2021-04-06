@@ -1,4 +1,33 @@
-
+drop table member cascade constraints;
+CREATE TABLE member (
+	id	varchar2(50)	DEFAULT null	NOT NULL,
+	pw	varchar2(30)		NULL,
+	name	varchar2(15)		NULL,
+	gender	varchar2(6)	DEFAULT null	NULL,
+	phone_number	varchar2(50)	DEFAULT null	NULL,
+	email	varchar2(100)	DEFAULT null	NULL,
+	address	varchar2(120)	DEFAULT null	NULL,
+	address1	varchar2(40)	DEFAULT null	NULL,
+	address2	varchar2(40)	DEFAULT null	NULL,
+	address3	varchar2(40)	DEFAULT null	NULL,
+	image	varchar2(100)		NULL,
+	member_status	number	DEFAULT 1	NULL,
+	authority	number		NULL
+);
+drop table member_deal cascade constraints;
+CREATE TABLE member_deal (
+	no	number	DEFAULT 0	NOT NULL,
+	product_no	number	DEFAULT 0	NOT NULL,
+	seller_id	varchar2(50)	DEFAULT null	NOT NULL,
+	buyer_id	varchar2(50)	DEFAULT null	NULL,
+	deal_status	number	DEFAULT 1	NULL,
+	deal_date	date	DEFAULT null	NULL
+);
+drop table manner_temp cascade constraints;
+CREATE TABLE manner_temp (
+	id	varchar2(50)	DEFAULT null	NOT NULL,
+	manner_temp	number	DEFAULT 0	NULL
+);
 drop table product cascade constraints;
 CREATE TABLE product (
 	no	number	DEFAULT 0	NOT NULL,
@@ -49,7 +78,7 @@ CREATE TABLE  member_deal_review  (
 	 seller_id 	varchar2(50)	DEFAULT null	NOT NULL,
 	 buyer_id 	varchar2(50)	DEFAULT null	NULL,
 	 contents 	varchar2(250)		NULL,
-	 rating 	int		NULL,
+	 rating 	number		NULL,
 	 reg_date 	date	DEFAULT sysdate	NULL
 );
 drop table town_board cascade constraints;
@@ -68,3 +97,4 @@ CREATE TABLE  town_board  (
 	 re_step 	number		NULL,
 	 reg_date 	date	DEFAULT sysdate	NULL,
 	 readcount 	number		NULL);
+);
