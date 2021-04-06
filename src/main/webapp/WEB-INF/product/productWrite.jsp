@@ -19,7 +19,7 @@
 		
 		</tr>
 		<tr>
-		<td></td>
+		<td>주소</td>
 		<td></td>
 		</tr>
 		<tr>
