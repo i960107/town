@@ -12,7 +12,6 @@ public class PWriteContoller {
 	// 상품 올리기
 	private final String command = "pWrite.prd";
 	private final String getPage = "productWriteForm";
-	private final String gotoPage = "";
 	private final String gotoPage = "saleList.prd";
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)
