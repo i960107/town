@@ -27,7 +27,6 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${pageContext.request.contextPath}/resources/css/styles.css"
 	rel="stylesheet" />
-<link rel="stylesheet"
 </head>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/jquery.js">
