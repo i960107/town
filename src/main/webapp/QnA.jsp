@@ -3,8 +3,8 @@
 
 <%@ include file="./WEB-INF/member/memberMyPageTop.jsp"%>
 
-QnA.jsp <br>
-
 <h3>QNA</h3>
 
 <!-- https://www.daangn.com/wv/faqs -->
+
+<%@ include file="./../WEB-INF/common/main_bottom.jsp"%>

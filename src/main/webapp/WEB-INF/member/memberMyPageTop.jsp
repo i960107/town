@@ -80,8 +80,5 @@ MMyPageController -> memberMyPage.jsp
 		</tr>
 		
 	</table>
-	
-</tr>
 
 
- <%@ include file="./../common/main_bottom.jsp"%> 

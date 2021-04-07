@@ -17,3 +17,5 @@
 &nbsp;
 
 <a href="productCateInsert.ct">중고물간 카테 등록</a>
+
+<%@ include file="./../WEB-INF/common/main_bottom.jsp"%>

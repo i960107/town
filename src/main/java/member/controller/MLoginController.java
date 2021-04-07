@@ -65,9 +65,8 @@ public class MLoginController {
 			if (pw.equals(midBean.getPw())) {
 				session.setAttribute("loginInfo", midBean);
 				
-				String destination = (String) session.getAttribute("destination");
-				mav.setViewName(destination);
-				// 메인탑 가서 세션처리한걸로 로그인 -> 로그아웃 바꾸기 
+				mav.setViewName(gotoPage);
+				
 			}
 			// id o, pw x
 			else {
