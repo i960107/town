@@ -10,7 +10,11 @@
 <title>상품 보기</title>
 </head>
 <body>
-상품 자세히 보기
+<table>
+	<tr>
+		<td></td>
+	</tr>
+</table>
 <a href="like.prd">찜하기</a><br>
 <a href="update.prd">수정하기</a><br>
 <a href="tradeDetail.mb">회원자세히보기</a><br>
