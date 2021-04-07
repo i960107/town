@@ -43,9 +43,8 @@ function jusoCallBack(roadFullAddr,siNm,sggNm,emdNm) {
 	<button type="submit" class="btn btn-default">제출</button>
 </form>
 <form name="form" method="post">
-	<input type="button" onClick="goPopup()" value="검색"> 도로명주소 전체<input
-		type="text" id="roadFullAddr" name="roadFullAddr" /><br> 광역시도명<input
-		type="text" id="siNm" name="siNm" /><br> 시군구명<input type="text"
-		id="sggNm" name="sggNm" /><br> 읍면동명<input type="text" id="emdNm"
-		name="emdNm" /><br>
+	도로명주소 전체<input   type="text" id="roadFullAddr" name="address" /><input type="button" onClick="goPopup()" value="검색"><br> 
+         광역시도명<input type="text" id="siNm" name="address1" /><br> 
+         시군구명<input type="text" id="sggNm" name="address2" /><br> 
+         읍면동명<input type="text" id="emdNm"   name="address3" /><br>
 </form>
