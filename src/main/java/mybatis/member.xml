@@ -8,5 +8,14 @@
 
 <mapper namespace="member.model.MemberBean">
 
+	<select id="LoginCkId" resultType="member.model.MemberBean">
+		select * from member 
+		where id = #{id}
+	</select>
+	
+	<select id="GetAllData" resultType="member.model.MemberBean">
+		select * from member
+	
+	</select>
 
 </mapper>
