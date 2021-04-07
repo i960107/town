@@ -1,7 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Fashi Template">
+    <meta name="keywords" content="Fashi, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>main</title>
 
-<%
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
+</head>
+<body>
+
+	<%
 	String login = request.getContextPath() + "/memberlogin.mb"; // 로그인
 	String join = request.getContextPath() + "/memberJoin.mb"; // 회원가입
 	String myPage = request.getContextPath() + "/myPage.mb"; // 나의당근
@@ -9,34 +34,95 @@
 	String saleList = request.getContextPath() + "/saleList.prd"; // 중고거래
 	String boardList = request.getContextPath() + "/list.bd"; // 동네생활
 	String productWrite = request.getContextPath() + "/pWrite.prd"; // 글쓰기
-%>
-
-<table border="1" width="100%" height="180" align="center">
-	<tr>
-		<td colspan="8" align="right">
-			<a href="<%=login %>">로그인</a> | 
-			<a href="<%=join %>">회원가입</a> | 
-			<a href="<%=myPage %>">나의당근<img src="" width="30" height="30"></a>
-		</td>
-	</tr>
+	%>
 	
-	<tr>
-		<td width="20%" align="center">
-			<a href="<%=viewMain %>">로고</a>
-		</td>
-		<td width="20%" colspan="3">
-			<input type="text" placeholder="검색어입력">
-		</td>
-		<td width="15%" align="center">
-			<a href="<%=saleList %>">중고거래</a>
-		</td>
-		<td width="15%" align="center">
-			<a href="<%=boardList %>">동네생활</a>
-		</td>
-		<td width="15%" align="center">
-			<a href="<%=productWrite %>">글쓰기</a>
-		</td>
-		<td width="15%" align="center">
-			<a href="">채팅</a>
-		</td>
-	</tr>
+
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+	<!-- 로그인 영역 시작 -->
+    <header class="header-section">
+        <div class="header-top">
+            <div class="container">
+            	<div class="ht-right">
+                    <!-- <a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a> -->
+                    <div class="lan-selector">
+                        <a href="<%=myPage %>" class="login-panel">나의당근</a>
+                    </div>
+                    <div class="top-social">
+                        <a href="<%=join %>" class="login-panel">회원가입</a>
+                    	<a href="<%=login %>" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 로그인 영역 끝 -->
+        
+        <!-- 로고 카테고리 영역 시작 -->
+        <div class="container">
+            <div class="inner-header">
+                <div class="row">
+                    <!-- <div class="col-lg-2 col-md-2">
+                        <div class="logo">
+                            <a href="./index.html">
+                                <img src="img/logo.png" alt="">
+                            </a>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-7 col-md-7">
+                        <div class="advanced-search">
+                            <!-- <button type="button" class="category-btn">All Categories</button> -->
+                            <div class="input-group">
+                                <input type="text" placeholder="What do you need?">
+                                <button type="button"><i class="ti-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-item">
+            <div class="container">
+                <nav class="nav-menu mobile-menu">
+                    <ul>
+                        <li class="active"><a href="<%=viewMain %>">Home</a></li>
+                        
+                        <div class="advanced-search">
+                            <!-- <button type="button" class="category-btn">All Categories</button> -->
+                                <input type="text" placeholder="What do you need?">
+                                <button type="button"><i class="ti-search"></i></button>
+                           <!--  <div class="input-group">
+                            </div> -->
+                        </div>
+                        <li><a href="<%=saleList %>">중고거래</a></li>
+                        <li><a href="<%=boardList %>">동네생활</a></li>
+                        <li><a href="<%=productWrite %>">글쓰기</a></li>
+                        <li><a href="">채팅</a></li>
+                    </ul>
+                </nav>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
+        <!-- 로고 카테고리 영역 끝 -->
+    </header>
+    <!-- Header End -->
+
+    <!-- Js Plugins -->
+    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery-ui.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery.countdown.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery.nice-select.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery.zoom.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery.dd.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery.slicknav.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/owl.carousel.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/main.js"></script>
+
+</body>
+</html>
+
+
