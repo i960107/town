@@ -2,6 +2,7 @@ package product.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,9 @@ public class ProductDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<ProductBean> getList(){
+	public List<ProductBean> getList(Map<String, String> map){
 		List<ProductBean> lists = new ArrayList<ProductBean>();
-		lists = sqlSessionTemplate.selectList(nameSpace+".getList");
+		lists = sqlSessionTemplate.selectList(nameSpace+".getList", map);
 		return lists;
 	}
 

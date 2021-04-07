@@ -41,7 +41,7 @@
     <footer class="footer-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-20 offset-lg-1">
+                <div class="col-lg-12">
                     <div class="footer-widget">
                         <h5>
                         information
