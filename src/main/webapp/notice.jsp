@@ -12,3 +12,6 @@ notice.jsp <br>
 공지사항 등록 <br>
 
 공지사항은 그냥 html 로 ? 
+
+
+<%@ include file="./../WEB-INF/common/main_bottom.jsp"%>

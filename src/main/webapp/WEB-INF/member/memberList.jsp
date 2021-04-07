@@ -10,46 +10,34 @@ MListController -> memberList.jsp <br>
 <table border="1" width="70%" height="600" >
 <h3>회원 관리 </h3>
 
-<tr height="20" align="center">
-	<th>권한</th>
-	<th>ID</th>
-	<th>이름</th>
-	<th>성별</th>
-	<th>전화번호</th>
-	<th>이메일</th>
-	<th>주소</th>
-	<th>계정 상태</th>
-	<th>정지</th>
-	
-</tr>
-
-<c:forEach var="mlist" items="${lists }">
-	<tr align="center">
-		<td>${mlist.authority } </td>
-		<td>${mlist.id } </td>
-		<td>${mlist.name } </td>
-		<td>${mlist.gender } </td>
-		<td>${mlist.phonenumber } </td>
-		<td>${mlist.email } </td>
-		<td>${mlist.address } </td>
-		<td>${mlist.memberstatus } </td>
-		<td>정지</td>
+	<tr height="20" align="center">
+		<th>권한</th>
+		<th>ID</th>
+		<th>이름</th>
+		<th>성별</th>
+		<th>전화번호</th>
+		<th>이메일</th>
+		<th>주소</th>
+		<th>계정 상태</th>
+		<th>정지</th>
 	</tr>
-
-</c:forEach>
-
-
+	
+	<c:forEach var="mlist" items="${lists }">
+		<tr align="center">
+			<td>${mlist.authority } </td>
+			<td>${mlist.id } </td>
+			<td>${mlist.name } </td>
+			<td>${mlist.gender } </td>
+			<td>${mlist.phonenumber } </td>
+			<td>${mlist.email } </td>
+			<td>${mlist.address } </td>
+			<td>${mlist.memberstatus } </td>
+			<td>정지</td>
+		</tr>
+	</c:forEach>
 </table>
 </div>
 
-	
-	
-
-	
 
 
-
-
-
-
-
+<%@ include file="./../common/main_bottom.jsp"%>
