@@ -1,13 +1,31 @@
 package member.model;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberBean {
 
+	@NotBlank(message = "아이디는 필수사항입니다.")
 	private String id;
+	
+	@NotBlank(message = "비밀번호는 필수 입력사항입니다")
 	private String pw;
+	
+	@NotBlank(message = "이름은 필수 입력사항입니다.")
 	private String name;
+	
+	@NotNull(message = "성별을 선택해주세요")
 	private String gender;
+	
+	@NotBlank(message = "전화번호는 필수 입력사항입니다.")
 	private String phonenumber;
+	
+	@NotBlank(message = "이메일은 필수 입력사항입니다.")
 	private String email;
+	
+	@NotBlank(message = "주소는 필수 입력사항입니다.")
 	private String address;
 	private String address1;
 	private String address2;
@@ -15,6 +33,31 @@ public class MemberBean {
 	private String image; // 프로필사진
 	private String memberstatus; // 계정중지
 	private int authority; // 관리자 권한
+	
+	// 패스워드 유효성 체크용
+	@NotBlank(message = "비밀번호 확인은 필수 입력사항입니다")
+	private String pwCheck;
+	
+	//이미지 파일명 받아오려고 필요함
+	private MultipartFile upload;
+	
+
+	public MultipartFile getUpload() {
+		return upload;
+	}
+
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+		this.image = upload.getOriginalFilename();
+	}
+
+	public String getPwCheck() {
+		return pwCheck;
+	}
+
+	public void setPwCheck(String pwCheck) {
+		this.pwCheck = pwCheck;
+	}
 
 	public MemberBean() {
 		super();

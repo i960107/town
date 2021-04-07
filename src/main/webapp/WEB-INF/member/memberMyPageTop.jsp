@@ -19,6 +19,7 @@ MMyPageController -> memberMyPage.jsp
 	height: 100%;
 	object-fit: cover;
 }
+
 </style>
 
 <script type="text/javascript">
@@ -53,41 +54,34 @@ MMyPageController -> memberMyPage.jsp
 
 
 <tr>
-	<td>
-		<div class="box">
-			<a href="memberUpdate.mb"> <img class="profile"
-				src="<%=request.getContextPath()%>/resources/img.jpg">
-			</a>
-		</div>
-	</td>
-	<td colspan="7"><a href="memberUpdate.mb"> 프로필 수정 </a></td>
-</tr>
-	<body>
-		<tr>
-
-			<td><a href="">판매내역</a></td>
-			<!-- saleList.prd 변수 Duplicate local variable saleList 에러 -->
-			<td><a href="purchaseList.prd">구매내역</a></td>
-			<td><a href="">동네생활(글/댓글)</a></td>
-			<!-- 추후 만들어서 삽입 예정 -->
-			<td><a href="like.prd">관심 목록</a></td>
-			<td><a href="QnA.jsp">QNA</a></td>
-			<td><a href="Category.jsp">카테고리 관리</a></td>
-			<td><a href="notice.jsp">공지사항 관리</a></td>
-			 <td><a href="memberList.mb">회원관리</a></td> 
-			
-			<!-- <td> <button id="member">회원관리</button> -->
-		</tr>
-
-		<tr>
-			<td colspan="8">
-
-				<div id="content"></div>
-
+	<table width="100%" border="1" >
+		<tr rowspan="3">
+			<td colspan="2" align="center">
+				<div class="box">
+					<a href="memberUpdate.mb">
+						<img class="profile" src="<%=request.getContextPath()%>/resources/img.jpg">
+					</a>
+				</div>
+			</td>
+			<td colspan="6">
+				<a href="memberUpdate.mb"> 프로필 수정 </a>
 			</td>
 		</tr>
-	</body>
+		
+		<tr>
+			<td align="center"><a href="">판매내역</a></td>
+			<td align="center"><a href="purchaseList.prd">구매내역</a></td>
+			<td align="center"><a href="">동네생활(글/댓글)</a></td>
+			<td align="center"><a href="like.prd">관심 목록</a></td>
+			<td align="center"><a href="QnA.jsp">QNA</a></td>
+			<td align="center"><a href="Category.jsp">카테고리 관리</a></td>
+			<td align="center"><a href="notice.jsp">공지사항 관리</a></td>
+			<td align="center"><a href="memberList.mb">회원관리</a></td> 
+		</tr>
+		
+	</table>
+	
+</tr>
 
 
-
-	<%@ include file="./../common/main_bottom.jsp"%>
+ <%@ include file="./../common/main_bottom.jsp"%> 

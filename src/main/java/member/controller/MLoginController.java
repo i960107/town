@@ -39,8 +39,12 @@ public class MLoginController {
 			HttpServletResponse response,
 			HttpSession session) throws IOException {
 
+		MemberBean mbean= new MemberBean();
+		mbean.setId(id);
+		
+		
 		// 아이디 체크하기
-		MemberBean midBean = mdao.loginCkId(id);
+		MemberBean midBean = mdao.loginCkId(mbean);
 
 		PrintWriter pwriter = response.getWriter();
 		response.setContentType("text/html; charset=UTF-8");

@@ -6,11 +6,11 @@ MListController -> memberList.jsp <br>
 
  <%@ include file="./../../WEB-INF/member/memberMyPageTop.jsp"%> 
  
- 
-<table border="1">
+<div align="center">
+<table border="1" width="70%" height="600" >
 <h3>회원 관리 </h3>
 
-<tr>
+<tr height="20" align="center">
 	<th>권한</th>
 	<th>ID</th>
 	<th>이름</th>
@@ -24,22 +24,23 @@ MListController -> memberList.jsp <br>
 </tr>
 
 <c:forEach var="mlist" items="${lists }">
-	<tr>
-		<td align="center">${mlist.authority } </td>
-		<td align="center">${mlist.id } </td>
-		<td align="center">${mlist.name } </td>
-		<td align="center">${mlist.gender } </td>
-		<td align="center">${mlist.phonenumber } </td>
-		<td align="center">${mlist.email } </td>
-		<td align="center">${mlist.address } </td>
-		<td align="center">${mlist.memberstatus } </td>
-		<td align="center">정지</td>
+	<tr align="center">
+		<td>${mlist.authority } </td>
+		<td>${mlist.id } </td>
+		<td>${mlist.name } </td>
+		<td>${mlist.gender } </td>
+		<td>${mlist.phonenumber } </td>
+		<td>${mlist.email } </td>
+		<td>${mlist.address } </td>
+		<td>${mlist.memberstatus } </td>
+		<td>정지</td>
 	</tr>
 
 </c:forEach>
 
 
 </table>
+</div>
 
 	
 	
