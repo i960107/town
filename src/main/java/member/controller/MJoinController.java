@@ -27,7 +27,7 @@ public class MJoinController {
 
 	private final String command = "memberJoin.mb";
 	private final String getPage = "memberJoinForm";
-	private final String gotoPage = "redirect:/main.mk";
+	private final String gotoPage = "memberMyPageTop";
 	private final String goLogin = "memberLoginForm";
 	
 	@Autowired
@@ -43,6 +43,7 @@ public class MJoinController {
 		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
 		ModelAndView mav = new ModelAndView();
 		
+		
 		PrintWriter pwriter = response.getWriter();
 		response.setContentType("text/html; charset=UTF-8");
 		
@@ -50,6 +51,7 @@ public class MJoinController {
 			mav.setViewName(getPage);
 		}
 		else {
+			System.out.println(member.getId());
 			pwriter.print("<script type='text/javascript'>");
 			pwriter.print("alert('회원가입은 로그아웃 후 가능합니다')");
 			pwriter.print("</script>");
