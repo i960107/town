@@ -2,12 +2,25 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="board.BoardBean">
-  <select id="getAllCategory" resultType="String">
-  select category_name from town_board_category order by no asc
-  </select>
-  <select id="getBoard" resultType="board.model.BoardBean">
-  select * from town_board
-  </select>
-  </mapper>
+
+<mapper namespace="board.BoardBean">
+	<select id="getAllCategory"
+		resultType="board.model.BoardCategoryBean">
+		select * from town_board_category order by no asc
+	</select>
+	<select id="getBoard" resultType="board.model.BoardBean">
+		select * from town_board
+	</select>
+	<select id="getBoardByKeyword"
+		resultType="board.model.BoardBean">
+		select * from town_board where category in
+		<foreach collection="category_List" item="ctg" index="index"
+			separator="," open="(" close=")">
+			#{ctg}
+		</foreach>
+		<if test="keyword != null">
+			and subject like #{keyword}
+		</if>
+		order by reg_date desc
+	</select>
+</mapper>

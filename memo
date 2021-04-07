@@ -100,7 +100,7 @@ CREATE TABLE  town_board  (
   re_step  number  NULL,
   reg_date  date DEFAULT sysdate NULL,
   readcount  number  NULL);
-);
+
 select * from member;
 select * from member_deal;
 select * from member_deal_review;

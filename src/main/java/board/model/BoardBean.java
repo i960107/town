@@ -11,31 +11,10 @@ private String image1;
 private String image2;
 private String image3;
 private int ref;
-private int re_level;
-private int re_step;
-private String reg_date;
-public BoardBean() {
-	super();
-	// TODO Auto-generated constructor stub
-}
-public BoardBean(int no, String writer, String address, String subject, int category, String contents, String image1,
-		String image2, String image3, int ref, int re_level, int re_step, String reg_date, int readcount) {
-	super();
-	this.no = no;
-	this.writer = writer;
-	this.address = address;
-	this.subject = subject;
-	this.category = category;
-	this.contents = contents;
-	this.image1 = image1;
-	this.image2 = image2;
-	this.image3 = image3;
-	this.ref = ref;
-	this.re_level = re_level;
-	this.re_step = re_step;
-	this.reg_date = reg_date;
-	this.readcount = readcount;
-}
+private int reLevel;
+private int reStep;
+private String regDate;
+private int readcount;
 public int getNo() {
 	return no;
 }
@@ -96,23 +75,23 @@ public int getRef() {
 public void setRef(int ref) {
 	this.ref = ref;
 }
-public int getRe_level() {
-	return re_level;
+public int getReLevel() {
+	return reLevel;
 }
-public void setRe_level(int re_level) {
-	this.re_level = re_level;
+public void setReLevel(int reLevel) {
+	this.reLevel = reLevel;
 }
-public int getRe_step() {
-	return re_step;
+public int getReStep() {
+	return reStep;
 }
-public void setRe_step(int re_step) {
-	this.re_step = re_step;
+public void setReStep(int reStep) {
+	this.reStep = reStep;
 }
-public String getReg_date() {
-	return reg_date;
+public String getRegDate() {
+	return regDate;
 }
-public void setReg_date(String reg_date) {
-	this.reg_date = reg_date;
+public void setRegDate(String regDate) {
+	this.regDate = regDate;
 }
 public int getReadcount() {
 	return readcount;
@@ -120,5 +99,28 @@ public int getReadcount() {
 public void setReadcount(int readcount) {
 	this.readcount = readcount;
 }
-private int readcount;
+public BoardBean(int no, String writer, String address, String subject, int category, String contents, String image1,
+		String image2, String image3, int ref, int reLevel, int reStep, String regDate, int readcount) {
+	super();
+	this.no = no;
+	this.writer = writer;
+	this.address = address;
+	this.subject = subject;
+	this.category = category;
+	this.contents = contents;
+	this.image1 = image1;
+	this.image2 = image2;
+	this.image3 = image3;
+	this.ref = ref;
+	this.reLevel = reLevel;
+	this.reStep = reStep;
+	this.regDate = regDate;
+	this.readcount = readcount;
+}
+public BoardBean() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+
+
 }
