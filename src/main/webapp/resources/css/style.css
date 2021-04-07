@@ -99,7 +99,7 @@ a:hover,
 a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #fff;
+	color: #5D5D5D;  
 }
 
 ul,
@@ -425,7 +425,7 @@ ol {
 }
 
 .inner-header .advanced-search {
-	height: 50px;
+	height: 0px; /* origin: 50px */
 	border: 1px solid #ebebeb;
 }
 
@@ -1501,7 +1501,7 @@ ol {
 
 .footer-section {
 	background: #191919;
-	padding-top: 75px;
+	padding: 30px; /* orign: padding-top: 75px  */
 }
 
 .footer-left {
@@ -1518,7 +1518,7 @@ ol {
 
 .footer-left ul li {
 	list-style: none;
-	color: #b2b2b2;
+	color: #fff; /* #b2b2b2 */
 	font-size: 16px;
 	line-height: 30px;
 }

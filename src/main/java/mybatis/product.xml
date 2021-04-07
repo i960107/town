@@ -10,6 +10,13 @@
 
 <select id="getList" resultType="product.model.ProductBean">
 	select * from product
+	<if test="whatColumn == 'subject'">
+		where subject like #{keyword}
+	</if>
+	<if test="whatColumn == 'contents'">
+		where contents like #{keyword}
+	</if>
+	order by no desc
 </select>
 <!-- image2 ,3 dummy data 나중에 수정해줘야함 -->
 <insert id="insertProduct">

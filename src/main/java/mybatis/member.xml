@@ -8,6 +8,7 @@
 
 <mapper namespace="member.model.MemberBean">
 
+	<!-- 로그인 아이디 체크  -->
 	<select id="LoginCkId" resultType="member.model.MemberBean">
 		select * from member 
 		where id = #{id}
@@ -17,5 +18,13 @@
 		select * from member
 	
 	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="Register">
+		insert into member 
+		values(#{id}, #{pw}, #{name}, #{gender}, #{phonenumber},  #{email}, #{address},  #{address1},  #{address2}, #{address3},
+				 #{image}, default, 1)
+	
+	</insert>
 
 </mapper>

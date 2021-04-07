@@ -17,8 +17,8 @@ public class MemberDao {
 	SqlSessionTemplate sqlSessionTemplate;
 
 	// MLoginController -> 아이디 있는지 체크
-	public MemberBean loginCkId(String id) {
-		MemberBean midBean = sqlSessionTemplate.selectOne(nameSpace + ".LoginCkId", id);
+	public MemberBean loginCkId(MemberBean mbean) {
+		MemberBean midBean = sqlSessionTemplate.selectOne(nameSpace + ".LoginCkId", mbean);
 		return midBean;
 	}
 
@@ -28,6 +28,13 @@ public class MemberDao {
 		lists = sqlSessionTemplate.selectList(nameSpace+".GetAllData");
 		
 		return lists;
+	}
+
+	public int register(MemberBean mbean) {
+		int cnt = sqlSessionTemplate.insert(nameSpace+".Register",mbean);
+		System.out.println("회원가입 cnt :"+cnt);
+		
+		return cnt;
 	}
 	
 	

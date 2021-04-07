@@ -54,7 +54,7 @@
 		<table border="1" align="center">
 	  		<tr align="center">
 		    	<td width="200px" height="200px">
-					<img src="" width="180px" height="180px">
+					<img src="<%=request.getContextPath()%>/resources/${product.image1}" width="150" height="150" alt="상품사진">
 		    	</td>
 		  	</tr>
 		  	
@@ -84,7 +84,7 @@
 			</tr>
 		</table>
 				
-		<c:if test="count%4 == 0">
+		<c:if test="(count%4) == 0">
 			<c:out value="</table><table>"/>
 		</c:if>
 	</c:forEach>
