@@ -27,7 +27,7 @@ public class MJoinController {
 
 	private final String command = "memberJoin.mb";
 	private final String getPage = "memberJoinForm";
-	private final String gotoPage = "memberMyPageTop";
+	private final String gotoPage = "redirect:/main.mk";
 	private final String goLogin = "memberLoginForm";
 	
 	@Autowired
@@ -54,7 +54,6 @@ public class MJoinController {
 			pwriter.print("alert('회원가입은 로그아웃 후 가능합니다')");
 			pwriter.print("</script>");
 			pwriter.flush();
-
 			
 			mav.setViewName(gotoPage);
 		}

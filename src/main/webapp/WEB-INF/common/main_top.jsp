@@ -1,5 +1,8 @@
+<%@page import="member.model.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="common.jsp" %>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,12 +32,18 @@
 
 	<%
 	String login = request.getContextPath() + "/memberlogin.mb"; // 로그인
+	String logout = request.getContextPath() + "/memberlogout.mb"; // 로그아웃
 	String join = request.getContextPath() + "/memberJoin.mb"; // 회원가입
 	String myPage = request.getContextPath() + "/myPage.mb"; // 나의당근
 	String viewMain = request.getContextPath() + "/main.mk"; // 메인페이지
 	String saleList = request.getContextPath() + "/saleList.prd"; // 중고거래
 	String boardList = request.getContextPath() + "/list.bd"; // 동네생활
 	String productWrite = request.getContextPath() + "/pWrite.prd"; // 글쓰기
+	
+	//로그인한 아이디 세션 가져오기 
+	MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
+	
+	
 	%>
 	
     <!-- Page Preloder -->
@@ -54,7 +63,18 @@
                     </div>
                     <div class="top-social">
                         <a href="<%=join %>" class="login-panel">회원가입</a>
+                        
+                        <c:if test="<%= loginInfo == null %>">
                     	<a href="<%=login %>" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                    	</c:if>
+                    	
+                    	<c:if test="<%= loginInfo != null %>">
+                    	<a href="<%=logout %>" class="login-panel"><i class="fa fa-user"></i>LogOut</a>
+                    	<a href="<%=myPage %>" class="login-panel"><%= loginInfo.getId() %> 님</a>
+                    	</c:if>
+                    	
+                    	
+                    	
                     </div>
                 </div>
             </div>
