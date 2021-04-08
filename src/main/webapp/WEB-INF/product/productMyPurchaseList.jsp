@@ -3,7 +3,7 @@
 <%@ include file="./../common/common.jsp"%>
 <%@ include file="../../WEB-INF/member/memberMyPageTop.jsp"%>
 
-
+    
 <table align="center">
 	<tr>
 		<td>
