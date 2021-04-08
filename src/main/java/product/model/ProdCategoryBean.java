@@ -29,6 +29,7 @@ public class ProdCategoryBean {
 
 	public void setNo(int no) {
 		this.no = no;
+
 	}
 
 	public String getCategoryName() {

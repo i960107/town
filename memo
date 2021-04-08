@@ -66,7 +66,7 @@ CREATE TABLE  town_board_like  (
 );
 drop table product_category cascade constraints;
 CREATE TABLE  product_category  (
-  no varchar2(12) DEFAULT 0 NOT NULL,
+  no number DEFAULT 0 NOT NULL,
   category_name  varchar2(50)  NULL
 );
 
