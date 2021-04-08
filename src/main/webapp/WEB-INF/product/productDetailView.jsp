@@ -6,38 +6,60 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- PDetailViewControlelr >  -->
+<!-- PDetailViewControlelr > 
+상품 자세히 보기 페이지
+ -->
 <title>상품 보기</title>
 <script type="text/javascript">
 	function prdLike() {
 		location.href="like.prd";
 	}
+	function prdUnLike() {
+		location.href="unlike.prd";
+	}
 </script>
+<%
+String loginId = "";
+if(loginInfo.getId()!=null){
+	loginId = loginInfo.getId();
+}
+%>
 </head>
 <body>
 <table>
 	<tr>
 		<td>
-		<img alt="" src="<%=source%>resources/${pBean.image1}" height="300" width="250">
+		<img alt="" src="<%=source%>resources/${pBean.image1}" height="360" width="300">
 		</td>
 		<td>
-			<table border="1">
-				<tr>
-					<td colspan="3"><span>${pBean.subject }</span></td>
-				</tr>
-				<tr>
+			<table>
+				<tr height="72">
+						<td colspan="3"><span>${pBean.subject }</span></td>
+					</tr>
+				<tr height="72">
 					<td colspan="3"><span><fmt:formatNumber pattern="###,###">${pBean.price }</fmt:formatNumber> 원</span></td>
 				</tr>
-				<tr>
-					<td><span>${pBean.readcount }</span></td>
-					<td><span>${pBean.regdate }</span></td>
-					<td><a href="report.prd"><span>신고하기</span></a></td>
+				<tr height="72">
+					<td width="120"><span>${pBean.readcount }</span></td>
+					<td width="120"><span>${pBean.regdate }</span></td>
+					<td width="120"><a href="report.prd"><span>신고하기</span></a></td>
 				</tr>
-				<tr>
-					<td colspan="3" valign="top"><span>${pBean.address }</span></td>
+				<tr height="72">
+					<td colspan="3" valign="top"><span><img src="<%=source %>resources/img/icon-1.png">${pBean.address }</span></td>
 				</tr>
-				<tr>
-					<td><input type="button" name="like" value="♡찜 ${likeCnt}" onclick="prdLike()"> </td>
+				<tr height="72">
+					<td>
+					<c:set var="loginId"><%=loginId %></c:set>
+					<c:set var="heart" value="&#128153;"/>
+					<c:set var="likecondition" value="prdUnLike()"/>
+					<c:forEach var="i" items="${likeList }">
+						<c:if test="${loginId==i.userid }">
+						<c:set var="heart">&#128151; </c:set>
+						<c:set var="likecondition" value="prdLike()"/>
+						</c:if>
+					</c:forEach>
+					<input type="button" name="like" value="${heart } 찜 ${likeCnt}" onclick="${likecondition}"> 
+					</td>
 					<td><input type="button" name="chat" value="연락하기" onclick="chat()"></td>
 					<td></td>
 				</tr>
@@ -48,7 +70,7 @@
 <table>
 	<tr>
 		<td>
-		<img alt="" src="<%=source%>${member.image}" width="150" height="150">
+		<img alt="" src="<%=source%>resources/${member.image}" width="150" height="150">
 		</td>
 		<td>
 		<a href="tradeDetail.mb?sellerid=${sellerid }">${sellerid }</a>
@@ -57,14 +79,14 @@
 </table>
 <table>
 	<tr>
-		<td rowspan="3"><span>${pBean.contents }</span></td>
-		<td><a><img alt="" src="<%=source%>${pBean.image1 }" width="200" height="200"></a></td>
+		<td rowspan="3" width="400"><span>${pBean.contents }</span></td>
+		<td><a><img alt="" src="<%=source%>resources/${pBean.image1 }" width="200" height="200"></a></td>
 	</tr>
 	<tr>
-		<td><a><img alt="" src="<%=source%>${pBean.image2 }" width="200" height="200"></a></td>
+		<td><a><img alt="" src="<%=source%>resources/${pBean.image2 }" width="200" height="200"></a></td>
 	</tr>
 	<tr>
-		<td><a><img alt="" src="<%=source%>${pBean.image3 }" width="200" height="200"></a></td>
+		<td><a><img alt="" src="<%=source%>resources/${pBean.image3 }" width="200" height="200"></a></td>
 	</tr>
 </table>
 <a href="update.prd">수정하기</a><br>
