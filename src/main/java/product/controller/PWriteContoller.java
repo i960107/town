@@ -2,8 +2,11 @@ package product.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import member.model.MemberBean;
 import product.model.ProductBean;
 import product.model.ProductDao;
 
@@ -32,10 +36,24 @@ public class PWriteContoller {
 	private ServletContext application;
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)
-	public ModelAndView doAction() {
-		
+	public ModelAndView doAction(
+			HttpSession session, 
+			HttpServletResponse response
+			) throws IOException {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(getPage);
+
+		
+		//글쓰기 로그인 체크
+		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
+
+		if (member == null) {
+			//로그인 페이지 로그인하고 다시 나의당근으로 가기 
+			mav.setViewName("redirect:memberlogin.mb");
+			mav.addObject("plzLogin", false);
+			session.setAttribute("destination", getPage);
+		}else {
+			mav.setViewName(getPage);	
+		}
 		return mav;
 	}
 	

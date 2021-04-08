@@ -4,8 +4,7 @@
 MLoginController - > memberLoginForm.jsp
 <br>
 
-
-<%@ include file="./../common/main_top.jsp"%>
+<%@include file="./../common/main_top.jsp" %>
 
 <tr>
 	<td colspan="8">

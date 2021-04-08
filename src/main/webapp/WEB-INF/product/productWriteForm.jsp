@@ -42,7 +42,7 @@ productInsertForm.jsp <br><br>
 	<div class="group-input">
 		<tr>
 			<td class="group-input" width="120" align="center"><label>상품 이미지</label>
-			<input type="hidden" name="seller_id" value="Tester11"> <!-- value값 테스터 나중에 로그인 세션 들어오면 입력 -->
+			<input type="hidden" name="sellerid" value="<%=loginInfo.getId()%>">
 			</td>
 			<td class="group-input" >
 				<!-- 다중 파일 선택: multiple="multiple" -->
@@ -82,10 +82,10 @@ productInsertForm.jsp <br><br>
 		<tr>
 			<td class="group-input" width="120" align="center">환불</td>
 			<td class="group-input" >
-				<input type="radio" name="refund_availability" value="1">환불 불가
-				<input type="radio" name="refund_availability" value="0">환불 가능
+				<input type="radio" name="refundavailability" value="1">환불 불가
+				<input type="radio" name="refundavailability" value="0">환불 가능
 			</td>
-			<form:errors cssClass="err" path="refund_availability"/>
+			<form:errors cssClass="err" path="refundavailability"/>
 		</tr>
 		
 		<tr>

@@ -19,6 +19,7 @@ function jusoCallBack(roadFullAddr,siNm,sggNm,emdNm) {
 		document.form.sggNm.value = sggNm;
 		document.form.emdNm.value = emdNm;
 	}
+
 </script>
 
 <style type="text/css">
