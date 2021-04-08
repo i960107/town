@@ -40,6 +40,7 @@
 	String boardList = request.getContextPath() + "/list.bd"; // 동네생활
 	String productWrite = request.getContextPath() + "/pWrite.prd"; // 글쓰기
 	
+	String source = request.getContextPath()+"/"; //소스 경로 요청용 약어
 	//로그인한 아이디 세션 가져오기 
 	MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
 	
