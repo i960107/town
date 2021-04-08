@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <%@ include file="./../common/main_top.jsp"%>
 <%@include file="../common/common.jsp"%>
-
-
+<link rel="stylesheet" href="../common/style.jsp">
 <section>
 	<!-- 페이지설명 -->
 	<div class="container">
@@ -16,9 +16,11 @@
 				</div>
 			</div>
 		</div>
-		<!-- 검색필터설정 -->
-		<div class="row">
-			<div class="col-lg-12">
+		<div class="col-lg-12">
+			<!-- 검색필터설정 -->
+			<div class="row">
+
+
 				<form action="list.bd" method="post">
 					<table>
 						<tr>
@@ -41,25 +43,27 @@
 						</tr>
 						<tr>
 							<td colspan=2>결과 내 재검색 <input type="text" name="keyword"
-								value="${keyword}"> <input type="submit" value="검색"></td>
-						</tr>
-						<tr>
-							<td><input type="button" value="글쓰기"
-								onClick="location.href='insert.bd'"></td>
-							<td><%@include file="../common/addrArray.jsp"%></td>
+								value="${keyword}"> <input type="submit" value="검색">
+
+							</td>
 						</tr>
 					</table>
 				</form>
 			</div>
 		</div>
-
+		<table class="col-lg-12">
+			<tr><td><input type="button" value="글쓰기" onClick="location.href='insert.bd'">
+			</td></tr>
+			<tr><td><%@include file="../common/addrArray.jsp"%>
+				</td></tr>
+		</table>
 		<c:forEach var="board" items="${boardList}">
 			<!--글하나 -->
 			<div class="row">
 				<div class="col-lg-12 col-md-12">
 					<div class="single-latest-blog">
 						<div data-toggle="modal" data-target="#myModal${board.no}">
-							<table border=1>
+							<table border=1 class="col-lg-12">
 								<tr>
 									<td rowspan=2><img
 										src="${pageContext.request.contextPath}/resources/img/latest-1.jpg"
@@ -125,5 +129,6 @@
 				</div>
 			</div>
 		</c:forEach>
+	</div>
 	</div>
 </section>

@@ -94,15 +94,17 @@ CREATE TABLE  town_board  (
   subject  varchar2(250)  NULL,
   category  varchar2(40) NOT NULL,
   contents  varchar2(250)  NULL,
-  image1  varchar2(100) DEFAULT null NULL,
-  image2  varchar2(100) DEFAULT null NULL,
-  image3  varchar2(100) DEFAULT null NULL,
   ref  number  NULL,
   re_level  number  NULL,
   re_step  number  NULL,
   reg_date  date DEFAULT sysdate NULL,
   readcount  number  NULL);
-
+drop table town_board_file cascade constraints;
+create table town_board_file(
+no number primary key,
+bno number,
+filename varchar2(100)
+);
 select * from member;
 select * from member_deal;
 select * from member_deal_review;
@@ -143,14 +145,14 @@ start with 0
 increment by 1
 minvalue 0
 nocache;
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','삼겹살 같이 먹어요',1,'~~~~~~','image1','image2','image3',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','소라 같이 먹어요',1,'~~~~~~','image1','image2','image3',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','회 같이 먹어요',1,'~~~~~~','image1','image2','image3',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','소고기 같이 먹어요',1,'~~~~~~','image1','image2','image3',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','엽떡 같이 먹어요',1,'~~~~~~','image1','image2','image3',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','돈까스 같이 먹어요',1,'~~~~~~','image1','image2','image3',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','국밥 같이 먹어요',1,'~~~~~~','image1','image2','image3',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','술 같이 먹어요',1,'~~~~~~','image1','image2','image3',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','삼겹살 같이 먹어요',1,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','소라 같이 먹어요',1,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','회 같이 먹어요',1,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','소고기 같이 먹어요',1,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','엽떡 같이 먹어요',1,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','돈까스 같이 먹어요',1,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','국밥 같이 먹어요',1,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','술 같이 먹어요',1,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
 commit;
 
 
