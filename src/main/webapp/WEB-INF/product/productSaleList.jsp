@@ -8,11 +8,15 @@ PSaleController -> productSaleList.jsp<br>
 
 <a href="detail.prd">자세히 보기 임시</a>
 <h3>나의 당근 판매 내역 리스트 </h3>
-<%@include file="./../common/addrArray.jsp" %>
 
-<table>
+<table width="1200">
 	<tr>
-		<c:set var="step" value="1"/>
+		<td colspan="4">
+		<%@include file="./../common/addrArray.jsp" %>
+		</td>
+	</tr>
+	<tr>
+		<c:set var="step" value="0"/>
 		<c:forEach var="i" items="${list }" >
 		<c:set var="step" value="${step+1 }"/>
 			<td width="300" height="300">
@@ -27,3 +31,4 @@ PSaleController -> productSaleList.jsp<br>
 		</c:forEach>
 	</tr>
 </table>
+<%@ include file="./../common/main_bottom.jsp"%>

@@ -23,3 +23,4 @@
 
 </body>
 </html>
+<%@ include file="./../common/main_bottom.jsp"%>
