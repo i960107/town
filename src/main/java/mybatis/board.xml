@@ -11,20 +11,23 @@
 
 	<select id="getAllBoard" resultType="board.model.BoardBean">
 		select * from town_board
-		order by no asc
+		order by reg_date desc
 	</select>
 
 	<select id="getBoardByCategoryKeyword"
 		resultType="board.model.BoardBean">
 		select * from town_board where category in
-		<foreach item="item" index="index" collection="categoryList" open="("
-			separator="," close=")">
+		<foreach item="item" index="index" collection="categoryList"
+			open="(" separator="," close=")">
 			#{item}
 		</foreach>
-		<if  test="keyword!=null">
-		 and subject like #{keyword}
+		<if test="keyword!=null">
+			and subject like #{keyword}
 		</if>
-		order by no asc
+		order by reg_date desc
 	</select>
-
+	<insert id="insertBoard">
+		insert into town_board
+		values(town_board_seq.nextval,#{writer},#{address},#{subject},#{category},#{contents},#{image1},#{image2},#{image3},town_board_seq.currval,1,1,sysdate,0)
+	</insert>
 </mapper>
