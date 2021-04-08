@@ -92,7 +92,7 @@ public class MJoinController {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		//1. 업로드 위치
-		String uploadPath = servletContext.getRealPath("/resources/member");
+		String uploadPath = servletContext.getRealPath("/resources");
 		
 		MultipartFile multi = mbean.getUpload();
 		
