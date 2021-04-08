@@ -83,9 +83,8 @@ function jusoCallBack(roadFullAddr,siNm,sggNm,emdNm) {
 									<tr>
 										<td class="group-input"  width="200px"><label>* Gender</label></td>
 										<td class="gi-more" width="500px"> 
-											<input type="radio" name="gender" value="남"> 남   
-												&nbsp;&nbsp;&nbsp;&nbsp;
-											<input type="radio" name="gender" value="여"> 여
+											<input type="radio" name="gender" value="남" <c:if test="${mbean.gender == '남' }">checked</c:if> > 남												&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="radio" name="gender" value="여" <c:if test="${mbean.gender == '여' }">checked</c:if> > 여
 											<form:errors cssClass="err" path="gender"></form:errors> 
 										</td>
 									</tr>
@@ -93,7 +92,7 @@ function jusoCallBack(roadFullAddr,siNm,sggNm,emdNm) {
 									<tr>
 										<td class="group-input"  width="200px"><label>* Phone Number</label></td>
 										<td class="group-input" width="500px">
-										<input type="text"	name="phonenumber" value="${mbean.phonenumber }">
+										<input type="text"	name="phonenumber" value="${mbean.phonenumber }" placeholder="숫자로만 입력하세요.">
 										<form:errors cssClass="err" path="phonenumber"></form:errors>
 										</td>
 										

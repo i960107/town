@@ -7,7 +7,7 @@ MListController -> memberList.jsp <br>
  <%@ include file="./../../WEB-INF/member/memberMyPageTop.jsp"%> 
  
 <div align="center">
-<table border="1" width="70%" height="600" >
+<table border="1">
 <h3>회원 관리 </h3>
 
 	<tr height="20" align="center">
