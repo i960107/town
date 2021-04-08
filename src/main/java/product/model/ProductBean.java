@@ -17,8 +17,6 @@ public class ProductBean {
 	@NotNull(message = "주소를 입력하세요")
 	private String address  ;
 	private String image1  ;
-	private String image2  ;
-	private String image3  ;
 	private String contents  ;
 	@Min(value = 1, message = "가격을 입력하세요")
 	private int price  ;
@@ -30,7 +28,7 @@ public class ProductBean {
 	private MultipartFile upload;
 	
 	public ProductBean(int no, String sellerid, String subject, int category, String address, String image1,
-			String image2, String image3, String contents, int price, int refundavailability, String regdate,
+			String contents, int price, int refundavailability, String regdate,
 			int dealstatus, int readcount, MultipartFile upload) {
 		super();
 		this.no = no;
@@ -39,8 +37,6 @@ public class ProductBean {
 		this.category = category;
 		this.address = address;
 		this.image1 = image1;
-		this.image2 = image2;
-		this.image3 = image3;
 		this.contents = contents;
 		this.price = price;
 		this.refundavailability = refundavailability;
@@ -92,18 +88,6 @@ public class ProductBean {
 	public void setImage1(String image1) {
 		this.image1 = image1;
 	}
-	public String getImage2() {
-		return image2;
-	}
-	public void setImage2(String image2) {
-		this.image2 = image2;
-	}
-	public String getImage3() {
-		return image3;
-	}
-	public void setImage3(String image3) {
-		this.image3 = image3;
-	}
 	public String getContents() {
 		return contents;
 	}
@@ -141,7 +125,7 @@ public class ProductBean {
 		this.readcount = readcount;
 	}
 	public ProductBean(int no, String sellerid, String subject, int category, String address, String image1,
-			String image2, String image3, String contents, int price, int refundavailability, String regdate,
+			String contents, int price, int refundavailability, String regdate,
 			int dealstatus, int readcount) {
 		super();
 		this.no = no;
@@ -150,8 +134,6 @@ public class ProductBean {
 		this.category = category;
 		this.address = address;
 		this.image1 = image1;
-		this.image2 = image2;
-		this.image3 = image3;
 		this.contents = contents;
 		this.price = price;
 		this.refundavailability = refundavailability;

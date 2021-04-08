@@ -17,6 +17,7 @@
 		background: url("<%=source%>resources/img/insert_img.jpg");
 		border: none;
 	    width: 150px;
+	    cursor : pointer;
 	    height: 150px;
 	}
 </style>
