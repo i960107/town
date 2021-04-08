@@ -49,4 +49,10 @@
 	update product set readcount = readcount+1
 	where no = #{no}
 </update>
+
+<!-- 나의당근 판매내역 -->
+<select id="getListById" resultType="product.model.ProductBean">
+	select * from product where seller_id = #{loginID}
+</select>
+
 </mapper>
