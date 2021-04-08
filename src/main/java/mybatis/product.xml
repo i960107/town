@@ -34,4 +34,14 @@
 	select * from product_like
 	where product_no = #{no}
 </select>
+
+<insert id="productLike">
+	insert into product_like
+	values(prdlike_seq.nextval, #{productno}, #{userid})
+</insert>
+
+<delete id="productunLike">
+	delete from product_like
+	where product_no = #{no}
+</delete>
 </mapper>

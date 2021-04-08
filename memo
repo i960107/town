@@ -164,5 +164,24 @@ nocache;
 
 commit;
 
+-- 04-08 17:33
+-- 프로덕트 시퀀스
+drop sequence prdseq;   
+create sequence prdseq
+start with 0
+increment by 1
+minvalue 0
+nocache;
+
+--프로덕트 좋아요 시퀀스
+drop sequence prdseq_like;   
+create sequence prdseq_like
+start with 0
+increment by 1
+minvalue 0
+nocache;
+
+commit;
+
 
 

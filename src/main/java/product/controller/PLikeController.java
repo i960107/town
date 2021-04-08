@@ -1,9 +1,17 @@
 package product.controller;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import member.model.MemberBean;
+import product.model.ProductDao;
+import product.model.ProductLikeBean;
 
 @Controller
 public class PLikeController {
@@ -13,14 +21,36 @@ public class PLikeController {
 	private final String getPage = "productLikeList";
 	private final String gotoPage = "redirect:detail.prd";
 	private String addGetData = "&no=";
+	private final String command2 = "unlike.prd";
+	
+	@Autowired
+	ProductDao pDao;
 	
 	@RequestMapping(value=command)
 	public ModelAndView doAction(
-			@RequestParam(value = "no", required = false) int no //�ӽ� false DB�����Ǹ� ��������
+			@RequestParam(value = "no", required = true) int no,
+			HttpSession session, 
+			HttpServletResponse response
 			) {
 		
 		ModelAndView mav = new ModelAndView();
+		
+		//글쓰기 로그인 체크
+		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
+
+		if (member == null) {
+			//로그인 페이지 로그인하고 다시 나의당근으로 가기 
+			mav.setViewName("redirect:memberlogin.mb");
+			mav.addObject("plzLogin", false);
+			session.setAttribute("destination", getPage);
+			return mav;
+		}
+		
 		mav.setViewName(gotoPage+addGetData+no);
+		ProductLikeBean likeBean = new ProductLikeBean();
+		likeBean.setProductno(no);
+		likeBean.setUserid(member.getId());
+		pDao.productLike(likeBean);
 		
 		return mav;
 	}

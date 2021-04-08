@@ -41,4 +41,8 @@ public class ProductDao {
 		
 		return likeList;
 	}
+
+	public void productLike(ProductLikeBean likeBean) {
+		sqlSessionTemplate.insert(nameSpace+".productLike", likeBean);
+	}
 }
