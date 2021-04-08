@@ -85,20 +85,20 @@ MMyPageController -> memberMyPage.jsp
 			
 			<td class="tab-item" width="16%">
 				<ul class="nav" role="tablist">
-					<li><a class="active"  href="#tab-1" >My Like</a></li>
+					<li><a class="active"  href="like.prd" >My Like</a></li>
 				</ul>
 			</td>
 			
 			<td class="tab-item" width="16%">
 				<ul class="nav" role="tablist">
-					<li><a class="active"  href="like.prd" >My QNA</a></li>
+					<li><a class="active"  href="QnA.jsp" >My QNA</a></li>
 				</ul>
 			</td>
 		
 			<c:if test="${memAuth == 0 }">
 				<td class="tab-item">
 				<ul class="nav" role="tablist">
-					<li><a class="active"  href="QnA.jsp" >Category</a></li>
+					<li><a class="active"  href="Category.jsp" >Category</a></li>
 				</ul>
 			</td>
 			
