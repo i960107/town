@@ -37,11 +37,11 @@
 
 <insert id="productLike">
 	insert into product_like
-	values(prdlike_seq.nextval, #{productno}, #{userid})
+	values(prdseq_like.nextval, #{productno}, #{userid})
 </insert>
 
 <delete id="productunLike">
 	delete from product_like
-	where product_no = #{no}
+	where  product_no = ${productno} and user_id = ${userid}
 </delete>
 </mapper>

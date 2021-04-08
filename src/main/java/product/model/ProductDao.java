@@ -45,4 +45,8 @@ public class ProductDao {
 	public void productLike(ProductLikeBean likeBean) {
 		sqlSessionTemplate.insert(nameSpace+".productLike", likeBean);
 	}
+
+	public void productunLike(ProductLikeBean likeBean) {
+		sqlSessionTemplate.delete(nameSpace+".productunLike", likeBean);
+	}
 }

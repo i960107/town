@@ -12,10 +12,10 @@
 <title>상품 보기</title>
 <script type="text/javascript">
 	function prdLike() {
-		location.href="like.prd";
+		location.href="like.prd?no=${pBean.no}";
 	}
 	function prdUnLike() {
-		location.href="unlike.prd";
+		location.href="unlike.prd?no=${pBean.no}";
 	}
 </script>
 <style type="text/css">
@@ -70,11 +70,11 @@ if(loginInfo!=null){
 					<td>
 					<c:set var="loginId"><%=loginId %></c:set>
 					<c:set var="heart" value="&#10084;"/>
-					<c:set var="likecondition" value="prdUnLike()"/>
+					<c:set var="likecondition" value="prdLike()"/>
 					<c:forEach var="i" items="${likeList }">
 						<c:if test="${loginId==i.userid }">
 						<c:set var="heart">&#128151; </c:set>
-						<c:set var="likecondition" value="prdLike()"/>
+						<c:set var="likecondition" value="prdunLike()"/>
 						</c:if>
 					</c:forEach>
 					<input type="button" name="like" value="${heart } 찜 ${likeCnt}" onclick="${likecondition}"> 
