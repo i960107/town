@@ -20,7 +20,7 @@
 </script>
 <%
 String loginId = "";
-if(loginInfo.getId()!=null){
+if(loginInfo!=null){
 	loginId = loginInfo.getId();
 }
 %>
