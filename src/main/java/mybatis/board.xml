@@ -17,15 +17,11 @@
 	<select id="getBoardByCategoryKeyword"
 		resultType="board.model.BoardBean">
 		select * from town_board where category in
-		<foreach collection="categoryList" item="item" open="("
-			close=")" separator=",">
+		<foreach item="item" index="index" collection="categoryList" open="("
+			separator="," close=")">
 			#{item}
 		</foreach>
-		<where>
-			<if test="keyword!=null">
-			subject like #{keyword}
-			</if>
-		</where>
+
 		order by no asc
 	</select>
 

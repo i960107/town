@@ -40,6 +40,7 @@ public class BoardDao {
 			categoryList.add(ctg);
 		}
 		Map<String,Object> map=new HashMap<String,Object>();
+		System.out.println("categoryList"+categoryList.get(1));
 		map.put("categoryList", categoryList);
 		map.put("keyword", "%"+keyword+"%");
 		boardList=sqlSessionTemplate.selectList(namespace+".getBoardByCategoryKeyword",map);
