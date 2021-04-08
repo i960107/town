@@ -12,7 +12,18 @@
 <body>
 <table>
 	<tr>
-		<td></td>
+		<td>
+		<img alt="" src="<%=request.getContextPath()%>/resources/${i.image1}" height="200" width="200">
+		</td>
+		<td>
+			<table>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</td>
 	</tr>
 </table>
 <a href="like.prd">찜하기</a><br>
