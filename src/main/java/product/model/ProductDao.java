@@ -60,4 +60,11 @@ public class ProductDao {
 	public void incrementReadCount(int no) {
 		sqlSessionTemplate.update(nameSpace+".incrementReadCount", no);
 	}
+
+	// 나의당근 - 판매내역 
+	public List<ProductBean> getListById(String loginID) {
+		 List<ProductBean> lists = new ArrayList<ProductBean>();
+		 lists = sqlSessionTemplate.selectList(nameSpace+".getListById",loginID);
+		return lists;
+	}
 }
