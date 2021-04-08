@@ -49,46 +49,47 @@
 	<!-- 인기 키워드 끝 -->
 
 	<!-- 인기매물 시작 -->
-	<c:set var="count" value="0"/>
-	<c:forEach items="" var="product">
-		<table border="1" align="center">
-	  		<tr align="center">
-		    	<td width="200px" height="200px">
-					<img src="<%=request.getContextPath()%>/resources/${product.image1}" width="150" height="150" alt="상품사진">
-		    	</td>
-		  	</tr>
-		  	
-		 	<tr>
-		    	<td>
-		     		<table border="1">
-				        <tr align="center">
-				        	<td>제목:</td>
-				          	<td>${product.sbject}</td>
-				        </tr>
-				        <tr align="center">
-				         	 <td>가격:</td>
-				         	 <td>
-				         	 	<fmt:formatNumber value="${product.price }" pattern="###,###" />
-				         	 </td>
-				        </tr>
-				        <tr align="center">
-				         	 <td>주소:</td>
-				         	 <td>${product.address}</td>
-				        </tr>
-				        <tr align="center">
-				        	<td>조회수: ${product.readcount}</td>
-				         	<td>관심: </td> <!-- product_like 테이블 -->
-						</tr>
-					</table>
-				</td>
-			</tr>
-		</table>
-				
-		<c:if test="(count%4) == 0">
-			<c:out value="</table><table>"/>
-		</c:if>
-	</c:forEach>
-	
+	<table border="1">
+		<c:set var="count" value="0"/>
+		<c:forEach var="i" items="${list }">
+			<table border="1">
+		  		<tr align="center">
+			    	<td width="200px" height="200px">
+						<img src="<%=request.getContextPath()%>/resources/${i.image1}" width="150" height="150" alt="상품사진">
+			    	</td>
+			  	</tr>
+			  	
+			 	<tr>
+			    	<td>
+			     		<table border="1">
+					        <tr align="center">
+					        	<td>제목:</td>
+					          	<td>${i.sbject}</td>
+					        </tr>
+					        <tr align="center">
+					         	 <td>가격:</td>
+					         	 <td>
+					         	 	<fmt:formatNumber value="${i.price }" pattern="###,###" />
+					         	 </td>
+					        </tr>
+					        <tr align="center">
+					         	 <td>주소:</td>
+					         	 <td>${i.address}</td>
+					        </tr>
+					        <tr align="center">
+					        	<td>조회수: ${i.readcount}</td>
+					         	<td>관심: </td> <!-- product_like 테이블 -->
+							</tr>
+						</table>
+					</td>
+				</tr>
+					
+			<c:if test="(count%4) == 0">
+				</table><table>
+			</c:if>
+			</table>
+		</c:forEach>
+	</table>
 	<!-- 인기매물 끝 -->
 
     <!-- Js Plugins -->

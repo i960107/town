@@ -1,6 +1,8 @@
 package member.model;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +21,8 @@ public class MemberBean {
 	@NotNull(message = "성별을 선택해주세요")
 	private String gender;
 	
+	@Pattern(regexp = "^[0-9]+$", message = "번호은 숫자로만 입력하세요.")
+	@Size(min = 10, max = 11, message = "전화번호를 다시 확인해주세요.") // 번호 10~11개 까지만 입력
 	@NotBlank(message = "전화번호는 필수 입력사항입니다.")
 	private String phonenumber;
 	
