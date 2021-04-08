@@ -2,23 +2,23 @@ package board.model;
 
 public class BoardCategoryBean {
 private int no;
-private String category_name;
+private String categoryName;
 public int getNo() {
 	return no;
 }
 public void setNo(int no) {
 	this.no = no;
 }
-public String getCategory_name() {
-	return category_name;
+public String getCategoryName() {
+	return categoryName;
 }
-public void setCategory_name(String category_name) {
-	this.category_name = category_name;
+public void setCategoryName(String categoryName) {
+	this.categoryName = categoryName;
 }
-public BoardCategoryBean(int no, String category_name) {
+public BoardCategoryBean(int no, String categoryName) {
 	super();
 	this.no = no;
-	this.category_name = category_name;
+	this.categoryName = categoryName;
 }
 public BoardCategoryBean() {
 	super();
