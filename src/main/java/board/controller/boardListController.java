@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import board.model.BoardBean;
 import board.model.BoardCategoryBean;
 import board.model.BoardDao;
-
 @Controller
 public class boardListController {
 private final String command="list.bd";

@@ -36,25 +36,25 @@
 		for (var i = s_sel.length-1; i > 0; i--) {
 			s_sel.options[i] = null;
 		}
-		
 		var findex = arrayForm.address1.selectedIndex;
 		for (var i = 0; i < s_selarr[findex-1].length; i++) {			 	
 			s_sel.options[i+1] = new Option(s_selarr[findex-1][i]);
 		}
+		
 	}
 	
 </script>
 <form name="arrayForm">
 <div id="hideon" style="float: right;">
 <select name="address2" id="address2">
-	<option value="0">구/군 선택
+	<option value="0">시/군/구 선택
 </select>
 </div>
 
 <div style="float: right;">
 <select name="address1" id="address1" onchange="changeSelect()">
-	<option value="0">시/도 선택
-	<c:forEach var="i" items="<%=addr %>">
+	<option value="0">광역시도 선택
+	<c:forEach var="i" items="<%=addr%>">
 	<option value="${i }">${i }
 	</c:forEach>
 </select>

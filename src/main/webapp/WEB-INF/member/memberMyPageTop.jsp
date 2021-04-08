@@ -3,9 +3,6 @@
 <%@ include file="./../common/main_top.jsp"%>
 <%@ include file="./../common/common.jsp"%>
 
-MMyPageController -> memberMyPage.jsp
-<br>
-<br>
 
 <style>
 .box {
@@ -47,9 +44,11 @@ MMyPageController -> memberMyPage.jsp
 	 }); */
 </script>
 
-
-<h3>나의 당근</h3>
-
+<br>
+<center>
+	<h2>나의 당근(MY PAGE)</h2>
+</center>
+<br>
 
 <tr>
 	<table width="80%" border="1" align="center">
@@ -57,7 +56,7 @@ MMyPageController -> memberMyPage.jsp
 			<td colspan="2" align="center">
 				<div class="box">
 					<a href="memberUpdate.mb"> <img class="profile"
-						src="<%=request.getContextPath()%>/resources/member/${profileImage}">
+						src="<%=request.getContextPath()%>/resources/member/${memberLoginInfo.image}">
 					</a>
 				</div>
 			</td>
@@ -67,7 +66,7 @@ MMyPageController -> memberMyPage.jsp
 		<tr >
 			<td class="tab-item" width="16%">
 				<ul class="nav" role="tablist">
-					<li><a class="active"  href="#tab-1">My Sale</a></li>
+					<li><a class="active" href="mySaleList.prd">My Sale</a></li>
 				</ul>
 			</td>
 			
