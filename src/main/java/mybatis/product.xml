@@ -42,6 +42,11 @@
 
 <delete id="productunLike">
 	delete from product_like
-	where  product_no = ${productno} and user_id = ${userid}
+	where  no = #{no}
 </delete>
+
+<update id="incrementReadCount">
+	update product set readcount = readcount+1
+	where no = #{no}
+</update>
 </mapper>

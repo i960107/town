@@ -26,6 +26,7 @@ public class PLikeController {
 	@Autowired
 	ProductDao pDao;
 	
+	//좋아요
 	@RequestMapping(value=command)
 	public ModelAndView doAction(
 			@RequestParam(value = "no", required = true) int no,
@@ -45,8 +46,8 @@ public class PLikeController {
 			session.setAttribute("destination", getPage);
 			return mav;
 		}
-		
-		mav.setViewName(gotoPage+addGetData+no);
+		addGetData = "?no="+no+"&sellerid="+member.getId();
+		mav.setViewName(gotoPage+addGetData);
 		ProductLikeBean likeBean = new ProductLikeBean();
 		likeBean.setProductno(no);
 		likeBean.setUserid(member.getId());
@@ -55,9 +56,11 @@ public class PLikeController {
 		return mav;
 	}
 	
+	// 싫어요
 	@RequestMapping(value=command2)
 	public ModelAndView doAction2(
 			@RequestParam(value = "no", required = true) int no,
+			@RequestParam(value = "like", required = true) int like,
 			HttpSession session, 
 			HttpServletResponse response
 			) {
@@ -74,12 +77,9 @@ public class PLikeController {
 			session.setAttribute("destination", getPage);
 			return mav;
 		}
-		
-		mav.setViewName(gotoPage+addGetData+no);
-		ProductLikeBean likeBean = new ProductLikeBean();
-		likeBean.setProductno(no);
-		likeBean.setUserid(member.getId());
-		pDao.productunLike(likeBean);
+		addGetData = "?no="+no+"&sellerid="+member.getId();
+		mav.setViewName(gotoPage+addGetData);
+		pDao.productunLike(like);
 		
 		return mav;
 	}

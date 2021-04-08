@@ -38,7 +38,7 @@ public class PDetailViewController {
 		
 		ProductBean pBean = pDao.getProduct(no);
 		List<ProductLikeBean> likeList = pDao.getLike(no);
-		
+		pDao.incrementReadCount(no);
 		mav.addObject("pBean", pBean);
 		mav.addObject("sellerid", sellerid);
 		mav.addObject("likeList", likeList);
