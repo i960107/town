@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import member.model.MemberDealBean;
+
 @Component("myProductDao")
 public class ProductDao {
 
@@ -67,4 +69,5 @@ public class ProductDao {
 		 lists = sqlSessionTemplate.selectList(nameSpace+".getListById",loginID);
 		return lists;
 	}
+
 }

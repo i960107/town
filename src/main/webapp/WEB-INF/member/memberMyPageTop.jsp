@@ -72,7 +72,7 @@
 			
 			<td class="tab-item" width="16%" >
 				<ul class="nav" role="tablist">
-					<li><a class="active" href="#tab-1" >My Purchase</a></li>
+					<li><a class="active" href="myPurchaselist.prd" >My Purchase</a></li>
 				</ul>
 			</td>
 			

@@ -44,6 +44,8 @@ public class MemberDao {
 		
 		return mBean;
 	}
+
+
 	
 	
 	

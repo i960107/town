@@ -55,4 +55,6 @@
 	select * from product where seller_id = #{loginID}
 </select>
 
+
+
 </mapper>
