@@ -5,4 +5,15 @@
   
 <mapper namespace="main.model.Main">
 
+<select id="getAllList" resultType="main.model.MainBean">
+	select * from product
+	<if test="whatColumn == 'subject'">
+		where subject like #{keyword}
+	</if>
+	<if test="whatColumn == 'contents'">
+		where contents like #{keyword}
+	</if>
+	order by no desc
+</select>
+
 </mapper>
