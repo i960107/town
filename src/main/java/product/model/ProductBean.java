@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ProductBean {
 
 	private int no ;
-	private String  seller_id ;
+	private String  sellerid ;
 	@NotEmpty(message = "제목을 입력하세요")
 	private String subject  ;
 	@NotNull(message = "카테고리를 선택하세요")
@@ -23,18 +23,18 @@ public class ProductBean {
 	@Min(value = 1, message = "가격을 입력하세요")
 	private int price  ;
 	@NotNull(message = "교환여부를 선택하세요")
-	private int refund_availability  ;
-	private String reg_date;
-	private int deal_status  ;
+	private int refundavailability  ;
+	private String regdate;
+	private int dealstatus  ;
 	private int readcount  ;
 	private MultipartFile upload;
 	
-	public ProductBean(int no, String seller_id, String subject, int category, String address, String image1,
-			String image2, String image3, String contents, int price, int refund_availability, String reg_date,
-			int deal_status, int readcount, MultipartFile upload) {
+	public ProductBean(int no, String sellerid, String subject, int category, String address, String image1,
+			String image2, String image3, String contents, int price, int refundavailability, String regdate,
+			int dealstatus, int readcount, MultipartFile upload) {
 		super();
 		this.no = no;
-		this.seller_id = seller_id;
+		this.sellerid = sellerid;
 		this.subject = subject;
 		this.category = category;
 		this.address = address;
@@ -43,9 +43,9 @@ public class ProductBean {
 		this.image3 = image3;
 		this.contents = contents;
 		this.price = price;
-		this.refund_availability = refund_availability;
-		this.reg_date = reg_date;
-		this.deal_status = deal_status;
+		this.refundavailability = refundavailability;
+		this.regdate = regdate;
+		this.dealstatus = dealstatus;
 		this.readcount = readcount;
 		this.upload = upload;
 	}
@@ -62,11 +62,11 @@ public class ProductBean {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public String getSeller_id() {
-		return seller_id;
+	public String getSellerid() {
+		return sellerid;
 	}
-	public void setSeller_id(String seller_id) {
-		this.seller_id = seller_id;
+	public void setSellerid(String sellerid) {
+		this.sellerid = sellerid;
 	}
 	public String getSubject() {
 		return subject;
@@ -116,23 +116,23 @@ public class ProductBean {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public int getRefund_availability() {
-		return refund_availability;
+	public int getRefundavailability() {
+		return refundavailability;
 	}
-	public void setRefund_availability(int refund_availability) {
-		this.refund_availability = refund_availability;
+	public void setRefundavailability(int refundavailability) {
+		this.refundavailability = refundavailability;
 	}
-	public String getReg_date() {
-		return reg_date;
+	public String getRegdate() {
+		return regdate;
 	}
-	public void setReg_date(String reg_date) {
-		this.reg_date = reg_date;
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
-	public int getDeal_status() {
-		return deal_status;
+	public int getDealstatus() {
+		return dealstatus;
 	}
-	public void setDeal_status(int deal_status) {
-		this.deal_status = deal_status;
+	public void setDealstatus(int dealstatus) {
+		this.dealstatus = dealstatus;
 	}
 	public int getReadcount() {
 		return readcount;
@@ -140,12 +140,12 @@ public class ProductBean {
 	public void setReadcount(int readcount) {
 		this.readcount = readcount;
 	}
-	public ProductBean(int no, String seller_id, String subject, int category, String address, String image1,
-			String image2, String image3, String contents, int price, int refund_availability, String reg_date,
-			int deal_status, int readcount) {
+	public ProductBean(int no, String sellerid, String subject, int category, String address, String image1,
+			String image2, String image3, String contents, int price, int refundavailability, String regdate,
+			int dealstatus, int readcount) {
 		super();
 		this.no = no;
-		this.seller_id = seller_id;
+		this.sellerid = sellerid;
 		this.subject = subject;
 		this.category = category;
 		this.address = address;
@@ -154,9 +154,9 @@ public class ProductBean {
 		this.image3 = image3;
 		this.contents = contents;
 		this.price = price;
-		this.refund_availability = refund_availability;
-		this.reg_date = reg_date;
-		this.deal_status = deal_status;
+		this.refundavailability = refundavailability;
+		this.regdate = regdate;
+		this.dealstatus = dealstatus;
 		this.readcount = readcount;
 	}
 	public ProductBean() {

@@ -38,7 +38,7 @@ public class PSaleController {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(getPage);
-		List<ProductBean> list = pDao.getList(map);
+		List<ProductBean> list = pDao.getList(map);	
 		
 		mav.addObject("list", list);
 		

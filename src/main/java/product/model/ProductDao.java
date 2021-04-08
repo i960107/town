@@ -28,4 +28,16 @@ public class ProductDao {
 		int cnt = sqlSessionTemplate.insert(nameSpace+".insertProduct", productbean);
 		return cnt;
 	}
+
+	public ProductBean getProduct(int no) {
+		ProductBean pBean = new ProductBean();
+		pBean = sqlSessionTemplate.selectOne(nameSpace+".getProduct", no);
+		return pBean;
+	}
+
+	public int getLike(int no) {
+		int likeCnt = sqlSessionTemplate.selectOne(nameSpace+".getLike", no);
+		
+		return likeCnt;
+	}
 }
