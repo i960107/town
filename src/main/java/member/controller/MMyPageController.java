@@ -30,6 +30,8 @@ public class MMyPageController {
 		response.setContentType("text/html; charset=UTF-8");
 
 		ModelAndView mav = new ModelAndView();
+		
+		
 
 		if (member == null) {
 			pwriter.print("<script type='text/javascript'>");
@@ -42,6 +44,8 @@ public class MMyPageController {
 			mav.setViewName(gotoPage);
 
 		} else {
+			System.out.println(member.getImage());
+			session.setAttribute("profileImage", member.getImage());
 			mav.setViewName(getPage);
 		}
 

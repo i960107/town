@@ -8,9 +8,9 @@ MMyPageController -> memberMyPage.jsp
 
 <style>
 .box {
-	width: 150px;
-	height: 150px;
-	border-radius: 70%;
+	width: 280px;
+	height: 280px;
+	border-radius: 50%;
 	overflow: hidden;
 }
 
@@ -54,12 +54,12 @@ MMyPageController -> memberMyPage.jsp
 
 
 <tr>
-	<table width="100%" border="1" >
-		<tr rowspan="3">
+	<table width="90%" border="1" align="center" >
+		<tr rowspan="3" height="300">
 			<td colspan="2" align="center">
 				<div class="box">
 					<a href="memberUpdate.mb">
-						<img class="profile" src="<%=request.getContextPath()%>/resources/img.jpg">
+						<img class="profile" src="<%=request.getContextPath()%>/resources/member/${profileImage}">
 					</a>
 				</div>
 			</td>
@@ -79,6 +79,6 @@ MMyPageController -> memberMyPage.jsp
 			<td align="center"><a href="memberList.mb">회원관리</a></td> 
 		</tr>
 		
-	</table>
+	
 
 
