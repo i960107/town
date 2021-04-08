@@ -31,15 +31,21 @@
 								</c:if> <c:if test="${category!=null}">
 									<c:forEach items="${categoryList}" var="ctg">
 										<span class="col-md-2"> <input type="checkbox"
-											name="category" value="${ctg}"
-											<c:if test="${fn:contains(category,ctg.no)}">checked</c:if>>${ctg.categoryName}
+											name="category" value="${ctg.no}"
+											<c:forTokens items="${category}" delims="," var="ct">
+													<c:if test="${ct==ctg.no}">checked</c:if>
+													</c:forTokens>>${ctg.categoryName}
 										</span>
 									</c:forEach>
 								</c:if></td>
 						</tr>
 						<tr>
-							<td>결과 내 재검색 <input type="text" name="keyword"
+							<td colspan=2>결과 내 재검색 <input type="text" name="keyword"
 								value="${keyword}"> <input type="submit" value="검색"></td>
+						</tr>
+						<tr>
+							<td><input type="button" value="글쓰기"
+								onClick="location.href='insert.bd'"></td>
 							<td><%@include file="../common/addrArray.jsp"%></td>
 						</tr>
 					</table>
@@ -74,14 +80,14 @@
 										</h4> <br> ${board.contents}</td>
 								</tr>
 								<tr>
-									<td>사용자이미지 <i class="fa fa-calendar-o"></i>
-										${board.regDate} <i class="fa fa-comment-o"></i>
-										${board.readcount} <a class="btn btn-default" href=""
-										role="button">공감하기</a>
-
-									</td>
+									<td><img
+										src="<%=request.getContextPath() %>/resrouces/${loginInfo.image}"
+										class="img-circle" width="30" height=30>${board.writer}<br>
+										<i class="fa fa-calendar-o"></i> ${board.regDate} <i
+										class="fa fa-comment-o"></i> ${board.readcount} <a
+										class="btn btn-default" href="" role="button">공감하기</a></td>
 									<td>
-										<form method="post" action="insert.bd">
+										<form method="post" action="insertReply.bd">
 											<textarea cols="50" rows="2" name="contentx"></textarea>
 											<input type="submit" value="댓글쓰기">
 										</form>
@@ -92,9 +98,9 @@
 						</div>
 
 						<!-- Modal -->
-						<div class="modal fade bs-example-modal-lg" id="myModal${board.no}" tabindex="-1"
-							role="dialog" aria-labelledby="myLargeModalLabel"
-							aria-hidden="true">
+						<div class="modal fade bs-example-modal-lg"
+							id="myModal${board.no}" tabindex="-1" role="dialog"
+							aria-labelledby="myLargeModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
 									<div class="modal-header">
