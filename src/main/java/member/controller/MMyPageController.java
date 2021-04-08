@@ -46,6 +46,7 @@ public class MMyPageController {
 		} else {
 			System.out.println(member.getImage());
 			session.setAttribute("profileImage", member.getImage());
+			session.setAttribute("memAuth", member.getAuthority());
 			mav.setViewName(getPage);
 		}
 

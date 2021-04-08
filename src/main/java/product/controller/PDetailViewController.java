@@ -1,6 +1,8 @@
 package product.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,7 @@ import member.model.MemberBean;
 import member.model.MemberDao;
 import product.model.ProductBean;
 import product.model.ProductDao;
+import product.model.ProductLikeBean;
 
 
 @Controller
@@ -34,11 +37,12 @@ public class PDetailViewController {
 		mav.setViewName(getPage);
 		
 		ProductBean pBean = pDao.getProduct(no);
-		int likeCnt = pDao.getLike(no);
+		List<ProductLikeBean> likeList = pDao.getLike(no);
 		
 		mav.addObject("pBean", pBean);
 		mav.addObject("sellerid", sellerid);
-		mav.addObject("likeCnt", likeCnt);
+		mav.addObject("likeList", likeList);
+		mav.addObject("likeCnt", likeList.size());
 		
 		return mav;
 	}

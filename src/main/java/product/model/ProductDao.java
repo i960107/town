@@ -35,9 +35,10 @@ public class ProductDao {
 		return pBean;
 	}
 
-	public int getLike(int no) {
-		int likeCnt = sqlSessionTemplate.selectOne(nameSpace+".getLike", no);
+	public List<ProductLikeBean> getLike(int no) {
+		List<ProductLikeBean> likeList = new ArrayList<ProductLikeBean>();
+		likeList = sqlSessionTemplate.selectList(nameSpace+".getLike", no);
 		
-		return likeCnt;
+		return likeList;
 	}
 }

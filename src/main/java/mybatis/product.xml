@@ -30,8 +30,8 @@
 	where no = #{no}
 </select>
 
-<select id="getLike" resultType="int">
-	select count(*) from product_like
-	where no = #{no}
+<select id="getLike" resultType="product.model.ProductLikeBean">
+	select * from product_like
+	where product_no = #{no}
 </select>
 </mapper>

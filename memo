@@ -152,3 +152,17 @@ insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서
 insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','국밥 같이 먹어요',1,'~~~~~~','image1','image2','image3',town_board_seq.currval,1,1,sysdate,0);
 insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','술 같이 먹어요',1,'~~~~~~','image1','image2','image3',town_board_seq.currval,1,1,sysdate,0);
 commit;
+
+
+-- 프로덕트 카테고리 시퀀스
+drop sequence prodcate_seq;   
+create sequence prodcate_seq
+start with 0
+increment by 1
+minvalue 0
+nocache;
+
+commit;
+
+
+
