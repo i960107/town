@@ -1,27 +1,37 @@
 package member.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import member.model.MemberBean;
+import member.model.MemberDao;
+
 @Controller
 public class MTradeDetailView {
 
 	
-	//»óÇ° µî·ÏÇÑ »ç¿ëÀÚ Á¤º¸ È®ÀÎ
+	//ìƒí’ˆ ë“±ë¡ì ìì„¸íˆë³´ê¸°
 	private final String command = "tradeDetail.mb";
 	private final String getPage = "tradeDetailView";
 	private final String gotoPage = "redirect:detail.prd";
-	private String addGetData = "&no=";
+	private String addGetData = "&sellerid=";
+	
+	@Autowired
+	MemberDao mDao;
+	
 	
 	@RequestMapping(value = command)
 	public ModelAndView doAction(
-			@RequestParam(value = "no", required = false) int no //ÀÓ½Ã µ¥ÀÌÅÍ requ = false µ¥ÀÌÅÍº£ÀÌ½º ¸¸µé¸é Áö¿ö¾ßÇÔ
+			@RequestParam(value = "sellerid", required = false) String sellerid
 			) {
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(getPage+addGetData+no);
+		mav.setViewName(getPage);
+		MemberBean mBean = mDao.getMember(sellerid);
+		mav.addObject("mBean", mBean);
 		return mav;
 	}
 }

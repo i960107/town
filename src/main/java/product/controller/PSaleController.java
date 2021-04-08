@@ -39,6 +39,11 @@ public class PSaleController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(getPage);
 		List<ProductBean> list = pDao.getList(map);
+		for(ProductBean i : list) {
+			System.out.println(i.getSellerid());
+			System.out.println(i.getSubject());
+		}
+		
 		
 		mav.addObject("list", list);
 		

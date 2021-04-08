@@ -27,4 +27,9 @@
 	
 	</insert>
 
+	<!-- prd.seller_id 기준 회원검색 -->
+	<select id="getMember" resultType="member.model.MemberBean">
+		select * from member
+		where id = #{sellerid}
+	</select>
 </mapper>

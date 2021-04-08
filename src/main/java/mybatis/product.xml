@@ -25,4 +25,13 @@
 	)
 </insert>
 
+<select id="getProduct" resultType="product.model.ProductBean">
+	select * from product
+	where no = #{no}
+</select>
+
+<select id="getLike" resultType="int">
+	select count(*) from product_like
+	where no = #{no}
+</select>
 </mapper>

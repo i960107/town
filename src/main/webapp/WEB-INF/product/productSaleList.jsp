@@ -20,7 +20,7 @@ PSaleController -> productSaleList.jsp<br>
 		<c:forEach var="i" items="${list }" >
 		<c:set var="step" value="${step+1 }"/>
 			<td width="300" height="300">
-				<a href="detail.prd?no=${i.no }">
+				<a href="detail.prd?no=${i.no }&sellerid=${i.sellerid}">
 				<img alt="" src="<%=request.getContextPath()%>/resources/${i.image1}" height="200" width="200"><br>
 				</a>
 				${i.subject } <br>

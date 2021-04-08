@@ -36,6 +36,14 @@ public class MemberDao {
 		
 		return cnt;
 	}
+
+	//ProductDetailView - 회원정보 검색
+	public MemberBean getMember(String sellerid) {
+		MemberBean mBean = new MemberBean();
+		mBean = sqlSessionTemplate.selectOne(nameSpace+".getMember", sellerid);
+		
+		return mBean;
+	}
 	
 	
 	

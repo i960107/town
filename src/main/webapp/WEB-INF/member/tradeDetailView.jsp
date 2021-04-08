@@ -10,7 +10,8 @@
 <!-- MTradeDetailController >> -->
 </head>
 <body>
-사용자 정보 확인${no }
+사용자 정보 확인${mBean.id} <br>
+주소 ${mBean.address } <br>
 <a href="tradeReview"></a>
 </body>
 </html>

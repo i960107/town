@@ -13,7 +13,7 @@
 <table>
 	<tr>
 		<td>
-		<img alt="" src="<%=request.getContextPath()%>/resources/${i.image1}" height="200" width="200">
+		<img alt="" src="<%=request.getContextPath()%>/resources/${pBean.image1}" height="200" width="200">
 		</td>
 		<td>
 			<table>
@@ -23,6 +23,13 @@
 					<td></td>
 				</tr>
 			</table>
+		</td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<td>
+		<a href="tradeDetail.mb?sellerid=${sellerid }">${sellerid }</a>
 		</td>
 	</tr>
 </table>
