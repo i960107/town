@@ -1,26 +1,37 @@
 package board.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardBean {
 private int no;
 private String writer;
 private String address;
+@NotBlank(message = "제목은 필수 입력사항입니다.")
 private String subject;
-private int category;
+@NotNull(message="카테고리 1개 이상 선택해주세요")
+private String category;
+@NotNull(message = "10자 이상 입력해주세요.")
+@Size(min=10, message = "10자 이상 입력해주세요.")
 private String contents;
 private String image1;
 private String image2;
 private String image3;
-private int ref;
-private int reLevel;
-private int reStep;
-private String regDate;
-private int readcount;
+private MultipartFile upload1;
+private MultipartFile upload2;
+private MultipartFile upload3;
+
 public BoardBean() {
 	super();
 	// TODO Auto-generated constructor stub
 }
-public BoardBean(int no, String writer, String address, String subject, int category, String contents, String image1,
-		String image2, String image3, int ref, int reLevel, int reStep, String regDate, int readcount) {
+public BoardBean(int no, String writer, String address, String subject, String category, String contents, String image1,
+		String image2, String image3, MultipartFile upload1, MultipartFile upload2, MultipartFile upload3, int ref,
+		int reLevel, int reStep, String regDate, int readcount) {
 	super();
 	this.no = no;
 	this.writer = writer;
@@ -31,6 +42,9 @@ public BoardBean(int no, String writer, String address, String subject, int cate
 	this.image1 = image1;
 	this.image2 = image2;
 	this.image3 = image3;
+	this.upload1 = upload1;
+	this.upload2 = upload2;
+	this.upload3 = upload3;
 	this.ref = ref;
 	this.reLevel = reLevel;
 	this.reStep = reStep;
@@ -61,10 +75,10 @@ public String getSubject() {
 public void setSubject(String subject) {
 	this.subject = subject;
 }
-public int getCategory() {
+public String getCategory() {
 	return category;
 }
-public void setCategory(int category) {
+public void setCategory(String category) {
 	this.category = category;
 }
 public String getContents() {
@@ -90,6 +104,24 @@ public String getImage3() {
 }
 public void setImage3(String image3) {
 	this.image3 = image3;
+}
+public MultipartFile getUpload1() {
+	return upload1;
+}
+public void setUpload1(MultipartFile upload1) {
+	this.upload1 = upload1;
+}
+public MultipartFile getUpload2() {
+	return upload2;
+}
+public void setUpload2(MultipartFile upload2) {
+	this.upload2 = upload2;
+}
+public MultipartFile getUpload3() {
+	return upload3;
+}
+public void setUpload3(MultipartFile upload3) {
+	this.upload3 = upload3;
 }
 public int getRef() {
 	return ref;
@@ -121,4 +153,10 @@ public int getReadcount() {
 public void setReadcount(int readcount) {
 	this.readcount = readcount;
 }
+private int ref;
+private int reLevel;
+private int reStep;
+private String regDate;
+private int readcount;
+
 }

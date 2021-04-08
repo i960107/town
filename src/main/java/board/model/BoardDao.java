@@ -35,15 +35,23 @@ public class BoardDao {
 	public List<BoardBean> getBoardByCategoryKeyword(String category, String keyword) {
 		List<BoardBean> boardList=new ArrayList<BoardBean>();
 		List<String> categoryList=new ArrayList<String>();
+		try {
 		String categoryArr[]=category.split(",");
 		for(String ctg:categoryArr) {
 			categoryList.add(ctg);
 		}
+		}catch(IndexOutOfBoundsException e) {
+			System.out.println("그럼 여기로 와야지");
+			categoryList.add(category);
+		}
 		Map<String,Object> map=new HashMap<String,Object>();
-		System.out.println("categoryList"+categoryList.get(1));
+		System.out.println("categoryList"+categoryList.get(0));
 		map.put("categoryList", categoryList);
 		map.put("keyword", "%"+keyword+"%");
 		boardList=sqlSessionTemplate.selectList(namespace+".getBoardByCategoryKeyword",map);
 		return boardList;
+	}
+	public void insertBoard(BoardBean board) {
+		sqlSessionTemplate.selectList(namespace+".insertBoard",board);	
 	}
 }
