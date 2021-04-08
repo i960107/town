@@ -9,7 +9,7 @@
 		<td>
 			<div class="register-login-section spad">
 				<div class="register-form">
-					<h2>내 판매상품</h2>
+					<h2>나의 판매상품</h2>
 					<table width="900px" class="sectable" border="1">
 						<div class="group-input">
 							<tr align="center">
