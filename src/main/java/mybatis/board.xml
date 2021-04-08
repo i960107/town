@@ -21,7 +21,9 @@
 			separator="," close=")">
 			#{item}
 		</foreach>
-
+		<if  test="keyword!=null">
+		 and subject like #{keyword}
+		</if>
 		order by no asc
 	</select>
 
