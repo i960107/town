@@ -12,9 +12,6 @@
 </style>
 
 
-<br>
-productCateInsertForm.jsp
-<br>
 
 <div align="center" class="group-input">
 	<table align="center">
@@ -29,8 +26,8 @@ productCateInsertForm.jsp
 									<div class="group-input">
 									<tr>
 										<td class="group-input" width="150px"><label>* 카테고리명 </label></td> 
-										<td class="group-input" width="350px"><input type="text" name="pcname">
-										 <form:errors cssClass="err" path="pcname"></form:errors> 
+										<td class="group-input" width="350px"><input type="text" name="category_name">
+										
 										</td>
 									</tr>
 

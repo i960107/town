@@ -30,7 +30,7 @@ public class CategoryController {
 		
 		List<BoardCategoryBean> bcbean = cdao.getBoardCateData();
 		
-		System.out.println(bcbean.get(0).getCategoryname());
+		System.out.println(bcbean.get(0).getCategoryName());
 		//System.out.println(bcbean.get(0).getName());
 		
 		model.addAttribute("bcbean", bcbean);
@@ -56,22 +56,14 @@ public class CategoryController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/* Product CateGory */
 	@RequestMapping(value="/productCateList.ct" , method = RequestMethod.GET)
-	public ModelAndView doActionPCL() {
+	public String doActionPCL(Model model) {
 		
-	
-		return null;
+		List<ProdCategoryBean> pcbean = cdao.getProdCateData();
+		model.addAttribute("pcbean", pcbean);
+		
+		return "productCateList";
 	}
 	
 	
@@ -81,19 +73,11 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value="/productCateInsert.ct", method = RequestMethod.POST)
-	public ModelAndView doActionPCI(@ModelAttribute("pci") @Valid ProdCategoryBean pcbean,
-			BindingResult result) {
+	public String doActionPCI(@RequestParam(value="category_name") String category_name) {
 
-		ModelAndView mav = new ModelAndView();
-		if(result.hasErrors()) {
-			mav.setViewName("productCateInsertForm");
-		}
-		else {
-			int prodCateInCnt = cdao.insertProdCate(pcbean);
-			mav.setViewName("redirect:/productCateList.ct");
-		}
+		int prodCateInCnt = cdao.insertProdCate(category_name);
 		
-		return mav;
+		return "redirect:/productCateList.ct";
 	}
 	
 }

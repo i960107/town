@@ -1,48 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-  <%@ include file ="./../common/common.jsp" %>  
+	pageEncoding="UTF-8"%>
+<%@ include file="./../common/common.jsp"%>
 <%@ include file="./../../Category.jsp"%>
 
-<br>
-productCateList.jsp<br>
 
+<table align="center">
+	<tr>
+		<td>
+			<div class="register-login-section spad">
+				<div class="register-form">
+					<h2>중고거래 카테고리</h2>
+					<table width="700px" class="sectable">
+						<div class="group-input">
+							<tr align="center">
+								<th class="group-input"><label>NO </label></th>
+								<th class="group-input"><label>카테고리명 </label></th>
+								<th class="group-input"><label>삭제</label></th>
+								<th class="group-input"><label>수정 </label></th>
 
-<div align="center" class="group-input">
-	<table align="center">
-			<tr>
-				<td>
-					<div class="register-login-section spad">
-						<div class="register-form">
-							<center><h3>중고거래 카테고리</h3></center>
-													
-								<table width="500px" class="sectable">
-									<div class="group-input">
-									<tr>
-										<td class="group-input" width="150px">
-												<label>NO </label>
-										</td> 
-										<td class="group-input" width="350px">
-												<label>카테고리명 </label>
-										</td>
-									</tr>
-									
-										<tr>
-									<c:forEach var="pclist" items="${pcbean}">
-											<td> ${pclist.pcno }</td>
-											<td> ${pclist.pcname }</td>
-									</c:forEach>
-										</tr>
-									
-									</div>
-								</table>
-							
+							</tr>
+
+							<c:forEach var="pclist" items="${pcbean }">
+								<tr align="center">
+									<td class="group-input">${pclist.no }</td>
+									<td class="group-input">${pclist.categoryName }</td>
+									<td class="group-input"><a href="prodCateDel.ct?no=${pclist.no }">삭제</a></td>
+									<td class="group-input">수정</td>
+								</tr>
+							</c:forEach>
 						</div>
-					</div>
-				</td>
-			</tr>
-		</table>
-	<br>
-</div>
+					</table>
+
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>
+
+<br>
+<br>
 
 
 <%@ include file="./../common/main_bottom.jsp"%>

@@ -49,6 +49,7 @@
 	<!-- 인기 키워드 끝 -->
 
 	<!-- 인기매물 시작 -->
+	<!-- 인기매물 시작 -->
 	<table border="1">
 		<c:set var="count" value="0"/>
 		<c:forEach var="i" items="${list }">
@@ -90,6 +91,7 @@
 			</table>
 		</c:forEach>
 	</table>
+	<!-- 인기매물 끝 -->
 	<!-- 인기매물 끝 -->
 
     <!-- Js Plugins -->
