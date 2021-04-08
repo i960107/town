@@ -37,9 +37,6 @@ CREATE TABLE product (
   subject  varchar2(250)  NULL,
   category  number DEFAULT 0 NOT NULL,
   address  varchar2(120) DEFAULT null NULL,
-  image1  varchar2(100) DEFAULT null NULL,
-  image2  varchar2(100) DEFAULT null NULL,
-  image3  varchar2(100) DEFAULT null NULL,
   contents  varchar2(250)  NULL,
   price  number  NULL,
   refund_availability  number DEFAULT 1 NULL,
@@ -178,6 +175,23 @@ nocache;
 --프로덕트 좋아요 시퀀스
 drop sequence prdseq_like;   
 create sequence prdseq_like
+start with 0
+increment by 1
+minvalue 0
+nocache;
+
+
+drop table product_file;
+
+create table product_file(
+	no number primary key,
+	pno number,
+	filename varchar2(45)
+);
+
+--프로덕트 파일 시퀀스
+drop sequence prdfile_seq;   
+create sequence prdfile_seq
 start with 0
 increment by 1
 minvalue 0
