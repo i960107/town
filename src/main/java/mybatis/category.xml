@@ -17,7 +17,10 @@
 		values(town_board_seq.nextval, #{category_name})
 	</insert>
 
-
+	<delete id="DelBoardCate">
+		delete from town_board_category
+		where no = #{bcno}
+	</delete>
 
 
 
@@ -25,9 +28,17 @@
 	<!-- Product Category Insert -->
 	<insert id="InsertProdCate">
 		insert into product_category 
-		values(prodcate_seq.nextval, #{pcname})
+		values(prodcate_seq.nextval, #{category_name})
 	</insert>
 
+	<select id="GetProdCateData" resultType="product.model.ProdCategoryBean">
+		select * from  product_category order by no
+	</select>
+	
+	<delete id="DelProdCate">
+		delete from product_category
+		where no = #{pcno}
+	</delete>
 	
 
 </mapper>
