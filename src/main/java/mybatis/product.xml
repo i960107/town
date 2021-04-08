@@ -21,7 +21,7 @@
 <!-- image2 ,3 dummy data 나중에 수정해줘야함 -->
 <insert id="insertProduct">
 	insert into product values(
-	prdseq.nextval, #{seller_id}, #{subject}, #{category}, #{address}, #{image1}, 'dummy', 'dummy', #{contents}, #{price}, #{refund_availability}, sysdate, default, 0
+	prdseq.nextval, #{sellerid}, #{subject}, #{category}, #{address}, #{image1}, 'dummy', 'dummy', #{contents}, #{price}, #{refundavailability}, sysdate, default, 0
 	)
 </insert>
 

@@ -18,6 +18,22 @@
 		location.href="unlike.prd";
 	}
 </script>
+<style type="text/css">
+	.price{
+	font-size: 20px;
+	color: #010101;
+	font-weight: bold;
+	}
+	.subject{
+	font-size: 15px;
+	color: #BBBBBB;
+	font-weight: bold;
+	}
+	.mcontent{
+	font-size: 15px;
+	color: #CCCCCC;
+	}
+</style>
 <%
 String loginId = "";
 if(loginInfo!=null){
@@ -34,15 +50,18 @@ if(loginInfo!=null){
 		<td>
 			<table>
 				<tr height="72">
-						<td colspan="3"><span>${pBean.subject }</span></td>
+						<td colspan="3"><span class="subject">${pBean.subject }</span></td>
 					</tr>
 				<tr height="72">
-					<td colspan="3"><span><fmt:formatNumber pattern="###,###">${pBean.price }</fmt:formatNumber> 원</span></td>
+					<td colspan="3"><span class="price"><fmt:formatNumber pattern="###,###">${pBean.price }</fmt:formatNumber> 원</span>
+					<br>
+					<hr>
+					</td>
 				</tr>
 				<tr height="72">
-					<td width="120"><span>${pBean.readcount }</span></td>
-					<td width="120"><span>${pBean.regdate }</span></td>
-					<td width="120"><a href="report.prd"><span>신고하기</span></a></td>
+					<td width="120"><span class="mcontent">${pBean.readcount }</span></td>
+					<td width="120"><span class="mcontent">${pBean.regdate }</span></td>
+					<td width="120"><a href="report.prd"><span class="mcontent">신고하기</span></a></td>
 				</tr>
 				<tr height="72">
 					<td colspan="3" valign="top"><span><img src="<%=source %>resources/img/icon-1.png">${pBean.address }</span></td>
@@ -50,7 +69,7 @@ if(loginInfo!=null){
 				<tr height="72">
 					<td>
 					<c:set var="loginId"><%=loginId %></c:set>
-					<c:set var="heart" value="&#128153;"/>
+					<c:set var="heart" value="&#10084;"/>
 					<c:set var="likecondition" value="prdUnLike()"/>
 					<c:forEach var="i" items="${likeList }">
 						<c:if test="${loginId==i.userid }">
@@ -60,8 +79,17 @@ if(loginInfo!=null){
 					</c:forEach>
 					<input type="button" name="like" value="${heart } 찜 ${likeCnt}" onclick="${likecondition}"> 
 					</td>
-					<td><input type="button" name="chat" value="연락하기" onclick="chat()"></td>
-					<td></td>
+					<td>
+					<c:set var="btnType">연락하기</c:set>
+					<c:set var="scriptType">chat()</c:set>
+					<c:if test="${loginId==pBean.sellerid }">
+					<c:set var="btnType">수정하기</c:set>
+					<c:set var="scriptType">updateProduct()</c:set>
+					</c:if>
+					<input type="button" value="${btnType }" onclick="${scriptType}">
+					</td>
+					<td>
+					</td>
 				</tr>
 			</table>
 		</td>
@@ -79,7 +107,7 @@ if(loginInfo!=null){
 </table>
 <table>
 	<tr>
-		<td rowspan="3" width="400"><span>${pBean.contents }</span></td>
+		<td rowspan="3" width="400" valign="top"><span>${pBean.contents }</span></td>
 		<td><a><img alt="" src="<%=source%>resources/${pBean.image1 }" width="200" height="200"></a></td>
 	</tr>
 	<tr>

@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class ProdCategoryBean {
 	
-	private int pcno;
+	private String pcno;
 	
 	@NotEmpty(message = "카테고리명은 필수입니다.")
 	private String pcname;
@@ -13,17 +13,17 @@ public class ProdCategoryBean {
 		super();
 	}
 
-	public ProdCategoryBean(int pcno, String pcname) {
+	public ProdCategoryBean(String pcno, String pcname) {
 		super();
 		this.pcno = pcno;
 		this.pcname = pcname;
 	}
 
-	public int getPcno() {
+	public String getPcno() {
 		return pcno;
 	}
 
-	public void setPcno(int pcno) {
+	public void setPcno(String pcno) {
 		this.pcno = pcno;
 	}
 
