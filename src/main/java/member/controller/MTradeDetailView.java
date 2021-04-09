@@ -40,8 +40,8 @@ public class MTradeDetailView {
 		mav.setViewName(getPage);
 		MemberBean mBean = mDao.getMember(sellerid);
 		List<ProductBean> pList = pDao.getProductBySeller(sellerid);
-		float tbean = mDao.getTemp(sellerid);
-		mav.addObject("tbean", tbean);
+		float mtemp = mDao.getTemp(sellerid);
+		mav.addObject("mtemp", mtemp);
 		mav.addObject("mBean", mBean);
 		mav.addObject("pList", pList);
 		return mav;
