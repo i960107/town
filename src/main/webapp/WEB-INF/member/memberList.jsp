@@ -1,43 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file ="./../common/common.jsp" %>
+<%@ include file="./../common/common.jsp"%>
+<%@ include file="../../WEB-INF/member/memberMyPageTop.jsp"%>
+
 
 MListController -> memberList.jsp <br>
 
- <%@ include file="./../../WEB-INF/member/memberMyPageTop.jsp"%> 
- 
-<div align="center">
-<table border="1">
-<h3>회원 관리 </h3>
+<table align="center">
+	<tr>
+		<td>
+			<div class="register-login-section spad">
+				<div class="register-form">
+					<h2>회원 관리</h2>
+					<table width="900px" class="sectable" border="1">
+						<div class="group-input">
+							<tr align="center">
+								<th class="group-input"><label>권한 </label></th>
+								<th class="group-input"><label>ID </label></th>
+								<th class="group-input"><label>이름</label></th>
+								<th class="group-input"><label>성별</label></th>
+								<th class="group-input"><label>전화번호</label></th>
+								<th class="group-input"><label>이메일</label></th>
+								<th class="group-input"><label>주소</label></th>
+								<th class="group-input"><label>계정 상태</label></th>
+								<th class="group-input"><label>계정 정지</label></th>
 
-	<tr height="20" align="center">
-		<th>권한</th>
-		<th>ID</th>
-		<th>이름</th>
-		<th>성별</th>
-		<th>전화번호</th>
-		<th>이메일</th>
-		<th>주소</th>
-		<th>계정 상태</th>
-		<th>정지</th>
+							</tr>
+
+							<c:forEach var="mlist" items="${lists }">
+								<tr align="center">
+									<td class="group-input"><label>
+										<c:if test="${mlist.authority == 0 }" > 관리자 </c:if>
+										<c:if test="${mlist.authority != 0 }" > user </c:if>
+									</label></td>
+									<td class="group-input"><label>${mlist.id }  </label></td>
+									<td class="group-input"><label>${mlist.name } </label></td>
+									<td class="group-input"><label>${mlist.gender }</label></td>
+									<td class="group-input"><label>${mlist.phonenumber } </label></td>
+									<td class="group-input"><label>${mlist.email }</label></td>
+									<td class="group-input"><label>${mlist.address }</label></td>
+									<td class="group-input"><label>
+										<c:if test="${mlist.memberstatus == 1 }"> 활동 가능</c:if>
+										<c:if test="${mlist.memberstatus != 1 }"> 정지</c:if>
+									</label></td>
+									<td class="group-input"><label>계정 정지</label></td>
+									
+								</tr>
+							</c:forEach>
+				
+						</div>
+					</table>
+
+				</div>
+			</div>
+		</td>
 	</tr>
-	
-	<c:forEach var="mlist" items="${lists }">
-		<tr align="center">
-			<td>${mlist.authority } </td>
-			<td>${mlist.id } </td>
-			<td>${mlist.name } </td>
-			<td>${mlist.gender } </td>
-			<td>${mlist.phonenumber } </td>
-			<td>${mlist.email } </td>
-			<td>${mlist.address } </td>
-			<td>${mlist.memberstatus } </td>
-			<td>정지</td>
-		</tr>
-	</c:forEach>
 </table>
-</div>
 
+<br>
+<br>
 
 
 <%@ include file="./../common/main_bottom.jsp"%>
+

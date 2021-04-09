@@ -44,4 +44,17 @@
 	<select id="getMaxBoardNo" resultType="Integer">
 	select max(no) from town_board
 	</select>
+	
+	<!-- 나의당근 - 내글 -->
+	<select id="GetBoardListById" resultType="board.model.BoardBean">
+		select * from town_board where writer =#{loginID} and no = ref
+		order by ref desc
+	</select>
+	
+	<!-- 나의 당근 - 댓글 -->
+	<select id="GetBoardReplyListById" resultType="board.model.BoardBean">
+		select * from town_board where writer = #{loginID} and re_level > 1 
+		order by ref desc, re_level asc
+	</select>
+	
 </mapper>

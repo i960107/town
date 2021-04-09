@@ -75,4 +75,19 @@ public class BoardDao {
 		BoardBean board=sqlSessionTemplate.selectOne(namespace+".getBoardByNo",no);
 		return board;
 	}
+	
+	// 나의당근 - 내 글 
+	public List<BoardBean> getBoardListById(String loginID) {
+		List<BoardBean> lists = new ArrayList<BoardBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".GetBoardListById",loginID);
+		return lists;
+	}
+	// 나의 당근 - 댓글
+	public List<BoardBean> getBoardReplyListById(String loginID) {
+		List<BoardBean> lists = new ArrayList<BoardBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".GetBoardReplyListById",loginID);
+		return lists;
+	}
+	
+	
 }
