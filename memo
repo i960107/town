@@ -32,7 +32,7 @@ CREATE TABLE manner_temp (
 );
 drop table product cascade constraints;
 CREATE TABLE product (
- no number DEFAULT 0 NOT NULL,
+ no number DEFAULT 0 primary key,
  seller_id varchar2(50) DEFAULT null NULL,
   subject  varchar2(250)  NULL,
   category  number DEFAULT 0 NOT NULL,
@@ -42,11 +42,12 @@ CREATE TABLE product (
   refund_availability  number DEFAULT 1 NULL,
   reg_date  date DEFAULT sysdate NULL,
   deal_status  number DEFAULT 1 NULL,
-  readcount  number  NULL
+  readcount  number  NULL,
+  image1 varchar2(200)
 );
 drop table product_like cascade constraints;
 CREATE TABLE  product_like  (
-  no  number DEFAULT 0 NOT NULL,
+  no  number DEFAULT 0 primary key,
   product_no  number DEFAULT 0 NOT NULL,
   user_id  varchar2(50) DEFAULT null NULL
 );
@@ -186,7 +187,7 @@ drop table product_file;
 create table product_file(
 	no number primary key,
 	pno number,
-	filename varchar2(45)
+	filename varchar2(100)
 );
 
 --프로덕트 파일 시퀀스
