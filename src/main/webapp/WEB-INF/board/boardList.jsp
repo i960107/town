@@ -4,8 +4,11 @@
 
 <%@ include file="./../common/main_top.jsp"%>
 <%@include file="../common/common.jsp"%>
-<link rel="stylesheet" href="../common/style.css">
-
+<style type="text/css">
+.board{
+margin-bottom:40px;
+}
+</style>
 
 
 <!-- 페이지설명 -->
