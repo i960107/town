@@ -92,7 +92,7 @@
 
 <select id="getProductBySeller" resultType="product.model.ProductBean">
 	select * from product
-	where seller_id = #{id}
+	where seller_id = #{sellerid}
 </select>
 
 <!-- 메인 인기상품  -->

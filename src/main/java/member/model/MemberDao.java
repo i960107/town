@@ -42,7 +42,6 @@ public class MemberDao {
 	public MemberBean getMember(String sellerid) {
 		MemberBean mBean = new MemberBean();
 		mBean = sqlSessionTemplate.selectOne(nameSpace+".getMember", sellerid);
-		
 		return mBean;
 	}
 

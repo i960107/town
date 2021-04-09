@@ -10,7 +10,7 @@
 <!-- MTradeDetailController >> -->
 </head>
 <body>
-<table style="height: 310px;">
+<table style="height: 310px;" align="center">
 	<tr>
 		<td>
 		<img alt="" src="<%=source%>/resources/members/${mBean.image}" width="310px" height="310">
@@ -40,41 +40,7 @@
 		</td>
 	</tr>
 </table>
-사용자 정보 확인${mBean.id} <br>
-주소 ${mBean.address } <br>
-<<<<<<< HEAD
-<table style="height: 310px;">
-	<tr>
-		<td>
-		<img alt="" src="<%=source%>/resources/members/${mBean.image}" width="310px" height="310">
-		</td>
-		<td>
-		<table style="width: 710px;">
-			<tr>
-			<td>
-			<span>${mBean.id }</span>
-			</td>
-			</tr>
-			<tr>
-			<td>
-			<span>${mBean.address }</span>
-			</td>
-			</tr>
-			<tr>
-			<td>
-			${mtemp }
-			</td>
-			</tr>
-			<tr>
-			<td>
-			</td>
-			</tr>
-		</table>
-		</td>
-	</tr>
-</table>
-=======
->>>>>>> e9d7a7987d85bc9427b96d694d509f552e59b28d
-<a href="tradeReview"></a>
+
+<a href="tradeReview.mb">거래후기</a>
 </body>
 </html>

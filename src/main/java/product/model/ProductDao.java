@@ -113,9 +113,9 @@ public class ProductDao {
 		return lists;
 	}
 
-	public List<ProductBean> getProductBySeller(String id) {
+	public List<ProductBean> getProductBySeller(String sellerid) {
 		List<ProductBean> plists = new ArrayList<ProductBean>();
-		plists = sqlSessionTemplate.selectList(nameSpace+".getProductBySeller", id);
+		plists = sqlSessionTemplate.selectList(nameSpace+".getProductBySeller", sellerid);
 		return plists;
 	}
 	
