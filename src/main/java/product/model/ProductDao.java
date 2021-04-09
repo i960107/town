@@ -97,5 +97,19 @@ public class ProductDao {
 		fileList = sqlSessionTemplate.selectList(nameSpace+".getFile", no);
 		return fileList;
 	}
+
+	// 나의 당근 - 구매내역
+	public List<MemberDealBean> getPurListById(String loginID) {
+		List<MemberDealBean> lists = new ArrayList<MemberDealBean>();
+		lists = sqlSessionTemplate.selectList(nameSpace+".GetPurListById",loginID);
+		
+		return lists;
+	}
+
+	public List<ProductBean> getProductBySeller(String sellerid) {
+		List<ProductBean> pList = new ArrayList<ProductBean>();
+		pList = sqlSessionTemplate.selectList(nameSpace+".getProductBySeller", sellerid);
+		return pList;
+	}
 	
 }

@@ -85,6 +85,14 @@
 	select * from product where seller_id = #{loginID}
 </select>
 
+<!-- 나의 당근 구매내역 -->
+<select id="GetPurListById" resultType="member.model.MemberDealBean">
+	select * from member_deal where buyer_id = #{loginID}
+</select>
 
+<select id="getProductBySeller" resultType="product.model.ProductBean">
+	select * from product
+	where seller_id = #{sellerid}
+</select>
 
 </mapper>
