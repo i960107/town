@@ -1,9 +1,10 @@
 @charset "UTF-8";
-<style type="text/css">
-.err{
-color:red;
+
+.err {
+	color: red;
 }
+
 .board {
 	margin-bottom: 30px;
+	background-color: #F8F9FA;
 }
-</style>

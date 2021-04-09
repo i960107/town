@@ -2,11 +2,56 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="./../common/main_top.jsp"%>
 <%@include file="../common/common.jsp"%>
-<link rel="stylesheet" href="../common/style.css">
+<script type="text/javascript">
+	/* 좋아요 싫어요 함수 호출 */
+	function boardLike() {
+		location.href = "like.bd?townBoardNo=${board.no}&userId=${loginInfo.id}";
+	}
+	function boardUnLike(liker) {
+		location.href = "unlike.bd?townBoardNo=${board.no}&no=" + liker;
+	}
+</script>
 <style type="text/css">
 .carousel-item {
 	height: 400px;
 	width: 400px;
+}
+
+.btn_img_nomal {
+	background: url("<%=source%>resources/img/btn_nomal.png");
+	border: none;
+	width: 100px;
+	height: 30px;
+	cursor: pointer;
+	background-size: cover;
+	font-size: 16px;
+	font-weight: bold;
+	color: #EEFFFF;
+}
+
+.btn_img_like {
+	background: url("<%=source%>resources/img/btn_like.png");
+	border: none;
+	width: 100px;
+	height: 30px;
+	cursor: pointer;
+	background-size: cover;
+	font-size: 16px;
+	font-weight: bold;
+	color: #EEFFFF;
+}
+
+.box {
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.profile {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 #carousel-example-generic {
@@ -21,7 +66,9 @@
 				<div class="blog-detail-title">
 					<h2>${board.subject}</h2>
 					<p>
-						${board.writer } <span> <fmt:parseDate
+						<img class="box"
+							src="${pageContext.request.contextPath}/resources/members/${writer.image}"
+							width=100 height=100> ${board.writer } <span> <fmt:parseDate
 								value=" ${board.regDate}" var="regDateParsed"
 								pattern="yyyy-MM-dd HH:mm:ss.s" /> <fmt:formatDate
 								value="${regDateParsed}" pattern="yyyy-mm-dd"
@@ -35,7 +82,16 @@
 	</div>
 	<c:if test="${fn:length(boardFileList)==0}">
 		<div class="row">
-			<div class="col-lg-12">${board.contents}</div>
+			<div class="col-lg-12" align="center">${board.contents}</div>
+			<div class="col-lg-12" align="right">
+				<c:forTokens items="${board.category }" delims="," var="ctg">
+					<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
+						<c:if test="${categoryList[i].no==ctg}">
+							<button type="button" class="btn btn-danger">${categoryList[i].categoryName}</button>
+						</c:if>
+					</c:forEach>
+				</c:forTokens>
+			</div>
 		</div>
 	</c:if>
 	<c:if test="${fn:length(boardFileList)!=0}">
@@ -44,10 +100,10 @@
 				<div id="carousel-example-generic" class="carousel slide">
 					<!-- Indicators(이미지 하단의 동그란것->class="carousel-indicators") -->
 					<ol class="carousel-indicators">
-
 						<c:forEach var="item" items="${boardFileList}" varStatus="i">
 							<li data-target="#carousel-example-generic"
-								data-slide-to="i.index" <c:if test="${i.index==0}">class="active"</c:if>></li>
+								data-slide-to="i.index"
+								<c:if test="${i.index==0}">class="active"</c:if>></li>
 						</c:forEach>
 					</ol>
 					<!-- Carousel items -->
@@ -62,19 +118,34 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-8" style="background-color: cyan">${board.contents}</div>
+			<div class="col-lg-8" style="background-color: cyan" align="center">${board.contents}</div>
+			<div class="col-lg-8" style="background-color: cyan" align="right">
+				<c:forTokens items="${board.category }" delims="," var="ctg">
+					<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
+						<c:if test="${categoryList[i].no==ctg}">
+							<button type="button" class="btn btn-danger">${categoryList[i].categoryName}</button>
+						</c:if>
+					</c:forEach>
+				</c:forTokens>
+			</div>
 		</div>
 	</c:if>
 	<div class="row">
 		<div class="col-lg-12">
-			<c:forTokens items="${board.category }" delims="," var="ctg">
-				<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
-					<c:if test="${categoryList[i].no==ctg}">
-						<button type="button" class="btn btn-danger">${categoryList[i].categoryName}</button>
-					</c:if>
-				</c:forEach>
-			</c:forTokens>
+
 			<i class="fa fa-comment-o"></i> 댓글수 <span>조회수</span>${board.readcount}
+			<c:set var="loginId">${loginInfo.id}</c:set>
+			<c:set var="heart" value="&#10084;" />
+			<c:set var="likecondition" value="boardLike()" />
+			<c:forEach var="i" items="${likeList}">
+				<c:if test="${loginId==i.userId }">
+					<c:set var="heart">&#128151; </c:set>
+					<c:set value="${i.no}" var="likeNo" />
+					<c:set var="likecondition" value="boardUnLike(${likeNo})" />
+				</c:if>
+			</c:forEach>
+			<input type="button" name="like" value="${heart}공감${likeCnt}"
+				onclick="${likecondition}" class="btn_img_like">
 		</div>
 	</div>
 
@@ -100,6 +171,11 @@
 				</form>
 			</div>
 		</c:if>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12" align="center">
+		<input type="button" onClick="location.href='list.bd'" value="목록보기">
 	</div>
 </div>
 <%@ include file="./../common/main_bottom.jsp"%>

@@ -206,5 +206,11 @@ increment by 1
 minvalue 0
 nocache;
 
-
+--게시판 공감하기 시퀀스
+drop sequence bd_like_seq;
+create sequence bd_like_seq
+start with 0
+increment by 1
+minvalue 0
+nocache;
 
