@@ -63,19 +63,19 @@ public class ProductDao {
 		sqlSessionTemplate.update(nameSpace+".incrementReadCount", no);
 	}
 
-	//나의당근 - 판매내역 
+	// 나의당근 - 판매내역 
 	public List<ProductBean> getListById(String loginID) {
 		 List<ProductBean> lists = new ArrayList<ProductBean>();
 		 lists = sqlSessionTemplate.selectList(nameSpace+".getListById",loginID);
 		return lists;
 	}
-
+	
 	//메인 인기상품
-	public List<ProductBean> getPopList(Map<String, String> map) {
-		List<ProductBean> lists = new ArrayList<ProductBean>();
-		lists = sqlSessionTemplate.selectList(nameSpace+".getList", map);
-		return lists;
-	}
+		public List<ProductBean> getPopList(Map<String, String> map) {
+			List<ProductBean> lists = new ArrayList<ProductBean>();
+			lists = sqlSessionTemplate.selectList(nameSpace+".getList", map);
+			return lists;
+		}
 
 	//-----파일 업로드-----
 	public void fileUpload(String originalfileName, String saveFileName, int pno) {
@@ -105,5 +105,18 @@ public class ProductDao {
 		return fileList;
 	}
 
+	// 나의 당근 - 구매내역
+	public List<MemberDealBean> getPurListById(String loginID) {
+		List<MemberDealBean> lists = new ArrayList<MemberDealBean>();
+		lists = sqlSessionTemplate.selectList(nameSpace+".GetPurListById",loginID);
+		
+		return lists;
+	}
+
+	public List<ProductBean> getProductBySeller(String sellerid) {
+		List<ProductBean> pList = new ArrayList<ProductBean>();
+		pList = sqlSessionTemplate.selectList(nameSpace+".getProductBySeller", sellerid);
+		return pList;
+	}
 	
 }
