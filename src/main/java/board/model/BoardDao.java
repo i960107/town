@@ -93,6 +93,23 @@ public class BoardDao {
 		return board;
 	}
 
+	
+	// 나의당근 - 내 글 
+	public List<BoardBean> getBoardListById(String loginID) {
+		List<BoardBean> lists = new ArrayList<BoardBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".GetBoardListById",loginID);
+		return lists;
+	}
+	// 나의 당근 - 댓글
+	public List<BoardBean> getBoardReplyListById(String loginID) {
+		List<BoardBean> lists = new ArrayList<BoardBean>();
+		lists = sqlSessionTemplate.selectList(namespace+".GetBoardReplyListById",loginID);
+		return lists;
+	}
+	
+	
+
+
 	// 조회수 증가
 	public void addReadcount(int no) {
 		sqlSessionTemplate.update(namespace + ".addReadcount", no);
@@ -117,8 +134,10 @@ public class BoardDao {
 		sqlSessionTemplate.delete(namespace + ".boardUnlike", no);
 	}
 
+
 	public void deleteBoard(int no) {
 		sqlSessionTemplate.delete(namespace + ".deleteBoard", no);
 	}
+
 
 }

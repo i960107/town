@@ -91,8 +91,8 @@
 </select>
 
 <select id="getProductBySeller" resultType="product.model.ProductBean">
-	select * from product
-	where seller_id = #{sellerid}
+	select * from prodcut
+	where id = #{id}
 </select>
 
 </mapper>

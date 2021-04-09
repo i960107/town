@@ -4,16 +4,10 @@
 
 <%@ include file="./../common/main_top.jsp"%>
 <%@include file="../common/common.jsp"%>
-<style type="text/css">
-.err {
-	color: red;
-}
+<link rel="stylesheet" href="../common/style.css">
 
-.board {
-	margin-bottom: 30px;
-	background-color: #F8F9FA;
-}
-</style>
+
+
 <!-- 페이지설명 -->
 <section class="latest-blog spad">
 	<div class="container">
@@ -26,6 +20,8 @@
 			</div>
 			<!-- 검색필터설정 -->
 			<div class="row">
+
+
 				<form action="list.bd" method="post">
 					<table>
 						<tr>
@@ -68,7 +64,7 @@
 			</tr>
 		</table>
 		<c:forEach var="board" items="${boardList}">
-			<div class="row board">
+			<div class="row board" style="background-color: #F8F9FA">
 				<div class="col-lg-4 col-md-6">
 					<div class="single-latest-blog">
 						<c:set var="flag" value="false" />
@@ -84,6 +80,31 @@
 						</c:forEach>
 						<div class="latest-text">
 							<a href="#">
+
+								<h4>
+									<img
+										src="<%=request.getContextPath() %>/resrouces/${loginInfo.image}"
+										class="img-circle" width="30" height=30>${board.writer}</h4>
+							</a>
+							<div class="tag-list">
+								<div class="tag-item">
+									<i class="fa fa-calendar-o"></i>
+									<fmt:parseDate value=" ${board.regDate}" var="regDateParsed"
+										pattern="yyyy-MM-dd HH:mm:ss.s" />
+									<fmt:formatDate value="${regDateParsed}" pattern="yyyy-mm-dd"
+										var="regDateFormatted" />
+									${regDateFormatted }
+								</div>
+								<div class="tag-item">
+									<i class="fa fa-comment-o"></i> 댓글수
+								</div>
+								<div class="tag-item">
+									<p>
+										<span>조회수</span>${board.readcount} 33
+									</p>
+								</div>
+							</div>
+
 								<h4>${board.writer}</h4>
 							</a> <i class="fa fa-calendar-o"></i>
 							<fmt:parseDate value=" ${board.regDate}" var="regDateParsed"
@@ -91,6 +112,7 @@
 							<fmt:formatDate value="${regDateParsed}" pattern="yyyy-mm-dd"
 								var="regDateFormatted" />
 							${regDateFormatted } <i class="fa fa-comment-o"></i> 댓글수 <span>조회수</span>${board.readcount}
+
 
 						</div>
 					</div>
@@ -107,12 +129,14 @@
 					<h4>
 						<b>${board.subject}</b>
 					</h4>
-					<br> ${fn:substring(board.contents,0,30)}"
-					<div align="right" style="cursor: pointer"
-						onClick="location.href='detailView.bd?no=${board.no}'">...더보기</div>
-
+					<br>
+					<textarea cols="80" rows="2" readonly="readonly"
+						style="resize: none"><c:out value="${board.contents}" /></textarea>
+					<div onClick="location.href='detailView.bd?no=${board.no}'">...더보기</div>
 				</div>
 			</div>
+
+
 
 		</c:forEach>
 	</div>

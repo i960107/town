@@ -19,6 +19,34 @@
 }
 </style>
 
+
+<!-- <script>
+	$(document).ready(function(){
+		$('#mySale').click(function(){
+			alert("버튼누름");
+			
+			$.ajax({
+				type : "GET",
+				url : "productMySaleList.jsp",
+				dataType: "json",
+				success : function test(data){
+					$("#content").html(a);
+					},
+				error : function error(){alert("error발생");}
+			});
+			
+			
+		});
+		
+		
+	});
+
+</script> -->
+
+
+
+
+
 <br>
 <center>
 	<h2>나의 당근(MY PAGE)</h2>
@@ -56,13 +84,14 @@
 
 			<td class="tab-item" width="16%">
 				<ul class="nav" role="tablist">
-					<li><a class="active" href="myPurchaselist.prd">My Purchase</a></li>
+					<li><a class="active" href="myPurchaselist.prd">My
+							Purchase</a></li>
 				</ul>
 			</td>
 
 			<td class="tab-item" width="16%">
 				<ul class="nav" role="tablist">
-					<li><a class="active" href="#tab-1">My Town</a></li>
+					<li><a class="active" href="MyTown.jsp">My Town</a></li>
 				</ul>
 			</td>
 
@@ -99,6 +128,15 @@
 			</c:if>
 
 		</tr>
+		
+		<tr>
+			<td colspan="8">
+				<div id="content"></div>
+			
+			</td>
+		</tr>
+		
+		
 	</table>
 </tr>
 

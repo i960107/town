@@ -26,7 +26,10 @@ productMyPurchaseList.jsp<br>
 									<th class="group-input"><label>${mdlist.no } </label></th>
 									<th class="group-input"><label>${mdlist.productNo } </label></th>
 									<th class="group-input"><label>${mdlist.sellerId } </label></th>
-									<th class="group-input"><label>${mdlist.sellerId } </label></th>
+									<th class="group-input"><label>
+									<fmt:parseDate value="${mdlist.dealDate } " var="dealDate" pattern="yyyy-MM-dd"/>
+									<fmt:formatDate value="${dealDate }" pattern="yyyy-MM-dd"/>
+									</label></th>
 								</tr>
 							</c:forEach>
 				
