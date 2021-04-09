@@ -6,8 +6,8 @@
 
 <style>
 .box {
-	width: 280px;
-	height: 280px;
+	width: 250px;
+	height: 250px;
 	border-radius: 50%;
 	overflow: hidden;
 }
@@ -19,31 +19,6 @@
 }
 </style>
 
-<script type="text/javascript">
-	/* $(function() {
-		$("#member").on("click", function() {
-			$("#content").load("여기다서 나올까 ");
-		});
-	}); */
-	/* 
-	 ${'#member'}.on('click',function(){
-	
-	 $.ajax({
-	 url : "memberList.mb",
-	 type : "GET",
-	 data : form,
-	 sussess : function(data){
-	 $('#content').html(data);
-	 },
-	 error : function(){
-	 alert("이건 안돼 ");
-	 }
-	
-	 });
-	
-	 }); */
-</script>
-
 <br>
 <center>
 	<h2>나의 당근(MY PAGE)</h2>
@@ -51,85 +26,87 @@
 <br>
 
 <tr>
-	<table width="80%" border="1" align="center">
+	<table width="70%" border="1" align="center">
 		<tr rowspan="3" height="300">
 			<td colspan="2" align="center">
 				<div class="box">
-						
-						<c:if test="${loginInfo.image != null}">
-							<a href="memberUpdate.mb"> 
-								<img class="profile" src="<%=request.getContextPath()%>/resources/members/${loginInfo.image}">
-							</a>
-						</c:if>
-					
-						<c:if test="${loginInfo.image == null}">
-							<a href="memberUpdate.mb"> 
-								<img class="profile" src="<%=request.getContextPath()%>/resources/img.jpg">
-							</a>
-						</c:if>
+
+					<c:if test="${loginInfo.image != null}">
+						<a href="memberUpdate.mb"> <img class="profile"
+							src="<%=request.getContextPath()%>/resources/members/${loginInfo.image}">
+						</a>
+					</c:if>
+
+					<c:if test="${loginInfo.image == null}">
+						<a href="memberUpdate.mb"> <img class="profile"
+							src="<%=request.getContextPath()%>/resources/img.jpg">
+						</a>
+					</c:if>
 				</div>
 			</td>
 			<td colspan="6"><a href="memberUpdate.mb"> 프로필 수정 </a></td>
 		</tr>
 
-		<tr >
+		<tr>
 			<td class="tab-item" width="16%">
 				<ul class="nav" role="tablist">
 					<li><a class="active" href="mySaleList.prd">My Sale</a></li>
 				</ul>
 			</td>
-			
-			<td class="tab-item" width="16%" >
-				<ul class="nav" role="tablist">
-					<li><a class="active" href="myPurchaselist.prd" >My Purchase</a></li>
-				</ul>
-			</td>
-			
+
 			<td class="tab-item" width="16%">
 				<ul class="nav" role="tablist">
-					<li><a class="active" href="#tab-1" >My Town</a></li>
+					<li><a class="active" href="myPurchaselist.prd">My Purchase</a></li>
 				</ul>
 			</td>
-			
+
 			<td class="tab-item" width="16%">
 				<ul class="nav" role="tablist">
-					<li><a class="active"  href="like.prd" >My Like</a></li>
+					<li><a class="active" href="#tab-1">My Town</a></li>
 				</ul>
 			</td>
-			
+
 			<td class="tab-item" width="16%">
 				<ul class="nav" role="tablist">
-					<li><a class="active"  href="QnA.jsp" >My QNA</a></li>
+					<li><a class="active" href="like.prd">My Like</a></li>
 				</ul>
 			</td>
-		
+
+			<td class="tab-item" width="16%">
+				<ul class="nav" role="tablist">
+					<li><a class="active" href="QnA.jsp">My QNA</a></li>
+				</ul>
+			</td>
+
 			<c:if test="${loginInfo.authority == 0 }">
 				<td class="tab-item">
-				<ul class="nav" role="tablist">
-					<li><a class="active"  href="Category.jsp" >Category</a></li>
-				</ul>
-			</td>
-			
-			<td class="tab-item">
-				<ul class="nav" role="tablist">
-					<li><a class="active"  href="notice.jsp" >Notice</a></li>
-				</ul>
-			</td>
-			
-			<td class="tab-item">
-				<ul class="nav" role="tablist">
-					<li><a class="active" href="memberList.mb">Member</a></li>
-				</ul>
-			</td>
+					<ul class="nav" role="tablist">
+						<li><a class="active" href="Category.jsp">Category</a></li>
+					</ul>
+				</td>
+
+				<td class="tab-item">
+					<ul class="nav" role="tablist">
+						<li><a class="active" href="notice.jsp">Notice</a></li>
+					</ul>
+				</td>
+
+				<td class="tab-item">
+					<ul class="nav" role="tablist">
+						<li><a class="active" href="memberList.mb">Member</a></li>
+					</ul>
+				</td>
 			</c:if>
-		
-		
-		<tr>		
+
+		</tr>
+	</table>
+</tr>
 
 
 
 
-		<!-- 		<tr>
+
+<!-- 		<tr>
 			<td align="center"><a href="">판매내역</a></td>
 			<td align="center"><a href="purchaseList.prd">구매내역</a></td>
 			<td align="center"><a href="">동네생활(글/댓글)</a></td>
