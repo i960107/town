@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@include file="./../common/common.jsp" %>
+	pageEncoding="UTF-8"%>
+<%@include file="./../common/common.jsp"%>
 <%@ include file="./../common/main_top.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -10,76 +10,76 @@
 상품 자세히 보기 페이지
  -->
 <title>상품 보기</title>
-<c:set var="val" value="0"/>
-<c:set var="limit" value="${fn:length(fileList) }"/>
+<c:set var="val" value="0" />
+<c:set var="limit" value="${fn:length(fileList) }" />
 <script type="text/javascript" src="<%=source%>/resources/js/jquery.js"></script>
 
 <script type="text/javascript">
-/* 좋아요 싫어요 함수 호출 */
+	/* 좋아요 싫어요 함수 호출 */
 	function prdLike() {
-		location.href="like.prd?no=${pBean.no}";
+		location.href = "like.prd?no=${pBean.no}";
 	}
 	function prdUnLike(liker) {
-		location.href="unlike.prd?no=${pBean.no}&like="+liker;
+		location.href = "unlike.prd?no=${pBean.no}&like=" + liker;
 	}
-	
 </script>
 <style type="text/css">
-	.price{
+.price {
 	font-size: 20px;
 	color: #010101;
 	font-weight: bold;
-	}
-	.subject{
+}
+
+.subject {
 	font-size: 15px;
 	color: #BBBBBB;
 	font-weight: bold;
-	}
-	.mcontent{
+}
+
+.mcontent {
 	font-size: 15px;
 	color: #CCCCCC;
-	}
+}
 
-	.btn_img_nomal{
+.btn_img_nomal {
 	background: url("<%=source%>resources/img/btn_nomal.png");
 	border: none;
-    width: 210px;
-    height: 80px;
-    cursor: pointer;
-    background-size: cover;
-    font-size: 16px;
-    font-weight: bold;
-    color: #EEFFFF;
-	}
+	width: 210px;
+	height: 80px;
+	cursor: pointer;
+	background-size: cover;
+	font-size: 16px;
+	font-weight: bold;
+	color: #EEFFFF;
+}
 
-	.btn_img_like{
+.btn_img_like {
 	background: url("<%=source%>resources/img/btn_like.png");
 	border: none;
-    width: 210px;
-    height: 80px;
-    cursor: pointer;
-    background-size: cover;
-    font-size: 16px;
-    font-weight: bold;
-    color: #EEFFFF;
-	}
+	width: 210px;
+	height: 80px;
+	cursor: pointer;
+	background-size: cover;
+	font-size: 16px;
+	font-weight: bold;
+	color: #EEFFFF;
+}
 
-	.imgsize{
-		height: 250px;
-		width : 250px;
-		margin: auto;
-	}
-	
+.imgsize {
+	height: 250px;
+	width: 250px;
+	margin: auto;
+}
 </style>
 <%
-String loginId = "";
-if(loginInfo!=null){
-	loginId = loginInfo.getId();
-}
+	String loginId = "";
+	if (loginInfo != null) {
+		loginId = loginInfo.getId();
+	}
 %>
 </head>
 <body>
-<!-- <<<<<<< HEAD -->
+	<!-- <<<<<<< HEAD -->
 	<table>
 		<tr>
 			<!-- 상품정보 -->
@@ -159,10 +159,12 @@ if(loginInfo!=null){
 			</td>
 			<td height="370"><c:forEach var="i" items="${fileList }">
 					<c:set var="val" value="${val+1 }" />
-					<a><img alt="" src="<%=source%>resources/${i.filename }" class="imgsize"></a>
-					<c:if test="${val%2==0 }"><br></c:if>
-				</c:forEach>
-			</td>
+					<a><img alt="" src="<%=source%>resources/${i.filename }"
+						class="imgsize"></a>
+					<c:if test="${val%2==0 }">
+						<br>
+					</c:if>
+				</c:forEach></td>
 		</tr>
 	</table>
 </body>

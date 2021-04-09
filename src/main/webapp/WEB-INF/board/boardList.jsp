@@ -90,9 +90,7 @@
 							<a href="#">
 
 								<h4>
-									<img
-										src="<%=request.getContextPath() %>/resrouces/${loginInfo.image}"
-										class="box" width="30" height=30>${board.writer}</h4>
+									${board.writer}</h4>
 							</a> </a> <i class="fa fa-calendar-o"></i>
 							<fmt:parseDate value=" ${board.regDate}" var="regDateParsed"
 								pattern="yyyy-MM-dd HH:mm:ss.s" />

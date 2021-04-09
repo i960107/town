@@ -34,19 +34,16 @@ public class BoardDao {
 	}
 	public List<BoardBean> getBoardByCategoryKeyword(String category, String keyword) {
 		List<BoardBean> boardList=new ArrayList<BoardBean>();
-		List<String> categoryList=new ArrayList<String>();
-		try {
-		String categoryArr[]=category.split(",");
-		for(String ctg:categoryArr) {
-			categoryList.add(ctg);
-		}
-		}catch(IndexOutOfBoundsException e) {
-			System.out.println("그럼 여기로 와야지");
-			categoryList.add(category);
-		}
+		/*
+		 * List<String> categoryList=new ArrayList<String>(); try { String
+		 * categoryArr[]=category.split(","); for(String ctg:categoryArr) {
+		 * categoryList.add(ctg); } }catch(IndexOutOfBoundsException e) {
+		 * System.out.println("그럼 여기로 와야지"); categoryList.add(category); }
+		 */	
+		String cate="("+category+")";
+		System.out.println(cate);
 		Map<String,Object> map=new HashMap<String,Object>();
-		System.out.println("categoryList"+categoryList.get(0));
-		map.put("categoryList", categoryList);
+		map.put("cate", cate);
 		map.put("keyword", "%"+keyword+"%");
 		boardList=sqlSessionTemplate.selectList(namespace+".getBoardByCategoryKeyword",map);
 		return boardList;
@@ -115,7 +112,7 @@ public class BoardDao {
 		sqlSessionTemplate.delete(namespace + ".boardUnlike", no);
 	}
 
-
+	//게시글 삭제
 	public void deleteBoard(int no) {
 		sqlSessionTemplate.delete(namespace + ".deleteBoard", no);
 	}

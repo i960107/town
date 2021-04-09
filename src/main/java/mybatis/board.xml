@@ -29,11 +29,7 @@
 	<!-- category+keyword검색 -->
 	<select id="getBoardByCategoryKeyword"
 		resultType="board.model.BoardBean">
-		select * from town_board where category in
-		<foreach item="item" index="index" collection="categoryList"
-			open="(" separator="," close=")">
-			#{item}
-		</foreach>
+		select * from town_board where category in ${cate}
 		<if test="keyword!=null">
 			and subject like #{keyword}
 		</if>

@@ -9,7 +9,7 @@
 		location.href = "like.bd?townBoardNo=${board.no}&userId=${loginInfo.id}";
 	}
 	function prdUnLike(liker) {
-		location.href = "unlike.bd?townBoardNo=${board.no}&no="+liker;
+		location.href = "unlike.bd?townBoardNo=${board.no}&no=" + liker;
 	}
 </script>
 <style type="text/css">
@@ -87,13 +87,23 @@
 				</div>
 				<div class="row">
 					<div class="col-lg-12" align="right">
-						<c:forTokens items="${board.category }" delims="," var="ctg">
+${board.category }
+						<c:if test="${board.category==null}">
 							<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
-								<c:if test="${categoryList[i].no==ctg}">
+								<c:if test="${categoryList[i].no==board.category}">
 									<button type="button" class="btn btn-danger">${categoryList[i].categoryName}</button>
 								</c:if>
 							</c:forEach>
-						</c:forTokens>
+						</c:if>
+						<c:if test="${board.category!=null}">
+							<c:forTokens items="${board.category}" delims="," var="ctg">
+								<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
+									<c:if test="${categoryList[i].no==ctg}">
+										<button type="button" class="btn btn-danger">${categoryList[i].categoryName}</button>
+									</c:if>
+								</c:forEach>
+							</c:forTokens>
+						</c:if>
 					</div>
 				</div>
 
