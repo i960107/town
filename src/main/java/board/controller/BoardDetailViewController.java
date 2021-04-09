@@ -24,7 +24,6 @@ public class BoardDetailViewController {
 	@Autowired
 	BoardDao dao;
 	@Autowired
-	@Qualifier("MyMemberDao")
 	MemberDao mdao;
 
 	@RequestMapping(command)
@@ -39,8 +38,8 @@ public class BoardDetailViewController {
 		model.addAttribute("writer", writer);
 		model.addAttribute("board", board);
 		model.addAttribute("boardFileList", boardFileList);
-		model.addAttribute("likeList",likeList);
-		model.addAttribute("likeCnt",likeList.size());
+		model.addAttribute("likeList", likeList);
+		model.addAttribute("likeCnt", likeList.size());
 		return getPage;
 	}
 }
