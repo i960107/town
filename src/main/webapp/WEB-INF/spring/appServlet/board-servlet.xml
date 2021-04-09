@@ -9,10 +9,14 @@
 	<mvc:annotation-driven />
 
 
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/board/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+
+
+
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -37,9 +41,7 @@
 	<context:component-scan base-package="board" />
 	<context:component-scan base-package="member" />
 
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-      <property name="maxUploadSize" value="10485760" />
-      <property name="defaultEncoding" value="UTF-8" />
-   </bean>
+
+
 
 </beans>

@@ -13,9 +13,6 @@ import member.model.MemberDao;
 import product.model.ProductBean;
 import product.model.ProductDao;
 
-import product.model.ProductBean;
-import product.model.ProductDao;
-
 @Controller
 public class MTradeDetailView {
 
@@ -29,8 +26,7 @@ public class MTradeDetailView {
 	@Autowired
 	MemberDao mDao;
 	
-	@Autowired
-	ProductDao pDao;
+	ProductDao pDao = new ProductDao();
 	
 	@RequestMapping(value = command)
 	public ModelAndView doAction(
@@ -43,13 +39,8 @@ public class MTradeDetailView {
 		MemberBean mBean = mDao.getMember(sellerid);
 
 		List<ProductBean> pList = pDao.getProductBySeller(sellerid);
-<<<<<<< HEAD
-		float tbean = mDao.getTemp(sellerid);
-		mav.addObject("tbean", tbean);
-=======
 		float mtemp = mDao.getTemp(sellerid);
 
->>>>>>> a0df029af222e8f33dc755672d6cb4e8d37ed8b0
 		mav.addObject("mBean", mBean);
 		mav.addObject("mtemp", mtemp);
 		mav.addObject("pList", pList);
