@@ -44,4 +44,24 @@
 	<select id="getMaxBoardNo" resultType="Integer">
 	select max(no) from town_board
 	</select>
+<<<<<<< HEAD
+=======
+
+	<!-- 게시글 좋아요 -->
+	<insert id="boardLike">
+		insert into town_board_like
+		values(bd_like_seq.nextval, #{townBoardNo}, #{userId})
+	</insert>
+
+	<!-- 게시글 싫어요 -->
+	<delete id="boardUnlike">
+		delete from town_board_like
+		where no =#{no}
+	</delete>
+	<!-- 게시글 지우기 -->
+	<delete id="deleteBoard">
+		delete from town_board
+		where no =#{no}
+	</delete>
+>>>>>>> 14185bfe7014c8e046090a9afac494b59cd2f434
 </mapper>

@@ -75,4 +75,33 @@ public class BoardDao {
 		BoardBean board=sqlSessionTemplate.selectOne(namespace+".getBoardByNo",no);
 		return board;
 	}
+
+	// 조회수 증가
+	public void addReadcount(int no) {
+		sqlSessionTemplate.update(namespace + ".addReadcount", no);
+	}
+
+	// 찜한 갯수 가져오기
+	public List<BoardLikeBean> getLike(int no) {
+		List<BoardLikeBean> likeList = new ArrayList<BoardLikeBean>();
+		likeList = sqlSessionTemplate.selectList(namespace + ".getLike", no);
+		return likeList;
+	}
+
+	// 게시글 찜하기
+	public void boardLike(BoardLikeBean likeBean) {
+		System.out.println("likeBean.getUserId()"+likeBean.getUserId());
+		System.out.println("likeBean.getTownBoardNo()"+likeBean.getTownBoardNo());
+		sqlSessionTemplate.insert(namespace + ".boardLike", likeBean);
+	}
+
+	// 게시글 싫어요
+	public void boardUnlike(int no) {
+		sqlSessionTemplate.delete(namespace + ".boardUnlike", no);
+	}
+
+	public void deleteBoard(int no) {
+		sqlSessionTemplate.delete(namespace + ".deleteBoard", no);
+	}
+
 }

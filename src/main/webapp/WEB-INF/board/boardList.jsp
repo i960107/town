@@ -67,7 +67,8 @@
 			<div class="row board" style="background-color: #F8F9FA">
 				<div class="col-lg-4 col-md-6">
 					<div class="single-latest-blog">
-						<c:forEach var="bean" items="${boardFileList}">
+						<c:set var="flag" value="false" />
+							<c:forEach var="bean" items="${boardFileList}">
 							<c:if test="${flag==false}">
 								<c:if test="${bean.bno==board.no}">
 									<img
@@ -102,6 +103,13 @@
 									</p>
 								</div>
 							</div>
+								<h4>${board.writer}</h4>
+							</a> <i class="fa fa-calendar-o"></i>
+							<fmt:parseDate value=" ${board.regDate}" var="regDateParsed"
+								pattern="yyyy-MM-dd HH:mm:ss.s" />
+							<fmt:formatDate value="${regDateParsed}" pattern="yyyy-mm-dd"
+								var="regDateFormatted" />
+							${regDateFormatted } <i class="fa fa-comment-o"></i> 댓글수 <span>조회수</span>${board.readcount}
 
 						</div>
 					</div>
