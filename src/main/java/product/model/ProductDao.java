@@ -63,10 +63,17 @@ public class ProductDao {
 		sqlSessionTemplate.update(nameSpace+".incrementReadCount", no);
 	}
 
-	// 나의당근 - 판매내역 
+	//나의당근 - 판매내역 
 	public List<ProductBean> getListById(String loginID) {
 		 List<ProductBean> lists = new ArrayList<ProductBean>();
 		 lists = sqlSessionTemplate.selectList(nameSpace+".getListById",loginID);
+		return lists;
+	}
+
+	//메인 인기상품
+	public List<ProductBean> getPopList(Map<String, String> map) {
+		List<ProductBean> lists = new ArrayList<ProductBean>();
+		lists = sqlSessionTemplate.selectList(nameSpace+".getList", map);
 		return lists;
 	}
 
@@ -97,5 +104,6 @@ public class ProductDao {
 		fileList = sqlSessionTemplate.selectList(nameSpace+".getFile", no);
 		return fileList;
 	}
+
 	
 }

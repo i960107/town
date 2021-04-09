@@ -27,15 +27,31 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
 </head>
 <body>
-	<!-- Banner Section Begin -->
+    <!-- Banner Section Begin -->
     <div class="banner-section spad">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-4">
                     <div class="single-banner">
-                        <img src="img/banner-1.jpg" alt="배너">
+                        <img src="<%=request.getContextPath()%>/resources/img/banner-1.jpg" alt="배너1">
                         <div class="inner-text">
-                            <h4>배너</h4>
+                            <h4>Men’s</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="<%=request.getContextPath()%>/resources/img/banner-2.jpg" alt="배너2">
+                        <div class="inner-text">
+                            <h4>Women’s</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="<%=request.getContextPath()%>/resources/img/banner-3.jpg" alt="배너3">
+                        <div class="inner-text">
+                            <h4>Kid’s</h4>
                         </div>
                     </div>
                 </div>
@@ -45,53 +61,31 @@
     <!-- Banner Section End -->
 
 	<!-- 인기 키워드 시작 -->
-		인기 키워드<br>
+	
 	<!-- 인기 키워드 끝 -->
 
 	<!-- 인기매물 시작 -->
-	<!-- 인기매물 시작 -->
-	<table border="1">
-		<c:set var="count" value="0"/>
-		<c:forEach var="i" items="${list }">
-			<table border="1">
-		  		<tr align="center">
-			    	<td width="200px" height="200px">
-						<img src="<%=request.getContextPath()%>/resources/${i.image1}" width="150" height="150" alt="상품사진">
-			    	</td>
-			  	</tr>
-			  	
-			 	<tr>
-			    	<td>
-			     		<table border="1">
-					        <tr align="center">
-					        	<td>제목:</td>
-					          	<td>${i.sbject}</td>
-					        </tr>
-					        <tr align="center">
-					         	 <td>가격:</td>
-					         	 <td>
-					         	 	<fmt:formatNumber value="${i.price }" pattern="###,###" />
-					         	 </td>
-					        </tr>
-					        <tr align="center">
-					         	 <td>주소:</td>
-					         	 <td>${i.address}</td>
-					        </tr>
-					        <tr align="center">
-					        	<td>조회수: ${i.readcount}</td>
-					         	<td>관심: </td> <!-- product_like 테이블 -->
-							</tr>
-						</table>
-					</td>
-				</tr>
-					
-			<c:if test="(count%4) == 0">
-				</table><table>
-			</c:if>
-			</table>
-		</c:forEach>
+	<h3 align="center">인기 매물 리스트</h3>
+	<table border="1" align="center">
+	  	<tr align="center">
+			<c:set var="step" value="0"/>
+			<c:forEach var="i" items="${list }">
+			<c:set var="step" value="${step+1 }"/>
+		    	<td height="200px" align="center">
+		    		<p><a href="detail.prd?no=${i.no }&sellerid=${i.sellerid}">
+						<img src="<%=request.getContextPath()%>/resources/${i.image1}" width="150" height="150" alt="상품사진">  <br>
+		    		</a></p>
+		    		제목: ${i.subject} <br>
+		                        가격: <fmt:formatNumber value="${i.price }" pattern="###,###" /> <br>
+		                        주소: ${i.address} <br>
+		                        조회수: ${i.readcount} <br>
+		                        관심: ${likeCnt} <br> <!-- product_like 테이블 -->
+				</td>
+			<!-- 4개씩 배치 -->
+			<c:if test="${(step%4) == 0 }"></tr><tr></c:if>
+			</c:forEach>
+		</tr>
 	</table>
-	<!-- 인기매물 끝 -->
 	<!-- 인기매물 끝 -->
 
     <!-- Js Plugins -->
