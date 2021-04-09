@@ -68,20 +68,20 @@ public class MJoinController {
 	public ModelAndView doAction(@ModelAttribute("member") @Valid MemberBean mbean,BindingResult result,
 			HttpServletResponse response) throws IOException {
 		
-		/*
-		System.out.println(mbean.getId());
-		System.out.println(mbean.getPw());
-		System.out.println(mbean.getPwCheck());
-		System.out.println(mbean.getName());
-		System.out.println(mbean.getGender());
-		System.out.println(mbean.getPhonenumber());
-		System.out.println(mbean.getEmail());
-		System.out.println(mbean.getAddress());
-		System.out.println(mbean.getAddress1());
-		System.out.println(mbean.getAddress2());
-		System.out.println(mbean.getAddress3());
-		System.out.println(mbean.getImage());
-		*/
+		
+		System.out.println("getId:"+mbean.getId());
+		System.out.println("getPw:"+mbean.getPw());
+		System.out.println("getPwCheck:"+mbean.getPwCheck());
+		System.out.println("getName:"+mbean.getName());
+		System.out.println("getGender:"+mbean.getGender());
+		System.out.println("getPhonenumber:"+mbean.getPhonenumber());
+		System.out.println("getEmail:"+mbean.getEmail());
+		System.out.println("getAddress:"+mbean.getAddress());
+		System.out.println("getAddress1:"+mbean.getAddress1());
+		System.out.println("getAddress2:"+mbean.getAddress2());
+		System.out.println("getAddress3:"+mbean.getAddress3());
+		System.out.println("getImage:"+mbean.getImage());
+		
 		
 		System.out.println(servletContext.getRealPath("/"));
 		// C:\Users\jihye\Project\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\Town\
@@ -92,7 +92,9 @@ public class MJoinController {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		//1. 업로드 위치
-		String uploadPath = servletContext.getRealPath("/resources");
+		String uploadPath = servletContext.getRealPath("/resources/members");
+		System.out.println("uploadPath:"+uploadPath+mbean.getImage());
+		
 		
 		MultipartFile multi = mbean.getUpload();
 		
@@ -116,16 +118,28 @@ public class MJoinController {
 				int joinCnt = mdao.register(mbean);
 				
 				if(joinCnt == 1) {
-					File file = new File(uploadPath+"/"+mbean.getImage());
+					if(mbean.getImage() != "") {
+						File file = new File(uploadPath+"/"+mbean.getImage());
+						multi.transferTo(file);
+						
+						pwriter.print("<script type='text/javascript'>");
+						pwriter.print("alert('정상적으로 회원가입 완료 되었습니다.')");
+						pwriter.print("</script>");
+						pwriter.flush();
+						
+						mav.setViewName(goLogin);
+					}
+					else {
+						pwriter.print("<script type='text/javascript'>");
+						pwriter.print("alert('정상적으로 회원가입 완료 되었습니다.')");
+						pwriter.print("</script>");
+						pwriter.flush();
+						
+						mav.setViewName(goLogin);
+
+					}
 					
-					multi.transferTo(file);
 					
-					pwriter.print("<script type='text/javascript'>");
-					pwriter.print("alert('정상적으로 회원가입 완료 되었습니다.')");
-					pwriter.print("</script>");
-					pwriter.flush();
-					
-					mav.setViewName(goLogin);
 				}
 				else {
 					pwriter.print("<script type='text/javascript'>");
