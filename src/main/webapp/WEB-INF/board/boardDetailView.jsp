@@ -62,7 +62,13 @@
 					</div>
 				</div>
 			</div>
+<<<<<<< HEAD
 			<div class="col-lg-8" style="background-color: cyan">${board.contents}</div>
+=======
+
+			<div class="col-lg-8" style="background-color: cyan">${board.contents}</div>
+
+>>>>>>> e9d7a7987d85bc9427b96d694d509f552e59b28d
 			<div class="col-lg-8" align="center">${board.contents}</div>
 			<div class="col-lg-8" align="right">
 				<c:forTokens items="${board.category }" delims="," var="ctg">
@@ -73,6 +79,7 @@
 					</c:forEach>
 				</c:forTokens>
 			</div>
+
 		</div>
 	</c:if>
 	<div class="row">
@@ -112,10 +119,13 @@
 		</c:if>
 	</div>
 </div>
+<<<<<<< HEAD
+=======
 <div class="row">
 	<div class="col-lg-12" align="center">
 		<input type="button" onClick="location.href='list.bd'" value="목록보기">
 	</div>
 </div>
 <a href="delete.bd?no=${board.no}">삭제</a>
+>>>>>>> 14185bfe7014c8e046090a9afac494b59cd2f434
 <%@ include file="./../common/main_bottom.jsp"%>

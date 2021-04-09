@@ -112,11 +112,5 @@ public class ProductDao {
 		
 		return lists;
 	}
-
-	public List<ProductBean> getProductBySeller(String sellerid) {
-		List<ProductBean> pList = new ArrayList<ProductBean>();
-		pList = sqlSessionTemplate.selectList(nameSpace+".getProductBySeller", sellerid);
-		return pList;
-	}
 	
 }

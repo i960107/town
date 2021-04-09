@@ -12,6 +12,7 @@
 <body>
 사용자 정보 확인${mBean.id} <br>
 주소 ${mBean.address } <br>
+<<<<<<< HEAD
 <table style="height: 310px;">
 	<tr>
 		<td>
@@ -42,6 +43,8 @@
 		</td>
 	</tr>
 </table>
+=======
+>>>>>>> e9d7a7987d85bc9427b96d694d509f552e59b28d
 <a href="tradeReview"></a>
 </body>
 </html>

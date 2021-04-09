@@ -80,6 +80,10 @@
 						</c:forEach>
 						<div class="latest-text">
 							<a href="#">
+<<<<<<< HEAD
+=======
+
+>>>>>>> e9d7a7987d85bc9427b96d694d509f552e59b28d
 								<h4>
 									<img
 										src="<%=request.getContextPath() %>/resrouces/${loginInfo.image}"
@@ -103,6 +107,10 @@
 									</p>
 								</div>
 							</div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e9d7a7987d85bc9427b96d694d509f552e59b28d
 								<h4>${board.writer}</h4>
 							</a> <i class="fa fa-calendar-o"></i>
 							<fmt:parseDate value=" ${board.regDate}" var="regDateParsed"
@@ -110,6 +118,7 @@
 							<fmt:formatDate value="${regDateParsed}" pattern="yyyy-mm-dd"
 								var="regDateFormatted" />
 							${regDateFormatted } <i class="fa fa-comment-o"></i> 댓글수 <span>조회수</span>${board.readcount}
+
 
 						</div>
 					</div>

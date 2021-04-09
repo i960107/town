@@ -10,9 +10,13 @@
 상품 자세히 보기 페이지
  -->
 <title>상품 보기</title>
+<<<<<<< HEAD
 <c:set var="val" value="0"/>
 <c:set var="limit" value="${fn:length(fileList) }"/>
 <script type="text/javascript" src="<%=source%>/resources/js/jquery.js"></script>
+=======
+<script type="text/javascript" src="<%=source%>js/jquery.js"></script>
+>>>>>>> e9d7a7987d85bc9427b96d694d509f552e59b28d
 <script type="text/javascript">
 /* 좋아요 싫어요 함수 호출 */
 	function prdLike() {
@@ -23,7 +27,6 @@
 	}
 	
 </script>
-
 <style type="text/css">
 	.price{
 	font-size: 20px;
@@ -39,8 +42,12 @@
 	font-size: 15px;
 	color: #CCCCCC;
 	}
+<<<<<<< HEAD
 	
 	.btn_img_nomal {
+=======
+	.btn_img_nomal{
+>>>>>>> e9d7a7987d85bc9427b96d694d509f552e59b28d
 	background: url("<%=source%>resources/img/btn_nomal.png");
 	border: none;
     width: 210px;
@@ -51,7 +58,10 @@
     font-weight: bold;
     color: #EEFFFF;
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> e9d7a7987d85bc9427b96d694d509f552e59b28d
 	.btn_img_like{
 	background: url("<%=source%>resources/img/btn_like.png");
 	border: none;
@@ -63,6 +73,7 @@
     font-weight: bold;
     color: #EEFFFF;
 	}
+<<<<<<< HEAD
 	
 	.imgsize{
 		height: 250px;
@@ -71,20 +82,23 @@
 	}
 	
 	
+=======
+>>>>>>> e9d7a7987d85bc9427b96d694d509f552e59b28d
 </style>
-
 <%
 String loginId = "";
 if(loginInfo!=null){
 	loginId = loginInfo.getId();
 }
 %>
-
 </head>
 <body>
 <table>
 	<tr>
+<<<<<<< HEAD
 		<!-- 상품정보 -->
+=======
+>>>>>>> e9d7a7987d85bc9427b96d694d509f552e59b28d
 		<td>
 		<img alt="" src="<%=source%>resources/${pBean.image1}" height="360" width="300">
 		</td>
@@ -147,6 +161,7 @@ if(loginInfo!=null){
 </table>
 <table>
 	<tr>
+<<<<<<< HEAD
 		<!-- 회원 정보 -->
 		<td>
 		<a href="tradeDetail.mb?sellerid=${sellerid }"><img alt="" src="<%=source%>resources/members/${member.image}" width="70" height="70"></a>
@@ -171,6 +186,32 @@ if(loginInfo!=null){
 			</c:forEach>
 		</td>
 	</tr>
+=======
+		<td>
+		<a href="tradeDetail.mb?sellerid=${sellerid }"><img alt="" src="<%=source%>resources/${member.image}" width="70" height="70"></a>
+		</td>
+		<td valign="top">
+		<a href="tradeDetail.mb?sellerid=${sellerid }">${sellerid }</a>
+		</td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<td rowspan="3" width="400" valign="top">
+		<hr>
+		<span>${pBean.contents }</span>
+		</td>
+		<td><hr>
+		<a><img alt="" src="<%=source%>resources/${pBean.image1 }" width="200" height="200"></a>
+		</td>
+	</tr>
+	<tr>
+		<td><a><img alt="" src="<%=source%>resources/${pBean.image2 }" width="200" height="200"></a></td>
+	</tr>
+	<tr>
+		<td><a><img alt="" src="<%=source%>resources/${pBean.image3 }" width="200" height="200"></a></td>
+	</tr>
+>>>>>>> e9d7a7987d85bc9427b96d694d509f552e59b28d
 </table>
 
 </body>

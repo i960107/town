@@ -32,7 +32,6 @@ public class MemberDao {
 
 	public int register(MemberBean mbean) {
 		int cnt = sqlSessionTemplate.insert(nameSpace+".Register",mbean);
-		sqlSessionTemplate.insert(nameSpace+".mannerTemp", mbean);
 		System.out.println("회원가입 cnt :"+cnt);
 		
 		return cnt;
@@ -51,12 +50,6 @@ public class MemberDao {
 		int upCnt = sqlSessionTemplate.update(nameSpace+".MemberModify", mbean);
 		System.out.println("업데이트 cnt:"+upCnt);
 		return upCnt;
-	}
-
-	//매너온도
-	public float getTemp(String id) {
-		float mtemp = sqlSessionTemplate.selectOne(nameSpace+".getTemp", id);
-		return mtemp;
 	}
 
 	

@@ -44,8 +44,20 @@
 	<select id="getMaxBoardNo" resultType="Integer">
 	select max(no) from town_board
 	</select>
-<<<<<<< HEAD
-=======
+
+	<!-- 나의당근 - 내글 -->
+	<select id="GetBoardListById" resultType="board.model.BoardBean">
+		select * from town_board where writer =#{loginID} and no = ref
+		order by ref desc
+	</select>
+	
+	<!-- 나의 당근 - 댓글 -->
+	<select id="GetBoardReplyListById" resultType="board.model.BoardBean">
+		select * from town_board where writer = #{loginID} and re_level > 1 
+		order by ref desc, re_level asc
+	</select>
+	
+
 
 	<!-- 게시글 좋아요 -->
 	<insert id="boardLike">
@@ -58,10 +70,11 @@
 		delete from town_board_like
 		where no =#{no}
 	</delete>
+
 	<!-- 게시글 지우기 -->
 	<delete id="deleteBoard">
 		delete from town_board
 		where no =#{no}
 	</delete>
->>>>>>> 14185bfe7014c8e046090a9afac494b59cd2f434
+
 </mapper>
