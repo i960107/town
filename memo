@@ -1,6 +1,6 @@
  drop table member cascade constraints;
 CREATE TABLE member (
- id varchar2(50) DEFAULT null NOT NULL,
+ id varchar2(50) primary key,
  pw varchar2(30)  NULL,
  name varchar2(15)  NULL,
  gender varchar2(6) DEFAULT null NULL,
@@ -18,7 +18,7 @@ insert into member values('admin','1234','관리자','남','01012341234','admin@
 
 drop table member_deal cascade constraints;
 CREATE TABLE member_deal (
- no number DEFAULT 0 NOT NULL,
+ no number primary key,
  product_no number DEFAULT 0 NOT NULL,
  seller_id varchar2(50) DEFAULT null NOT NULL,
  buyer_id varchar2(50) DEFAULT null NULL,
@@ -27,7 +27,7 @@ CREATE TABLE member_deal (
 );
 drop table manner_temp cascade constraints;
 CREATE TABLE manner_temp (
- id varchar2(50) DEFAULT null NOT NULL,
+ id varchar2(50) primary key,
  manner_temp number DEFAULT 0 NULL
 );
 drop table product cascade constraints;
@@ -53,31 +53,32 @@ CREATE TABLE  product_like  (
 );
 drop table product_keyword cascade constraints;
 CREATE TABLE  product_keyword  (
+	no number primary key,
   keyword  varchar2(50)  NOT NULL,
   count  number  NULL
 );
 drop table town_board_like cascade constraints;
 CREATE TABLE  town_board_like  (
-  no  number DEFAULT 0 NOT NULL,
+  no  number primary key,
   town_board_no  number DEFAULT 0 NULL,
   user_id  varchar2(50) DEFAULT null NOT NULL
 );
 drop table product_category cascade constraints;
 CREATE TABLE  product_category  (
-  no number DEFAULT 0 NOT NULL,
+  no number primary key,
   category_name  varchar2(50)  NULL
 );
 
 
 drop table town_board_category cascade constraints;
 CREATE TABLE  town_board_category  (
-  no  number DEFAULT 0 NOT NULL,
+  no  number primary key,
   category_name  varchar2(50)  NULL
 );
 
 drop table member_deal_review cascade constraints;
 CREATE TABLE  member_deal_review  (
-  no  number DEFAULT 0 NOT NULL,
+  no  number primary key,
   seller_id  varchar2(50) DEFAULT null NOT NULL,
   buyer_id  varchar2(50) DEFAULT null NULL,
   contents  varchar2(250)  NULL,
@@ -86,7 +87,7 @@ CREATE TABLE  member_deal_review  (
 );
 drop table town_board cascade constraints;
 CREATE TABLE  town_board  (
-  no  number DEFAULT 0 NOT NULL,
+  no  number primary key,
   writer  varchar2(50) DEFAULT null NOT NULL,
   address  varchar2(120) DEFAULT null NULL,
   subject  varchar2(250)  NULL,
@@ -206,5 +207,12 @@ increment by 1
 minvalue 0
 nocache;
 
+--프로덕트 파일 시퀀스
+drop sequence keyword_seq;   
+create sequence keyword_seq
+start with 0
+increment by 1
+minvalue 0
+nocache;
 
 
