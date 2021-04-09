@@ -90,6 +90,9 @@
 	select * from member_deal where buyer_id = #{loginID}
 </select>
 
-
+<select id="getProductBySeller" resultType="product.model.ProductBean">
+	select * from product
+	where seller_id = #{sellerid}
+</select>
 
 </mapper>

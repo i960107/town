@@ -167,7 +167,7 @@ if(loginInfo!=null){
 			<c:forEach var="i" items="${fileList }" varStatus="j">
 			<c:set var="val" value="${val+1 }" />
 				<a><img alt="" src="<%=source%>resources/${i.filename }" class="imgsize"></a>
-				<c:if test="${val%3==0 }"><br></c:if>
+				<c:if test="${val%2==0 }"><br></c:if>
 			</c:forEach>
 		</td>
 	</tr>

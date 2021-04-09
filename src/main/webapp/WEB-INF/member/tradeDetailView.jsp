@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="./../common/common.jsp" %>
-<%@ include file="./../../WEB-INF/member/memberMyPageTop.jsp"%>
+<%@ include file="./../common/main_top.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +10,15 @@
 <!-- MTradeDetailController >> -->
 </head>
 <body>
-사용자 정보 확인${mBean.id} <br>
-주소 ${mBean.address } <br>
+<table>
+	<tr>
+		<td>
+		
+		</td>
+		<td>
+		</td>
+	</tr>
+</table>
 <a href="tradeReview"></a>
 </body>
 </html>
