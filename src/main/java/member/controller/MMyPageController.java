@@ -44,9 +44,8 @@ public class MMyPageController {
 			mav.setViewName(gotoPage);
 
 		} else {
-			System.out.println(member.getImage());
-			session.setAttribute("profileImage", member.getImage());
-			session.setAttribute("memberLoginInfo", member);
+			System.out.println("mypagetop Imgage:"+member.getImage());
+			session.setAttribute("loginInfo", member);
 			mav.setViewName(getPage);
 		}
 

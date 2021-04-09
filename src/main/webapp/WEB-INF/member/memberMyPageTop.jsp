@@ -55,9 +55,18 @@
 		<tr rowspan="3" height="300">
 			<td colspan="2" align="center">
 				<div class="box">
-					<a href="memberUpdate.mb"> <img class="profile"
-						src="<%=request.getContextPath()%>/resources/member/${memberLoginInfo.image}">
-					</a>
+						
+						<c:if test="${loginInfo.image != null}">
+							<a href="memberUpdate.mb"> 
+								<img class="profile" src="<%=request.getContextPath()%>/resources/members/${loginInfo.image}">
+							</a>
+						</c:if>
+					
+						<c:if test="${loginInfo.image == null}">
+							<a href="memberUpdate.mb"> 
+								<img class="profile" src="<%=request.getContextPath()%>/resources/img.jpg">
+							</a>
+						</c:if>
 				</div>
 			</td>
 			<td colspan="6"><a href="memberUpdate.mb"> 프로필 수정 </a></td>
@@ -94,7 +103,7 @@
 				</ul>
 			</td>
 		
-			<c:if test="${memAuth == 0 }">
+			<c:if test="${loginInfo.authority == 0 }">
 				<td class="tab-item">
 				<ul class="nav" role="tablist">
 					<li><a class="active"  href="Category.jsp" >Category</a></li>
