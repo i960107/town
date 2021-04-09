@@ -3,15 +3,13 @@
 <%@ include file="./../common/common.jsp"%>
 <%@ include file="../../WEB-INF/member/memberMyPageTop.jsp"%>
 
-
-productMySaleList.jsp <br>
-
+    
 <table align="center">
 	<tr>
 		<td>
 			<div class="register-login-section spad">
 				<div class="register-form">
-					<h2>나의 판매상품</h2>
+					<h2>나의 구매 상품</h2>
 					<table width="900px" class="sectable" border="1">
 						<div class="group-input">
 							<tr align="center">
@@ -29,22 +27,28 @@ productMySaleList.jsp <br>
 
 							</tr>
 
-							<c:forEach var="mslist" items="${mySaleLists }">
+							<c:forEach var="saleList" items="${saleLists }">
 								<tr align="center">
-									<th class="group-input"><label>${mslist.no } </label></th>
-									<th class="group-input"><label>${mslist.image1 } </label></th>
-									<th class="group-input"><label>${mslist.subject } </label></th>
-									<th class="group-input"><label>${mslist.category } </label></th>
-									<th class="group-input"><label>${mslist.contents } </label></th>
-									<th class="group-input"><label>${mslist.price } </label></th>
-									<th class="group-input"><label>${mslist.regdate } </label></th>
-									<th class="group-input"><label>${mslist.dealstatus } </label></th>
-									<th class="group-input"><label>${mslist.readcount } </label></th>
-									<th class="group-input"><label>삭제</label></th>
-									<th class="group-input"><label>수정</label></th>
+									<td class="group-input">${saleList.no }</td>
+									<td class="group-input">${saleList.image1 }</td>
+									<td class="group-input">${saleList.subject }</td>
+									<td class="group-input">${saleList.category }</td>
+									<td class="group-input">${saleList.contents }</td>
+									<td class="group-input">${saleList.price }</td>
+									<td class="group-input">
+										<fmt:parseDate value="${saleList.regdate }" var="regdate" pattern="yyyy-MM-dd" />
+										<fmt:formatDate value="${regdate }" pattern="yyyy-MM-dd"/>
+									
+									</td>
+									<td class="group-input">
+									<c:if test="${saleList.dealstatus == 1}"> 판매중 </c:if> 
+									
+									</td>
+									<td class="group-input">${saleList.readcount }</td>
+									<td class="group-input"><a href="">삭제</a></td>
+									<td class="group-input">수정</td>
 								</tr>
 							</c:forEach>
-				
 						</div>
 					</table>
 
@@ -59,4 +63,3 @@ productMySaleList.jsp <br>
 
 
 <%@ include file="./../common/main_bottom.jsp"%>
-

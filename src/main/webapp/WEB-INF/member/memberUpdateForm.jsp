@@ -120,7 +120,8 @@ function jusoCallBack(roadFullAddr,siNm,sggNm,emdNm) {
 									<tr>
 										<td class="group-input" width="200px"><label>Image</label></td>
 										<td class="group-input" width="500px">
-											<input type="file" name="upload" value="${mbean.image }" >
+											<input type="file" name="upload">
+											<input type="hidden" name="orgImage" value="${mbean.image }">
 										</td>
 									</tr>
 

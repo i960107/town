@@ -13,6 +13,7 @@ import member.model.MemberBean;
 import member.model.MemberDao;
 import product.model.ProductBean;
 import product.model.ProductDao;
+import product.model.ProductFileBean;
 import product.model.ProductLikeBean;
 
 
@@ -38,10 +39,12 @@ public class PDetailViewController {
 		
 		ProductBean pBean = pDao.getProduct(no);
 		List<ProductLikeBean> likeList = pDao.getLike(no);
+		List<ProductFileBean> fileList = pDao.getFile(no);
 		pDao.incrementReadCount(no);
 		mav.addObject("pBean", pBean);
 		mav.addObject("sellerid", sellerid);
 		mav.addObject("likeList", likeList);
+		mav.addObject("fileList", fileList);
 		mav.addObject("likeCnt", likeList.size());
 		
 		return mav;

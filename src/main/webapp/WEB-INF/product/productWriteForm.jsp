@@ -13,6 +13,13 @@
 	border-spacing: 0 25px;
 	vertical-align: middle;
 	}
+	.fileupload-img{
+		background: url("<%=source%>resources/img/insert_img.jpg");
+		border: none;
+	    width: 150px;
+	    cursor : pointer;
+	    height: 150px;
+	}
 </style>
 
 <script type="text/javascript">
@@ -46,7 +53,8 @@ productInsertForm.jsp <br><br>
 			</td>
 			<td class="group-input" >
 				<!-- 다중 파일 선택: multiple="multiple" -->
-				<input multiple="multiple" type="file" name="upload">
+				<label for="upload_file" class="fileupload-img"></label><br>
+				<input multiple="multiple" type="file" name="upload" id="upload_file">
 			</td>
 			<form:errors cssClass="err" path="image1"/>
 		</tr>

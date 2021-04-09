@@ -44,6 +44,14 @@ public class MemberDao {
 		
 		return mBean;
 	}
+
+	//회원정보 업데이트
+	public int memberModify(MemberBean mbean) {
+		int upCnt = sqlSessionTemplate.update(nameSpace+".MemberModify", mbean);
+		System.out.println("업데이트 cnt:"+upCnt);
+		return upCnt;
+	}
+
 	
 	
 	

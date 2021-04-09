@@ -1,5 +1,7 @@
 package product.model;
 
+import java.util.List;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -16,9 +18,6 @@ public class ProductBean {
 	private int category  ;
 	@NotNull(message = "주소를 입력하세요")
 	private String address  ;
-	private String image1  ;
-	private String image2  ;
-	private String image3  ;
 	private String contents  ;
 	@Min(value = 1, message = "가격을 입력하세요")
 	private int price  ;
@@ -27,35 +26,9 @@ public class ProductBean {
 	private String regdate;
 	private int dealstatus  ;
 	private int readcount  ;
-	private MultipartFile upload;
+	private List<MultipartFile> upload;
+	private String image1;
 	
-	public ProductBean(int no, String sellerid, String subject, int category, String address, String image1,
-			String image2, String image3, String contents, int price, int refundavailability, String regdate,
-			int dealstatus, int readcount, MultipartFile upload) {
-		super();
-		this.no = no;
-		this.sellerid = sellerid;
-		this.subject = subject;
-		this.category = category;
-		this.address = address;
-		this.image1 = image1;
-		this.image2 = image2;
-		this.image3 = image3;
-		this.contents = contents;
-		this.price = price;
-		this.refundavailability = refundavailability;
-		this.regdate = regdate;
-		this.dealstatus = dealstatus;
-		this.readcount = readcount;
-		this.upload = upload;
-	}
-	public MultipartFile getUpload() {
-		return upload;
-	}
-	public void setUpload(MultipartFile upload) {
-		this.upload = upload;
-		this.image1 = upload.getOriginalFilename();
-	}
 	public int getNo() {
 		return no;
 	}
@@ -85,24 +58,6 @@ public class ProductBean {
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
-	public String getImage1() {
-		return image1;
-	}
-	public void setImage1(String image1) {
-		this.image1 = image1;
-	}
-	public String getImage2() {
-		return image2;
-	}
-	public void setImage2(String image2) {
-		this.image2 = image2;
-	}
-	public String getImage3() {
-		return image3;
-	}
-	public void setImage3(String image3) {
-		this.image3 = image3;
 	}
 	public String getContents() {
 		return contents;
@@ -140,28 +95,40 @@ public class ProductBean {
 	public void setReadcount(int readcount) {
 		this.readcount = readcount;
 	}
-	public ProductBean(int no, String sellerid, String subject, int category, String address, String image1,
-			String image2, String image3, String contents, int price, int refundavailability, String regdate,
-			int dealstatus, int readcount) {
+	public List<MultipartFile> getUpload() {
+		return upload;
+	}
+	public void setUpload(List<MultipartFile> upload) {
+		this.upload = upload;
+	}
+	public ProductBean(int no, String sellerid, String subject, int category, String address, String contents,
+			int price, int refundavailability, String regdate, int dealstatus, int readcount,
+			List<MultipartFile> upload, String image1) {
 		super();
 		this.no = no;
 		this.sellerid = sellerid;
 		this.subject = subject;
 		this.category = category;
 		this.address = address;
-		this.image1 = image1;
-		this.image2 = image2;
-		this.image3 = image3;
 		this.contents = contents;
 		this.price = price;
 		this.refundavailability = refundavailability;
 		this.regdate = regdate;
 		this.dealstatus = dealstatus;
 		this.readcount = readcount;
+		this.upload = upload;
+		this.image1 = image1;
 	}
 	public ProductBean() {
 		super();
 	}
+	public String getImage1() {
+		return image1;
+	}
+	public void setImage1(String image1) {
+		this.image1 = image1;
+	}
 	
+		
 	
 }

@@ -3,6 +3,8 @@ package product.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +17,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import member.model.MemberBean;
@@ -57,20 +61,15 @@ public class PWriteContoller {
 		return mav;
 	}
 	
+	//상품 등록
 	@RequestMapping(value = command, method = RequestMethod.POST)
 	public ModelAndView doAction(
 			@ModelAttribute("product") @Valid ProductBean productbean,
-			BindingResult result) throws IllegalStateException, IOException {
+			BindingResult result,
+			MultipartHttpServletRequest mhsq) throws IllegalStateException, IOException {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(gotoPage);
-		
-		//파일 업로드
-		String uploadPath = application.getRealPath("resources");
-		String image1 = productbean.getImage1();
-		
-		System.out.println("Image : "+image1);
-		MultipartFile multi = productbean.getUpload();
 		
 		//유효성 검사
 		if(result.hasErrors()) {
@@ -79,18 +78,45 @@ public class PWriteContoller {
 			return mav;
 		}
 		
+		//파일 업로드
+		String uploadPath = application.getRealPath("resources/");
+		System.out.println(uploadPath);
 		//데이터 입력
 		int cnt = pDao.insertProduct(productbean);
 		
 		//데이터 입력확인 > 파일 입력
 		if(cnt==1) {
-			File f = new File(uploadPath+"/"+image1);
-			multi.transferTo(f);
+			List<MultipartFile> mf = productbean.getUpload(); //이미지 list로 받음
+			File dir = new File(uploadPath);
+			if (!dir.isDirectory()) {
+	            dir.mkdirs();
+	        }
+			
+			int pno = pDao.getPno();
+			if(mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) { //파일 넘어왔는지 체크
+				
+			}else {
+				String saveName = "";
+				for (int i = 0; i < mf.size(); i++) {
+					String genId = UUID.randomUUID().toString(); //파일이름 난수 생성
+					String originalfileName = mf.get(i).getOriginalFilename();  //파일 이름 받아옴
+					String saveFileName = genId + "." + originalfileName; //저장 파일 이름
+					if(i==0) {
+						saveName = genId + "." + originalfileName; //대표 이미지 저장용 임시 변수
+					}
+					String savePath = uploadPath+saveFileName; //저장 경로
+					mf.get(i).transferTo(new File(savePath)); //파일 폴더에 입력
+					
+					pDao.fileUpload(originalfileName, saveFileName, pno); //파일 테이블 입력
+				}
+				pDao.fileUpload2(saveName, pno); //대표 이미지 주소 업데이트
+			}
+
 			
 		}else {
-			mav.setViewName(getPage);
+			mav.setViewName(getPage); //실패 - 되 돌아가기
 		}
 		
-		return mav;
+		return mav; //성공 - 리스트 출력
 	}
 }

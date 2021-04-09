@@ -1,12 +1,15 @@
 package product.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import member.model.MemberDealBean;
 
 @Component("myProductDao")
 public class ProductDao {
@@ -26,7 +29,6 @@ public class ProductDao {
 	//상품 등록
 	public int insertProduct(ProductBean productbean) {
 		System.out.println(productbean.getAddress());
-		System.out.println(productbean.getImage1());
 		int cnt = sqlSessionTemplate.insert(nameSpace+".insertProduct", productbean);
 		return cnt;
 	}
@@ -67,4 +69,33 @@ public class ProductDao {
 		 lists = sqlSessionTemplate.selectList(nameSpace+".getListById",loginID);
 		return lists;
 	}
+
+	//-----파일 업로드-----
+	public void fileUpload(String originalfileName, String saveFileName, int pno) {
+		 Map<String, Object> hm = new HashMap<String, Object>();
+		    hm.put("originalfileName", originalfileName);
+		    hm.put("saveFileName", saveFileName);
+		    hm.put("pno", pno);
+		    sqlSessionTemplate.insert(nameSpace+".fileUpload", hm);
+	}
+
+	public int getPno() {
+		int pno = sqlSessionTemplate.selectOne(nameSpace+".getPno");
+		return pno;
+	}
+
+	public void fileUpload2(String saveFileName, int pno) {
+		Map<String, Object> hm = new HashMap<String, Object>();
+	    hm.put("saveFileName", saveFileName);
+	    hm.put("pno", pno);
+		sqlSessionTemplate.update(nameSpace+".fileUpload2", hm);
+	}
+	//-----파일 업로드-----
+
+	public List<ProductFileBean> getFile(int no) {
+		List<ProductFileBean> fileList = new ArrayList<ProductFileBean>();
+		fileList = sqlSessionTemplate.selectList(nameSpace+".getFile", no);
+		return fileList;
+	}
+	
 }
