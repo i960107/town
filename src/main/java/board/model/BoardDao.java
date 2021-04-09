@@ -54,4 +54,25 @@ public class BoardDao {
 	public void insertBoard(BoardBean board) {
 		sqlSessionTemplate.selectList(namespace+".insertBoard",board);	
 	}
+	public void fileUpload(int no, String originalFileName) {
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("bno", no);
+		map.put("fileName", originalFileName);
+		sqlSessionTemplate.selectList(namespace+".fileUpload",map);	
+	}
+	public List<BoardFileBean>  getFileBeans(List<BoardFileBean> boardFileList, int bno) {
+		List<BoardFileBean> list=sqlSessionTemplate.selectList(namespace+".getFileBeans",bno);
+		for(BoardFileBean bean:list) {
+		     boardFileList.add(bean);
+		}
+		return boardFileList;
+	}
+	public int getMaxBoardNo() {
+		int maxNo=sqlSessionTemplate.selectOne(namespace+".getMaxBoardNo");
+		return maxNo;
+	}
+	public BoardBean getBoardByNo(int no) {
+		BoardBean board=sqlSessionTemplate.selectOne(namespace+".getBoardByNo",no);
+		return board;
+	}
 }

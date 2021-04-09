@@ -4,9 +4,12 @@
 
 <%@ include file="./../common/main_top.jsp"%>
 <%@include file="../common/common.jsp"%>
-<link rel="stylesheet" href="../common/style.jsp">
-<section>
-	<!-- 페이지설명 -->
+<link rel="stylesheet" href="../common/style.css">
+
+
+
+<!-- 페이지설명 -->
+<section class="latest-blog spad">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
@@ -15,8 +18,6 @@
 					<h3>우리 동네의 다양한 이야기를 이웃과 함께 나누어요.</h3>
 				</div>
 			</div>
-		</div>
-		<div class="col-lg-12">
 			<!-- 검색필터설정 -->
 			<div class="row">
 
@@ -51,84 +52,83 @@
 				</form>
 			</div>
 		</div>
+
 		<table class="col-lg-12">
-			<tr><td><input type="button" value="글쓰기" onClick="location.href='insert.bd'">
-			</td></tr>
-			<tr><td><%@include file="../common/addrArray.jsp"%>
-				</td></tr>
+			<tr>
+				<td><input type="button" value="글쓰기"
+					onClick="location.href='insert.bd'"></td>
+			</tr>
+			<tr>
+				<td><%@include file="../common/addrArray.jsp"%>
+				</td>
+			</tr>
 		</table>
 		<c:forEach var="board" items="${boardList}">
-			<!--글하나 -->
-			<div class="row">
-				<div class="col-lg-12 col-md-12">
+			<div class="row board" style="background-color: #F8F9FA">
+				<div class="col-lg-4 col-md-6">
 					<div class="single-latest-blog">
-						<div data-toggle="modal" data-target="#myModal${board.no}">
-							<table border=1 class="col-lg-12">
-								<tr>
-									<td rowspan=2><img
-										src="${pageContext.request.contextPath}/resources/img/latest-1.jpg"
-										width=150 /></td>
-									<td><c:forTokens items="${board.category }" delims=","
-											var="ctg">
-											<c:forEach begin="0" end="${fn:length(categoryList)-1}"
-												var="i">
-												<c:if test="${categoryList[i].no==ctg}">
-													<button type="button" class="btn btn-danger">${categoryList[i].categoryName}</button>
-												</c:if>
-											</c:forEach>
-										</c:forTokens></td>
-								</tr>
-								<tr>
-									<td><h4>
-											<b>${board.subject}</b>
-										</h4> <br> ${board.contents}</td>
-								</tr>
-								<tr>
-									<td><img
+						<c:forEach var="bean" items="${boardFileList}">
+							<c:if test="${flag==false}">
+								<c:if test="${bean.bno==board.no}">
+									<img
+										src="${pageContext.request.contextPath}/resources/${bean.fileName}"
+										width=150 height=200 />
+									<c:set var="flag" value="true" />
+								</c:if>
+							</c:if>
+						</c:forEach>
+						<div class="latest-text">
+							<a href="#">
+								<h4>
+									<img
 										src="<%=request.getContextPath() %>/resrouces/${loginInfo.image}"
-										class="img-circle" width="30" height=30>${board.writer}<br>
-										<i class="fa fa-calendar-o"></i> ${board.regDate} <i
-										class="fa fa-comment-o"></i> ${board.readcount} <a
-										class="btn btn-default" href="" role="button">공감하기</a></td>
-									<td>
-										<form method="post" action="insertReply.bd">
-											<textarea cols="50" rows="2" name="contentx"></textarea>
-											<input type="submit" value="댓글쓰기">
-										</form>
-									</td>
-								</tr>
-							</table>
-
-						</div>
-
-						<!-- Modal -->
-						<div class="modal fade bs-example-modal-lg"
-							id="myModal${board.no}" tabindex="-1" role="dialog"
-							aria-labelledby="myLargeModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-lg">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-										<h4 class="modal-title" id="myModalLabel">${board.subject}</h4>
-									</div>
-									<div class="modal-body">${board.contents}</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Save
-											changes</button>
-									</div>
+										class="img-circle" width="30" height=30>${board.writer}</h4>
+							</a>
+							<div class="tag-list">
+								<div class="tag-item">
+									<i class="fa fa-calendar-o"></i>
+									<fmt:parseDate value=" ${board.regDate}" var="regDateParsed"
+										pattern="yyyy-MM-dd HH:mm:ss.s" />
+									<fmt:formatDate value="${regDateParsed}" pattern="yyyy-mm-dd"
+										var="regDateFormatted" />
+									${regDateFormatted }
+								</div>
+								<div class="tag-item">
+									<i class="fa fa-comment-o"></i> 댓글수
+								</div>
+								<div class="tag-item">
+									<p>
+										<span>조회수</span>${board.readcount} 33
+									</p>
 								</div>
 							</div>
+
 						</div>
-						<!-- 모달끝-->
 					</div>
 				</div>
+				<div class="col-lg-8 col-md-6">
+					<c:forTokens items="${board.category }" delims="," var="ctg">
+						<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
+							<c:if test="${categoryList[i].no==ctg}">
+								<button type="button" class="btn btn-danger">${categoryList[i].categoryName}</button>
+							</c:if>
+						</c:forEach>
+					</c:forTokens>
+					<br>
+					<h4>
+						<b>${board.subject}</b>
+					</h4>
+					<br>
+					<textarea cols="80" rows="2" readonly="readonly"
+						style="resize: none"><c:out value="${board.contents}" /></textarea>
+					<div onClick="location.href='detailView.bd?no=${board.no}'">...더보기</div>
+				</div>
 			</div>
+
+
+
 		</c:forEach>
 	</div>
-	</div>
 </section>
+
+

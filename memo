@@ -184,6 +184,12 @@ minvalue 0
 nocache;
 
 commit;
+drop sequence town_board_file_seq;
+create sequence town_board_file_seq
+start with 0
+increment by 1
+minvalue 0
+nocache;
 
 
 

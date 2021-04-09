@@ -3,5 +3,7 @@
 .err{
 color:red;
 }
-
+.board {
+	margin-bottom: 30px;
+}
 </style>

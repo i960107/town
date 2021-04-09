@@ -2,6 +2,7 @@ package board.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.validation.Valid;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import board.model.BoardBean;
 import board.model.BoardDao;
@@ -33,27 +35,24 @@ public class boardInsertController {
 	}
 
 	@RequestMapping(value = command, method = RequestMethod.POST)
-	public String doActionPost(@ModelAttribute("board" )@Valid BoardBean board, BindingResult result) throws IllegalStateException, IOException {
+	public String doActionPost(MultipartHttpServletRequest mhsq, @ModelAttribute("board") @Valid BoardBean board,
+			BindingResult result) throws IllegalStateException, IOException {
 		if (result.hasErrors()) {
 			System.out.println("오류인데");
 			return getPage;
 		} else {
+
 			dao.insertBoard(board);
+			int bno=dao.getMaxBoardNo();
 			String uploadPath = servletContext.getRealPath("resources");
-			MultipartFile multi1 = board.getUpload1();
-			if (multi1 != null) {
-				File file = new File(uploadPath + "/" + board.getImage1());
-				multi1.transferTo(file);
-			}
-			MultipartFile multi2 = board.getUpload2();
-			if (multi2 != null) {
-				File file = new File(uploadPath + "/" + board.getImage2());
-				multi2.transferTo(file);
-			}
-			MultipartFile multi3 = board.getUpload3();
-			if (multi3 != null) {
-				File file = new File(uploadPath + "/" + board.getImage3());
-				multi3.transferTo(file);
+			List<MultipartFile> mf = mhsq.getFiles("uploadFile");
+			/* 서버 및 테이블에 이미지 파일 업로드 */
+			if (mf.size() >= 1 && !(mf.get(0).getOriginalFilename().equals(""))) {
+				for (int i = 0; i < mf.size(); i++) {
+					String originalFileName = mf.get(i).getOriginalFilename();
+					mf.get(i).transferTo(new File(uploadPath + "/"+originalFileName));
+					dao.fileUpload(bno, originalFileName);
+				}
 			}
 		}
 

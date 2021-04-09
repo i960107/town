@@ -18,19 +18,11 @@ private String category;
 @NotNull(message = "10자 이상 입력해주세요.")
 @Size(min=10, message = "10자 이상 입력해주세요.")
 private String contents;
-private String image1;
-private String image2;
-private String image3;
-private MultipartFile upload1;
-private MultipartFile upload2;
-private MultipartFile upload3;
-
 public BoardBean() {
 	super();
 	// TODO Auto-generated constructor stub
 }
-public BoardBean(int no, String writer, String address, String subject, String category, String contents, String image1,
-		String image2, String image3, MultipartFile upload1, MultipartFile upload2, MultipartFile upload3, int ref,
+public BoardBean(int no, String writer, String address, String subject, String category, String contents, int ref,
 		int reLevel, int reStep, String regDate, int readcount) {
 	super();
 	this.no = no;
@@ -39,12 +31,6 @@ public BoardBean(int no, String writer, String address, String subject, String c
 	this.subject = subject;
 	this.category = category;
 	this.contents = contents;
-	this.image1 = image1;
-	this.image2 = image2;
-	this.image3 = image3;
-	this.upload1 = upload1;
-	this.upload2 = upload2;
-	this.upload3 = upload3;
 	this.ref = ref;
 	this.reLevel = reLevel;
 	this.reStep = reStep;
@@ -86,42 +72,6 @@ public String getContents() {
 }
 public void setContents(String contents) {
 	this.contents = contents;
-}
-public String getImage1() {
-	return image1;
-}
-public void setImage1(String image1) {
-	this.image1 = image1;
-}
-public String getImage2() {
-	return image2;
-}
-public void setImage2(String image2) {
-	this.image2 = image2;
-}
-public String getImage3() {
-	return image3;
-}
-public void setImage3(String image3) {
-	this.image3 = image3;
-}
-public MultipartFile getUpload1() {
-	return upload1;
-}
-public void setUpload1(MultipartFile upload1) {
-	this.upload1 = upload1;
-}
-public MultipartFile getUpload2() {
-	return upload2;
-}
-public void setUpload2(MultipartFile upload2) {
-	this.upload2 = upload2;
-}
-public MultipartFile getUpload3() {
-	return upload3;
-}
-public void setUpload3(MultipartFile upload3) {
-	this.upload3 = upload3;
 }
 public int getRef() {
 	return ref;

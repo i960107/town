@@ -13,6 +13,10 @@
 		select * from town_board
 		order by reg_date desc
 	</select>
+	<select id="getBoardByNo" resultType="board.model.BoardBean">
+		select * from town_board
+		where no=#{no}
+	</select>
 
 	<select id="getBoardByCategoryKeyword"
 		resultType="board.model.BoardBean">
@@ -27,7 +31,17 @@
 		order by reg_date desc
 	</select>
 	<insert id="insertBoard">
-		insert into town_board
-		values(town_board_seq.nextval,#{writer},#{address},#{subject},#{category},#{contents},#{image1},#{image2},#{image3},town_board_seq.currval,1,1,sysdate,0)
+		insert into town_board                                                                                                                                            
+		values(town_board_seq.nextval,#{writer},#{address},#{subject},#{category},#{contents},town_board_seq.currval,1,1,sysdate,0)
 	</insert>
+	<insert id="fileUpload">
+		insert into town_board_file
+		values(town_board_file_seq.nextval,#{bno},#{fileName})
+	</insert>
+	<select id="getFileBeans" resultType="board.model.BoardFileBean">
+	select * from town_board_file where bno=#{bno}
+	</select>
+	<select id="getMaxBoardNo" resultType="Integer">
+	select max(no) from town_board
+	</select>
 </mapper>

@@ -2,6 +2,7 @@ package board.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -13,11 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import board.model.BoardBean;
 import board.model.BoardCategoryBean;
 import board.model.BoardDao;
+import board.model.BoardFileBean;
 @Controller
 public class boardListController {
 private final String command="list.bd";
@@ -31,11 +32,17 @@ public String doActionGet(Model model,HttpSession session
 	List<BoardCategoryBean> categoryList=dao.getAllCategory();
 	session.setAttribute("categoryList",categoryList);
 	List<BoardBean> boardList=dao.getAllBoard();
+	List<BoardFileBean> boardFileList =new ArrayList<BoardFileBean>();
+	for(int i=0;i<boardList.size();i++) {
+		int bno=boardList.get(i).getNo();
+		boardFileList=dao.getFileBeans(boardFileList,bno);
+	}
 	model.addAttribute("boardList",boardList);
+	model.addAttribute("boardFileList",boardFileList);
 	return goToPage;
 }
 @RequestMapping(value=command, method=RequestMethod.POST)
-public ModelAndView doActionPost(ModelAndView mav,
+public String doActionPost( Model model,
 		@RequestParam(value="category",required=false) String category,
 		@RequestParam(value="keyword",required=false) String keyword,
 		 HttpServletResponse response
@@ -46,15 +53,20 @@ public ModelAndView doActionPost(ModelAndView mav,
 		response.setContentType("text/html; charset=UTF-8");
 		pwriter.print("<script type='text/javascript'>");
 		pwriter.print("alert('카테고리는 하나이상 선택해주세요')");
+		pwriter.print("location.href='"+getPage+"'");
 		pwriter.print("</script>");
 		pwriter.flush();
-		mav.setViewName(getPage);
 	}
-	mav.addObject("category",category);
-	mav.addObject("keyword",keyword);
+	model.addAttribute("category",category);
+	model.addAttribute("keyword",keyword);
 	List<BoardBean> boardList=dao.getBoardByCategoryKeyword(category,keyword);
-	mav.addObject("boardList",boardList);
-	mav.setViewName(goToPage);
-	return mav;
+	model.addAttribute("boardList",boardList);
+	List<BoardFileBean> boardFileList =new ArrayList<BoardFileBean>();
+	for(int i=0;i<boardList.size();i++) {
+		int bno=boardList.get(i).getNo();
+		boardFileList=dao.getFileBeans(boardFileList,bno);
+	}
+	model.addAttribute("boardFileList",boardFileList);
+	return goToPage;
 }
 }
