@@ -47,7 +47,7 @@
 	</insert>
 	
 	<select id="getTemp" resultType="float">
-		select manner_temp from manner_temp;
+		select manner_temp from manner_temp
 		where id = #{id}
 	</select>
 	
