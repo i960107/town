@@ -90,7 +90,10 @@
 	select * from member_deal where buyer_id = #{loginID}
 </select>
 
-
+<select id="getProductBySeller" resultType="product.model.ProductBean">
+	select * from prodcut
+	where id = #{id}
+</select>
 
 <!-- 메인 인기상품  -->
 <select id="getPopList" resultType="product.model.ProductBean">
