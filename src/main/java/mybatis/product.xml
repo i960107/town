@@ -23,8 +23,8 @@
 <!-- 상품 등록 -->
 <insert id="insertProduct">
 	insert into product values(
-	prdseq.nextval, #{sellerid}, #{subject}, #{category}, #{address}, #{contents}, #{price},
-	 #{refundavailability}, sysdate, default, 0, #{image1}
+	prdseq.nextval, #{sellerid}, #{subject}, #{category}, #{address}, #{address1}, #{address2}, #{address3}, 
+	#{contents}, #{price}, #{refundavailability}, sysdate, default, 0, #{image1}
 	)
 </insert>
 

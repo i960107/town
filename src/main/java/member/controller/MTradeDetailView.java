@@ -29,7 +29,8 @@ public class MTradeDetailView {
 	@Autowired
 	MemberDao mDao;
 
-	ProductDao pDao = new ProductDao();
+	//@Autowired
+	ProductDao pDao ;
 
 	@RequestMapping(value = command)
 

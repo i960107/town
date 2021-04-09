@@ -79,7 +79,7 @@
 %>
 </head>
 <body>
-	<!-- <<<<<<< HEAD -->
+<div align="center">
 	<table>
 		<tr>
 			<!-- 상품정보 -->
@@ -144,7 +144,7 @@
 		<tr>
 			<!-- 회원 정보 -->
 			<td><a href="tradeDetail.mb?sellerid=${sellerid }">
-			<img alt="" src="<%=source%>resources/members/${member.image}" width="70" height="70"></a>
+			<img alt="" src="<%=source%>resources/members/${mbean.image}" width="70" height="70"></a>
 			</td>
 			<td valign="top"><a href="tradeDetail.mb?sellerid=${sellerid }"><span
 					style="font-size: 14px; color: #101010; font-weight: bold;">${sellerid }</span>
@@ -167,6 +167,7 @@
 				</c:forEach></td>
 		</tr>
 	</table>
+	</div>
 </body>
 </html>
 <%@ include file="./../common/main_bottom.jsp"%>
