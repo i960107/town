@@ -10,7 +10,7 @@ import board.model.BoardLikeBean;
 
 @Controller
 public class BoardLikeController {
-	private final String command = "like.bd";
+	private final String command = "/like.bd";
 	private final String command2 = "unlike.bd";
 	private String goToPage = "redirect:/detailView.bd";
 	@Autowired

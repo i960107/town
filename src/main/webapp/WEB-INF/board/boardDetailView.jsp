@@ -47,7 +47,8 @@
 
 						<c:forEach var="item" items="${boardFileList}" varStatus="i">
 							<li data-target="#carousel-example-generic"
-								data-slide-to="i.index" <c:if test="${i.index==0}">class="active"</c:if>></li>
+								data-slide-to="i.index"
+								<c:if test="${i.index==0}">class="active"</c:if>></li>
 						</c:forEach>
 					</ol>
 					<!-- Carousel items -->
@@ -63,18 +64,9 @@
 				</div>
 			</div>
 
-			<div class="col-lg-8" style="background-color: cyan">${board.contents}</div>
 
 			<div class="col-lg-8" align="center">${board.contents}</div>
-			<div class="col-lg-8" align="right">
-				<c:forTokens items="${board.category }" delims="," var="ctg">
-					<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
-						<c:if test="${categoryList[i].no==ctg}">
-							<button type="button" class="btn btn-danger">${categoryList[i].categoryName}</button>
-						</c:if>
-					</c:forEach>
-				</c:forTokens>
-			</div>
+
 
 		</div>
 	</c:if>
@@ -115,13 +107,10 @@
 		</c:if>
 	</div>
 </div>
-<<<<<<< HEAD
-=======
 <div class="row">
 	<div class="col-lg-12" align="center">
 		<input type="button" onClick="location.href='list.bd'" value="목록보기">
 	</div>
 </div>
 <a href="delete.bd?no=${board.no}">삭제</a>
->>>>>>> 14185bfe7014c8e046090a9afac494b59cd2f434
 <%@ include file="./../common/main_bottom.jsp"%>

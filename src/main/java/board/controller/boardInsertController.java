@@ -21,7 +21,7 @@ import board.model.BoardDao;
 
 @Controller
 public class boardInsertController {
-	private final String command = "insert.bd";
+	private final String command = "/insert.bd";
 	private String getPage = "boardInsertForm";
 	private String goToPage = "redirect:/list.bd";
 	@Autowired
