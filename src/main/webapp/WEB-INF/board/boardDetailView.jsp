@@ -118,8 +118,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-8" style="background-color: cyan" align="center">${board.contents}</div>
-			<div class="col-lg-8" style="background-color: cyan" align="right">
+			<div class="col-lg-8" align="center">${board.contents}</div>
+			<div class="col-lg-8" align="right">
 				<c:forTokens items="${board.category }" delims="," var="ctg">
 					<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
 						<c:if test="${categoryList[i].no==ctg}">
@@ -154,14 +154,14 @@
 			<div class="col-lg-12" align="right">
 				<form action="insertReply.bd">
 					<textarea rows="2" cols="100" readonly="readonly">로그인이 필요한 서비스 입니다</textarea>
-					<br> <input type="submit" value="댓글쓰기">
+					<br> <input type="submit" disabled="disabled" value="댓글쓰기">
 				</form>
 			</div>
 		</c:if>
 		<c:if test="${loginInfo!=null}">
 
 			<div class="col-lg-2" align="right">
-				<img
+				<img class="box"
 					src="${pageContext.request.contextPath}/resources/members/${loginInfo.image}">${loginInfo.id}
 			</div>
 			<div class="col-lg-10" align="right">
@@ -178,4 +178,5 @@
 		<input type="button" onClick="location.href='list.bd'" value="목록보기">
 	</div>
 </div>
+<a href="delete.bd?no=${board.no}">삭제</a>
 <%@ include file="./../common/main_bottom.jsp"%>

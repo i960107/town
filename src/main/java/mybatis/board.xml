@@ -74,4 +74,9 @@
 		delete from town_board_like
 		where no =#{no}
 	</delete>
+	<!-- 게시글 지우기 -->
+	<delete id="deleteBoard">
+		delete from town_board
+		where no =#{no}
+	</delete>
 </mapper>

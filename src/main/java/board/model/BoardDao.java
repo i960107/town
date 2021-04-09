@@ -117,4 +117,8 @@ public class BoardDao {
 		sqlSessionTemplate.delete(namespace + ".boardUnlike", no);
 	}
 
+	public void deleteBoard(int no) {
+		sqlSessionTemplate.delete(namespace + ".deleteBoard", no);
+	}
+
 }

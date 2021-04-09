@@ -71,7 +71,8 @@
 			<div class="row board">
 				<div class="col-lg-4 col-md-6">
 					<div class="single-latest-blog">
-						<c:forEach var="bean" items="${boardFileList}">
+						<c:set var="flag" value="false" />
+							<c:forEach var="bean" items="${boardFileList}">
 							<c:if test="${flag==false}">
 								<c:if test="${bean.bno==board.no}">
 									<img
@@ -90,14 +91,7 @@
 							<fmt:formatDate value="${regDateParsed}" pattern="yyyy-mm-dd"
 								var="regDateFormatted" />
 							${regDateFormatted } <i class="fa fa-comment-o"></i> 댓글수 <span>조회수</span>${board.readcount}
-							공감
-							<c:set var="flag" value="false" />
-							<c:if test="${flag==false}">
-								<c:forEach items="${likeCntList}" var="item">
-									<c:if test="${item.townBoardNo==board.no}">${item.cnt}</c:if>
-								</c:forEach>
-							</c:if>
-							<c:if test="${flag==false}">0</c:if>
+
 						</div>
 					</div>
 				</div>

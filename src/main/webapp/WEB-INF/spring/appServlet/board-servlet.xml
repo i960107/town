@@ -25,15 +25,17 @@
 	<bean id="AuthLoginInterceptor"
 		class="test.login.interceptor.AuthLoginInterceptor">
 	</bean>
-	<!-- <mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="insert.bd" />
-			<mvc:mapping path="insertReply.bd" />
-			<mvc:mapping path="like.bd" />
-			<mvc:mapping path="unlike.bd" />
-			<ref bean="AuthLoginInterceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors> -->
+	<mvc:interceptors>
+	<mvc:interceptor>
+		<mvc:mapping path="/insert.bd" />
+		<mvc:mapping path="/insertReply.bd" />
+		<mvc:mapping path="/like.bd" />
+		<mvc:mapping path="/unlike.bd" />
+		<mvc:mapping path="/unlike.bd" />
+		<mvc:mapping path="/delete.bd" />
+		<ref bean="AuthLoginInterceptor" />
+	</mvc:interceptor>
+</mvc:interceptors>
 	<context:component-scan base-package="board" />
 	<context:component-scan base-package="member" />
 	<context:component-scan base-package="product" />
