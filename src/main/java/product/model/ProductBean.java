@@ -18,9 +18,14 @@ public class ProductBean {
 	private int category  ;
 	@NotNull(message = "주소를 입력하세요")
 	private String address  ;
+	private String address1  ;
+	private String address2  ;
+	private String address3  ;
 	private String contents  ;
+	
 	@Min(value = 1, message = "가격을 입력하세요")
-	private int price  ;
+	private int price;
+	
 	@NotNull(message = "교환여부를 선택하세요")
 	private int refundavailability  ;
 	private String regdate;
@@ -28,7 +33,6 @@ public class ProductBean {
 	private int readcount  ;
 	private List<MultipartFile> upload;
 	private String image1;
-	
 	public int getNo() {
 		return no;
 	}
@@ -58,6 +62,24 @@ public class ProductBean {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getAddress1() {
+		return address1;
+	}
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+	public String getAddress2() {
+		return address2;
+	}
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+	public String getAddress3() {
+		return address3;
+	}
+	public void setAddress3(String address3) {
+		this.address3 = address3;
 	}
 	public String getContents() {
 		return contents;
@@ -101,15 +123,24 @@ public class ProductBean {
 	public void setUpload(List<MultipartFile> upload) {
 		this.upload = upload;
 	}
-	public ProductBean(int no, String sellerid, String subject, int category, String address, String contents,
-			int price, int refundavailability, String regdate, int dealstatus, int readcount,
-			List<MultipartFile> upload, String image1) {
+	public String getImage1() {
+		return image1;
+	}
+	public void setImage1(String image1) {
+		this.image1 = image1;
+	}
+	public ProductBean(int no, String sellerid, String subject, int category, String address, String address1,
+			String address2, String address3, String contents, int price, int refundavailability, String regdate,
+			int dealstatus, int readcount, List<MultipartFile> upload, String image1) {
 		super();
 		this.no = no;
 		this.sellerid = sellerid;
 		this.subject = subject;
 		this.category = category;
 		this.address = address;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.address3 = address3;
 		this.contents = contents;
 		this.price = price;
 		this.refundavailability = refundavailability;
@@ -119,16 +150,12 @@ public class ProductBean {
 		this.upload = upload;
 		this.image1 = image1;
 	}
+	
 	public ProductBean() {
 		super();
 	}
-	public String getImage1() {
-		return image1;
-	}
-	public void setImage1(String image1) {
-		this.image1 = image1;
-	}
 	
+		
 		
 	
 }

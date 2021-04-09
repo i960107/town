@@ -28,8 +28,6 @@ public class PDetailViewController {
 	@Autowired
 	ProductDao pDao;
 	
-	//MemberDao mDao = new MemberDao();
-	
 	@RequestMapping(value = command)
 	public ModelAndView doAction(
 			@RequestParam(value = "no") int no,
@@ -42,10 +40,10 @@ public class PDetailViewController {
 		ProductBean pBean = pDao.getProduct(no);
 		List<ProductLikeBean> likeList = pDao.getLike(no);
 		List<ProductFileBean> fileList = pDao.getFile(no);
-		//MemberBean mBean = mDao.getMember(sellerid);
+		MemberBean mBean = pDao.getSellerInfo(sellerid);
 		pDao.incrementReadCount(no);
 		mav.addObject("pBean", pBean);
-		//mav.addObject("mbean", mBean);
+		mav.addObject("mbean", mBean);
 		mav.addObject("sellerid", sellerid);
 		mav.addObject("likeList", likeList);
 		mav.addObject("fileList", fileList);

@@ -90,11 +90,6 @@
 	select * from member_deal where buyer_id = #{loginID}
 </select>
 
-<select id="getProductBySeller" resultType="product.model.ProductBean">
-	select * from product
-	where seller_id = #{sellerid}
-</select>
-
 <!-- 메인 인기상품  -->
 <select id="getPopList" resultType="product.model.ProductBean">
 	select rownum as rank, seller_id, subject, readcount
@@ -110,4 +105,14 @@
 	</if>
 </select>
 
+<!-- 아이디 기준 판매자 정보 조회 -->
+<select id="getSellerInfo" resultType="member.model.MemberBean">
+	select * from member
+	where id = #{sellerid}
+</select>
+
+<!-- 상품 카테고리 전체 호출 -->
+<select id="getAllCategory" resultType="product.model.ProdCategoryBean">
+	select * from product_category
+</select>
 </mapper>

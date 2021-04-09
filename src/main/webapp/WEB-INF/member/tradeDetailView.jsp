@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="./../common/common.jsp" %>
-<%@ include file="./../../WEB-INF/member/memberMyPageTop.jsp"%>
+<%@ include file="./../common/main_top.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>판매자 : ${mBean.id } 정보보기</title>
 <!-- MTradeDetailController >> -->
 </head>
 <body>

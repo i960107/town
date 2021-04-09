@@ -143,7 +143,7 @@
 	<table>
 		<tr>
 			<!-- 회원 정보 -->
-			<td><a href="tradeDetail.mb?sellerid=${sellerid }">
+			<td><a href="tradeDetail.mb?sellerid=${mbean.id }">
 			<img alt="" src="<%=source%>resources/members/${mbean.image}" width="70" height="70"></a>
 			</td>
 			<td valign="top"><a href="tradeDetail.mb?sellerid=${sellerid }"><span

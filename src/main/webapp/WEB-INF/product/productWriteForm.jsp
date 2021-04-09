@@ -54,7 +54,7 @@ productInsertForm.jsp <br><br>
 			<td class="group-input" >
 				<!-- 다중 파일 선택: multiple="multiple" -->
 				<label for="upload_file" class="fileupload-img"></label><br>
-				<input multiple="multiple" type="file" name="upload" id="upload_file">
+				<input multiple="multiple" type="file" name="upload" id="upload_file" hidden="">
 			</td>
 			<form:errors cssClass="err" path="image1"/>
 		</tr>
@@ -62,7 +62,7 @@ productInsertForm.jsp <br><br>
 		<tr>
 			<td class="group-input" width="120" align="center">제목</td>
 			<td class="group-input" >
-				<input type="text" name="subject" placeholder="상세 제목을 입력해 주세요." value="${subject }">
+				<input type="text" name="subject" placeholder="상세 제목을 입력해 주세요." value="${subject }" class="input-group">
 			</td>
 			<form:errors cssClass="err" path="subject"/>
 		</tr>
@@ -70,7 +70,12 @@ productInsertForm.jsp <br><br>
 		<tr>
 			<td class="group-input" width="120" align="center">카테고리</td>
 			<td class="group-input" >
-			<input type="radio" name="category" value="100"> 카테임시
+			<c:set value="0" var="liner"></c:set>
+			<c:forEach var="cate" items="${cateList }">
+			<c:set value="${liner+1 }" var="liner"/>
+			<input type="radio" name="category" value="${cate.no }"> ${cate.categoryName } &nbsp;
+			<c:if test="${liner%4==0 }"><br></c:if>
+			</c:forEach>
 			</td>
 			<form:errors cssClass="err" path="category"/>
 		</tr>
@@ -90,8 +95,10 @@ productInsertForm.jsp <br><br>
 		<tr>
 			<td class="group-input" width="120" align="center">환불</td>
 			<td class="group-input" >
-				<input type="radio" name="refundavailability" value="1">환불 불가
-				<input type="radio" name="refundavailability" value="0">환불 가능
+				<div  class="input-group">
+				<input type="radio" name="refundavailability" value="1"> &nbsp;환불 불가  &nbsp;
+				<input type="radio" name="refundavailability" value="0"> &nbsp;환불 가능  &nbsp;
+				</div>
 			</td>
 			<form:errors cssClass="err" path="refundavailability"/>
 		</tr>
@@ -99,7 +106,7 @@ productInsertForm.jsp <br><br>
 		<tr>
 			<td class="group-input" width="120" align="center">가격</td>
 			<td class="group-input" >
-				<input type="text" name="price">원
+				<input type="text" name="price"  class="input-group">원
 			</td>
 			<form:errors cssClass="err" path="price"/>
 		</tr>
@@ -107,7 +114,7 @@ productInsertForm.jsp <br><br>
 		<tr>
 			<td class="group-input" width="120" align="center">설명</td>
 			<td class="group-input" >
-				<textarea rows="5" cols="35" name="contents" placeholder="상품 설명을 입력해주세요." style="resize: none;"></textarea>
+				<textarea  class="input-group" rows="5" cols="35" name="contents" placeholder="상품 설명을 입력해주세요." style="resize: none;"></textarea>
 			</td>
 		</tr>
 		

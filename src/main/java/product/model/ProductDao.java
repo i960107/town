@@ -9,6 +9,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import category.model.ProdCateBean;
+import member.model.MemberBean;
 import member.model.MemberDealBean;
 
 @Component("myProductDao")
@@ -113,10 +115,17 @@ public class ProductDao {
 		return lists;
 	}
 
-	public List<ProductBean> getProductBySeller(String sellerid) {
-		List<ProductBean> plists = new ArrayList<ProductBean>();
-		plists = sqlSessionTemplate.selectList(nameSpace+".getProductBySeller", sellerid);
-		return plists;
+
+	public MemberBean getSellerInfo(String sellerid) {
+		MemberBean mbean = new MemberBean();
+		mbean = sqlSessionTemplate.selectOne(nameSpace+".getSellerInfo", sellerid);
+		return mbean;
+	}
+
+	public List<ProdCateBean> getAllCategory() {
+		List<ProdCateBean> cateList = new ArrayList<ProdCateBean>();
+		cateList = sqlSessionTemplate.selectList(nameSpace+".getAllCategory");
+		return cateList;
 	}
 	
 }

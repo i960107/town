@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import product.model.ProductBean;
+
 @Component("MyMemberDao")
 public class MemberDao {
 
@@ -58,8 +60,12 @@ public class MemberDao {
 		return mtemp;
 	}
 
-	
-	
+	//판매자 상품 상세보기
+	public List<ProductBean> getProductBySeller(String sellerid) {
+		List<ProductBean> plists = new ArrayList<ProductBean>();
+		plists = sqlSessionTemplate.selectList(nameSpace+".getProductBySeller", sellerid);
+		return plists;
+	}
 	
 	
 

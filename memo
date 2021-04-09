@@ -12,9 +12,9 @@ CREATE TABLE member (
  address3 varchar2(40) DEFAULT null NULL,
  image varchar2(100)  NULL,
  member_status number DEFAULT 1 NULL,
- authority number  NULL
+ authority number  default 1
 );
-insert into member values('admin','1234','관리자','남','01012341234','admin@admin.com','서울특별시 마포구 신촌로 176','서울특별시','마포구','신촌로 176','image.jpg','1',1);
+insert into member values('admin','1234','관리자','남','01012341234','admin@admin.com','서울특별시 마포구 신촌로 176','서울특별시','마포구','신촌로 176','image.jpg','1',0);
 
 drop table member_deal cascade constraints;
 CREATE TABLE member_deal (

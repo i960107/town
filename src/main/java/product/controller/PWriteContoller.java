@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import category.model.ProdCateBean;
 import member.model.MemberBean;
 import product.model.ProductBean;
 import product.model.ProductDao;
@@ -55,9 +56,14 @@ public class PWriteContoller {
 			mav.setViewName("redirect:memberlogin.mb");
 			mav.addObject("plzLogin", false);
 			session.setAttribute("destination", getPage);
+			return mav;
 		}else {
 			mav.setViewName(getPage);	
 		}
+		MemberBean mbean = pDao.getSellerInfo(member.getId()); //판매자 정보 조회
+		List<ProdCateBean> cateList = pDao.getAllCategory(); //카테고리 목록 호출
+		mav.addObject("mbean", mbean);
+		mav.addObject("cateList", cateList);
 		return mav;
 	}
 	
@@ -71,6 +77,11 @@ public class PWriteContoller {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(gotoPage);
 		
+		MemberBean mbean = pDao.getSellerInfo(productbean.getSellerid()); //판매자 정보 조회
+		List<ProdCateBean> cateList = pDao.getAllCategory(); //카테고리 목록 호출
+		mav.addObject("mbean", mbean);
+		mav.addObject("cateList", cateList);
+		
 		//유효성 검사
 		if(result.hasErrors()) {
 			mav.setViewName(getPage);
@@ -82,13 +93,14 @@ public class PWriteContoller {
 		String uploadPath = application.getRealPath("resources/");
 		System.out.println(uploadPath);
 		//데이터 입력
+		productbean.setImage1("img/insert_img.jpg");
 		int cnt = pDao.insertProduct(productbean);
 		
 		//데이터 입력확인 > 파일 입력
 		if(cnt==1) {
 			List<MultipartFile> mf = productbean.getUpload(); //이미지 list로 받음
 			File dir = new File(uploadPath);
-			if (!dir.isDirectory()) {
+			if (!dir.isDirectory()) { //파일충돌 방지?
 	            dir.mkdirs();
 	        }
 			
@@ -96,7 +108,7 @@ public class PWriteContoller {
 			if(mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) { //파일 넘어왔는지 체크
 				
 			}else {
-				String saveName = "";
+				String saveName = ""; //product.image 넣을 임시변수
 				for (int i = 0; i < mf.size(); i++) {
 					String genId = UUID.randomUUID().toString(); //파일이름 난수 생성
 					String originalfileName = mf.get(i).getOriginalFilename();  //파일 이름 받아옴
