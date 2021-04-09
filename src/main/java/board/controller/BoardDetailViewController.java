@@ -19,7 +19,7 @@ import member.model.MemberDao;
 
 @Controller
 public class BoardDetailViewController {
-	private final String command = "detailView.bd";
+	private final String command = "/detailView.bd";
 	private String getPage = "boardDetailView";
 	@Autowired
 	BoardDao dao;
