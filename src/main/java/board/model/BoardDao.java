@@ -92,6 +92,7 @@ public class BoardDao {
 		BoardBean board = sqlSessionTemplate.selectOne(namespace + ".getBoardByNo", no);
 		return board;
 	}
+
 	
 	// 나의당근 - 내 글 
 	public List<BoardBean> getBoardListById(String loginID) {
@@ -105,6 +106,7 @@ public class BoardDao {
 		lists = sqlSessionTemplate.selectList(namespace+".GetBoardReplyListById",loginID);
 		return lists;
 	}
+	
 	
 
 
