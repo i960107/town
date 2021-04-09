@@ -4,61 +4,78 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board.BoardBean">
+	<!-- 카테고리 전체 가져오기 -->
 	<select id="getAllCategory"
 		resultType="board.model.BoardCategoryBean">
 		select * from town_board_category order by no asc
 	</select>
 
+	<!-- 상품 찜하기 갯수 확인 -->
+	<select id="getLike" resultType="product.model.ProductLikeBean">
+		select * from town_board_like
+		where
+		town_board_no = #{no}
+	</select>
+	<!-- list전체가져오기 -->
 	<select id="getAllBoard" resultType="board.model.BoardBean">
 		select * from town_board
 		order by reg_date desc
 	</select>
+	<!-- no조건 게시글 가져오기 -->
 	<select id="getBoardByNo" resultType="board.model.BoardBean">
 		select * from town_board
 		where no=#{no}
 	</select>
-
+	<!-- category+keyword검색 -->
 	<select id="getBoardByCategoryKeyword"
 		resultType="board.model.BoardBean">
-		select * from town_board where category in
-		<foreach item="item" index="index" collection="categoryList"
-			open="(" separator="," close=")">
-			#{item}
-		</foreach>
+		select * from town_board where category in ${cate}
 		<if test="keyword!=null">
 			and subject like #{keyword}
 		</if>
 		order by reg_date desc
 	</select>
+	<!-- 원글쓰기 -->
 	<insert id="insertBoard">
-		insert into town_board                                                                                                                                            
+		insert into town_board
 		values(town_board_seq.nextval,#{writer},#{address},#{subject},#{category},#{contents},town_board_seq.currval,1,1,sysdate,0)
 	</insert>
+	<!-- 파일db업로드 -->
 	<insert id="fileUpload">
 		insert into town_board_file
 		values(town_board_file_seq.nextval,#{bno},#{fileName})
 	</insert>
+	<!-- 게시글의 파일이름 가져오기 -->
 	<select id="getFileBeans" resultType="board.model.BoardFileBean">
-	select * from town_board_file where bno=#{bno}
+		select * from
+		town_board_file where bno=#{bno}
 	</select>
+	<!-- 최근 입력한 게시글 번호 가져오기 -->
 	<select id="getMaxBoardNo" resultType="Integer">
-	select max(no) from town_board
+		select max(no) from
+		town_board
 	</select>
 
 	<!-- 나의당근 - 내글 -->
 	<select id="GetBoardListById" resultType="board.model.BoardBean">
-		select * from town_board where writer =#{loginID} and no = ref
+		select * from
+		town_board where writer =#{loginID} and no = ref
 		order by ref desc
 	</select>
-	
+
 	<!-- 나의 당근 - 댓글 -->
-	<select id="GetBoardReplyListById" resultType="board.model.BoardBean">
-		select * from town_board where writer = #{loginID} and re_level > 1 
+	<select id="GetBoardReplyListById"
+		resultType="board.model.BoardBean">
+		select * from town_board where writer = #{loginID} and
+		re_level > 1
 		order by ref desc, re_level asc
 	</select>
-	
+	<!-- 조회수증가 -->
+	<update id="addReadcount">
+		update town_board set readcount=readcount+1 where
+		no=#{no}
 
-
+	</update>
 	<!-- 게시글 좋아요 -->
 	<insert id="boardLike">
 		insert into town_board_like

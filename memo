@@ -125,16 +125,16 @@ increment by 1
 minvalue 0
 nocache;
 
-insert into town_board_category values(town_board_seq.nextval,'같이해요');
-insert into town_board_category values(town_board_seq.nextval,'동네사진전');
-insert into town_board_category values(town_board_seq.nextval,'일상');
-insert into town_board_category values(town_board_seq.nextval,'동네소식');
-insert into town_board_category values(town_board_seq.nextval,'동네맛집');
-insert into town_board_category values(town_board_seq.nextval,'해주세요');
-insert into town_board_category values(town_board_seq.nextval,'취미생활');
-insert into town_board_category values(town_board_seq.nextval,'교육/학원');
-insert into town_board_category values(town_board_seq.nextval,'강아지');
-insert into town_board_category values(town_board_seq.nextval,'고양이');
+insert into town_board_category values(10000+town_board_seq.nextval,'같이해요');
+insert into town_board_category values(10000+town_board_seq.nextval,'동네사진전');
+insert into town_board_category values(10000+town_board_seq.nextval,'일상');
+insert into town_board_category values(10000+town_board_seq.nextval,'동네소식');
+insert into town_board_category values(10000+town_board_seq.nextval,'동네맛집');
+insert into town_board_category values(10000+town_board_seq.nextval,'해주세요');
+insert into town_board_category values(10000+town_board_seq.nextval,'취미생활');
+insert into town_board_category values(10000+town_board_seq.nextval,'교육/학원');
+insert into town_board_category values(10000+town_board_seq.nextval,'강아지');
+insert into town_board_category values(10000+town_board_seq.nextval,'고양이');
 
 select * from town_board_category;
 commit;
@@ -144,14 +144,14 @@ start with 0
 increment by 1
 minvalue 0
 nocache;
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','삼겹살 같이 먹어요',1,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','소라 같이 먹어요',1,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','회 같이 먹어요',1,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','소고기 같이 먹어요',1,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','엽떡 같이 먹어요',1,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','돈까스 같이 먹어요',1,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','국밥 같이 먹어요',1,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','술 같이 먹어요',1,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','삼겹살 같이 먹어요',10001,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','소라 같이 먹어요',10001,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','회 같이 먹어요',10002,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','소고기 같이 먹어요',10003,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','엽떡 같이 먹어요',10005,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','돈까스 같이 먹어요',10004,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','국밥 같이 먹어요',10007,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','술 같이 먹어요',10003,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
 commit;
 
 

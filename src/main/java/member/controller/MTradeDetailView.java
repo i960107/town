@@ -18,27 +18,27 @@ import product.model.ProductDao;
 @Controller
 public class MTradeDetailView {
 
-	
-	//상품 등록자 자세히보기
+	// 상품 등록자 자세히보기
 	private final String command = "tradeDetail.mb";
 	private final String getPage = "tradeDetailView";
 	private final String gotoPage = "redirect:detail.prd";
 	private String addGetData = "&sellerid=";
+
+
 	
 	@Autowired
-	MemberDao mDao = new MemberDao();
-	
-	@Autowired
+	MemberDao mDao;
+
 	ProductDao pDao = new ProductDao();
-	
+
 	@RequestMapping(value = command)
+
 	public ModelAndView doAction(
 			@RequestParam(value = "sellerid", required = true) String sellerid
 			) {
-		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(getPage);
-		
+
 		MemberBean mBean = mDao.getMember(sellerid);
 
 		List<ProductBean> pList = pDao.getProductBySeller(sellerid);
@@ -47,7 +47,7 @@ public class MTradeDetailView {
 		mav.addObject("mBean", mBean);
 		mav.addObject("mtemp", mtemp);
 		mav.addObject("pList", pList);
-		
+
 		return mav;
 	}
 }

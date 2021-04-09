@@ -12,13 +12,14 @@ import board.model.BoardLikeBean;
 public class BoardLikeController {
 	private final String command = "/like.bd";
 	private final String command2 = "unlike.bd";
-	private String goToPage = "redirect:/detailView.bd";
+
 	@Autowired
 	BoardDao dao;
 
 	@RequestMapping(command)
 	public String doActionLike(@RequestParam("townBoardNo") int townBoardNo, BoardLikeBean likeBean) {
 		dao.boardLike(likeBean);
+		String goToPage = "redirect:/detailView.bd";
 		goToPage += "?no=" + townBoardNo;
 		return goToPage;
 	}
@@ -26,6 +27,7 @@ public class BoardLikeController {
 	@RequestMapping(command2)
 	public String doActionUnlike(@RequestParam("townBoardNo") int townBoardNo, @RequestParam("no") int no) {
 		dao.boardUnlike(no);
+		String goToPage = "redirect:/detailView.bd";
 		goToPage += "?no=" + townBoardNo;
 		return goToPage;
 	}

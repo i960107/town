@@ -4,9 +4,17 @@
 
 <%@ include file="./../common/main_top.jsp"%>
 <%@include file="../common/common.jsp"%>
-<link rel="stylesheet" href="../common/style.css">
-
-
+<style type="text/css">
+.board {
+	margin-bottom: 30px;
+}
+.box {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+</style>
 
 <!-- 페이지설명 -->
 <section class="latest-blog spad">
@@ -80,40 +88,10 @@
 						</c:forEach>
 						<div class="latest-text">
 							<a href="#">
-<<<<<<< HEAD
-=======
 
->>>>>>> e9d7a7987d85bc9427b96d694d509f552e59b28d
 								<h4>
-									<img
-										src="<%=request.getContextPath() %>/resrouces/${loginInfo.image}"
-										class="img-circle" width="30" height=30>${board.writer}</h4>
-							</a>
-							<div class="tag-list">
-								<div class="tag-item">
-									<i class="fa fa-calendar-o"></i>
-									<fmt:parseDate value=" ${board.regDate}" var="regDateParsed"
-										pattern="yyyy-MM-dd HH:mm:ss.s" />
-									<fmt:formatDate value="${regDateParsed}" pattern="yyyy-MM-dd"
-										var="regDateFormatted" />
-									${regDateFormatted }
-								</div>
-								<div class="tag-item">
-									<i class="fa fa-comment-o"></i> 댓글수
-								</div>
-								<div class="tag-item">
-									<p>
-										<span>조회수</span>${board.readcount} 
-									</p>
-								</div>
-							</div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> e9d7a7987d85bc9427b96d694d509f552e59b28d
-								<h4>${board.writer}</h4>
-							</a> <i class="fa fa-calendar-o"></i>
+									${board.writer}</h4>
+							</a> </a> <i class="fa fa-calendar-o"></i>
 							<fmt:parseDate value=" ${board.regDate}" var="regDateParsed"
 								pattern="yyyy-MM-dd HH:mm:ss.s" />
 							<fmt:formatDate value="${regDateParsed}" pattern="yyyy-mm-dd"
@@ -121,8 +99,6 @@
 							${regDateFormatted } <i class="fa fa-comment-o"></i> 댓글수 <span>조회수</span>${board.readcount}
 
 
-=======
->>>>>>> a0df029af222e8f33dc755672d6cb4e8d37ed8b0
 						</div>
 					</div>
 				</div>
