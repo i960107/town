@@ -90,8 +90,6 @@ public class BoardDao {
 		return lists;
 	}
 	
-	
-
 
 	// 조회수 증가
 	public void addReadcount(int no) {
