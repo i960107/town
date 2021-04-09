@@ -10,6 +10,7 @@
 상품 자세히 보기 페이지
  -->
 <title>상품 보기</title>
+<script type="text/javascript" src="<%=source%>js/jquery.js"></script>
 <script type="text/javascript">
 /* 좋아요 싫어요 함수 호출 */
 	function prdLike() {

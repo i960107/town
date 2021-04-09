@@ -51,7 +51,7 @@
 </select>
 
 <select id="getFile" resultType="product.model.ProductFileBean">
-	select * from prodcut_file
+	select * from product_file
 	where pno = #{no}
 </select>
 
