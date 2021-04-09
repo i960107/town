@@ -4,20 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board.BoardBean">
+	<!-- 전체 카테고리 가져오기 -->
 	<select id="getAllCategory"
 		resultType="board.model.BoardCategoryBean">
 		select * from town_board_category order by no asc
 	</select>
-
+	<!-- 전체 글 가져오기 -->
 	<select id="getAllBoard" resultType="board.model.BoardBean">
 		select * from town_board
 		order by reg_date desc
 	</select>
+	<!-- no로 게시글 가져오기 -->
 	<select id="getBoardByNo" resultType="board.model.BoardBean">
 		select * from town_board
 		where no=#{no}
 	</select>
-
+	<!-- 키워드 카테고리 조건 검색 결과 가져오기 -->
 	<select id="getBoardByCategoryKeyword"
 		resultType="board.model.BoardBean">
 		select * from town_board where category in
@@ -30,18 +32,46 @@
 		</if>
 		order by reg_date desc
 	</select>
+	<!-- 원글쓰기 -->
 	<insert id="insertBoard">
-		insert into town_board                                                                                                                                            
+		insert into town_board
 		values(town_board_seq.nextval,#{writer},#{address},#{subject},#{category},#{contents},town_board_seq.currval,1,1,sysdate,0)
 	</insert>
+	<!-- 원글 이미지이름 테이블에 넣기 -->
 	<insert id="fileUpload">
 		insert into town_board_file
 		values(town_board_file_seq.nextval,#{bno},#{fileName})
 	</insert>
+	<!-- 원글 이미지 가져오기 -->
 	<select id="getFileBeans" resultType="board.model.BoardFileBean">
-	select * from town_board_file where bno=#{bno}
+		select * from
+		town_board_file where bno=#{bno}
 	</select>
+	<!-- 이미지 테이블 삽입시 참조할 no가져오기 -->
 	<select id="getMaxBoardNo" resultType="Integer">
-	select max(no) from town_board
+		select max(no) from
+		town_board
 	</select>
+	<!-- 조회수 증가 -->
+	<update id="addReadcount">
+		update town_board set readcount=readcount+1 where
+		no=#{no}
+	</update>
+	<!-- 상품 찜하기 정보 확인 -->
+	<select id="getLike" resultType="board.model.BoardLikeBean">
+		select * from town_board_like
+		where town_board_no = #{no}
+	</select>
+
+	<!-- 게시글 좋아요 -->
+	<insert id="boardLike">
+		insert into town_board_like
+		values(bd_like_seq.nextval, #{townBoardNo}, #{userId})
+	</insert>
+
+	<!-- 게시글 싫어요 -->
+	<delete id="boardUnlike">
+		delete from town_board_like
+		where no =#{no}
+	</delete>
 </mapper>
