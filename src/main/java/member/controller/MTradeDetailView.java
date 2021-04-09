@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import member.model.MannerTempBean;
 import member.model.MemberBean;
 import member.model.MemberDao;
 import product.model.ProductBean;
@@ -27,7 +28,8 @@ public class MTradeDetailView {
 	@Autowired
 	MemberDao mDao;
 	
-	ProductDao pDao = new ProductDao();
+	@Autowired
+	ProductDao pDao;
 	
 	@RequestMapping(value = command)
 	public ModelAndView doAction(
@@ -38,6 +40,8 @@ public class MTradeDetailView {
 		mav.setViewName(getPage);
 		MemberBean mBean = mDao.getMember(sellerid);
 		List<ProductBean> pList = pDao.getProductBySeller(sellerid);
+		float tbean = mDao.getTemp(sellerid);
+		mav.addObject("tbean", tbean);
 		mav.addObject("mBean", mBean);
 		mav.addObject("pList", pList);
 		return mav;
