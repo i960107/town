@@ -41,14 +41,21 @@
 		where id = #{id}
 	</update>
 	
+	<!-- 매너온도 생성 -->
 	<insert id="mannerTemp">
 		insert into manner_temp
 		values(#{id}, default)
 	</insert>
 	
+	<!-- 판매자 매너온도 -->
 	<select id="getTemp" resultType="float">
-		select manner_temp from manner_temp;
+		select manner_temp from manner_temp
 		where id = #{id}
 	</select>
 	
+	<!-- 판매자 상품 상세보기 -->
+	<select id="getProductBySeller" resultType="product.model.ProductBean">
+	select * from product
+	where seller_id = #{sellerid}
+	</select>
 </mapper>

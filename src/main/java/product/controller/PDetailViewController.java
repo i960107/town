@@ -40,8 +40,10 @@ public class PDetailViewController {
 		ProductBean pBean = pDao.getProduct(no);
 		List<ProductLikeBean> likeList = pDao.getLike(no);
 		List<ProductFileBean> fileList = pDao.getFile(no);
+		MemberBean mBean = pDao.getSellerInfo(sellerid);
 		pDao.incrementReadCount(no);
 		mav.addObject("pBean", pBean);
+		mav.addObject("mbean", mBean);
 		mav.addObject("sellerid", sellerid);
 		mav.addObject("likeList", likeList);
 		mav.addObject("fileList", fileList);
