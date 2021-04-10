@@ -71,9 +71,9 @@ public class ProductDao {
 	}
 	
 	//메인 인기상품
-		public List<ProductBean> getPopList(Map<String, String> map) {
+		public List<ProductBean> getPopList() {
 			List<ProductBean> lists = new ArrayList<ProductBean>();
-			lists = sqlSessionTemplate.selectList(nameSpace+".getList", map);
+			lists = sqlSessionTemplate.selectList(nameSpace+".getList");
 			return lists;
 		}
 

@@ -47,7 +47,6 @@
                         information
                         <ul>
                             <li><a href="company.jsp">회사소개</a></li>
-                            <li><a href="notice.jsp">공지사항</a></li>
                             <li><a href="QnA.jsp">자주묻는 질문</a></li>
                             <li><a href="terms.jsp">이용약관</a></li>
                             <li><a href="privacy.jsp">개인정보처리방침</a></li>

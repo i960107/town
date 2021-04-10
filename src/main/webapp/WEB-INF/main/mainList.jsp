@@ -34,25 +34,16 @@
                 <div class="col-lg-4">
                     <div class="single-banner">
                         <img src="<%=request.getContextPath()%>/resources/img/banner-1.jpg" alt="배너1">
-                        <div class="inner-text">
-                            <h4>Men’s</h4>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="single-banner">
                         <img src="<%=request.getContextPath()%>/resources/img/banner-2.jpg" alt="배너2">
-                        <div class="inner-text">
-                            <h4>Women’s</h4>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="single-banner">
                         <img src="<%=request.getContextPath()%>/resources/img/banner-3.jpg" alt="배너3">
-                        <div class="inner-text">
-                            <h4>Kid’s</h4>
-                        </div>
                     </div>
                 </div>
             </div>
