@@ -61,9 +61,9 @@ public class MemberDao {
 	}
 
 	//판매자 상품 상세보기
-	public List<ProductBean> getProductBySeller(String sellerid) {
+	public List<ProductBean> getAllProductByID(String sellerid) {
 		List<ProductBean> plists = new ArrayList<ProductBean>();
-		plists = sqlSessionTemplate.selectList(nameSpace+".getProductBySeller", sellerid);
+		plists = sqlSessionTemplate.selectList(nameSpace+".getAllProductByID", sellerid);
 		return plists;
 	}
 	
