@@ -24,6 +24,7 @@ PSaleController -> productSaleList.jsp<br>
 				<img alt="" src="<%=request.getContextPath()%>/resources/${i.image1}" height="200" width="200"><br>
 				</a>
 				${i.subject } <br>
+				<span>${i.category }</span> <br>
 				${i.price } 원 <br>
 				${i.address } <br>
 			</td>

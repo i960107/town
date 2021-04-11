@@ -58,4 +58,10 @@
 	select * from product
 	where seller_id = #{sellerid} and deal_status = 1
 	</select>
+	
+	<!-- 판매자 게시글 보기 -->
+	<select id="getBoardById" resultType="board.model.BoardBean">
+	select * from town_board
+	where writer = #{writer} and re_level = 1
+	</select>
 </mapper>

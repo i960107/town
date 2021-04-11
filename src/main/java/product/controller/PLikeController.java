@@ -47,6 +47,7 @@ public class PLikeController {
 			return mav;
 		}
 		addGetData = "?no="+no+"&sellerid="+member.getId();
+		
 		mav.setViewName(gotoPage+addGetData);
 		ProductLikeBean likeBean = new ProductLikeBean();
 		likeBean.setProductno(no);
