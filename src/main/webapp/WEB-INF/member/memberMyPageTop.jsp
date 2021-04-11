@@ -103,7 +103,7 @@
 
 			<td class="tab-item" width="16%">
 				<ul class="nav" role="tablist">
-					<li><a class="active" href="QnA.jsp">My QNA</a></li>
+					<li><a class="active" href="FAQ.jsp">FAQ</a></li>
 				</ul>
 			</td>
 

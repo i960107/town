@@ -31,6 +31,7 @@ public class PMySaleListController {
 		
 		List<ProductBean> pbean = pdao.getListById(loginID);
 		model.addAttribute("mySaleLists", pbean);
+		model.addAttribute("sellerid", loginID);
 		
 		return getPage;
 	}
