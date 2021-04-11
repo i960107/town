@@ -97,7 +97,7 @@
 
 			<td class="tab-item" width="16%">
 				<ul class="nav" role="tablist">
-					<li><a class="active" href="like.prd">My Like</a></li>
+					<li><a class="active" href="mylikeList.prd">My Like</a></li>
 				</ul>
 			</td>
 
