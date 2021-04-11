@@ -158,7 +158,7 @@ insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서
 commit;
 
 
--- 프로덕트 카테고리 시퀀스
+-- 나의당근 프로덕트 카테고리 시퀀스
 drop sequence prodcate_seq;   
 create sequence prodcate_seq
 start with 0
@@ -213,6 +213,14 @@ nocache;
 --프로덕트 파일 시퀀스
 drop sequence keyword_seq;   
 create sequence keyword_seq
+start with 0
+increment by 1
+minvalue 0
+nocache;
+
+-- 나의당근 동네카테고리 시퀀스
+drop sequence boardcate_seq;   
+create sequence boardcate_seq
 start with 0
 increment by 1
 minvalue 0

@@ -116,12 +116,6 @@
 
 				<td class="tab-item">
 					<ul class="nav" role="tablist">
-						<li><a class="active" href="notice.jsp">Notice</a></li>
-					</ul>
-				</td>
-
-				<td class="tab-item">
-					<ul class="nav" role="tablist">
 						<li><a class="active" href="memberList.mb">Member</a></li>
 					</ul>
 				</td>
