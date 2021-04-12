@@ -4,16 +4,14 @@
 <%@ include file="./../common/common.jsp"%>
 <%@ include file="../../WEB-INF/member/memberMyPageTop.jsp"%>
 
-productMyLikeList.jsp
 <br>
-나의 당근 -> 찜한 목록
 <center>
 <div class="group-input">
 	<h3>My Like List</h3>
 </div>
 </center>
 <br>
-<table align="center" width="80%" border="1">
+<table align="center" width="80%" >
 	<tr>
 		<td>
 			<div class="col-lg-12 order-1 order-lg-2" align="center">
@@ -23,7 +21,9 @@ productMyLikeList.jsp
 							<div class="col-lg-3 col-sm-6">
 								<div class="product-item">
 									<div class="pi-pic">
+										<a href="detail.prd?no=${plList.no }&sellerid=${plList.sellerid}">
 										<img src="<%=request.getContextPath() %>/resources/${plList.image1}" width="200px" height="250px">
+										</a>
 										<div class="sale pp-sale">♥</div>
 									</div>
 									<div class="pi-text">
@@ -31,7 +31,7 @@ productMyLikeList.jsp
 										<div class="product-price">
 											<a href="#">${plList.sellerid}</a>
 										</div>
-										<h5>${member.address1} ${member.address2}</h5>
+										<h5>${plList.address}</h5>
 										<h5>	
 											<fmt:formatNumber value="${plList.price}" pattern="###,###"/> won
 										</h5>

@@ -46,8 +46,8 @@
                         <h5>
                         information
                         <ul>
-                            <li><a href="company.jsp">회사소개</a></li>
-                            <li><a href="QnA.jsp">자주묻는 질문</a></li>
+                            <li><a href="https://www.notion.so/3d0197c137ec43d18ff739b5b254a3c8">회사소개</a></li>
+                            <li><a href="FAQ.jsp">자주묻는 질문</a></li>
                             <li><a href="terms.jsp">이용약관</a></li>
                             <li><a href="privacy.jsp">개인정보처리방침</a></li>
                             <li><a href="location.jsp">위치기반서비스 이용약관</a></li>

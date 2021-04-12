@@ -25,7 +25,7 @@
 									<td class="group-input">${bclist.no }</td>
 									<td class="group-input">${bclist.categoryName }</td>
 									<td class="group-input"><a href="boardCateDel.ct?no=${bclist.no }">삭제</a></td>
-									<td class="group-input">수정</td>
+									<td class="group-input"><a href="boardCateUp.ct?no=${bclist.no }">수정</a></td>
 								</tr>
 							</c:forEach>
 						</div>
