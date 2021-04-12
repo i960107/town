@@ -155,7 +155,16 @@ public class ProductBean {
 		super();
 	}
 	
-		
+	@Override
+	public String toString() {
+		return "ProductBean [no=" + no + ", sellerid=" + sellerid + ", subject=" + subject + ", category=" + category
+				+ ", address=" + address + ", address1=" + address1 + ", address2=" + address2 + ", address3="
+				+ address3 + ", contents=" + contents + ", price=" + price + ", refundavailability="
+				+ refundavailability + ", regdate=" + regdate + ", dealstatus=" + dealstatus + ", readcount="
+				+ readcount + ", upload=" + upload + ", image1=" + image1 + "]";
+	}
+	
+	
 		
 	
 }

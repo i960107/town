@@ -52,11 +52,12 @@
     <!-- Banner Section End -->
 
 	<!-- 인기 키워드 시작 -->
-	
+	 인기 키워드
 	<!-- 인기 키워드 끝 -->
 
 	<!-- 인기매물 시작 -->
 	<h3 align="center">인기 매물 리스트</h3>
+	
 	<table border="1" align="center">
 	  	<tr align="center">
 			<c:set var="step" value="0"/>
@@ -68,7 +69,7 @@
 		    		</a></p>
 		    		제목: ${i.subject} <br>
 		                        가격: <fmt:formatNumber value="${i.price }" pattern="###,###" /> <br>
-		                        주소: ${i.address} <br>
+		                        주소: ${i.address1} ${i.address2 } <br>
 		                        조회수: ${i.readcount} <br>
 		                        관심: ${likeCnt} <br> <!-- product_like 테이블 -->
 				</td>

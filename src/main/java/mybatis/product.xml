@@ -8,16 +8,25 @@
 
 <mapper namespace="product.model.ProductBean">
 
+<!-- 메인 전체 상품 검색 -->
+<select id="getSearchList" resultType="product.model.ProductBean">
+	select * from product
+	<if test="keyword != null">
+		where subject like '%' || #{keyword} || '%'
+	</if>
+	order by no desc
+</select>
+
+<!-- 메인 인기상품  -->
+<select id="getPopList" resultType="product.model.ProductBean">
+	select rank, seller_id, subject, readcount
+	from (select rownum as rank, seller_id, subject, readcount from product order by readcount desc)
+	where rank between 1 and 12
+</select>
+
 <!-- 상품 목록 조회 -->
 <select id="getList" resultType="product.model.ProductBean">
 	select * from product
-	<if test="whatColumn == 'subject'">
-		where subject like #{keyword}
-	</if>
-	<if test="whatColumn == 'contents'">
-		where contents like #{keyword}
-	</if>
-	order by no desc
 </select>
 
 <!-- 상품 등록 -->
@@ -88,13 +97,6 @@
 <!-- 나의 당근 구매내역 -->
 <select id="GetPurListById" resultType="member.model.MemberDealBean">
 	select * from member_deal where buyer_id = #{loginID}
-</select>
-
-<!-- 메인 인기상품  -->
-<select id="getPopList" resultType="product.model.ProductBean">
-	select rownum as rank, seller_id, subject, readcount
-	from (select rownum as rank, seller_id, subject, readcount from product order by readcount desc)
-	where rank between 1 and 12
 </select>
 
 <!-- 아이디 기준 판매자 정보 조회 -->

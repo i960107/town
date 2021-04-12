@@ -17,7 +17,7 @@ PSaleController -> productSaleList.jsp<br>
 	</tr>
 	<tr>
 		<c:set var="step" value="0"/>
-		<c:forEach var="i" items="${list }" >
+		<c:forEach var="i" items="${searchList }" >
 		<c:set var="step" value="${step+1 }"/>
 			<td width="300" height="300">
 				<a href="detail.prd?no=${i.no }&sellerid=${i.sellerid}">

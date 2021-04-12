@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +28,8 @@ public class PSaleController {
 	@RequestMapping(value=command)
 	public ModelAndView doAction(
 			@RequestParam(value="whatColumn",required = false) String whatColumn,
-			@RequestParam(value="keyword",required = false) String keyword) {
-		
-		System.out.println("whatColumn:" + whatColumn);
-		System.out.println("keyword:" + keyword);
+			@RequestParam(value="keyword",required = false) String keyword,
+			HttpServletRequest request) {
 		
 		/* mainList.jsp 검색어 조회 설정 */
 		Map<String,String> map = new HashMap<String,String>();
@@ -37,10 +37,15 @@ public class PSaleController {
 		map.put("keyword", "%"+keyword+"%");
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(getPage);
-		List<ProductBean> list = pDao.getList(map);	
-		
+		List<ProductBean> list = pDao.getList();
 		mav.addObject("list", list);
+		System.out.println("list:" + list);
+		
+		List<ProductBean> searchList = pDao.getSearchList(map);
+		mav.addObject("searchList", searchList);
+		System.out.println("searchList:" + searchList);
+		
+		mav.setViewName(getPage);
 		
 		return mav;
 	}

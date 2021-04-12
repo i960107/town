@@ -31,8 +31,8 @@
 
 <script type="text/javascript">
 	function search(){
-		alert("1");
-		location.href='saleList.prd';
+		var keyword = $("#keyword").val();
+		location.href='saleList.prd?keyword='+keyword;
 	}
 </script>
 
@@ -99,16 +99,11 @@
                     <div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
                         	<form action="saleList.prd" method="get">
-	                        	<select name="whatColumn" class="category-btn">
-	                        		<option value="all">전체 검색
-	                        		<option value="subject">제목 검색
-	                        		<option value="contents">내용 검색
-	                        	</select>
+    	                        <div class="input-group">
+	                                <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." value="${keyword}">
+	                                <button type="button" onClick="search()"><i class="ti-search"></i></button> <!-- themify-icons.css -->
+	                            </div>
                         	</form>
-                            <div class="input-group">
-                                <input type="text" name="keyword" placeholder="검색어를 입력하세요.">
-                                <button type="button" onClick="search()"><i class="ti-search"></i></button> <!-- themify-icons.css -->
-                            </div>
                         </div>
                     </div>
 				</div>
