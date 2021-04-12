@@ -11,7 +11,7 @@ CREATE TABLE member (
  address2 varchar2(40) DEFAULT null NULL,
  address3 varchar2(40) DEFAULT null NULL,
  image varchar2(100)  NULL,
- member_status number DEFAULT 1 NULL,
+ member_status number DEFAULT 1 NULL, -- 0일 경우 계정 정지
  authority number  default 1
 );
 insert into member values('admin','1234','관리자','남','01012341234','admin@admin.com','서울특별시 마포구 신촌로 176','서울특별시','마포구','신촌로 176','image.jpg','1',0);
@@ -224,6 +224,7 @@ increment by 1
 minvalue 0
 nocache;
 
+<<<<<<< HEAD
 --동네생활 공감하기 sequence
 drop sequence bd_like_seq;
 create sequence bd_like_seq
@@ -238,3 +239,19 @@ start with 0
 increment by 1
 minvalue 0; 
 
+-- 신고하기 시퀀스
+drop sequence report_seq;
+create sequence report_seq
+start with 0
+increment by 1
+minvalue 0
+nocache;
+
+-- 신고하기
+drop table report cascade constraints;
+CREATE TABLE  report  (
+  no  number primary key,
+  report_user_name varchar2(50) DEFAULT null NOT NULL,
+  reported_user_name varchar2(50) DEFAULT null NOT NULL,
+  contents  varchar2(250)  NULL
+);
