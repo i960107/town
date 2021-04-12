@@ -12,9 +12,9 @@ CREATE TABLE member (
  address3 varchar2(40) DEFAULT null NULL,
  image varchar2(100)  NULL,
  member_status number DEFAULT 1 NULL,
- authority number  NULL
+ authority number  default 1
 );
-insert into member values('admin','1234','관리자','남','01012341234','admin@admin.com','서울특별시 마포구 신촌로 176','서울특별시','마포구','신촌로 176','image.jpg','1',1);
+insert into member values('admin','1234','관리자','남','01012341234','admin@admin.com','서울특별시 마포구 신촌로 176','서울특별시','마포구','신촌로 176','image.jpg','1',0);
 
 drop table member_deal cascade constraints;
 CREATE TABLE member_deal (
@@ -28,7 +28,7 @@ CREATE TABLE member_deal (
 drop table manner_temp cascade constraints;
 CREATE TABLE manner_temp (
  id varchar2(50) primary key,
- manner_temp number DEFAULT 0 NULL
+ manner_temp float DEFAULT 36.5
 );
 drop table product cascade constraints;
 CREATE TABLE product (
@@ -37,6 +37,9 @@ CREATE TABLE product (
   subject  varchar2(250)  NULL,
   category  number DEFAULT 0 NOT NULL,
   address  varchar2(120) DEFAULT null NULL,
+  address1 varchar2(40) DEFAULT null NULL,
+  address2 varchar2(40) DEFAULT null NULL,
+  address3 varchar2(40) DEFAULT null NULL,
   contents  varchar2(250)  NULL,
   price  number  NULL,
   refund_availability  number DEFAULT 1 NULL,
@@ -141,6 +144,7 @@ insert into town_board_category values(10000+town_board_seq.nextval,'취미생�
 insert into town_board_category values(10000+town_board_seq.nextval,'교육/학원');
 insert into town_board_category values(10000+town_board_seq.nextval,'강아지');
 insert into town_board_category values(10000+town_board_seq.nextval,'고양이');
+
 commit;
 
 --동네생활 파일 시퀀스
@@ -158,7 +162,7 @@ bno number,
 filename varchar2(100)
 );
 
--- 프로덕트 카테고리 시퀀스
+-- 나의당근 프로덕트 카테고리 시퀀스
 drop sequence prodcate_seq;   
 create sequence prodcate_seq
 start with 0
@@ -206,6 +210,14 @@ commit;
 --프로덕트 파일 시퀀스
 drop sequence keyword_seq;   
 create sequence keyword_seq
+start with 0
+increment by 1
+minvalue 0
+nocache;
+
+-- 나의당근 동네카테고리 시퀀스
+drop sequence boardcate_seq;
+create sequence boardcate_seq
 start with 0
 increment by 1
 minvalue 0

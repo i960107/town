@@ -8,6 +8,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import board.model.BoardBean;
+import product.model.ProductBean;
+
 @Component("MyMemberDao")
 public class MemberDao {
 
@@ -42,7 +45,6 @@ public class MemberDao {
 	public MemberBean getMember(String sellerid) {
 		MemberBean mBean = new MemberBean();
 		mBean = sqlSessionTemplate.selectOne(nameSpace+".getMember", sellerid);
-		
 		return mBean;
 	}
 
@@ -59,8 +61,18 @@ public class MemberDao {
 		return mtemp;
 	}
 
-	
-	
+	//판매자 상품 상세보기
+	public List<ProductBean> getAllProductByID(String sellerid) {
+		List<ProductBean> plists = new ArrayList<ProductBean>();
+		plists = sqlSessionTemplate.selectList(nameSpace+".getAllProductByID", sellerid);
+		return plists;
+	}
+
+	public List<BoardBean> getBoardById(String writer) {
+		List<BoardBean> blists = new ArrayList<BoardBean>();
+		blists = sqlSessionTemplate.selectList(nameSpace+".getBoardById", writer);
+		return blists;
+	}
 	
 	
 

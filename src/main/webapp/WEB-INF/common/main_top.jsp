@@ -29,6 +29,12 @@
 </head>
 <body>
 
+<script type="text/javascript">
+	function search(){
+		var keyword = $("#keyword").val();
+		location.href='saleList.prd?keyword='+keyword;
+	}
+</script>
 
 	<%
 	String login = request.getContextPath() + "/memberlogin.mb"; // 로그인
@@ -73,9 +79,6 @@
                     	<a href="<%=logout %>" class="login-panel"><i class="fa fa-user"></i>LogOut</a>
                     	<a href="<%=myPage %>" class="login-panel"><%= loginInfo.getId() %> 님</a>
                     	</c:if>
-                    	
-                    	
-                    	
                     </div>
                 </div>
             </div>
@@ -95,15 +98,12 @@
                     </div>
                     <div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
-                        	<select name="whatColumn" class="category-btn">
-                        		<option value="all">전체 검색
-                        		<option value="subject">제목 검색
-                        		<option value="contents">내용 검색
-                        	</select>
-                            <div class="input-group">
-                                <input type="text" name="keyword" placeholder="검색어를 입력하세요.">
-                                <button type="button"><i class="ti-search"></i></button>
-                            </div>
+                        	<form action="saleList.prd" method="get">
+    	                        <div class="input-group">
+	                                <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." value="${keyword}">
+	                                <button type="button" onClick="search()"><i class="ti-search"></i></button> <!-- themify-icons.css -->
+	                            </div>
+                        	</form>
                         </div>
                     </div>
 				</div>

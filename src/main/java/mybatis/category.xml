@@ -14,7 +14,7 @@
 	<!-- TownBoard Category Insert -->
 	<insert id="InsertBoardCate">
 		insert into town_board_category
-		values(town_board_seq.nextval, #{category_name})
+		values(10000+boardcate_seq.nextval, #{category_name})
 	</insert>
 
 	<delete id="DelBoardCate">

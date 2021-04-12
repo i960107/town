@@ -57,6 +57,8 @@ public class MUpdateController {
 
 		System.out.println("오리진 이미지:" + orgImage); // ""
 		System.out.println("새로 업데이트할 이미지:" + mbean.getImage()); // cake1.jpg
+		
+		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
 
 		// 위치설정
 		String uploadPath = servletContext.getRealPath("/resources/members");
@@ -118,7 +120,7 @@ public class MUpdateController {
 				}
 			
 			}
-			session.setAttribute("loginInfo", mbean);
+			session.setAttribute("loginInfo", member);
 		}
 
 		return mav;

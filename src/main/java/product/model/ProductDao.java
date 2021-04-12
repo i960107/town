@@ -5,10 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import category.model.ProdCateBean;
+import main.model.MainBean;
+import member.model.MemberBean;
 import member.model.MemberDealBean;
 
 @Component("myProductDao")
@@ -19,10 +23,25 @@ public class ProductDao {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	//전체 리스트 호출
-	public List<ProductBean> getList(Map<String, String> map){
+	//메인 검색어 입력
+	public List<ProductBean> getSearchList(Map<String, String> map) {
+		List<ProductBean> searchList = new ArrayList<ProductBean>();
+		searchList = sqlSessionTemplate.selectList(nameSpace+".getSearchList", map);
+		System.out.println("searchList" + searchList);
+		return searchList;
+	}
+	
+	//메인 인기상품
+	public List<ProductBean> getPopList() {
 		List<ProductBean> lists = new ArrayList<ProductBean>();
-		lists = sqlSessionTemplate.selectList(nameSpace+".getList", map);
+		lists = sqlSessionTemplate.selectList(nameSpace+".getPopList");
+		return lists;
+	}
+	
+	//전체 리스트 호출
+	public List<ProductBean> getList(){
+		List<ProductBean> lists = new ArrayList<ProductBean>();
+		lists = sqlSessionTemplate.selectList(nameSpace+".getList");
 		return lists;
 	}
 
@@ -70,12 +89,6 @@ public class ProductDao {
 		return lists;
 	}
 	
-	//메인 인기상품
-		public List<ProductBean> getPopList(Map<String, String> map) {
-			List<ProductBean> lists = new ArrayList<ProductBean>();
-			lists = sqlSessionTemplate.selectList(nameSpace+".getList", map);
-			return lists;
-		}
 
 	//-----파일 업로드-----
 	public void fileUpload(String originalfileName, String saveFileName, int pno) {
@@ -113,10 +126,27 @@ public class ProductDao {
 		return lists;
 	}
 
-	public List<ProductBean> getProductBySeller(String id) {
-		List<ProductBean> plists = new ArrayList<ProductBean>();
-		plists = sqlSessionTemplate.selectList(nameSpace+".getProductBySeller", id);
-		return plists;
+
+	public MemberBean getSellerInfo(String sellerid) {
+		MemberBean mbean = new MemberBean();
+		mbean = sqlSessionTemplate.selectOne(nameSpace+".getSellerInfo", sellerid);
+		return mbean;
 	}
-	
+
+	public List<ProdCateBean> getAllCategory() {
+		List<ProdCateBean> cateList = new ArrayList<ProdCateBean>();
+		cateList = sqlSessionTemplate.selectList(nameSpace+".getAllCategory");
+		return cateList;
+	}
+
+	public List<ProductBean> getLikeProdList(String loginID) {
+		List<ProductBean> lists = new ArrayList<ProductBean>();
+		lists = sqlSessionTemplate.selectList(nameSpace+".GetLikeProdList",loginID);
+		
+		return lists;
+	}
+
+
+
+
 }
