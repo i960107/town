@@ -109,4 +109,13 @@
 <select id="getAllCategory" resultType="product.model.ProdCategoryBean">
 	select * from product_category
 </select>
+
+<!-- 나의 당근 찜한 상품 리스트  -->
+<select id="GetLikeProdList" resultType="product.model.ProductBean">
+	select pro.no,prolike.user_id,pro.seller_id,pro.subject,pro.category,pro.address,pro.contents,pro.price,pro.refund_availability,pro.reg_date,pro.deal_status,pro.readcount,pro.image1
+	from product pro, product_like prolike
+	where pro.no = prolike.product_no and prolike.user_id = #{loginID}
+</select>
+
+
 </mapper>

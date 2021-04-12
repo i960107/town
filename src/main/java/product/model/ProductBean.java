@@ -33,6 +33,20 @@ public class ProductBean {
 	private int readcount  ;
 	private List<MultipartFile> upload;
 	private String image1;
+	
+	
+	
+	// 이거 나의당근 찜하기 목록 때문에 넣어둔거!
+	private String userid;
+	
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+	
+	
 	public int getNo() {
 		return no;
 	}

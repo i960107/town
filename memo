@@ -128,16 +128,16 @@ increment by 1
 minvalue 0
 nocache;
 
-insert into town_board_category values(10000+town_board_seq.nextval,'같이해요');
-insert into town_board_category values(10000+town_board_seq.nextval,'동네사진전');
-insert into town_board_category values(10000+town_board_seq.nextval,'일상');
-insert into town_board_category values(10000+town_board_seq.nextval,'동네소식');
-insert into town_board_category values(10000+town_board_seq.nextval,'동네맛집');
-insert into town_board_category values(10000+town_board_seq.nextval,'해주세요');
-insert into town_board_category values(10000+town_board_seq.nextval,'취미생활');
-insert into town_board_category values(10000+town_board_seq.nextval,'교육/학원');
-insert into town_board_category values(10000+town_board_seq.nextval,'강아지');
-insert into town_board_category values(10000+town_board_seq.nextval,'고양이');
+insert into town_board_category values(10000+boardcate_seq.nextval,'같이해요');
+insert into town_board_category values(10000+boardcate_seq.nextval,'동네사진전');
+insert into town_board_category values(10000+boardcate_seq.nextval,'일상');
+insert into town_board_category values(10000+boardcate_seq.nextval,'동네소식');
+insert into town_board_category values(10000+boardcate_seq.nextval,'동네맛집');
+insert into town_board_category values(10000+boardcate_seq.nextval,'해주세요');
+insert into town_board_category values(10000+boardcate_seq.nextval,'취미생활');
+insert into town_board_category values(10000+boardcate_seq.nextval,'교육/학원');
+insert into town_board_category values(10000+boardcate_seq.nextval,'강아지');
+insert into town_board_category values(10000+boardcate_seq.nextval,'고양이');
 
 select * from town_board_category;
 commit;
@@ -158,7 +158,7 @@ insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서
 commit;
 
 
--- 프로덕트 카테고리 시퀀스
+-- 나의당근 프로덕트 카테고리 시퀀스
 drop sequence prodcate_seq;   
 create sequence prodcate_seq
 start with 0
@@ -213,6 +213,14 @@ nocache;
 --프로덕트 파일 시퀀스
 drop sequence keyword_seq;   
 create sequence keyword_seq
+start with 0
+increment by 1
+minvalue 0
+nocache;
+
+-- 나의당근 동네카테고리 시퀀스
+drop sequence boardcate_seq;
+create sequence boardcate_seq
 start with 0
 increment by 1
 minvalue 0

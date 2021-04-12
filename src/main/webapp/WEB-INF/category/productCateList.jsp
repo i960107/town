@@ -25,7 +25,7 @@
 									<td class="group-input">${pclist.no }</td>
 									<td class="group-input">${pclist.categoryName }</td>
 									<td class="group-input"><a href="prodCateDel.ct?no=${pclist.no }">삭제</a></td>
-									<td class="group-input">수정</td>
+									<td class="group-input"><a href="prodCateUp.ct?no=${pclist.no }">수정</a></td>
 								</tr>
 							</c:forEach>
 						</div>

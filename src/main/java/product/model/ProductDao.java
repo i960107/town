@@ -138,5 +138,15 @@ public class ProductDao {
 		cateList = sqlSessionTemplate.selectList(nameSpace+".getAllCategory");
 		return cateList;
 	}
-	
+
+	public List<ProductBean> getLikeProdList(String loginID) {
+		List<ProductBean> lists = new ArrayList<ProductBean>();
+		lists = sqlSessionTemplate.selectList(nameSpace+".GetLikeProdList",loginID);
+		
+		return lists;
+	}
+
+
+
+
 }

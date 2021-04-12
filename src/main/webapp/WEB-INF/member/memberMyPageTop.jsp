@@ -97,13 +97,13 @@
 
 			<td class="tab-item" width="16%">
 				<ul class="nav" role="tablist">
-					<li><a class="active" href="like.prd">My Like</a></li>
+					<li><a class="active" href="mylikeList.prd">My Like</a></li>
 				</ul>
 			</td>
 
 			<td class="tab-item" width="16%">
 				<ul class="nav" role="tablist">
-					<li><a class="active" href="QnA.jsp">My QNA</a></li>
+					<li><a class="active" href="FAQ.jsp">FAQ</a></li>
 				</ul>
 			</td>
 
@@ -111,12 +111,6 @@
 				<td class="tab-item">
 					<ul class="nav" role="tablist">
 						<li><a class="active" href="Category.jsp">Category</a></li>
-					</ul>
-				</td>
-
-				<td class="tab-item">
-					<ul class="nav" role="tablist">
-						<li><a class="active" href="notice.jsp">Notice</a></li>
 					</ul>
 				</td>
 
