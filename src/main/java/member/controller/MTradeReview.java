@@ -10,9 +10,9 @@ import member.model.MemberBean;
 @Controller
 public class MTradeReview {
 	
-	//°Å·¡ ÈÄ±â ÀÛ¼º
+	//ï¿½Å·ï¿½ ï¿½Ä±ï¿½ ï¿½Û¼ï¿½
 	private final String command = "tradeReview.mb";
-	private final String getPage = "tradeDetailView";
+	private final String getPage = "tradeReView";
 	private final String gotoPage = "redirect:detail.prd";
 	private String addGetData = "&no=";
 	
@@ -27,7 +27,7 @@ public class MTradeReview {
 	
 	@RequestMapping(value = command, method = RequestMethod.POST)
 	public ModelAndView doAction(
-			MemberBean mBean	//ÀÓ½Ãº¯¼ö Å×ÀÌºí ¸¸µé¸é member_deal_review·Î º¯°æÇØ¾ßÇÔ
+			MemberBean mBean	
 			) {
 		
 		ModelAndView mav = new ModelAndView();
