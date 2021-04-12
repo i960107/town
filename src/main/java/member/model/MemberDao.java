@@ -2,7 +2,9 @@ package member.model;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +74,19 @@ public class MemberDao {
 		List<BoardBean> blists = new ArrayList<BoardBean>();
 		blists = sqlSessionTemplate.selectList(nameSpace+".getBoardById", writer);
 		return blists;
+	}
+
+	public void insertDealReview(MemberDealReviewBean bean) {
+		sqlSessionTemplate.selectList(nameSpace+".insertDealReview", bean);
+	}
+
+	public void updateMannertemp(String sellerId, int rating) {
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("sellerId", sellerId);
+		map.put("rating", rating);
+		System.out.println(map.get("sellerId"));
+		System.out.println(map.get("rating"));
+		sqlSessionTemplate.selectList(nameSpace+".updateMannertemp", map);
 	}
 	
 	

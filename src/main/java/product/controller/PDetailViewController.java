@@ -36,7 +36,7 @@ public class PDetailViewController {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(getPage);
-		
+		System.out.println("no"+no);
 		//상품 정보 받아옴
 		ProductBean pBean = pDao.getProduct(no);
 		
@@ -55,11 +55,11 @@ public class PDetailViewController {
 		//데이터 전송
 		mav.addObject("pBean", pBean);
 		mav.addObject("mbean", mBean);
-		mav.addObject("sellerid", sellerid);
+		mav.addObject("sellerid", sellerid); 
 		mav.addObject("likeList", likeList);
 		mav.addObject("fileList", fileList);
 		mav.addObject("likeCnt", likeList.size());
-		
+		System.out.println("pBean"+pBean);
 		return mav;
 	}
 	

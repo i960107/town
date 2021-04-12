@@ -3,11 +3,13 @@ package member.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +23,7 @@ public class MLoginController {
 
 	private final String command = "memberlogin.mb";
 	private final String getPage = "memberLoginForm";
-	private final String gotoPage = "redirect:/main.mk";
+	private String gotoPage = "redirect:/main.mk";
 
 	@Autowired
 	MemberDao mdao;
@@ -33,24 +35,22 @@ public class MLoginController {
 	}
 
 	@RequestMapping(value = command, method = RequestMethod.POST)
-	public ModelAndView doActionP(
-			@RequestParam(value = "id", required = false) String id,
-			@RequestParam(value = "pw", required = true) String pw, 
-			HttpServletResponse response,
-			HttpSession session) throws IOException {
+	public ModelAndView doActionP(HttpServletRequest request,@RequestParam(value = "id", required = false) String id,
+			@RequestParam(value = "pw", required = true) String pw, HttpServletResponse response, HttpSession session)
+			throws IOException {
 
-		MemberBean mbean= new MemberBean();
+		MemberBean mbean = new MemberBean();
 		mbean.setId(id);
-		
-		
+
 		// 아이디 체크하기
 		MemberBean midBean = mdao.loginCkId(mbean);
 
 		PrintWriter pwriter = response.getWriter();
 		response.setContentType("text/html; charset=UTF-8");
-		
+
 		ModelAndView mav = new ModelAndView();
 
+	
 		// 아이디 없음
 		if (midBean == null) {
 			pwriter.print("<script type='text/javascript'>");
@@ -64,9 +64,10 @@ public class MLoginController {
 			// id + pw
 			if (pw.equals(midBean.getPw())) {
 				session.setAttribute("loginInfo", midBean);
-				
+				if(session.getAttribute("destination")!=null) {
+					gotoPage=(String)session.getAttribute("destination");
+				}
 				mav.setViewName(gotoPage);
-			
 			}
 			// id o, pw x
 			else {
@@ -74,7 +75,7 @@ public class MLoginController {
 				pwriter.print("alert('비밀번호가 일치하지 않습니다.')");
 				pwriter.print("</script>");
 				pwriter.flush();
-				
+
 				mav.addObject("id", id);
 				mav.setViewName(getPage);
 

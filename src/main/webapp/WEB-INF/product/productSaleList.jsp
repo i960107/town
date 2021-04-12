@@ -17,14 +17,14 @@ PSaleController -> productSaleList.jsp<br>
 	</tr>
 	<tr>
 		<c:set var="step" value="0"/>
-		<c:forEach var="i" items="${searchList }" >
-		<c:set var="step" value="${step+1 }"/>
+		<c:forEach var="i" items="${searchList}" >
+		<c:set var="step" value="${step+1}"/>
 			<td width="300" height="300">
-				<a href="detail.prd?no=${i.no }&sellerid=${i.sellerid}">
+				<a href="detail.prd?no=${i.no}&sellerid=${i.sellerid}">
 				<img alt="" src="<%=request.getContextPath()%>/resources/${i.image1}" height="200" width="200"><br>
 				</a>
-				${i.subject } <br>
-				<span>${i.category }</span> <br>
+				${i.subject}  ${i.no}<br>
+				<span>${i.category}</span> <br>
 				${i.price } 원 <br>
 				${i.address } <br>
 			</td>
