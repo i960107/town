@@ -98,12 +98,7 @@ CREATE TABLE  town_board  (
   re_step  number  NULL,
   reg_date  date DEFAULT sysdate NULL,
   readcount  number  NULL);
-drop table town_board_file cascade constraints;
-create table town_board_file(
-no number primary key,
-bno number,
-filename varchar2(100)
-);
+
 select * from member;
 select * from member_deal;
 select * from member_deal_review;
@@ -117,13 +112,24 @@ select * from town_board_like;
 select * from town_board_category;
 
 
-
+--동네생활 시퀀스
 drop sequence town_board_seq;
 create sequence town_board_seq
 start with 0
 increment by 1
 minvalue 0
 nocache;
+
+
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','삼겹살 같이 먹어요',10001,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','소라 같이 먹어요',10001,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','회 같이 먹어요',10002,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','소고기 같이 먹어요',10003,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','엽떡 같이 먹어요',10005,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','돈까스 같이 먹어요',10004,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','국밥 같이 먹어요',10007,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','술 같이 먹어요',10003,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+commit;
 
 insert into town_board_category values(10000+town_board_seq.nextval,'같이해요');
 insert into town_board_category values(10000+town_board_seq.nextval,'동네사진전');
@@ -135,25 +141,22 @@ insert into town_board_category values(10000+town_board_seq.nextval,'취미생�
 insert into town_board_category values(10000+town_board_seq.nextval,'교육/학원');
 insert into town_board_category values(10000+town_board_seq.nextval,'강아지');
 insert into town_board_category values(10000+town_board_seq.nextval,'고양이');
-
-select * from town_board_category;
 commit;
-drop sequence town_board_seq;
-create sequence town_board_seq
+
+--동네생활 파일 시퀀스
+drop sequence town_board_file_seq;
+create sequence town_board_file_seq
 start with 0
 increment by 1
 minvalue 0
 nocache;
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','삼겹살 같이 먹어요',10001,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','소라 같이 먹어요',10001,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','회 같이 먹어요',10002,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','소고기 같이 먹어요',10003,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','엽떡 같이 먹어요',10005,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','돈까스 같이 먹어요',10004,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','국밥 같이 먹어요',10007,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','술 같이 먹어요',10003,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-commit;
-
+--동네생활 파일 카테고리
+drop table town_board_file cascade constraints;
+create table town_board_file(
+no number primary key,
+bno number,
+filename varchar2(100)
+);
 
 -- 프로덕트 카테고리 시퀀스
 drop sequence prodcate_seq;   
@@ -184,7 +187,6 @@ nocache;
 
 
 drop table product_file;
-
 create table product_file(
 	no number primary key,
 	pno number,
@@ -200,12 +202,6 @@ minvalue 0
 nocache;
 
 commit;
-drop sequence town_board_file_seq;
-create sequence town_board_file_seq
-start with 0
-increment by 1
-minvalue 0
-nocache;
 
 --프로덕트 파일 시퀀스
 drop sequence keyword_seq;   
