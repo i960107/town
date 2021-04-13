@@ -124,7 +124,8 @@ increment by 1
 minvalue 0
 nocache;
 
-
+insert into member values('hong','1234','홍길동','남','01012341234','hong@gmail.com','서울특별시 서초구 강남대로 12길 6','서울특별시','서초구','양재동','image.jpg',1,1);
+insert into manner_temp values('hong',default);
 insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','삼겹살 같이 먹어요',10001,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
 insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','소라 같이 먹어요',10001,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
 insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','회 같이 먹어요',10002,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);

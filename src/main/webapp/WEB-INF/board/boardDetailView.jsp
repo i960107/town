@@ -39,7 +39,7 @@
 					<p>
 						<img class="box"
 							src="${pageContext.request.contextPath}/resources/members/${writer.image}">
-						${board.writer } <span> <fmt:parseDate
+						<a href="tradeDetail.mb?sellerid=${board.writer}">${board.writer }</a> <span> <fmt:parseDate
 								value=" ${board.regDate}" var="regDateParsed"
 								pattern="yyyy-MM-dd HH:mm:ss.s" /> <fmt:formatDate
 								value="${regDateParsed}" pattern="yyyy-MM-dd"
@@ -138,6 +138,7 @@ ${board.category }
 	<div class="row">
 		<c:if test="${loginInfo==null}">
 			<div class="col-lg-12" align="right">
+			<h5><b>댓글</b></h5>
 				<form action="insertReply.bd">
 					<textarea rows="2" cols="100" readonly="readonly">로그인이 필요한 서비스 입니다</textarea>
 					<br> <input type="submit" disabled="disabled" value="댓글쓰기">
@@ -147,8 +148,11 @@ ${board.category }
 		<c:if test="${loginInfo!=null}">
 
 			<div class="col-lg-2" align="right">
+				<h5><b>댓글</b></h5>
+				<a href="tradeDetail.mb?sellerid=${loginInfo.id}">
 				<img class="box"
 					src="${pageContext.request.contextPath}/resources/members/${loginInfo.image}">${loginInfo.id}
+				</a>
 			</div>
 			<div class="col-lg-10" align="right">
 				<form action="insertReply.bd">
