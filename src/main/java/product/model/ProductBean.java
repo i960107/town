@@ -35,7 +35,16 @@ public class ProductBean {
 	private String image1;
 	
 	
+	// 메인에서 디테일뷰 넘어가는것 땜에 넣어둠
+	private int rank;
 	
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
 	// 이거 나의당근 찜하기 목록 때문에 넣어둔거!
 	private String userid;
 	

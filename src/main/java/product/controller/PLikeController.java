@@ -43,7 +43,7 @@ public class PLikeController {
 			//로그인 페이지 로그인하고 다시 나의당근으로 가기 
 			mav.setViewName("redirect:memberlogin.mb");
 			mav.addObject("plzLogin", false);
-			session.setAttribute("destination", getPage);
+			session.setAttribute("destination", gotoPage+addGetData+no+"&sellerid="+session.getId());
 			return mav;
 		}
 		addGetData = "?no="+no+"&sellerid="+member.getId();

@@ -10,17 +10,23 @@
 
 	<!-- 유효성검사 -->
 	<mvc:annotation-driven />
-	<!-- 인터셉터 -->
 	<bean id="AuthLoginInterceptor"
-		class="test.login.interceptor.AuthLoginInterceptor">
-	</bean>
+		class="interceptor.test.login.AuthLoginInterceptor" />
+	<bean id="AuthorityInterceptor"
+		class="interceptor.test.authority.AuthorityInterceptor" />
 	<mvc:interceptors>
+		<!-- 인터셉터:로그인 -->
 		<mvc:interceptor>
-		<mvc:mapping path="/tradeReview.mb" />
+			<mvc:mapping path="/tradeReview.mb" />
 			<ref bean="AuthLoginInterceptor" />
 		</mvc:interceptor>
-			
+		<!-- 인터셉터:일반사용자만 -->
+		<mvc:interceptor>
+		<mvc:mapping path="/tradeReview.mb"/>
+			<ref bean="AuthorityInterceptor" />
+		</mvc:interceptor>
 	</mvc:interceptors>
+
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/member/" />

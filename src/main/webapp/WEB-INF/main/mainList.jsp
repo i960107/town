@@ -64,14 +64,14 @@
 			<c:forEach var="i" items="${list }">
 			<c:set var="step" value="${step+1 }"/>
 		    	<td height="200px" align="center">
-		    		<p><a href="detail.prd?no=${i.no }&sellerid=${i.sellerid}">
+		    		<p><a href="detail.prd?no=${i.rank}&sellerid=${i.sellerid}">
 						<img src="<%=request.getContextPath()%>/resources/${i.image1}" width="150" height="150" alt="상품사진">  <br>
 		    		</a></p>
 					제목: ${i.subject} <br>
 					가격: <fmt:formatNumber value="${i.price }" pattern="###,###" /> <br>
 					주소: ${i.address1} ${i.address2 } <br>
 					조회수: ${i.readcount} <br>
-					관심: ${likeCnt} <br> <!-- product_like 테이블 -->
+					관심:  <br> <!-- product_like 테이블 -->
 				</td>
 			<!-- 4개씩 배치 -->
 			<c:if test="${(step%4) == 0 }"></tr><tr></c:if>
