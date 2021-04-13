@@ -90,7 +90,7 @@
                                      	비매너 사용자
                                     </a>
                                 </div>
-                                <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
+                                <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <p>
                                       		<input type="radio" name="nomanner" value="욕설"> 욕설&nbsp;&nbsp;
@@ -109,7 +109,7 @@
                                      	부적절한 글
                                     </a>
                                 </div>
-                                <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
+                                <div id="collapseThree" class="collapse" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <p>
                                         	<input type="radio" name="inappropriate" value="광고/홍보"> 광고/홍보&nbsp;&nbsp;
@@ -129,7 +129,7 @@
                                      	사기 사용자
                                     </a>
                                 </div>
-                                <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
+                                <div id="collapseFour" class="collapse" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <p>
 											<input type="radio" name="cheat" value="카카오톡/안전결제 등으로 유도"> 카카오톡/안전결제 등으로 유도
@@ -144,7 +144,7 @@
                                      	기타 사유
                                     </a>
                                 </div>
-                                <div id="collapseFive" class="collapse show" data-parent="#accordionExample">
+                                <div id="collapseFive" class="collapse" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <p>
 											<textarea  class="input-group" rows="3" cols="50" name="contents" placeholder="기타 신고 내용을 적어주세요." style="resize: none;"></textarea>
