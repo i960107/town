@@ -92,6 +92,11 @@ public class PWriteContoller {
 		//파일 업로드
 		String uploadPath = application.getRealPath("resources/");
 		System.out.println(uploadPath);
+		
+		//게시글 엔터
+		String temp = productbean.getContents().replace("\r\n", "<br>");
+		productbean.setContents(temp);
+		
 		//데이터 입력
 		productbean.setImage1("img/insert_img.jpg");
 		int cnt = pDao.insertProduct(productbean);

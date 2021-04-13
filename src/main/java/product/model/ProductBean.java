@@ -2,10 +2,10 @@ package product.model;
 
 import java.util.List;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ProductBean {
@@ -16,17 +16,14 @@ public class ProductBean {
 	private String subject  ;
 	@NotNull(message = "카테고리를 선택하세요")
 	private int category  ;
-	@NotNull(message = "주소를 입력하세요")
 	private String address  ;
 	private String address1  ;
 	@NotNull(message = "주소를 입력하세요")
 	private String address2  ;
 	private String address3  ;
 	private String contents  ;
-	
-	@Min(value = 1, message = "가격을 입력하세요")
+	@Range(max = 99999999, min = 0, message = "가격을 입력하세요")
 	private int price;
-	
 	@NotNull(message = "교환여부를 선택하세요")
 	private int refundavailability  ;
 	private String regdate;

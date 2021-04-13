@@ -188,6 +188,17 @@
 		right: 5px;
 		opacity: 1;
 	}
+	.profile {
+	width: 110px;
+	height: 110px;
+	object-fit: cover;
+}
+.box {
+	width: 100px;
+	height: 100px;
+	border-radius: 40%;
+	overflow: hidden;
+}
 textarea {
 	width: 70%;
 	height: 30%;
@@ -248,7 +259,7 @@ textarea {
 							<td colspan="3" valign="top"><span class="mcontent">거래지역</span>
 								<span
 								style="font-size: 15px; font-weight: bold; color: #A0A0A0;">:
-									${pBean.address }</span></td>
+									${pBean.address1 } ${pBean.address2 }</span></td>
 						</tr>
 						<tr height="72">
 
@@ -289,9 +300,12 @@ textarea {
 		<table>
 			<tr>
 				<!-- 회원 정보 -->
-				<td><a href="tradeDetail.mb?sellerid=${mbean.id }"> <img
-						alt="" src="<%=source%>resources/members/${mbean.image}"
-						width="70" height="70"></a></td>
+				<td><a href="tradeDetail.mb?sellerid=${mbean.id }"> 
+				<div class="box">
+				<img alt="" src="<%=source%>resources/members/${mbean.image}" width="70" height="70" class="profile">
+				</a>
+				</div>
+				</td>
 				<td valign="top"><a href="tradeDetail.mb?sellerid=${sellerid}"><span
 						style="font-size: 14px; color: #101010; font-weight: bold;">${sellerid }</span>
 				</a></td>
