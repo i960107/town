@@ -220,6 +220,9 @@ textarea {
 	function prdUnLike(liker) {
 		location.href = "unlike.prd?no=${pBean.no}&like=" + liker;
 	}
+	function updateProduct() {
+		location.href = "update.prd?no=${pBean.no}";
+	}
 </script>
 <%@include file="prdStyle.jsp"%>
 <%
@@ -257,9 +260,36 @@ textarea {
 						</tr>
 						<tr height="72">
 							<td colspan="3" valign="top"><span class="mcontent">거래지역</span>
-								<span
-								style="font-size: 15px; font-weight: bold; color: #A0A0A0;">:
-									${pBean.address1 } ${pBean.address2 }</span></td>
+								<span style="font-size: 15px; font-weight: bold; color: #A0A0A0;">
+								: ${pBean.address1 } ${pBean.address2 }</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<c:if test="${pBean.refundavailability==1 }">
+								<span style="font-size: 15px; font-weight: bold; color: #FF543E;">
+								환불불가
+								</span>
+								</c:if>
+								<c:if test="${pBean.refundavailability==0 }">
+								<span style="font-size: 15px; font-weight: bold; color: #4288F0;">
+								환불가능
+								</span>
+								</c:if>
+							</td>
+							<td>
+								<c:if test="${pBean.dealstatus==1 }">
+								<span style="font-size: 15px; font-weight: bold; color: #4288F0;">
+								거래가능
+								</span>
+								</c:if>
+								
+								<c:if test="${pBean.dealstatus==0 }">
+								<span style="font-size: 15px; font-weight: bold; color: #FF543E;">
+								거래완료
+								</span>
+								</c:if>
+							</td>
 						</tr>
 						<tr height="72">
 

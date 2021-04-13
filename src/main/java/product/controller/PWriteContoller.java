@@ -49,9 +49,9 @@ public class PWriteContoller {
 
 		
 		//글쓰기 로그인 체크
-		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
+		MemberBean mbean = (MemberBean) session.getAttribute("loginInfo");
 
-		if (member == null) {
+		if (mbean == null) {
 			//로그인 페이지 로그인하고 다시 나의당근으로 가기 
 			mav.setViewName("redirect:memberlogin.mb");
 			mav.addObject("plzLogin", false);
@@ -60,7 +60,7 @@ public class PWriteContoller {
 		}else {
 			mav.setViewName(getPage);	
 		}
-		MemberBean mbean = pDao.getSellerInfo(member.getId()); //판매자 정보 조회
+
 		List<ProdCateBean> cateList = pDao.getAllCategory(); //카테고리 목록 호출
 		mav.addObject("mbean", mbean);
 		mav.addObject("cateList", cateList);
@@ -70,22 +70,24 @@ public class PWriteContoller {
 	//상품 등록
 	@RequestMapping(value = command, method = RequestMethod.POST)
 	public ModelAndView doAction(
-			@ModelAttribute("product") @Valid ProductBean productbean,
+			@ModelAttribute("product") @Valid ProductBean pbean,
 			BindingResult result,
 			MultipartHttpServletRequest mhsq) throws IllegalStateException, IOException {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(gotoPage);
 		
-		MemberBean mbean = pDao.getSellerInfo(productbean.getSellerid()); //판매자 정보 조회
+		MemberBean mbean = pDao.getSellerInfo(pbean.getSellerid()); //판매자 정보 조회
 		List<ProdCateBean> cateList = pDao.getAllCategory(); //카테고리 목록 호출
 		mav.addObject("mbean", mbean);
 		mav.addObject("cateList", cateList);
 		
+		System.out.println("contents message : " + pbean.getContents());
 		//유효성 검사
 		if(result.hasErrors()) {
 			mav.setViewName(getPage);
-			mav.addObject("productbean", productbean);
+			pbean.setContents(pbean.getContents().replace("\t", ""));
+			mav.addObject("pbean", pbean);
 			return mav;
 		}
 		
@@ -94,16 +96,18 @@ public class PWriteContoller {
 		System.out.println(uploadPath);
 		
 		//게시글 엔터
-		String temp = productbean.getContents().replace("\r\n", "<br>");
-		productbean.setContents(temp);
+		if(!pbean.getContents().trim().equals("")) {
+		String temp = pbean.getContents().replace("\r\n", "<br>");
+		pbean.setContents(temp);
+		}
 		
 		//데이터 입력
-		productbean.setImage1("img/insert_img.jpg");
-		int cnt = pDao.insertProduct(productbean);
+		pbean.setImage1("img/insert_img.jpg");
+		int cnt = pDao.insertProduct(pbean);
 		
 		//데이터 입력확인 > 파일 입력
 		if(cnt==1) {
-			List<MultipartFile> mf = productbean.getUpload(); //이미지 list로 받음
+			List<MultipartFile> mf = pbean.getUpload(); //이미지 list로 받음
 			File dir = new File(uploadPath);
 			if (!dir.isDirectory()) { //파일충돌 방지?
 	            dir.mkdirs();

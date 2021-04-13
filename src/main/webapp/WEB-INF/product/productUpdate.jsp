@@ -33,12 +33,13 @@ function jusoCallBack(roadFullAddr,siNm,sggNm,emdNm) {
       document.myform.address2.value = sggNm;
       document.myform.address3.value = emdNm;
    }
+
 </script>
 
-productInsertForm.jsp <br><br>
+<!-- productInsertForm.jsp -->
+
 <tr>
 	<td colspan="8">
-
 		<table align="center">
 			<tr>
 				<td>
@@ -46,7 +47,7 @@ productInsertForm.jsp <br><br>
 						<div>
 <form:form commandName="product" method="post" action="pWrite.prd" enctype="multipart/form-data" name="myform" onsubmit="return writecheck(myform)">
 	<table class="sectable">
-	<div class="group-input">
+	<!-- <div class="group-input"> -->
 		<tr>
 			<td class="group-input" width="120" align="center"><label>상품 이미지</label>
 			<input type="hidden" name="sellerid" value="<%=loginInfo.getId()%>">
@@ -58,7 +59,16 @@ productInsertForm.jsp <br><br>
 				<form:errors cssClass="err" path="image1"/>
 			</td>
 		</tr>
-		
+		<tr>
+			<td>
+			</td>
+			<td>
+			<c:forEach var="i" items="${flist }">
+			<img alt="" src="<%=source%>resources/${i.filename }" name="no${i.no }"
+			 width="60" height="70" onclick="delete('no${i.no}')" style="cursor: pointer;">
+			</c:forEach>
+			</td>
+		</tr>
 		<tr>
 			<td class="group-input" width="120" align="center">제목</td>
 			<td class="group-input" >
@@ -73,7 +83,8 @@ productInsertForm.jsp <br><br>
 			<c:set value="0" var="step"></c:set>
 			<c:forEach var="cate" items="${cateList }">
 			<c:set value="${step+1 }" var="step"/>
-			<input type="radio" name="category" value="${cate.no }"> ${cate.categoryName } &nbsp;
+			<input type="radio" name="category" value="${cate.no }"
+			 <c:if test="${cate.no==pbean.category }">checked="checked"</c:if> > ${cate.categoryName } &nbsp;
 			<c:if test="${step%4==0 }"><br></c:if>
 			</c:forEach>
 			<form:errors cssClass="err" path="category"/>
@@ -97,8 +108,10 @@ productInsertForm.jsp <br><br>
 			<td class="group-input" width="120" align="center">환불</td>
 			<td class="group-input" >
 				<div  class="input-group">
-				<input type="radio" name="refundavailability" value="1"> &nbsp;환불 불가  &nbsp;
-				<input type="radio" name="refundavailability" value="0"> &nbsp;환불 가능  &nbsp;
+				<input type="radio" name="refundavailability" value="1"
+				 <c:if test="${pbean.refundavailability==1 }">checked</c:if>> &nbsp;환불 불가  &nbsp;
+				<input type="radio" name="refundavailability" value="0"
+				 <c:if test="${pbean.refundavailability==0 }">checked</c:if>> &nbsp;환불 가능  &nbsp;
 				</div>
 			<form:errors cssClass="err" path="refundavailability"/>
 			</td>
@@ -123,10 +136,10 @@ productInsertForm.jsp <br><br>
 		
 		<tr>
 			<td class="group-input"  colspan="2" align="right">
-				<input type="submit" value="등록하기">
+				<input type="submit" value="수정하기">
 			</td>
 		</tr>
-	</div>
+	<!-- </div> -->
 	</table>
 </form:form>
 						</div>

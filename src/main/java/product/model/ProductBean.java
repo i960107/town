@@ -2,7 +2,9 @@ package product.model;
 
 import java.util.List;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
@@ -22,8 +24,10 @@ public class ProductBean {
 	private String address2  ;
 	private String address3  ;
 	private String contents  ;
-	@Range(max = 99999999, min = 0, message = "가격을 입력하세요")
+	
+	@NotNull(message = "가격을 입력하세요")
 	private int price;
+	
 	@NotNull(message = "교환여부를 선택하세요")
 	private int refundavailability  ;
 	private String regdate;
