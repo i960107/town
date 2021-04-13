@@ -60,7 +60,7 @@
                 <div class="col-lg-12">
                     <div class="faq-accordin">
                         <div class="accordion" id="accordionExample">
-                        <form method="post" action="report.mb" name="report">
+                        <form action="report.mb" name="report" method="post">
                             <div class="card">
                                 <div class="card-heading active">
                                     <a class="active" data-toggle="collapse" data-target="#collapseOne">
@@ -70,15 +70,15 @@
                                 <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <p>
-                                        	<input type="radio" name="inappropriate" value="가품(위조품/이미테이션)"> 가품(위조품/이미테이션) <br>
-                                        	<input type="radio" name="inappropriate" value="개인정보 거래(SNS계정, 인증번호 등)"> 개인정보 거래(SNS계정, 인증번호 등) <br>
-                                        	<input type="radio" name="inappropriate" value="게임계정/아이템/대리육성"> 게임계정/아이템/대리육성 <br>
-                                        	<input type="radio" name="inappropriate" value="반려동물(분양/입양 글)"> 반려동물(분양/입양 글) <br>
-                                        	<input type="radio" name="inappropriate" value="음란물/성인용품(중고속옷 포함)"> 음란물/성인용품(중고속옷 포함) <br>
-                                        	<input type="radio" name="inappropriate" value="의약품/의료기기"> 의약품/의료기기 <br>
-                                        	<input type="radio" name="inappropriate" value="조건부 무료나눔"> 조건부 무료나눔 <br>
-                                        	<input type="radio" name="inappropriate" value="담배/주류"> 담배/주류 <br>
-                                        	<input type="radio" name="inappropriate" value="욕설"> 욕설 <br>
+                                        	<input type="radio" name="report" value="가품(위조품/이미테이션)"> 가품(위조품/이미테이션) <br>
+                                        	<input type="radio" name="report" value="개인정보 거래(SNS계정, 인증번호 등)"> 개인정보 거래(SNS계정, 인증번호 등) <br>
+                                        	<input type="radio" name="report" value="게임계정/아이템/대리육성"> 게임계정/아이템/대리육성 <br>
+                                        	<input type="radio" name="report" value="반려동물(분양/입양 글)"> 반려동물(분양/입양 글) <br>
+                                        	<input type="radio" name="report" value="음란물/성인용품(중고속옷 포함)"> 음란물/성인용품(중고속옷 포함) <br>
+                                        	<input type="radio" name="report" value="의약품/의료기기"> 의약품/의료기기 <br>
+                                        	<input type="radio" name="report" value="조건부 무료나눔"> 조건부 무료나눔 <br>
+                                        	<input type="radio" name="report" value="담배/주류"> 담배/주류 <br>
+                                        	<input type="radio" name="report" value="욕설"> 욕설 <br>
                                         </p>
                                     </div>
                                 </div>
@@ -93,11 +93,11 @@
                                 <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <p>
-                                      		<input type="radio" name="nomanner" value="욕설"> 욕설&nbsp;&nbsp;
-                                      		<input type="radio" name="nomanner" value="성희롱"> 성희롱&nbsp;&nbsp;
-                                      		<input type="radio" name="nomanner" value="차별/혐오 표현 사용"> 차별/혐오 표현 사용 <br>
-                                      		<input type="radio" name="nomanner" value="특정 이웃 비방"> 특정 이웃 비방&nbsp;&nbsp;
-                                      		<input type="radio" name="nomanner" value="특정 업체 비방"> 특정 업체 비방&nbsp;&nbsp;
+                                      		<input type="radio" name="report" value="욕설"> 욕설&nbsp;&nbsp;
+                                      		<input type="radio" name="report" value="성희롱"> 성희롱&nbsp;&nbsp;
+                                      		<input type="radio" name="report" value="차별/혐오 표현 사용"> 차별/혐오 표현 사용 <br>
+                                      		<input type="radio" name="report" value="특정 이웃 비방"> 특정 이웃 비방&nbsp;&nbsp;
+                                      		<input type="radio" name="report" value="특정 업체 비방"> 특정 업체 비방&nbsp;&nbsp;
                                         </p>
                                     </div>
                                 </div>
@@ -112,13 +112,13 @@
                                 <div id="collapseThree" class="collapse" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <p>
-                                        	<input type="radio" name="inappropriate" value="광고/홍보"> 광고/홍보&nbsp;&nbsp;
-                                        	<input type="radio" name="inappropriate" value="금전/물품 요구"> 금전/물품 요구&nbsp;&nbsp;
-                                        	<input type="radio" name="inappropriate" value="반려동물(분양/입양 글)"> 반려동물(분양/입양 글) <br>
-                                        	<input type="radio" name="inappropriate" value="의약품/의료기기 판매"> 의약품/의료기기 판매&nbsp;&nbsp;
-                                        	<input type="radio" name="inappropriate" value="음란성"> 음란성&nbsp;&nbsp;
-                                        	<input type="radio" name="inappropriate" value="술모임 모집"> 술모임 모집&nbsp;&nbsp;
-                                        	<input type="radio" name="inappropriate" value="내용없는 글"> 내용없는 글&nbsp;&nbsp;
+                                        	<input type="radio" name="report" value="광고/홍보"> 광고/홍보&nbsp;&nbsp;
+                                        	<input type="radio" name="report" value="금전/물품 요구"> 금전/물품 요구&nbsp;&nbsp;
+                                        	<input type="radio" name="report" value="반려동물(분양/입양 글)"> 반려동물(분양/입양 글) <br>
+                                        	<input type="radio" name="report" value="의약품/의료기기 판매"> 의약품/의료기기 판매&nbsp;&nbsp;
+                                        	<input type="radio" name="report" value="음란성"> 음란성&nbsp;&nbsp;
+                                        	<input type="radio" name="report" value="술모임 모집"> 술모임 모집&nbsp;&nbsp;
+                                        	<input type="radio" name="report" value="내용없는 글"> 내용없는 글&nbsp;&nbsp;
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                                 <div id="collapseFour" class="collapse" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <p>
-											<input type="radio" name="cheat" value="카카오톡/안전결제 등으로 유도"> 카카오톡/안전결제 등으로 유도
+											<input type="radio" name="report" value="카카오톡/안전결제 등으로 유도"> 카카오톡/안전결제 등으로 유도
                              			</p>
                                     </div>
                                 </div>
@@ -146,8 +146,9 @@
                                 </div>
                                 <div id="collapseFive" class="collapse" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <p>
-											<textarea  class="input-group" rows="3" cols="50" name="contents" placeholder="기타 신고 내용을 적어주세요." style="resize: none;"></textarea>
+                                        <p> 
+                                        	<input type="radio" name="report" value="기타사유입력"> 기타사유입력
+											<textarea  class="input-group" rows="3" cols="20" name="contents" placeholder="기타 신고 내용을 적어주세요." style="resize: none;"></textarea>
                              			</p>
                                     </div>
                                 </div>
