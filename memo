@@ -30,6 +30,10 @@ CREATE TABLE manner_temp (
  id varchar2(50) primary key,
  manner_temp float DEFAULT 36.5
 );
+
+insert into manner_temp
+value('admin', 100);
+
 drop table product cascade constraints;
 CREATE TABLE product (
  no number DEFAULT 0 primary key,
@@ -224,7 +228,7 @@ increment by 1
 minvalue 0
 nocache;
 
-<<<<<<< HEAD
+
 --동네생활 공감하기 sequence
 drop sequence bd_like_seq;
 create sequence bd_like_seq
