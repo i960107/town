@@ -19,6 +19,7 @@ public class ProductBean {
 	@NotNull(message = "주소를 입력하세요")
 	private String address  ;
 	private String address1  ;
+	@NotNull(message = "주소를 입력하세요")
 	private String address2  ;
 	private String address3  ;
 	private String contents  ;

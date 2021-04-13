@@ -19,7 +19,7 @@
 }
 
 .btn_img_nomal {
-	background: url("<%=source%>resources/img/btn_nomal.png");
+	background: url("<%=request.getContextPath()%>/resources/img/btn_nomal.png");
 	border: none;
 	width: 210px;
 	height: 80px;
@@ -31,7 +31,7 @@
 }
 
 .btn_img_like {
-	background: url("<%=source%>resources/img/btn_like.png");
+	background: url("<%=request.getContextPath()%>/resources/img/btn_like.png");
 	border: none;
 	width: 210px;
 	height: 80px;

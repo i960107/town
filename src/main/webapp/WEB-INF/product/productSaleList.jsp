@@ -4,15 +4,17 @@
 <%@ include file="./../common/main_top.jsp" %>
 
 
-PSaleController -> productSaleList.jsp
+<!-- PSaleController -> productSaleList.jsp -->
 <br>
 
-<a href="detail.prd">자세히 보기 임시</a>
-<h3>나의 당근 판매 내역 리스트</h3>
 
-<table width="1200" align="center">
+<table align="center" width="1200px";>
 	<tr>
-		<td colspan="4"><%@include file="./../common/addrArray.jsp"%>
+		<td colspan="4">
+		<h3>나의 당근 판매 내역 리스트 </h3>
+		<form name="myform">
+		<%@include file="./../common/addrArray.jsp"%>
+		</form>
 		</td>
 	</tr>
 	<tr>
@@ -26,7 +28,7 @@ PSaleController -> productSaleList.jsp
 				 ${i.subject} ${i.no}<br> <span>${i.category}</span> <br>
 					${i.price } 원 <br>
 					 ${i.address } <br></td>
-				<c:if test="${(step%4)==0 }"> </tr> tr>	</c:if>
+				<c:if test="${(step%4)==0 }"> </tr> <tr></c:if>
 		</c:forEach>
 	</tr>
 </table>
