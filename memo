@@ -159,6 +159,7 @@ start with 0
 increment by 1
 minvalue 0
 nocache;
+
 --동네생활 파일 카테고리
 drop table town_board_file cascade constraints;
 create table town_board_file(
@@ -259,3 +260,19 @@ CREATE TABLE  report  (
   reported_user_name varchar2(50) DEFAULT null NOT NULL,
   contents  varchar2(250)  NULL
 );
+
+
+-- 중고거래 방법   - 
+drop table prd_reply cascade constraints;
+CREATE TABLE  prd_reply  (
+  pno  number ,
+  seller_id varchar2(50) DEFAULT null NOT NULL,
+  buyer_id varchar2(50) DEFAULT null NOT NULL,
+  contents  varchar2(250)  NULL,
+  reg_date date default sysdate,
+  CONSTRAINT chatno PRIMARY KEY(pno, seller_id, buyer_id)
+);
+
+
+
+
