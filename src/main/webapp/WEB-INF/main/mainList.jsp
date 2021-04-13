@@ -65,7 +65,7 @@
 			<c:set var="step" value="${step+1 }"/>
 		    	<td height="200px" align="center">
 		    		<p><a href="detail.prd?no=${i.rank}&sellerid=${i.sellerid}">
-						<img src="<%=request.getContextPath()%>/resources/${i.image1}" width="150" height="150" alt="상품사진">  <br>
+						<img src="<%=request.getContextPath()%>/resources/${i.image1}" width="150" height="150" alt="상품사진"> <br>
 		    		</a></p>
 					제목: ${i.subject} <br>
 					가격: <fmt:formatNumber value="${i.price }" pattern="###,###" /> <br>

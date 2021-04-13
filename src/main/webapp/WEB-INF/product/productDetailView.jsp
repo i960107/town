@@ -241,7 +241,7 @@ textarea {
 							<td width="120"><span class="mcontent">&#128065;
 									${pBean.readcount }</span></td>
 							<td width="120"><span class="mcontent">${pBean.regdate }</span></td>
-							<td width="120"><a href="report.prd"><span
+							<td width="120"><a href="report.mb"><span
 									class="mcontent">신고하기</span></a></td>
 						</tr>
 						<tr height="72">
