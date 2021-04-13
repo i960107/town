@@ -35,7 +35,7 @@
                                          	운영정책
                                     </a>
                                 </div>
-                                <div id="collapseOne" class="collapse" data-parent="#accordionExample" style="">
+                                <div id="collapseOne" class="collapse" data-parent="#accordionExample" >
                                     <div class="card-body">
                                        	 <b> 우리 동네의 따뜻한 거래를 위해 다음과 같은 약속을 꼭 꼭 지켜주세요! </b> 
                                        	 <br> <br>
@@ -73,11 +73,11 @@
                             </div>
                             <div class="card">
                                 <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" class="collapsed" id="collapseTwoContent">
+                                    <a data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" class="collapse" id="collapseTwoContent">
                                         	마켓에서 지켜야할 매너
                                     </a>
                                 </div>
-                                <div id="collapseTwo" class="collapse" data-parent="#accordionExample" style=""> 
+                                <div id="collapseTwo" class="collapse" data-parent="#accordionExample" > 
                                     <div class="card-body" >
                                         
                                       		<p class="faqfont" >
@@ -143,7 +143,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" class="collapsed" id="collapseThreeContent">
+                                    <a data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" class="collapse" id="collapseThreeContent">
                                         	판매금지 물품
                                     </a>
                                 </div>
@@ -194,7 +194,7 @@
                             
                             <div class="card">
                                 <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" class="collapsed" id="collapseFourContent">
+                                    <a data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" class="collapse" id="collapseFourContent">
                                         	전문판매업자 기준이 뭔가요?
                                     </a>
                                 </div>
@@ -224,7 +224,7 @@
                             
                       	 <div class="card">
                                 <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" class="collapsed" id="collapseFiveContent"> 
+                                    <a data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" class="collapse" id="collapseFiveContent"> 
                                         	중고거래 게시판 거래 및 환불 정책
                                     </a>
                                 </div>
