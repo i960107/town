@@ -23,8 +23,8 @@ productMySaleList.jsp
 							<th class="group-input"><label>내용</label></th>
 							<th class="group-input"><label>가격</label></th>
 							<th class="group-input"><label>등록일</label></th>
-							<th class="group-input"><label>판매상태</label></th>
 							<th class="group-input"><label>조회수</label></th>
+							<th class="group-input"><label>판매상태</label></th>
 							<th class="group-input"><label>삭제</label></th>
 							<th class="group-input"><label>수정</label></th>
 
@@ -53,14 +53,21 @@ productMySaleList.jsp
 											pattern="yyyy-MM-dd" /> <fmt:formatDate value="${regdate }"
 											pattern="yyyy-MM-dd" />
 								</label>
-								</th>
-								<td class="group-input"><label> <c:if
-											test="${mslist.dealstatus == 1}">판매중</c:if>
-								</label></td>
+								</td>
 								<td class="group-input"><label>${mslist.readcount }
 								</label></td>
+								<form action="prodDealup.prd" method="post">
+									<td class="group-input">
+										<label> 
+										<select name="dealstatus" >
+										<option value="1" <c:if test="${mslist.dealstatus == 1 }">selected</c:if> >판매중
+										<option value="0" <c:if test="${mslist.dealstatus == 0 }">selected</c:if> >거래완료
+										</select> 
+										</label>
+									</td>
 								<td class="group-input"><label>삭제</label></td>
-								<td class="group-input"><label>수정</label></td>
+								<td class="group-input"><input type="submit" value="수정"></td>
+								</form>
 							</tr>
 						</c:forEach>
 
