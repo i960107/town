@@ -255,11 +255,12 @@ nocache;
 
 -- 신고하기
 drop table report cascade constraints;
-CREATE TABLE  report  (
-  no  number primary key,
+CREATE TABLE report  (
+  no number primary key,
   report_user_name varchar2(50) DEFAULT null NOT NULL,
   reported_user_name varchar2(50) DEFAULT null NOT NULL,
-  contents  varchar2(250)  NULL
+  contents varchar2(250) NULL,
+  count number DEFAULT 1
 );
 
 
