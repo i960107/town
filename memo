@@ -82,6 +82,7 @@ CREATE TABLE  town_board_category  (
 drop table member_deal_review cascade constraints;
 CREATE TABLE  member_deal_review  (
   no  number primary key,
+  product_no number,
   seller_id  varchar2(50) DEFAULT null NOT NULL,
   buyer_id  varchar2(50) DEFAULT null NULL,
   contents  varchar2(250)  NULL,
@@ -134,16 +135,16 @@ insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서
 insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','술 같이 먹어요',10003,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
 commit;
 
-insert into town_board_category values(10000+town_board_seq.nextval,'같이해요');
-insert into town_board_category values(10000+town_board_seq.nextval,'동네사진전');
-insert into town_board_category values(10000+town_board_seq.nextval,'일상');
-insert into town_board_category values(10000+town_board_seq.nextval,'동네소식');
-insert into town_board_category values(10000+town_board_seq.nextval,'동네맛집');
-insert into town_board_category values(10000+town_board_seq.nextval,'해주세요');
-insert into town_board_category values(10000+town_board_seq.nextval,'취미생활');
-insert into town_board_category values(10000+town_board_seq.nextval,'교육/학원');
-insert into town_board_category values(10000+town_board_seq.nextval,'강아지');
-insert into town_board_category values(10000+town_board_seq.nextval,'고양이');
+insert into town_board_category values(10000+boardcate_seq.nextval,'같이해요');
+insert into town_board_category values(10000+boardcate_seq.nextval,'동네사진전');
+insert into town_board_category values(10000+boardcate_seq.nextval,'일상');
+insert into town_board_category values(10000+boardcate_seq.nextval,'동네소식');
+insert into town_board_category values(10000+boardcate_seq.nextval,'동네맛집');
+insert into town_board_category values(10000+boardcate_seq.nextval,'해주세요');
+insert into town_board_category values(10000+boardcate_seq.nextval,'취미생활');
+insert into town_board_category values(10000+boardcate_seq.nextval,'교육/학원');
+insert into town_board_category values(10000+boardcate_seq.nextval,'강아지');
+insert into town_board_category values(10000+boardcate_seq.nextval,'고양이');
 
 commit;
 
@@ -223,6 +224,21 @@ start with 0
 increment by 1
 minvalue 0
 nocache;
+
+<<<<<<< HEAD
+--동네생활 공감하기 sequence
+drop sequence bd_like_seq;
+create sequence bd_like_seq
+start with 0
+increment by 1
+minvalue 0
+;
+--리뷰 sequence;
+drop sequence review_seq;
+create sequence review_seq
+start with 0
+increment by 1
+minvalue 0; 
 
 -- 신고하기 시퀀스
 drop sequence report_seq;

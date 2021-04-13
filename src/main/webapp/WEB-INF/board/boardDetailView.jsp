@@ -9,7 +9,7 @@
 		location.href = "like.bd?townBoardNo=${board.no}&userId=${loginInfo.id}";
 	}
 	function prdUnLike(liker) {
-		location.href = "unlike.bd?townBoardNo=${board.no}&no=" + liker;
+		location.href = "unlike.bd?townBoardNo=${board.no}&userId=${loginInfo.id}&no=" + liker;
 	}
 </script>
 <style type="text/css">
@@ -165,4 +165,5 @@ ${board.category }
 	</div>
 </div>
 <a href="delete.bd?no=${board.no}">삭제</a>
+
 <%@ include file="./../common/main_bottom.jsp"%>

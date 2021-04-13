@@ -16,13 +16,20 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter {
 		Object obj = session.getAttribute("loginInfo");
 
 		if (obj == null) {
+			String uri=request.getRequestURI();
+			System.out.println(request.getRequestURL());
+			System.out.println(request.getContextPath());
+			System.out.println(request.getHeader("referer"));
+			String destination ="redirect:"+request.getHeader("referer").substring(25);
 			// 로그인이 안되어 있는 상태임으로 로그인 폼으로 다시 돌려보냄(redirect)
-			response.sendRedirect(request.getContextPath()+"/memberlogin.mb");
+			session.setAttribute("destination", destination);
+			System.out.println("Dest" + destination);
+			response.sendRedirect(request.getContextPath() + "/memberlogin.mb");
 			return false; // 더이상 컨트롤러 요청으로 가지 않도록 false로 반환함
 		}
-
 		// preHandle의 return은 컨트롤러 요청 uri로 가도 되냐 안되냐를 허가하는 의미임
 		// 따라서 true로하면 컨트롤러 uri로 가게 됨.
 		return true;
 	}
+
 }

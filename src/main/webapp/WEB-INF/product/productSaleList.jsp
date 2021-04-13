@@ -1,34 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@include file="./../common/common.jsp" %>
+	pageEncoding="UTF-8"%>
+<%@include file="./../common/common.jsp"%>
 <%@ include file="./../../WEB-INF/member/memberMyPageTop.jsp"%>
 
 
-PSaleController -> productSaleList.jsp<br>
+PSaleController -> productSaleList.jsp
+<br>
 
 <a href="detail.prd">자세히 보기 임시</a>
-<h3>나의 당근 판매 내역 리스트 </h3>
+<h3>나의 당근 판매 내역 리스트</h3>
 
 <table width="1200" align="center">
 	<tr>
-		<td colspan="4">
-		<%@include file="./../common/addrArray.jsp" %>
+		<td colspan="4"><%@include file="./../common/addrArray.jsp"%>
 		</td>
 	</tr>
 	<tr>
-		<c:set var="step" value="0"/>
-		<c:forEach var="i" items="${list }" >
-		<c:set var="step" value="${step+1 }"/>
-			<td width="300" height="300">
-				<a href="detail.prd?no=${i.no }&sellerid=${i.sellerid}">
-				<img alt="" src="<%=request.getContextPath()%>/resources/${i.image1}" height="200" width="200"><br>
-				</a>
-				${i.subject } <br>
-				<span>${i.category }</span> <br>
-				${i.price } 원 <br>
-				${i.address } <br>
-			</td>
-		<c:if test="${(step%4)==0 }"></tr><tr></c:if>
+		<c:set var="step" value="0" />
+		<c:forEach var="i" items="${searchList}">
+			<c:set var="step" value="${step+1}" />
+			<c:forEach var="i" items="${list }">
+				<c:set var="step" value="${step+1 }" />
+				<td width="300" height="300"><a
+					href="detail.prd?no=${i.no}&sellerid=${i.sellerid}"> <img
+						alt="" src="<%=request.getContextPath()%>/resources/${i.image1}"
+						height="200" width="200"><br>
+				</a> ${i.subject} ${i.no}<br> <span>${i.category}</span> <br>
+					${i.price } 원 <br> ${i.address } <br></td>
+				<c:if test="${(step%4)==0 }">
+	</tr>
+	<tr>
+		</c:if>
+		</c:forEach>
 		</c:forEach>
 	</tr>
 </table>

@@ -8,60 +8,92 @@
 
 <mapper namespace="member.model.MemberBean">
 
-	<!-- 로그인 아이디 체크  -->
+	<!-- 로그인 아이디 체크 -->
 	<select id="LoginCkId" resultType="member.model.MemberBean">
-		select * from member 
+		select * from member
 		where id = #{id}
 	</select>
-	
+
 	<select id="GetAllData" resultType="member.model.MemberBean">
 		select * from member
-	
+
 	</select>
-	
+
 	<!-- 회원가입 -->
 	<insert id="Register">
-		insert into member 
-		values(#{id}, #{pw}, #{name}, #{gender}, #{phonenumber},  #{email}, #{address},  #{address1},  #{address2}, #{address3},
-				 #{image}, default, 1)
-	
+		insert into member
+		values(#{id}, #{pw}, #{name}, #{gender}, #{phonenumber}, #{email}, #{address},
+		#{address1}, #{address2}, #{address3},
+		#{image}, default, 1)
+
 	</insert>
 
 	<!-- prd.seller_id 기준 회원검색 -->
 	<select id="getMember" resultType="member.model.MemberBean">
 		select * from member
-		where id = #{sellerid}
+		where id =
+		#{sellerid}
 	</select>
-	
-	
+
+
 	<!-- 회원정보 수정 -->
 	<update id="MemberModify">
-		update member set pw = #{pw}, name = #{name}, gender = #{gender}, phone_number = #{phonenumber}, email = #{email},
-		address = #{address}, address1 = #{address1}, address2 = #{address2}, address3 = #{address3}, image = #{image}
+		update member set pw = #{pw}, name = #{name}, gender
+		= #{gender}, phone_number = #{phonenumber}, email = #{email},
+		address =
+		#{address}, address1 = #{address1}, address2 = #{address2}, address3 =
+		#{address3}, image = #{image}
 		where id = #{id}
 	</update>
-	
+
 	<!-- 매너온도 생성 -->
 	<insert id="mannerTemp">
 		insert into manner_temp
 		values(#{id}, default)
 	</insert>
-	
+
 	<!-- 판매자 매너온도 -->
 	<select id="getTemp" resultType="float">
-		select manner_temp from manner_temp
+		select manner_temp from
+		manner_temp
 		where id = #{id}
 	</select>
-	
+
 	<!-- 판매자 상품 상세보기 -->
-	<select id="getAllProductByID" resultType="product.model.ProductBean">
-	select * from product
-	where seller_id = #{sellerid} and deal_status = 1
+	<select id="getAllProductByID"
+		resultType="product.model.ProductBean">
+		select * from product
+		where seller_id = #{sellerid} and deal_status = 1
 	</select>
-	
+
 	<!-- 판매자 게시글 보기 -->
 	<select id="getBoardById" resultType="board.model.BoardBean">
-	select * from town_board
-	where writer = #{writer} and re_level = 1
+		select * from town_board
+		where writer = #{writer} and re_level = 1
 	</select>
+	<!-- 거래후기등록 -->
+	<insert id="insertDealReview">
+		insert into
+		member_deal_review values(review_seq.nextval,#{productNo},#{sellerId},#{buyerId},#{contents},#{rating},sysdate)
+	</insert>
+	<!-- 매너온도 조정 -->
+	<insert id="updateMannertemp">
+	update manner_temp set manner_temp
+	<if test="rating==5">
+	=manner_temp+10
+	</if>
+	<if test="rating==4">
+	=manner_temp+5
+	</if>
+	<if test="rating==3">
+	=manner_temp
+	</if>
+	<if test="rating==2">
+	=manner_temp-5
+	</if>
+	<if test="rating==1">
+	=manner_temp-10
+	</if>
+	where id=#{sellerId}
+	</insert>
 </mapper>
