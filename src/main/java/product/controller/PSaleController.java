@@ -32,9 +32,14 @@ public class PSaleController {
 			HttpServletRequest request) {
 		
 		/* mainList.jsp 검색어 조회 설정 */
-		Map<String,String> map = new HashMap<String,String>();
+		Map<Object,String> map = new HashMap<Object,String>();
 		map.put("whatColumn", whatColumn);
-		map.put("keyword", "%"+keyword+"%");
+		
+		if(keyword != null) { //keyword 공백제거 검색 성능 향상
+			keyword.trim();			
+			System.out.println("keyword : " + keyword);
+			map.put("keyword", "%"+keyword+"%");
+		}
 		
 		ModelAndView mav = new ModelAndView();
 		List<ProductBean> list = pDao.getList();
