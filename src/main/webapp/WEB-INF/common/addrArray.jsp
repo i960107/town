@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.js"></script>
 <script type="text/javascript">
+//사용시 주의점 myform 안에 include 해야함
+//selected 기능은 session loginid에를 기준으로 MemberBean mbean;을 넘겨야 사용 가능
 //지역 설정
 	<%
 	String[] addr = {"서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"};
@@ -28,27 +30,28 @@
 	]; 
 
 	$(function () {
-	 //$("#hideon").hide(); //address 2 숨김
+		if(myform.address2.value == 0){			
+	 	$("#hideon").hide(); //address 2 숨김
+		}
 	});
+
 	 function changeSelect() {
 		$("#hideon").show(); //address 2 보임
-		var s_sel = myform.address2; // 리셋
-		for (var i = s_sel.length-1; i > 0; i--) {
+		var s_sel = myform.address2; 
+		for (var i = s_sel.length-1; i > 0; i--) {// 리셋
 			s_sel.options[i] = null;
 		}
+		
 		var findex = myform.address1.selectedIndex;
-		for (var i = 0; i < s_selarr[findex-1].length; i++) {			 	
+		for (var i = 0; i < s_selarr[findex-1].length; i++) { //변경시 조건에 맞는 2번째 배열 생성
 			s_sel.options[i+1] = new Option(s_selarr[findex-1][i]);
-			if (${s_selarr[findex-1][i]==mbean.address2}) {
-				s_selarr[findex-1][i].selected = true;
-			}
 		}
 		
 	}
 	
 </script>
 
-<div onload="ckmbean()">
+<div onload="ckmbean('${mbean.address2}')">
 <select name="address1" id="address1" onchange="changeSelect()">
 	<option value="0">광역시도 선택
 	<c:forEach var="i" items="<%=addr%>">
@@ -60,5 +63,8 @@
 <div id="hideon">
 <select name="address2" id="address2">
 	<option value="0">시/군/구 선택
+	<c:if test="${mbean.address2!=null }">
+	<option value="${mbean.address2 }" selected="selected">${mbean.address2 }
+	</c:if>
 </select>
 </div>
