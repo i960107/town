@@ -29,7 +29,6 @@ public class BoardDao {
 	public List<BoardBean> getAllBoard() {
 		List<BoardBean> boardList=new ArrayList<BoardBean>();
 		boardList=sqlSessionTemplate.selectList(namespace+".getAllBoard");
-		System.out.println("getAllBoard"+boardList.size());
 		return boardList;
 	}
 	public List<BoardBean> getBoardByCategoryKeyword(String category, String keyword) {

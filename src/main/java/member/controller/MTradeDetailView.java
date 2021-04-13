@@ -1,11 +1,13 @@
 package member.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,7 +16,6 @@ import board.model.BoardBean;
 import member.model.MemberBean;
 import member.model.MemberDao;
 import product.model.ProductBean;
-import product.model.ProductDao;
 
 @Controller
 public class MTradeDetailView {
@@ -33,14 +34,14 @@ public class MTradeDetailView {
 	@RequestMapping(value = command)
 
 	public ModelAndView doAction(
-			@RequestParam(value = "sellerid", required = true) String sellerid
-			) {
+			@RequestParam(value = "sellerid", required = true) String sellerid,
+			HttpServletResponse response
+			) throws IOException {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(getPage);
-
 		//판매자 정보
 		MemberBean mBean = mDao.getMember(sellerid);
-
+		
 		//판매자 상품리스트
 		List<ProductBean> pList = mDao.getAllProductByID(sellerid);
 		
@@ -49,7 +50,17 @@ public class MTradeDetailView {
 		
 		//매너온도
 		float mtemp = mDao.getTemp(sellerid);
-
+		//조회하려는 유저가 관리자일때 뒤로가기
+		if(mBean.getAuthority()==0) {
+			response.setCharacterEncoding("text/html;charset=UTF-8");
+			PrintWriter out=response.getWriter();
+			String str="<script type='text/javascript'>";
+			str+="alert('관리자는 조회할 수 없습니다')";
+			str+="history.go(-1)";
+			str+="</script>";
+			out.println(str);
+			return null;
+		}
 		//데이터 넘김
 		mav.addObject("mBean", mBean);
 		mav.addObject("bList", bList);

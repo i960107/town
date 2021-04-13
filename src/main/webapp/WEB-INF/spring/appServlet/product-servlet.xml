@@ -7,8 +7,8 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
-	<!--  유효성 체크  -->
-	<mvc:annotation-driven/>
+	<!-- 유효성 체크 -->
+	<mvc:annotation-driven />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -18,8 +18,35 @@
 
 	<context:component-scan base-package="product" />
 
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10485760" />
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
+	<bean id="AuthLoginInterceptor"
+		class="interceptor.test.login.AuthLoginInterceptor" />
+<bean id="AuthorityInterceptor"
+		class="interceptor.test.authority.AuthorityInterceptor" />
+	<mvc:interceptors>
+		<!-- 인터셉터:로그인 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/like.prd" />
+			<mvc:mapping path="/unlike.prd" />
+			<mvc:mapping path="/pWrite.prd" />
+			<mvc:mapping path="/update.prd" />
+			<mvc:mapping path="/mySaleList.prd" />
+			<mvc:mapping path="/myPurchaselist.prd" />
+			<ref bean="AuthLoginInterceptor" />
+		</mvc:interceptor>
+			<!-- 인터셉터:일반사용자만 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/like.prd" />
+			<mvc:mapping path="/unlike.prd" />
+			<mvc:mapping path="/pWrite.prd" />
+			<mvc:mapping path="/update.prd" />
+			<mvc:mapping path="/mySaleList.prd" />
+			<mvc:mapping path="/myPurchaselist.prd" />
+			<ref bean="AuthorityInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>
