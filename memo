@@ -30,6 +30,10 @@ CREATE TABLE manner_temp (
  id varchar2(50) primary key,
  manner_temp float DEFAULT 36.5
 );
+
+insert into manner_temp
+value('admin', 100);
+
 drop table product cascade constraints;
 CREATE TABLE product (
  no number DEFAULT 0 primary key,
@@ -156,6 +160,7 @@ start with 0
 increment by 1
 minvalue 0
 nocache;
+
 --동네생활 파일 카테고리
 drop table town_board_file cascade constraints;
 create table town_board_file(
@@ -225,7 +230,7 @@ increment by 1
 minvalue 0
 nocache;
 
-<<<<<<< HEAD
+
 --동네생활 공감하기 sequence
 drop sequence bd_like_seq;
 create sequence bd_like_seq
@@ -256,3 +261,19 @@ CREATE TABLE  report  (
   reported_user_name varchar2(50) DEFAULT null NOT NULL,
   contents  varchar2(250)  NULL
 );
+
+
+-- 중고거래 방법   - 
+drop table prd_reply cascade constraints;
+CREATE TABLE  prd_reply  (
+  pno  number ,
+  seller_id varchar2(50) DEFAULT null NOT NULL,
+  buyer_id varchar2(50) DEFAULT null NOT NULL,
+  contents  varchar2(250)  NULL,
+  reg_date date default sysdate,
+  CONSTRAINT chatno PRIMARY KEY(pno, seller_id, buyer_id)
+);
+
+
+
+

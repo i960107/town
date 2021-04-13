@@ -24,8 +24,9 @@ public class ProductDao {
 	SqlSessionTemplate sqlSessionTemplate;
 	
 	//메인 검색어 입력
-	public List<ProductBean> getSearchList(Map<String, String> map) {
+	public List<ProductBean> getSearchList(Map<Object, String> map) {
 		List<ProductBean> searchList = new ArrayList<ProductBean>();
+		System.out.println("map keyword ck : " + map.get("keyword"));
 		searchList = sqlSessionTemplate.selectList(nameSpace+".getSearchList", map);
 		System.out.println("searchList" + searchList);
 		return searchList;

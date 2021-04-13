@@ -55,7 +55,7 @@ public class PWriteContoller {
 			//로그인 페이지 로그인하고 다시 나의당근으로 가기 
 			mav.setViewName("redirect:memberlogin.mb");
 			mav.addObject("plzLogin", false);
-			session.setAttribute("destination", getPage);
+			session.setAttribute("destination", "redirect:pWirte.prd");
 			return mav;
 		}else {
 			mav.setViewName(getPage);	

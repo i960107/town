@@ -30,10 +30,10 @@
 <body>
 
 <script type="text/javascript">
-	function search(){
+	/* function search(){
 		var keyword = $("#keyword").val();
 		location.href='saleList.prd?keyword='+keyword;
-	}
+	} */
 </script>
 
 	<%
@@ -101,7 +101,7 @@
                         	<form action="saleList.prd" method="get">
     	                        <div class="input-group">
 	                                <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." value="${keyword}">
-	                                <button type="button" onClick="search()"><i class="ti-search"></i></button> <!-- themify-icons.css -->
+	                                <button type="submit" ><i class="ti-search"></i></button> <!-- themify-icons.css -->
 	                            </div>
                         	</form>
                         </div>
