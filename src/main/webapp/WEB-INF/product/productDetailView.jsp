@@ -13,423 +13,185 @@
 <c:set var="val" value="0" />
 <c:set var="limit" value="${fn:length(fileList) }" />
 <style type="text/css">
-.clearfix () { &:before, &:after {
-	content: "";
-	display: table;
-}
-
-&
-:after {
-	clear: both;
-}
-
-}
-.transition
-
-
-
-
- 
-
-
-
-
-()
-{
--webkit-transition
-
-
-
-
-
-
-
-
-:
-
-
-
-
- 
-
-
-
-
-all
-
-
-
-
- 
-
-
-
-
-.2s
-
-
-
-
- 
-
-
-
-
-ease-in-out
-
-
-
-
-
-
-
-
-;
--moz-transition
-
-
-
-
-
-
-
-
-:
-
-
-
-
- 
-
-
-
-
-all
-
-
-
-
- 
-
-
-
-
-.2s
-
-
-
-
- 
-
-
-
-
-ease-in-out
-
-
-
-
-
-
-
-
-;
--o-transition
-
-
-
-
-
-
-
-
-:
-
-
-
-
- 
-
-
-
-
-all
-
-
-
-
- 
-
-
-
-
-.2s
-
-
-
-
- 
-
-
-
-
-ease-in-out
-
-
-
-
-
-
-
-
-;
-transition
-
-
-
-
-
-
-
-
-:
-
-
-
-
- 
-
-
-
-
-all
-
-
-
-
- 
-
-
-
-
-.2s
-
-
-
-
- 
-
-
-
-
-ease-in-out
-
-
-
-
-
-
-
-
-;
-}
-
-/*******************************************
-  = RATING
-*******************************************/
-
-/* RATING - Form */
 .rating-form {
 	margin-top: 40px;
 }
 
-/* RATING - Form - Group */
-.rating-form .form-group {
-	position: relative;
-	border: 0;
-}
+	/* RATING - Form - Group */
+	.rating-form .form-group {
+    position: relative;
+    border: 0;
+	}
 
-/* RATING - Form - Legend */
-.rating-form .form-legend {
-	display: none;
-	margin: 0;
-	padding: 0;
-	font-size: 20px;
-	font-size: 2rem;
-	/*background: green;*/
-}
+	/* RATING - Form - Legend */
+	.rating-form .form-legend {
+		display: none;
+		margin: 0;
+		padding: 0;
+		font-size: 20px; font-size: 2rem;
+		/*background: green;*/
+	}
 
-/* RATING - Form - Item */
-.rating-form .form-item {
-	position: relative;
-	margin: auto;
-	width: 300px;
-	text-align: center;
-	direction: rtl;
-	/*background: green;*/
-}
+	/* RATING - Form - Item */
+	.rating-form .form-item {
+		position: relative;
+		margin: auto;
+		width: 30%;
+		text-align: center;
+		direction: rtl;
+		/*background: green;*/
+	}
 
-.rating-form .form-legend+.form-item {
-	padding-top: 10px;
-}
+	.rating-form .form-legend + .form-item {
+		padding-top: 10px;
+	}
 
-.rating-form input[type='radio'] {
-	position: absolute;
-	left: -9999px;
-}
+		.rating-form input[type='radio'] {
+			position: absolute;
+			left: -9999px;
+		}
 
-/* RATING - Form - Label */
-.rating-form label {
-	display: inline-block;
-	cursor: pointer;
-}
+	  /* RATING - Form - Label */
+	  .rating-form label {
+		display: inline-block;
+		cursor: pointer;
+	  }
 
-.rating-form .rating-star {
-	display: inline-block;
-	position: relative;
-}
+		.rating-form .rating-star {
+       display: inline-block;
+			position: relative;
+		}
 
-.rating-form input[type='radio']+label:before {
-	content: attr(data-value);
-	position: absolute;
-	right: 30px;
-	top: 5rem;
-	font-size: 1.6rem;
-	opacity: 0;
-	direction: ltr;
-	.
-	transition
-	();
-}
+	.rating-form input[type='radio'] + label:before {
+		content: attr(data-value);
+		position: absolute;
+		right: 1rem; top: 2rem;
+		bottom: 20px;
+		font-size: 10px; font-size: 1rem;
+		opacity: 0;
+		direction: ltr;
+		.transition();
+	}
 
-.rating-form input[type='radio']:checked+label:before {
-	right: 25px;
-	opacity: 1;
-}
-/* 
-	.rating-form input[type='radio'] + label:after {
+	.rating-form input[type='radio']:checked + label:before {
+		right: 25px;
+		opacity: 1;
+	}
+
+/* 	.rating-form input[type='radio'] + label:after {
 		content: "/ 5";
 		position: absolute;
 		right: 5px; top: 96px;
-		font-size: 16px; font-size: 1.6rem;
+		font-size: 10px; font-size: 1.6rem;
 		opacity: 0;
 		direction: ltr;
 		.transition();
 	} */
-.rating-form input[type='radio']:checked+label:after {
-	/*right: 5px;*/
-	opacity: 1;
-}
 
-.rating-form label .fa {
-	font-size: 2.6rem;
-	line-height: 3rem;
-	.
-	transition
-	();
-}
+	.rating-form input[type='radio']:checked + label:after {
+		/*right: 5px;*/
+		opacity: 1;
+	}
 
-.rating-form label .fa-star-o {
-	
-}
+		.rating-form label .fa {
+		  font-size: 10px; font-size: 1rem;
+		  line-height: 30px;
+		  .transition();
+		}
 
-.rating-form label:hover .fa-star-o, .rating-form label:focus .fa-star-o,
-	.rating-form label:hover ~ label .fa-star-o, .rating-form label:focus 
-	 ~ label .fa-star-o, .rating-form input[type='radio']:checked ~ label .fa-star-o
-	{
-	opacity: 0;
-}
+		.rating-form label .fa-star-o {
 
-.rating-form label .fa-star {
-	position: absolute;
-	left: 0;
-	top: 0;
-	opacity: 0;
-}
+		}
 
-.rating-form label:hover .fa-star, .rating-form label:focus .fa-star,
-	.rating-form label:hover ~ label .fa-star, .rating-form label:focus ~
-	label .fa-star, .rating-form input[type='radio']:checked ~ label .fa-star
-	{
-	opacity: 1;
-}
+		.rating-form label:hover .fa-star-o,
+		.rating-form label:focus .fa-star-o,
+		.rating-form label:hover ~ label .fa-star-o,
+		.rating-form label:focus ~ label .fa-star-o,
+		.rating-form input[type='radio']:checked ~ label .fa-star-o {
+		  opacity: 0;
+		}
 
-.rating-form input[type='radio']:checked ~ label .fa-star {
-	color: gold;
-}
+		.rating-form label .fa-star {
+		  position: absolute;
+		  left: 0; top: 0;
+		  opacity: 0;
+		}
 
-.rating-form .ir {
-	position: absolute;
-	left: -9999px;
-}
+		.rating-form label:hover .fa-star,
+		.rating-form label:focus .fa-star,
+		.rating-form label:hover ~ label .fa-star,
+		.rating-form label:focus ~ label .fa-star,
+		.rating-form input[type='radio']:checked ~ label .fa-star {
+		  opacity: 1;
+		}
 
-/* RATING - Form - Action */
-.rating-form .form-action {
-	opacity: 0;
-	position: absolute;
-	left: 5px;
-	bottom: -40px;
-	.
-	transition
-	();
-}
+		.rating-form input[type='radio']:checked ~ label .fa-star {
+		  color: gold;
+		}
 
-.rating-form input[type='radio']:checked ~ .form-action {
-	cursor: pointer;
-	opacity: 1;
-}
+		.rating-form .ir {
+		  position: absolute;
+		  left: -9999px;
+		}
 
-.rating-form .btn-reset {
-	display: inline-block;
-	margin: 0;
-	padding: 4px 10px;
-	border: 0;
-	font-size: 1.5rem;
-	background: #fff;
-	color: #333;
-	cursor: auto;
-	border-radius: 5px;
-	outline: 0;
-	.
-	transition
-	();
-}
+	/* RATING - Form - Action */
+	.rating-form .form-action {
+		opacity: 0;
+		position: absolute;
+		left: 5px; bottom: -40px;
+		.transition();
+	}
 
-.rating-form .btn-reset:hover, .rating-form .btn-reset:focus {
-	background: gold;
-}
+	.rating-form input[type='radio']:checked ~ .form-action {
+	  cursor: pointer;
+	  opacity: 1;
+	}
 
-.rating-form input[type='radio']:checked ~ .form-action .btn-reset {
-	cursor: pointer;
-}
+	.rating-form .btn-reset {
+		display: inline-block;
+		margin: 0;
+		font-size: 1rem; font-size: 1rem;
+		background: #fff;
+		color: #333;
+		cursor: auto;
+		border-radius: 5px;
+		outline: 0;
+		.transition();
+	}
 
-/* RATING - Form - Output */
-.rating-form .form-output {
-	display: none;
-	position: absolute;
-	right: 15px;
-	bottom: -45px;
-	font-size: 2rem;
-	opacity: 0;
-	.
-	transition
-	();
-}
+	   .rating-form .btn-reset:hover,
+	   .rating-form .btn-reset:focus {
+		 background: gold;
+	   }
 
-.no-js .rating-form .form-output {
-	right: 5px;
-	opacity: 1;
-}
+	   .rating-form input[type='radio']:checked ~ .form-action .btn-reset {
+		 cursor: pointer;
+	   }
 
-.rating-form input[type='radio']:checked ~ .form-output {
-	right: 5px;
-	opacity: 1;
-}
 
+	/* RATING - Form - Output */
+	.rating-form .form-output {
+		display: none;
+		position: absolute;
+		right: 15px; bottom: -45px;
+		font-size: 30px; font-size: 3rem;
+		opacity: 0;
+		.transition();
+	}
+
+	.no-js .rating-form .form-output {
+		right: 5px;
+		opacity: 1;
+	}
+
+	.rating-form input[type='radio']:checked ~ .form-output {
+		right: 5px;
+		opacity: 1;
+	}
 textarea {
 	width: 70%;
 	height: 30%;
-	padding: 10px;
+	padding: 30px;
 	box-sizing: border-box;
 	border: solid 2px orange;
 	border-radius: 7px;
@@ -479,7 +241,7 @@ textarea {
 							<td width="120"><span class="mcontent">&#128065;
 									${pBean.readcount }</span></td>
 							<td width="120"><span class="mcontent">${pBean.regdate }</span></td>
-							<td width="120"><a href="report.prd"><span
+							<td width="120"><a href="report.mb"><span
 									class="mcontent">신고하기</span></a></td>
 						</tr>
 						<tr height="72">
@@ -575,10 +337,10 @@ textarea {
 					<div id="rating-form" align="center">
 						<form class="rating-form" action="tradeReview.mb" method="post"
 							name="rating-movie">
-							<h6>${pBean.sellerid}님과의 거래는 어떠셨나요?</h6>
+							<h6>${pBean.sellerid}님과의거래는어떠셨나요?</h6>
 							<input type="hidden" value="1" name="productNo"> <input
-								type="hidden" value="kim" name="sellerId">
-							<input type="hidden" value="${loginInfo.id}" name="buyerId">
+								type="hidden" value="kim" name="sellerId"> <input
+								type="hidden" value="${loginInfo.id}" name="buyerId">
 							<fieldset class="form-group">
 								<div class="form-item">
 									<input id="rating-5" name="rating" type="radio" value="5" /> <label
@@ -600,18 +362,15 @@ textarea {
 									<label for="rating-2" data-value="별로예요!"> <span
 										class="rating-star"> <i class="fa fa-star-o"></i> <i
 											class="fa fa-star"></i>
-									</span> <span class="ir">3</span>
+									</span> <span class="ir">2</span>
 									</label> <input id="rating-1" name="rating" type="radio" value="1" />
 									<label for="rating-1" data-value="최악이예요!"> <span
 										class="rating-star"> <i class="fa fa-star-o"></i> <i
 											class="fa fa-star"></i>
-									</span> <span class="ir">3</span>
+									</span> <span class="ir">1</span>
 									</label>
-									<div class="form-action">
-										<input class="btn-reset" type="reset" value="Reset" />
-									</div>
+									
 								</div>
-
 							</fieldset>
 							<div>
 								<textarea name="contents"></textarea>
@@ -620,7 +379,6 @@ textarea {
 						</form>
 
 					</div>
-
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

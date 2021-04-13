@@ -19,13 +19,19 @@
 
 <!-- 메인 인기상품  -->
 <select id="getPopList" resultType="product.model.ProductBean">
-	select rank, seller_id, subject, price, readcount, category, address1, address2, image1, reg_date
+	<!-- select rank, seller_id, subject, price, readcount, category, address1, address2, image1, reg_date
 	from (select rownum as rank, seller_id, subject, price, readcount, category, address1, address2, image1, reg_date
 	from product
 	where deal_status = 1
 	 order by readcount desc)
 	where rank between 1 and 12
-	order by readcount desc
+	order by readcount desc -->
+	
+	select rank, no,seller_id, subject, price, readcount, category, address1, address2, image1, reg_date
+	from (select rank() over(order by readcount desc) as rank,
+	no,seller_id, subject, price, readcount, category, address1, address2, image1, reg_date
+	from product )
+	where rank between 1 and 2
 </select>
 
 <!-- 상품 목록 조회 -->

@@ -64,6 +64,8 @@ public class MLoginController {
 			// id + pw
 			if (pw.equals(midBean.getPw())) {
 				session.setAttribute("loginInfo", midBean);
+				session.setAttribute("destination", "redirect:/main.mk");
+				
 				if(session.getAttribute("destination")!=null) {
 					gotoPage=(String)session.getAttribute("destination");
 				}

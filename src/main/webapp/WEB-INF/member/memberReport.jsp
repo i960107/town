@@ -60,7 +60,7 @@
                 <div class="col-lg-12">
                     <div class="faq-accordin">
                         <div class="accordion" id="accordionExample">
-                        <form method="post" action="report.prd" name="report">
+                        <form method="post" action="report.mb" name="report">
                             <div class="card">
                                 <div class="card-heading active">
                                     <a class="active" data-toggle="collapse" data-target="#collapseOne">
