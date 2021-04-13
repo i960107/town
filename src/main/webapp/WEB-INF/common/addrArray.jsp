@@ -28,35 +28,37 @@
 	]; 
 
 	$(function () {
-	 $("#hideon").hide();
+	 //$("#hideon").hide(); //address 2 숨김
 	});
 	 function changeSelect() {
-		$("#hideon").show();
-		var s_sel = arrayForm.address2; // 리셋
+		$("#hideon").show(); //address 2 보임
+		var s_sel = myform.address2; // 리셋
 		for (var i = s_sel.length-1; i > 0; i--) {
 			s_sel.options[i] = null;
 		}
-		var findex = arrayForm.address1.selectedIndex;
+		var findex = myform.address1.selectedIndex;
 		for (var i = 0; i < s_selarr[findex-1].length; i++) {			 	
 			s_sel.options[i+1] = new Option(s_selarr[findex-1][i]);
+			if (${s_selarr[findex-1][i]==mbean.address2}) {
+				s_selarr[findex-1][i].selected = true;
+			}
 		}
 		
 	}
 	
 </script>
-<form name="arrayForm">
-<div id="hideon" style="float: right;">
+
+<div onload="ckmbean()">
+<select name="address1" id="address1" onchange="changeSelect()">
+	<option value="0">광역시도 선택
+	<c:forEach var="i" items="<%=addr%>">
+	<option value="${i }" <c:if test="${fn:contains(mbean.address1, i) }">selected</c:if>>${i }
+	</c:forEach>
+</select>
+</div>
+
+<div id="hideon">
 <select name="address2" id="address2">
 	<option value="0">시/군/구 선택
 </select>
 </div>
-
-<div style="float: right;">
-<select name="address1" id="address1" onchange="changeSelect()">
-	<option value="0">광역시도 선택
-	<c:forEach var="i" items="<%=addr%>">
-	<option value="${i }">${i }
-	</c:forEach>
-</select>
-</div>
-</form>

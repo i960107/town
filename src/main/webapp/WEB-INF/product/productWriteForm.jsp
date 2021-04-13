@@ -28,10 +28,10 @@ function goPopup(){
             "width=570,height=420, scrollbars=yes, resizable=yes");
    }
 function jusoCallBack(roadFullAddr,siNm,sggNm,emdNm) {
-      document.proform.address.value = roadFullAddr;
-      document.proform.address1.value = siNm;
-      document.proform.address2.value = sggNm;
-      document.proform.address3.value = emdNm;
+      document.myform.address.value = roadFullAddr;
+      document.myform.address1.value = siNm;
+      document.myform.address2.value = sggNm;
+      document.myform.address3.value = emdNm;
    }
 </script>
 
@@ -44,7 +44,7 @@ productInsertForm.jsp <br><br>
 				<td>
 					<div class="register-login-section spad">
 						<div>
-<form:form commandName="product" method="post" action="pWrite.prd" enctype="multipart/form-data" name="proform">
+<form:form commandName="product" method="post" action="pWrite.prd" enctype="multipart/form-data" name="myform">
 	<table class="sectable">
 	<div class="group-input">
 		<tr>
@@ -83,11 +83,12 @@ productInsertForm.jsp <br><br>
 		<tr>
 			<td class="group-input" width="120" align="center">거래지역</td>
 			<td class="group-input" >
-			<input   type="text" id="roadFullAddr" name="address" /><br>
-			<input type="button" onClick="goPopup()" value="검색"> 
-		    <input type="hidden" id="siNm" name="address1" />
-		    <input type="hidden" id="sggNm" name="address2" > 
-		    <input type="hidden" id="emdNm"   name="address3" >
+			<!-- <input   type="text" id="roadFullAddr" name="address" /><br> -->
+			<!-- <input type="button" onClick="goPopup()" value="검색">  -->
+			<%@include file="./../common/addrArray.jsp" %>
+		    <input type="hidden" id="siNm" name="address1" value="${mbean.address1 }"/>
+		    <input type="hidden" id="sggNm" name="address2" value="${mbean.address2 }" /> 
+		    <input type="hidden" id="emdNm"   name="address3"  value="${mbean.address3 }"/>
 			<form:errors cssClass="err" path=""/>
 			</td>
 		</tr>

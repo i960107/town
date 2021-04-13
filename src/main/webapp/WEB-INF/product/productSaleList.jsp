@@ -4,15 +4,16 @@
 <%@ include file="./../../WEB-INF/member/memberMyPageTop.jsp"%>
 
 
-PSaleController -> productSaleList.jsp
+<!-- PSaleController -> productSaleList.jsp -->
 <br>
 
-<a href="detail.prd">자세히 보기 임시</a>
-<h3>나의 당근 판매 내역 리스트</h3>
 
 <table width="1200" align="center">
 	<tr>
-		<td colspan="4"><%@include file="./../common/addrArray.jsp"%>
+		<td colspan="4">
+		<h3>나의 당근 판매 내역 리스트</h3>
+		<form name="myform"><%@include file="./../common/addrArray.jsp"%>
+		</form>
 		</td>
 	</tr>
 	<tr>
