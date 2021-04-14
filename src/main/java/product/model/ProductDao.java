@@ -172,12 +172,16 @@ public class ProductDao {
 
 	public List<ProductChatBean> getChat(ProductChatBean cbean) {
 		List<ProductChatBean> clist = new ArrayList<ProductChatBean>();
-		int cnt = sqlSessionTemplate.selectOne(nameSpace+".checkChat", cbean);
-		if(cnt==0) {
+		int cnt = sqlSessionTemplate.selectOne(nameSpace+".checkChat", cbean); //채팅방 있는지 탐색
+		if(cnt==0) { //없으면 만듬
 			sqlSessionTemplate.insert(nameSpace+".createChat", cbean);
 		}
-		clist = sqlSessionTemplate.selectList(nameSpace+".getChat", cbean);
+		clist = sqlSessionTemplate.selectList(nameSpace+".getChat", cbean); //채팅 내역 불러옴
 		return clist;
+	}
+
+	public void insertChat(ProductChatBean cbean) {
+		sqlSessionTemplate.insert(nameSpace+".insertChat", cbean);
 	}
 
 

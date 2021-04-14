@@ -76,6 +76,14 @@ CREATE TABLE  product_category  (
   category_name  varchar2(50)  NULL
 );
 
+insert into product_category
+values(prdseq.nextval, 'test1');
+
+insert into product_category
+values(prdseq.nextval, 'test2');
+
+insert into product_category
+values(prdseq.nextval, 'test3');
 
 drop table town_board_category cascade constraints;
 CREATE TABLE  town_board_category  (
@@ -266,12 +274,12 @@ CREATE TABLE  report  (
 -- 중고거래 방법   - 
 drop table prd_reply cascade constraints;
 CREATE TABLE  prd_reply  (
+	no number primary key,
   pno  number ,
-  seller_id varchar2(50) DEFAULT null NOT NULL,
-  buyer_id varchar2(50) DEFAULT null NOT NULL,
-  contents  varchar2(250)  NULL,
-  reg_date date default sysdate,
-  CONSTRAINT chatno PRIMARY KEY(pno, seller_id, buyer_id)
+  seller_id varchar2(50) NOT NULL,
+  buyer_id varchar2(50)  NOT NULL,
+  contents  varchar2(250) ,
+  reg_date date default sysdate
 );
 --product 카테고리 기본 설정
 insert into product_category values(prodcate_seq.nextval,'디지털/가전');
@@ -285,3 +293,10 @@ insert into product_category values(prodcate_seq.nextval,'여성의류');
 insert into product_category values(prodcate_seq.nextval,'남성패션/잡화');
 commit;
 commit;
+
+drop sequence reply_seq;
+create sequence reply_seq
+start with 0
+increment by 1
+minvalue 0
+nocache;

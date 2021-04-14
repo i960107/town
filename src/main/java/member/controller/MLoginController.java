@@ -8,11 +8,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import member.model.MemberBean;
@@ -83,6 +91,34 @@ public class MLoginController {
 		}
 
 		return mav;
+	}
+	
+	@RequestMapping(value = "kakaologin.mb", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<String> doAction(String code) {
+		System.out.println(code);
+		ModelAndView mav = new ModelAndView();
+		RestTemplate rt = new RestTemplate(); //httpsURLConnection post방식으로 java에서 넘기기
+		HttpHeaders header = new HttpHeaders();//header object
+		
+		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>(); //map으로 param값 받음
+		
+		header.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+		
+		//http object
+		params.add("grant_type", "authorization_code");
+		params.add("client_id", "6a065330b97f7755c569892d3485de7b");
+		params.add("redirect_uri", "http://localhost:8080/ex/kakaologin.mb");
+		params.add("code", code);
+		
+		HttpEntity<MultiValueMap<String, String>> kakaoToken = new HttpEntity<MultiValueMap<String, String>>(params, header);
+		
+		// post 방식으로 http 요청
+		ResponseEntity<String> response = rt.exchange(
+				"https://kauth.kakao.com/oauth/token", HttpMethod.POST, kakaoToken, String.class
+				); //토큰 발급 요청주소, 요청방식, 넘길 데이터, 받을 데이터 타입
+		mav.setViewName(gotoPage);
+		System.out.println(response);
+		return response;
 	}
 
 }

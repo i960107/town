@@ -23,7 +23,7 @@ public class PReply {
 
 	// 상품 올리기
 		private final String command = "reply.prd";
-		private final String getPage = "productReplyForm";
+		private final String getPage = "productReply";
 		private final String gotoPage = "redirect:saleList.prd";
 		
 		@Autowired
@@ -34,7 +34,8 @@ public class PReply {
 		public ModelAndView doAction(
 				HttpSession session, 
 				HttpServletResponse response,
-				@RequestParam("sellerid") String sellerid,
+				@RequestParam(value =  "sellerid", required = false) String sellerid,
+				@RequestParam(value =  "buyerid", required = false) String buyerid,
 				@RequestParam("no") int pno
 				) throws IOException {
 			ModelAndView mav = new ModelAndView();
@@ -47,12 +48,17 @@ public class PReply {
 				//로그인 페이지 로그인하고 다시 나의당근으로 가기 
 				mav.setViewName("redirect:memberlogin.mb");
 				mav.addObject("plzLogin", false);
-				session.setAttribute("destination", getPage);
+				session.setAttribute("destination", "redirect:saleList.prd");
 				return mav;
 			}else {
 				mav.setViewName(getPage);	
 			}
-			String buyerid = member.getId();
+			if(buyerid==null) { //구매자면 로그인 기록으로 변수 입력
+				buyerid = member.getId();				
+			}
+			if(sellerid==null) { //팬매자면 로그인 기록으로 변수 입력
+				sellerid = member.getId();				
+			}
 			
 			ProductChatBean cbean = new ProductChatBean(pno, sellerid, buyerid, "", "", "");
 			
@@ -60,6 +66,7 @@ public class PReply {
 			
 			MemberBean sbean = pDao.getSellerInfo(sellerid); //판매자 정보 조회
 			MemberBean bbean = pDao.getSellerInfo(buyerid);
+			mav.addObject("pno", pno);
 			mav.addObject("bbean", bbean);
 			mav.addObject("sbean", sbean);
 			mav.addObject("clist", clist);
@@ -72,6 +79,8 @@ public class PReply {
 				) {
 			
 			ModelAndView mav = new ModelAndView();
+			pDao.insertChat(cbean);
+			mav.setViewName("redirect:reply.prd?sellerid="+cbean.getsellerid()+"&buyerid="+cbean.getbuyerid()+"&no="+cbean.getPno());
 			
 			return mav;
 		}

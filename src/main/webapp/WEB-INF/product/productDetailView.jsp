@@ -223,6 +223,10 @@ textarea {
     function updateProduct() {
         location.href = "update.prd?no=${pBean.no}";
     }
+    function chat() {
+		location.href = "reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}";
+	}
+    
 	/* 신고하기 함수 호출 */
 /* 	function report(sellerid){
 		alert("신고하기 버튼 클릭");
@@ -329,7 +333,7 @@ textarea {
 
 							<td>
 								<!-- 판매자 = 수정하기 / 구매자 = 연락하기 --> <c:set var="btnType">연락하기</c:set>
-								<c:set var="scriptType">chat()</c:set> <c:if
+									<c:set var="scriptType">chat()</c:set> <c:if
 									test="${loginId==pBean.sellerid }">
 									<c:set var="btnType">수정하기</c:set>
 									<c:set var="scriptType">updateProduct()</c:set>
@@ -354,6 +358,9 @@ textarea {
                 <img alt="" src="<%=source%>resources/members/${mbean.image}" width="70" height="70" class="profile">
                 </a>
                 </div>
+                </td>
+                <td valign="top">
+               	<span class="subject">${mbean.id }</span>
                 </td>
 			</tr>
 		</table>

@@ -16,7 +16,6 @@ public class ProductBean {
 	private String subject  ;
 	@NotNull(message = "카테고리를 선택하세요")
 	private int category  ;
-	@NotNull(message = "주소를 입력하세요")
 	private String address  ;
 	private String address1  ;
 	@NotNull(message = "주소를 입력하세요")
