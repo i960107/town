@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,7 +38,7 @@ public class PUpdateController {
 	@Autowired
 	private ServletContext application;
 	
-	@RequestMapping(value = command)
+	@RequestMapping(value = command, method = RequestMethod.GET)
 	public ModelAndView doAction() {
 		
 		ModelAndView mav = new ModelAndView();
@@ -45,7 +46,7 @@ public class PUpdateController {
 		return mav;
 	}
 	
-	@RequestMapping(value = command)
+	@RequestMapping(value = command, method = RequestMethod.POST)
 	public ModelAndView doAction(
 			@ModelAttribute("product") @Valid ProductBean pbean,
 			BindingResult result,
