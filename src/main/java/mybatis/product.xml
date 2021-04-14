@@ -127,5 +127,14 @@
 	where pro.no = prolike.product_no and prolike.user_id = #{loginID}
 </select>
 
+<!-- 상품 삭제 -->
+<delete id="deleteByNo">
+  	delete from product where no = #{pno}
+</delete>
+
+<!-- 판매상태 업데이트 -->
+<update id="upDealStatus">
+	update product set deal_status = #{dealstatus} where no = ${no}
+</update>
 
 </mapper>

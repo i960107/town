@@ -147,6 +147,18 @@ public class ProductDao {
 		return lists;
 	}
 
+	public int deleteByNo(int pno) {
+		System.out.println("삭제하러 dao왔어?");
+		int delCnt = sqlSessionTemplate.delete(nameSpace+".deleteByNo",pno);
+		return delCnt;
+	}
+
+	public int upDealStatus(ProductBean pbean) {
+		int upDealCnt = sqlSessionTemplate.update(nameSpace+".upDealStatus",pbean);
+		System.out.println("upDealCnt:"+upDealCnt);
+		return 0;
+	}
+
 
 
 

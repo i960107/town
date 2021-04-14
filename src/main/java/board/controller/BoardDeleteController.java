@@ -18,7 +18,7 @@ import board.model.BoardFileBean;
 @Controller
 public class BoardDeleteController {
 	private final String command = "/delete.bd";
-	private String getPage = "redirect:/list.bd";
+	private String getPage = "redirect:/myBoard.bd";
 	@Autowired
 	BoardDao dao;
 	@Autowired

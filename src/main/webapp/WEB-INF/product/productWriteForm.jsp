@@ -73,7 +73,7 @@ productInsertForm.jsp <br><br>
 			<c:set value="0" var="liner"></c:set>
 			<c:forEach var="cate" items="${cateList }">
 			<c:set value="${liner+1 }" var="liner"/>
-			<input type="radio" name="category" value="${cate.no }"> ${cate.categoryName } &nbsp;
+			<input type="radio" name="category" value="${cate.categoryName }"> ${cate.categoryName } &nbsp;
 			<c:if test="${liner%4==0 }"><br></c:if>
 			</c:forEach>
 			</td>
