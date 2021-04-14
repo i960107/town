@@ -209,8 +209,22 @@ textarea {
 	function prdUnLike(liker) {
 		location.href = "unlike.prd?no=${pBean.no}&like=" + liker;
 	}
+	
+	/* 신고하기 함수 호출 */
+/* 	function report(sellerid){
+		alert("신고하기 버튼 클릭");
+		
+		if(sellerid == loginid){
+			alert("될까....?...");
+		}
+		여기서 아이디 비교하고 똑같으면 location.href=-1;
+		아니면 ....
+	}
+	 */
 </script>
+
 <%@include file="prdStyle.jsp"%>
+
 <%
 	String loginId = "";
 	if (loginInfo != null) {
@@ -241,8 +255,12 @@ textarea {
 							<td width="120"><span class="mcontent">&#128065;
 									${pBean.readcount }</span></td>
 							<td width="120"><span class="mcontent">${pBean.regdate }</span></td>
-							<td width="120"><a href="report.mb"><span
-									class="mcontent">신고하기</span></a></td>
+							<!-- <td width="120"><input type="button" onclick="report()" value="신고하기"></td> 신고하기 버튼 -->
+							<td width="120">
+								<a href="report.mb?reported_userid=${sellerid}">
+									<span class="mcontent">신고하기</span></a>
+							</td>
+									
 						</tr>
 						<tr height="72">
 							<td colspan="3" valign="top"><span class="mcontent">거래지역</span>

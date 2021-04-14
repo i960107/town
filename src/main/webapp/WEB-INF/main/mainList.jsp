@@ -52,13 +52,21 @@
     <!-- Banner Section End -->
 
 	<!-- 인기 키워드 시작 -->
-	 인기 키워드
+	<h3 align="center">인기 키워드</h3> <br>
+	
+	<table border="0" align="center" width="1200px">
+		<tr align="center">
+			<td>
+			
+			</td>
+		</tr>
+	</table>
 	<!-- 인기 키워드 끝 -->
 
 	<!-- 인기매물 시작 -->
-	<h3 align="center">인기 매물 리스트</h3>
+	<h3 align="center">인기 매물 리스트</h3> <br>
 	
-	<table border="1" align="center">
+	<table border="0" align="center" width="1200px">
 	  	<tr align="center">
 			<c:set var="step" value="0"/>
 			<c:forEach var="i" items="${list }">
@@ -74,7 +82,7 @@
 					관심:  <br> <!-- product_like 테이블 -->
 				</td>
 			<!-- 4개씩 배치 -->
-			<c:if test="${(step%4) == 0 }"></tr><tr></c:if>
+			<c:if test="${(step%5) == 0 }"></tr><tr></c:if>
 			</c:forEach>
 		</tr>
 	</table>
