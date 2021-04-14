@@ -188,6 +188,17 @@
 		right: 5px;
 		opacity: 1;
 	}
+	    .profile {
+	    width: 110px;
+	    height: 110px;
+	    object-fit: cover;
+	}
+	.box {
+	    width: 100px;
+	    height: 100px;
+	    border-radius: 40%;
+	    overflow: hidden;
+	}
 textarea {
 	width: 70%;
 	height: 30%;
@@ -209,7 +220,9 @@ textarea {
 	function prdUnLike(liker) {
 		location.href = "unlike.prd?no=${pBean.no}&like=" + liker;
 	}
-	
+    function updateProduct() {
+        location.href = "update.prd?no=${pBean.no}";
+    }
 	/* 신고하기 함수 호출 */
 /* 	function report(sellerid){
 		alert("신고하기 버튼 클릭");
@@ -334,12 +347,12 @@ textarea {
 		<table>
 			<tr>
 				<!-- 회원 정보 -->
-				<td><a href="tradeDetail.mb?sellerid=${mbean.id }"> <img
-						alt="" src="<%=source%>resources/members/${mbean.image}"
-						width="70" height="70"></a></td>
-				<td valign="top"><a href="tradeDetail.mb?sellerid=${sellerid}"><span
-						style="font-size: 14px; color: #101010; font-weight: bold;">${sellerid }</span>
-				</a></td>
+				<td><a href="tradeDetail.mb?sellerid=${mbean.id }"> 
+                <div class="box">
+                <img alt="" src="<%=source%>resources/members/${mbean.image}" width="70" height="70" class="profile">
+                </a>
+                </div>
+                </td>
 			</tr>
 		</table>
 

@@ -35,7 +35,7 @@ function jusoCallBack(roadFullAddr,siNm,sggNm,emdNm) {
    }
 </script>
 
-productInsertForm.jsp <br><br>
+<!-- productInsertForm.jsp <br><br> -->
 <tr>
 	<td colspan="8">
 
@@ -44,7 +44,7 @@ productInsertForm.jsp <br><br>
 				<td>
 					<div class="register-login-section spad">
 						<div>
-<form:form commandName="product" method="post" action="pWrite.prd" enctype="multipart/form-data" name="myform">
+<form:form commandName="product" method="post" action="pWrite.prd" enctype="multipart/form-data" name="myform" onsubmit="return writecheck(myform)">
 	<table class="sectable">
 	<div class="group-input">
 		<tr>
@@ -55,29 +55,29 @@ productInsertForm.jsp <br><br>
 				<!-- 다중 파일 선택: multiple="multiple" -->
 				<label for="upload_file" class="fileupload-img"></label><br>
 				<input multiple="multiple" type="file" name="upload" id="upload_file" hidden="">
+				<form:errors cssClass="err" path="image1"/>
 			</td>
-			<form:errors cssClass="err" path="image1"/>
 		</tr>
 		
 		<tr>
 			<td class="group-input" width="120" align="center">제목</td>
 			<td class="group-input" >
-				<input type="text" name="subject" placeholder="상세 제목을 입력해 주세요." value="${productbean.subject }" class="input-group">
+                <input type="text" name="subject" placeholder="상세 제목을 입력해 주세요." value="${pbean.subject }" class="input-group">
+                <form:errors cssClass="err" path="subject"/>
 			</td>
-			<form:errors cssClass="err" path="subject"/>
 		</tr>
 		
 		<tr>
 			<td class="group-input" width="120" align="center">카테고리</td>
 			<td class="group-input" >
-			<c:set value="0" var="liner"></c:set>
+            <c:set value="0" var="step"></c:set>
 			<c:forEach var="cate" items="${cateList }">
-			<c:set value="${liner+1 }" var="liner"/>
-			<input type="radio" name="category" value="${cate.categoryName }"> ${cate.categoryName } &nbsp;
-			<c:if test="${liner%4==0 }"><br></c:if>
+            <c:set value="${step+1 }" var="step"/>
+            <input type="radio" name="category" value="${cate.no }"> ${cate.categoryName } &nbsp;
+            <c:if test="${step%4==0 }"><br></c:if>
 			</c:forEach>
-			</td>
 			<form:errors cssClass="err" path="category"/>
+			</td>
 		</tr>
 		
 		<tr>
@@ -88,7 +88,7 @@ productInsertForm.jsp <br><br>
 			<%@include file="./../common/addrArray.jsp" %>
 		    <%-- <input type="hidden" id="siNm" name="address1" value="${mbean.address1 }"/>
 		    <input type="hidden" id="sggNm" name="address2" value="${mbean.address2 }" />  --%>
-		    <input type="hidden" id="emdNm"   name="address3"  value="${mbean.address3 }"/>
+		   <%--  <input type="hidden" id="emdNm"   name="address3"  value="${mbean.address3 }"/> --%>
 			<form:errors cssClass="err" path="address2"/>
 			</td>
 		</tr>
@@ -100,24 +100,24 @@ productInsertForm.jsp <br><br>
 				<input type="radio" name="refundavailability" value="1"> &nbsp;환불 불가  &nbsp;
 				<input type="radio" name="refundavailability" value="0"> &nbsp;환불 가능  &nbsp;
 				</div>
+				<form:errors cssClass="err" path="refundavailability"/>
 			</td>
-			<form:errors cssClass="err" path="refundavailability"/>
 		</tr>
 		
 		<tr>
 			<td class="group-input" width="120" align="center">가격</td>
 			<td class="group-input" >
-				<input type="text" name="price"  class="input-group" value="${productbean.price }">원
+                <input type="number" name="price"  class="input-group" value="${pbean.price }">원
+            <form:errors cssClass="err" path="price"/>
 			</td>
-			<form:errors cssClass="err" path="price"/>
 		</tr>
 		
 		<tr>
 			<td class="group-input" width="120" align="center">설명</td>
 			<td class="group-input" >
-				<textarea  class="input-group" rows="5" cols="35" name="contents" placeholder="상품 설명을 입력해주세요." style="resize: none;">
-				${productbean.contents }
-				</textarea>
+				                <textarea  class="input-group" rows="5" cols="35"
+                 name="contents" placeholder="상품 설명을 입력해주세요."
+                  style="resize: none;">${pbean.contents }</textarea>
 			</td>
 		</tr>
 		

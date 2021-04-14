@@ -46,9 +46,9 @@ CREATE TABLE product (
   address3 varchar2(40) DEFAULT null NULL,
   contents  varchar2(250)  NULL,
   price  number  NULL,
-  refund_availability  number DEFAULT 1 NULL,
+  refund_availability  number DEFAULT 1 NULL, --1불가능 / 0가능
   reg_date  date DEFAULT sysdate NULL,
-  deal_status  number DEFAULT 1 NULL,
+  deal_status  number DEFAULT 1 NULL, --1거래중 / 0 거래완료
   readcount  number  NULL,
   image1 varchar2(200)
 );
@@ -99,7 +99,7 @@ CREATE TABLE  town_board  (
   writer  varchar2(50) DEFAULT null NOT NULL,
   address  varchar2(120) DEFAULT null NULL,
   subject  varchar2(250)  NULL,
-  category  varchar2(40) ,
+  category  varchar2(40) NOT NULL,
   contents  varchar2(250)  NULL,
   ref  number  NULL,
   re_level  number  NULL,
