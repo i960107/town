@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import category.model.ProdCateBean;
 import member.model.MemberBean;
+import product.model.ProductChatBean;
 import product.model.ProductDao;
 
 @Controller
@@ -27,10 +29,13 @@ public class PReply {
 		@Autowired
 		ProductDao pDao;
 		
+		//채팅 : session login id/ seller의 아이디와 상품 no를 get으로 넘겨줘야 함
 		@RequestMapping(value = command, method = RequestMethod.GET)
 		public ModelAndView doAction(
 				HttpSession session, 
-				HttpServletResponse response
+				HttpServletResponse response,
+				@RequestParam("sellerid") String sellerid,
+				@RequestParam("no") int pno
 				) throws IOException {
 			ModelAndView mav = new ModelAndView();
 
@@ -47,15 +52,24 @@ public class PReply {
 			}else {
 				mav.setViewName(getPage);	
 			}
-			MemberBean mbean = pDao.getSellerInfo(member.getId()); //판매자 정보 조회
-			List<ProdCateBean> cateList = pDao.getAllCategory(); //카테고리 목록 호출
-			mav.addObject("mbean", mbean);
-			mav.addObject("cateList", cateList);
+			String buyerid = member.getId();
+			
+			ProductChatBean cbean = new ProductChatBean(pno, sellerid, buyerid, "", "", "");
+			
+			List<ProductChatBean> clist = pDao.getChat(cbean);
+			
+			MemberBean sbean = pDao.getSellerInfo(sellerid); //판매자 정보 조회
+			MemberBean bbean = pDao.getSellerInfo(buyerid);
+			mav.addObject("bbean", bbean);
+			mav.addObject("sbean", sbean);
+			mav.addObject("clist", clist);
 			return mav;
 		}
 		
-		@RequestMapping(value = command)
-		public ModelAndView doAction() {
+		@RequestMapping(value = command, method = RequestMethod.POST)
+		public ModelAndView doAction(
+				ProductChatBean cbean
+				) {
 			
 			ModelAndView mav = new ModelAndView();
 			

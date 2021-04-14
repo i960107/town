@@ -89,6 +89,21 @@ public class MemberDao {
 		sqlSessionTemplate.selectList(nameSpace+".updateMannertemp", map);
 	}
 	
+	//신고하기
+	public int reportUser(MemberReportBean reportBean) {
+		int cnt = sqlSessionTemplate.insert(nameSpace+".reportUser", reportBean);
+		System.out.println("insert Cnt:"+cnt);
+		return cnt;
+	}
+
+	//신고하기 개수 가져오기
+/*	
+	public List<MemberReportBean> getReport(int no) {
+		List<MemberReportBean> reportList = new ArrayList<MemberReportBean>();
+		reportList = sqlSessionTemplate.selectList(nameSpace+".getReport", no);
+		return reportList;
+	}
+	*/
 	
 
 }

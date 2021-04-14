@@ -188,6 +188,17 @@
 		right: 5px;
 		opacity: 1;
 	}
+	    .profile {
+	    width: 110px;
+	    height: 110px;
+	    object-fit: cover;
+	}
+	.box {
+	    width: 100px;
+	    height: 100px;
+	    border-radius: 40%;
+	    overflow: hidden;
+	}
 textarea {
 	width: 70%;
 	height: 30%;
@@ -209,8 +220,24 @@ textarea {
 	function prdUnLike(liker) {
 		location.href = "unlike.prd?no=${pBean.no}&like=" + liker;
 	}
+    function updateProduct() {
+        location.href = "update.prd?no=${pBean.no}";
+    }
+	/* 신고하기 함수 호출 */
+/* 	function report(sellerid){
+		alert("신고하기 버튼 클릭");
+		
+		if(sellerid == loginid){
+			alert("될까....?...");
+		}
+		여기서 아이디 비교하고 똑같으면 location.href=-1;
+		아니면 ....
+	}
+	 */
 </script>
+
 <%@include file="prdStyle.jsp"%>
+
 <%
 	String loginId = "";
 	if (loginInfo != null) {
@@ -241,14 +268,45 @@ textarea {
 							<td width="120"><span class="mcontent">&#128065;
 									${pBean.readcount }</span></td>
 							<td width="120"><span class="mcontent">${pBean.regdate }</span></td>
-							<td width="120"><a href="report.mb"><span
-									class="mcontent">신고하기</span></a></td>
+							<!-- <td width="120"><input type="button" onclick="report()" value="신고하기"></td> 신고하기 버튼 -->
+							<td width="120">
+								<a href="report.mb?reported_userid=${sellerid}">
+									<span class="mcontent">신고하기</span></a>
+							</td>
+									
 						</tr>
 						<tr height="72">
 							<td colspan="3" valign="top"><span class="mcontent">거래지역</span>
-								<span
-								style="font-size: 15px; font-weight: bold; color: #A0A0A0;">:
-									${pBean.address }</span></td>
+								<span style="font-size: 15px; font-weight: bold; color: #A0A0A0;">
+								: ${pBean.address1 } ${pBean.address2 }</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<c:if test="${pBean.refundavailability==1 }">
+								<span style="font-size: 15px; font-weight: bold; color: #FF543E;">
+								환불불가
+								</span>
+								</c:if>
+								<c:if test="${pBean.refundavailability==0 }">
+								<span style="font-size: 15px; font-weight: bold; color: #4288F0;">
+								환불가능
+								</span>
+								</c:if>
+							</td>
+							<td>
+								<c:if test="${pBean.dealstatus==1 }">
+								<span style="font-size: 15px; font-weight: bold; color: #4288F0;">
+								거래가능
+								</span>
+								</c:if>
+								
+								<c:if test="${pBean.dealstatus==0 }">
+								<span style="font-size: 15px; font-weight: bold; color: #272727;">
+								거래완료
+								</span>
+								</c:if>
+							</td>
 						</tr>
 						<tr height="72">
 
@@ -289,12 +347,12 @@ textarea {
 		<table>
 			<tr>
 				<!-- 회원 정보 -->
-				<td><a href="tradeDetail.mb?sellerid=${mbean.id }"> <img
-						alt="" src="<%=source%>resources/members/${mbean.image}"
-						width="70" height="70"></a></td>
-				<td valign="top"><a href="tradeDetail.mb?sellerid=${sellerid}"><span
-						style="font-size: 14px; color: #101010; font-weight: bold;">${sellerid }</span>
-				</a></td>
+				<td><a href="tradeDetail.mb?sellerid=${mbean.id }"> 
+                <div class="box">
+                <img alt="" src="<%=source%>resources/members/${mbean.image}" width="70" height="70" class="profile">
+                </a>
+                </div>
+                </td>
 			</tr>
 		</table>
 

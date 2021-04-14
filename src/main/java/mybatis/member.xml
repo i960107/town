@@ -96,4 +96,16 @@
 	</if>
 	where id=#{sellerId}
 	</insert>
+	
+	<!-- 사용자 신고하기 -->
+	<insert id="reportUser">
+	insert into report
+	values(report_seq.nextval, #{report_userid}, #{reported_userid}, #{contents}, default)
+	</insert>
+	
+	<!-- 사용자 신고하기 갯수 -->
+<!--<select id="getReportCnt" resultType="member.model.MemberReportBeans">
+		select * from report
+	</select> -->
+	
 </mapper>
