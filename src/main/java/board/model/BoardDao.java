@@ -28,9 +28,13 @@ public class BoardDao {
 		return category_list;
 	}
 
-	public List<BoardBean> getAllBoard() {
+	public List<BoardBean> getAllBoard(String address1, String address2) {
+		String address=null;
+		if(address1!=null && address2!=null) {
+		address= address1+address2+"%";
+		}
 		List<BoardBean> boardList = new ArrayList<BoardBean>();
-		boardList = sqlSessionTemplate.selectList(namespace + ".getAllBoard");
+		boardList = sqlSessionTemplate.selectList(namespace + ".getAllBoard",address);
 		return boardList;
 	}
 

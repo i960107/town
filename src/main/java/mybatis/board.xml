@@ -19,12 +19,18 @@
 	<!-- list전체가져오기 -->
 	<select id="getAllBoard" resultType="board.model.BoardBean">
 		select * from town_board where re_level =1
+		<where>
+		<if test="address!=null">
+		address like #{address}
+		</if>
+		</where>
 		order by reg_date desc
 	</select>
 	<!-- no조건 게시글 가져오기 -->
 	<select id="getBoardByNo" resultType="board.model.BoardBean">
 		select * from town_board
 		where no=#{no}
+		
 	</select>
 	<!-- no조건 댓글 가져오기 -->
 	<select id="getReplyByNo" resultType="board.model.BoardBean">
