@@ -61,6 +61,10 @@
                     <div class="faq-accordin">
                         <div class="accordion" id="accordionExample">
                         <form action="report.mb" name="report" method="post">
+                         	
+                  			<!-- 판매자=신고당한사람 hidden으로 챙겨서 넘겨주기 -->
+                         	<input type="hidden" name="reported_userid" value="${reported_userid}">
+                            
                             <div class="card">
                                 <div class="card-heading active">
                                     <a class="active" data-toggle="collapse" data-target="#collapseOne">
@@ -148,12 +152,12 @@
                                     <div class="card-body">
                                         <p> 
                                         	<input type="radio" name="report" value="기타사유입력"> 기타사유입력
-											<textarea  class="input-group" rows="3" cols="20" name="contents" placeholder="기타 신고 내용을 적어주세요." style="resize: none;"></textarea>
                              			</p>
                                     </div>
                                 </div>
                             </div> 
                             
+                            	<textarea  class="input-group" rows="3" cols="20" name="contents" placeholder="신고 내용을 적어주세요." style="resize: none;"></textarea>
                             	<input type="submit" value="신고하기">    
                                                   
                             </form>
