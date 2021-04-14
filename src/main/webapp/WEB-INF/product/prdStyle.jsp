@@ -2,13 +2,13 @@
     pageEncoding="UTF-8"%>
 <style type="text/css">
 .price {
-	font-size: 20px;
+	font-size: 17px;
 	color: #010101;
 	font-weight: bold;
 }
 
 .subject {
-	font-size: 15px;
+	font-size: 20px;
 	color: #BBBBBB;
 	font-weight: bold;
 }

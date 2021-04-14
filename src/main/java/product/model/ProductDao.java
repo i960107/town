@@ -147,6 +147,16 @@ public class ProductDao {
 		return lists;
 	}
 
+	public int updateProduct(ProductBean pbean) {
+		int cnt = sqlSessionTemplate.update(nameSpace+".updateProduct", pbean);
+		return cnt;
+	}
+
+	public int deleteFile(String filename) {
+		int cnt = sqlSessionTemplate.delete(nameSpace+".deleteFile", filename);
+		return cnt;
+	}
+
 
 
 

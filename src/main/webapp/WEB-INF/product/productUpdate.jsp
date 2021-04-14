@@ -45,12 +45,13 @@ function jusoCallBack(roadFullAddr,siNm,sggNm,emdNm) {
 				<td>
 					<div class="register-login-section spad">
 						<div>
-<form:form commandName="product" method="post" action="pWrite.prd" enctype="multipart/form-data" name="myform" onsubmit="return writecheck(myform)">
+<form:form commandName="product" method="post" action="update.prd" enctype="multipart/form-data" name="myform" onsubmit="return writecheck(myform)">
 	<table class="sectable">
 	<!-- <div class="group-input"> -->
 		<tr>
 			<td class="group-input" width="120" align="center"><label>상품 이미지</label>
 			<input type="hidden" name="sellerid" value="<%=loginInfo.getId()%>">
+			<input type="hidden" name="no" value="${pbean.no }">
 			</td>
 			<td class="group-input" >
 				<!-- 다중 파일 선택: multiple="multiple" -->
@@ -61,11 +62,18 @@ function jusoCallBack(roadFullAddr,siNm,sggNm,emdNm) {
 		</tr>
 		<tr>
 			<td>
+			삭제할 이미지
 			</td>
 			<td>
+			<c:set value="0" var="step"></c:set>
 			<c:forEach var="i" items="${flist }">
-			<img alt="" src="<%=source%>resources/${i.filename }" name="no${i.no }"
-			 width="60" height="70" onclick="delete('no${i.no}')" style="cursor: pointer;">
+			<c:set value="${step+1 }" var="step"/>
+			<label for="no${i.no }">
+			<img alt="" src="<%=source%>resources/${i.filename }"
+			 width="60" height="70" style="cursor: pointer;">
+			 </label>
+			 <input type="checkbox" id="no${i.no }" name="filetemp" value="${i.filename }">
+			 <c:if test="${step%3==0 }"><br></c:if>
 			</c:forEach>
 			</td>
 		</tr>
@@ -92,14 +100,20 @@ function jusoCallBack(roadFullAddr,siNm,sggNm,emdNm) {
 		</tr>
 		
 		<tr>
+			<td>
+			거래상태
+			</td>
+			<td>
+			<input type="radio" name="dealstatus" value="0"
+			 <c:if test="${pbean.dealstatus==0 }">checked="checked"</c:if> >거래완료 &nbsp; 
+			<input type="radio" name="dealstatus" value="1"
+			 <c:if test="${pbean.dealstatus==1 }">checked="checked"</c:if> >거래중
+			</td>
+		</tr>
+		<tr>
 			<td class="group-input" width="120" align="center">거래지역</td>
 			<td class="group-input" >
-			<!-- <input   type="text" id="roadFullAddr" name="address" /><br> -->
-			<!-- <input type="button" onClick="goPopup()" value="검색">  -->
 			<%@include file="./../common/addrArray.jsp" %>
-		    <%-- <input type="hidden" id="siNm" name="address1" value="${mbean.address1 }"/>
-		    <input type="hidden" id="sggNm" name="address2" value="${mbean.address2 }" />  --%>
-		    <%-- <input type="hidden" id="emdNm"   name="address3"  value="${mbean.address3 }"/> --%>
 			<form:errors cssClass="err" path="address2"/>
 			</td>
 		</tr>

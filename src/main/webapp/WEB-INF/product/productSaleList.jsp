@@ -24,7 +24,7 @@
 				<img alt="" src="<%=request.getContextPath()%>/resources/${i.image1}" height="200" width="200">
 				</a>
 				<br>
-				 ${i.subject} ${i.no}<br> <span>${i.category}</span> <br>
+				 ${i.subject} <br> <span>${i.category}</span> <br>
 					${i.price } 원 <br>
 					 ${i.address1 } ${i.address2 }<br></td>
 				<c:if test="${(step%4)==0 }"> </tr> <tr></c:if>

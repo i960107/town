@@ -285,7 +285,7 @@ textarea {
 								</c:if>
 								
 								<c:if test="${pBean.dealstatus==0 }">
-								<span style="font-size: 15px; font-weight: bold; color: #FF543E;">
+								<span style="font-size: 15px; font-weight: bold; color: #272727;">
 								거래완료
 								</span>
 								</c:if>

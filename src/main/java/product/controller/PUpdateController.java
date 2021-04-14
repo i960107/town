@@ -32,7 +32,7 @@ public class PUpdateController {
 	//상품 수정, 거래 상태 변경
 	private final String command = "update.prd";
 	private final String getPage = "productUpdate";
-	private final String gotoPage = "redirect:PDetailView";
+	private final String gotoPage = "redirect:detail.prd";
 	
 	@Autowired
 	ProductDao pDao;
@@ -72,14 +72,15 @@ public class PUpdateController {
 	public ModelAndView doAction(
 			@ModelAttribute("product") @Valid ProductBean pbean,
 			BindingResult result,
-			MultipartHttpServletRequest mhsq
+			MultipartHttpServletRequest mhsq,
+			ProductFileBean fbean
 			) throws IllegalStateException, IOException {
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(gotoPage+"no="+pbean.getNo());
+		mav.setViewName(gotoPage+"?no="+pbean.getNo()+"&sellerid="+pbean.getSellerid());
 		
 		MemberBean mbean = pDao.getSellerInfo(pbean.getSellerid()); //판매자 정보 조회
-		List<ProdCateBean> cateList = pDao.getAllCategory(); //카테고리 목록 호출
+		List<ProdCateBean> cateList = pDao.getAllCategory(); //카테고리 목록 호출 유효성 검사후 변수 자동입력 용도
 		mav.addObject("mbean", mbean);
 		mav.addObject("cateList", cateList);
 		
@@ -92,29 +93,40 @@ public class PUpdateController {
 			return mav;
 		}
 		
-		//파일 업로드
-		String uploadPath = application.getRealPath("resources/");
-		System.out.println(uploadPath);
-		
 		//게시글 엔터
 		if(!pbean.getContents().trim().equals("")) {
-		String temp = pbean.getContents().replace("\r\n", "<br>");
-		pbean.setContents(temp);
+			String temp = pbean.getContents().replace("\r\n", "<br>");
+			pbean.setContents(temp);
 		}
 		
-		//데이터 입력
-		pbean.setImage1("img/insert_img.jpg");
-		int cnt = pDao.insertProduct(pbean);
+		//파일 업로드
+		String uploadPath = application.getRealPath("resources/"); //업로드 경로
+		System.out.println(uploadPath);
 		
+		//데이터 수정
+		pbean.setImage1("img/insert_img.jpg");
+		int cnt = pDao.updateProduct(pbean);
+		int delcnt = 0;
 		//데이터 입력확인 > 파일 입력
 		if(cnt==1) {
 			List<MultipartFile> mf = pbean.getUpload(); //이미지 list로 받음
+			List<String> pf = fbean.getFiletemp();
 			File dir = new File(uploadPath);
 			if (!dir.isDirectory()) { //파일충돌 방지?
 	            dir.mkdirs();
 	        }
 			
-			int pno = pDao.getPno();
+			if(pf!=null) {
+				for (int i = 0; i < pf.size(); i++) { //삭제할 이미지 처리
+					System.out.println("delfile name : " + pf.get(i));
+					File f = new File(uploadPath+"/"+pf.get(i)); //폴더에서 파일 삭제
+					f.delete();
+					delcnt += pDao.deleteFile(pf.get(i));
+				}
+			}
+			System.out.println("삭제한 파일 수 : " + delcnt);
+			
+			int pno = pbean.getNo();
 			if(mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) { //파일 넘어왔는지 체크
 				
 			}else {
@@ -129,9 +141,9 @@ public class PUpdateController {
 					String savePath = uploadPath+saveFileName; //저장 경로
 					mf.get(i).transferTo(new File(savePath)); //파일 폴더에 입력
 					
-					pDao.fileUpload(originalfileName, saveFileName, pno); //파일 테이블 입력
+					pDao.fileUpload(originalfileName, saveFileName, pno); //파일 테이블 입력 - product_file table
 				}
-				pDao.fileUpload2(saveName, pno); //대표 이미지 주소 업데이트
+				pDao.fileUpload2(saveName, pno); //대표 이미지 주소 업데이트 - product table
 			}
 
 			

@@ -127,5 +127,16 @@
 	where pro.no = prolike.product_no and prolike.user_id = #{loginID}
 </select>
 
+<update id="updateProduct">
+	update product
+	set subject = #{subject}, category = #{category}, address1= #{address1},
+	address2 = #{address2}, contents = #{contents}, price = #{price}, refund_availability = #{refundavailability},
+	reg_date = sysdate, deal_status = ${dealstatus}, image1 = #{image1} 
+	where no = ${no}
+</update>
 
+<delete id="deleteFile">
+	delete from product_file
+	where filename = ${filename}
+</delete>
 </mapper>
