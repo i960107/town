@@ -27,11 +27,11 @@
 	where rank between 1 and 12
 	order by readcount desc -->
 	
-	select rank, no,seller_id, subject, price, readcount, category, address1, address2, image1, reg_date
+	select rank, no, seller_id, subject, price, readcount, category, address1, address2, image1, reg_date
 	from (select rank() over(order by readcount desc) as rank,
 	no,seller_id, subject, price, readcount, category, address1, address2, image1, reg_date
 	from product )
-	where rank between 1 and 2
+	where rank between 1 and 12
 </select>
 
 <!-- 상품 목록 조회 -->

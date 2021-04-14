@@ -46,9 +46,9 @@ CREATE TABLE product (
   address3 varchar2(40) DEFAULT null NULL,
   contents  varchar2(250)  NULL,
   price  number  NULL,
-  refund_availability  number DEFAULT 1 NULL,
+  refund_availability  number DEFAULT 1 NULL, --1불가능 0 가능
   reg_date  date DEFAULT sysdate NULL,
-  deal_status  number DEFAULT 1 NULL,
+  deal_status  number DEFAULT 1 NULL, --1거래중 / 0 거래완료
   readcount  number  NULL,
   image1 varchar2(200)
 );
@@ -255,11 +255,12 @@ nocache;
 
 -- 신고하기
 drop table report cascade constraints;
-CREATE TABLE  report  (
-  no  number primary key,
+CREATE TABLE report  (
+  no number primary key,
   report_user_name varchar2(50) DEFAULT null NOT NULL,
   reported_user_name varchar2(50) DEFAULT null NOT NULL,
-  contents  varchar2(250)  NULL
+  contents varchar2(250) NULL,
+  count number DEFAULT 1
 );
 
 
