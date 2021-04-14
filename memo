@@ -99,7 +99,7 @@ CREATE TABLE  town_board  (
   writer  varchar2(50) DEFAULT null NOT NULL,
   address  varchar2(120) DEFAULT null NULL,
   subject  varchar2(250)  NULL,
-  category  varchar2(40) NOT NULL,
+  category  varchar2(40) ,
   contents  varchar2(250)  NULL,
   ref  number  NULL,
   re_level  number  NULL,

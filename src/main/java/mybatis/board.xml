@@ -7,7 +7,7 @@
 	<!-- 카테고리 전체 가져오기 -->
 	<select id="getAllCategory"
 		resultType="board.model.BoardCategoryBean">
-		select * from town_board_category order by no asc
+		select * from town_board_category order by no asc 
 	</select>
 
 	<!-- 상품 찜하기 갯수 확인 -->
@@ -18,13 +18,18 @@
 	</select>
 	<!-- list전체가져오기 -->
 	<select id="getAllBoard" resultType="board.model.BoardBean">
-		select * from town_board
+		select * from town_board where re_level =1
 		order by reg_date desc
 	</select>
 	<!-- no조건 게시글 가져오기 -->
 	<select id="getBoardByNo" resultType="board.model.BoardBean">
 		select * from town_board
 		where no=#{no}
+	</select>
+	<!-- no조건 댓글 가져오기 -->
+	<select id="getReplyByNo" resultType="board.model.BoardBean">
+		select * from town_board
+		where ref=#{no} order by reg_date asc
 	</select>
 	<!-- category+keyword검색 -->
 	<select id="getBoardByCategoryKeyword"
@@ -93,5 +98,8 @@
 		delete from town_board
 		where no =#{no}
 	</delete>
-
+ <!-- 댓글쓰기 -->
+ <insert id="insertReply">
+ insert into town_board(no,writer,contents,ref,re_level) values(town_board_seq.nextval,#{writer},#{contents},#{ref},#{reLevel})
+ </insert>
 </mapper>

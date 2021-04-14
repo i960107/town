@@ -51,7 +51,7 @@
 	
 </script>
 
-<div onload="ckmbean('${mbean.address2}')">
+<div onload="ckmbean('${mbean.address2}')" >
 <select name="address1" id="address1" onchange="changeSelect()">
 	<option value="0">광역시도 선택
 	<c:forEach var="i" items="<%=addr%>">
@@ -61,7 +61,7 @@
 </div>
 
 <div id="hideon">
-<select name="address2" id="address2">
+<select  name="address2" id="address2" >
 	<option value="0">시/군/구 선택
 	<c:if test="${mbean.address2!=null }">
 	<option value="${mbean.address2 }" selected="selected">${mbean.address2 }
