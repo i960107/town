@@ -273,4 +273,15 @@ CREATE TABLE  prd_reply  (
   reg_date date default sysdate,
   CONSTRAINT chatno PRIMARY KEY(pno, seller_id, buyer_id)
 );
-
+--product 카테고리 기본 설정
+insert into product_category values(prodcate_seq.nextval,'디지털/가전');
+insert into product_category values(prodcate_seq.nextval,'가구/인테리어');
+insert into product_category values(prodcate_seq.nextval,'유아동/유아도서');
+insert into product_category values(prodcate_seq.nextval,'생활/가공식품');
+insert into product_category values(prodcate_seq.nextval,'스포츠/레저');
+insert into product_category values(prodcate_seq.nextval,'스포츠/레저');
+insert into product_category values(prodcate_seq.nextval,'여성잡화');
+insert into product_category values(prodcate_seq.nextval,'여성의류');
+insert into product_category values(prodcate_seq.nextval,'남성패션/잡화');
+commit;
+commit;

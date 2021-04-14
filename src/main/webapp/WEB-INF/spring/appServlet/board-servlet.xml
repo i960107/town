@@ -36,6 +36,7 @@
 			<mvc:mapping path="/unlike.bd" />
 			<mvc:mapping path="/unlike.bd" />
 			<mvc:mapping path="/delete.bd" />
+			<mvc:mapping path="/reply.bd" />
 			<ref bean="AuthLoginInterceptor" />
 		</mvc:interceptor>
 		<mvc:interceptor>
@@ -45,6 +46,7 @@
 			<mvc:mapping path="/unlike.bd" />
 			<mvc:mapping path="/unlike.bd" />
 			<mvc:mapping path="/delete.bd" />
+			<mvc:mapping path="/reply.bd" />
 			<ref bean="AuthorityInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

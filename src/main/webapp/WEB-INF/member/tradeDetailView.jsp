@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="./../common/common.jsp"%>
-<%@ include file="./../common/main_top.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,17 +42,11 @@
 	right: 8px;
 }
 
-@
--webkit-keyframes animate-positive { 0% {
-	width: 0%;
+@-webkit-keyframes animate-positive {
+ 0% { width: 0%;}
 }
-
-}
-@
-keyframes animate-positive { 0% {
-	width: 0%;
-}
-
+@keyframes animate-positive{ 
+0% {width: 0%;}
 }
 .profile {
 	width: 180px;
@@ -76,13 +70,26 @@ keyframes animate-positive { 0% {
 .flex-container-row {
 	margin-top: 20px;
 	display: flex;
+	flex-direction: row;
 	justify-content: center;
+}
+
+#pList, #bList {
+	flex-wrap: wrap;
+	width: 70%;
+	justify-content: center;
+	align-items: flex-start;
 }
 
 .flex-container-column {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: flex-start;
+}
+
+#mylist {
+	align-items: center;
 }
 </style>
 <script type="text/javascript"
@@ -103,6 +110,7 @@ keyframes animate-positive { 0% {
 </script>
 </head>
 <body>
+<%@ include file="./../common/main_top.jsp"%>
 	<div class="flex-container">
 		<div class="flex-container-row" style="width: 70%">
 			<!-- 사진과 이이디 -->
@@ -146,68 +154,87 @@ keyframes animate-positive { 0% {
 				</div>
 			</div>
 		</div>
-		<div class="flex-container-column">
-			<section class="latest-blog spad">
+		<section class="latest-blog spad">
+			<div id="mylist" class="flex-container-column">
 				<div class="section-title">
-					<h2><span onclick="callPlist()"
-							class="list-table">상품 판매리스트</span> / <span onclick="callBlist()"
-							class="list-table">동네생활 게시글 리스트</span> / </h2>
+					<h2>
+						<span onmouseover="style='cursor:pointer'" onclick="callPlist()"
+							class="list-table">판매 상품 목록</span> / <span onclick="callBlist()"
+							onmouseover="style='cursor:pointer'" class="list-table">동네생활 게시글
+							목록</span>
+					</h2>
 				</div>
-				<div>
-				
-				<table class="table" align="center">
-					<tr id="pList">
-						<!-- 판매상품 리스트 이미지 -->
-						<c:set var="step" value="0" />
-						<c:forEach var="i" items="${pList }">
-							<c:set var="step" value="${step+1 }" />
-							<td style="padding: 15px;"><a
-								href="detail.prd?no=${i.no }&sellerid=${i.sellerid}"> <img
-									alt=""
-									src="<%=request.getContextPath()%>/resources/${i.image1}"
-									height="200" width="200"><br>
-							</a> <span class="list-font"> ${i.subject }</span> <br> <span
-								class="list-font"> 가격 : ${i.price } 원</span><br> <span
+				<div id="pList" class="flex-container-row">
+					<!-- 판매상품 리스트 이미지 -->
+					<c:forEach var="i" items="${pList}">
+						<div style="padding: 15px;">
+							<a href="detail.prd?no=${i.no }&sellerid=${i.sellerid}"> <img
+								src="<%=request.getContextPath()%>/resources/${i.image1}"
+								height="200" width="200">
+							</a> <br> <span class="list-font"> ${i.subject }</span> <br>
+							<span class="list-font"> 가격 : ${i.price } 원</span><br> <span
 								class="list-font"> &#128065; : ${i.readcount }</span> <br>
-								<span class="list-font"> 작성일 : <fmt:parseDate
-										value=" ${i.regdate}" var="regDateParsed"
-										pattern="yyyy-MM-dd HH:mm:ss.s" /> <fmt:formatDate
-										value="${regDateParsed}" pattern="yyyy-mm-dd"
-										var="regDateFormatted" /> ${regDateFormatted }
-							</span> </span><br> <c:if test="${(step%4)==0 }">
-					</tr>
-					<tr>
-						</c:if>
-						</td>
-						</c:forEach>
-					</tr>
-					<tr id="bList">
-						<!-- 동네 생활 게시글 리스트 이미지 -->
-						<c:set var="step" value="0" />
-						<c:forEach var="i" items="${bList }">
-							<c:set var="step" value="${step+1 }" />
-							<td style="padding: 15px;"><a
-								href="detailView.bd?no=${i.no }"> <span class="list-font">${i.subject }</span>
-									<br>
-							</a> <span class="list-font">&#128065; : ${i.readcount }</span><br>
-								<span class="list-font">작성일 : <fmt:parseDate
-										value=" ${i.regDate}" var="regDateParsed"
-										pattern="yyyy-MM-dd HH:mm:ss.s" /> <fmt:formatDate
-										value="${regDateParsed}" pattern="yyyy-mm-dd"
-										var="regDateFormatted" /> ${regDateFormatted }
-							</span><br> <span>${i.contents }</span> <c:if
-									test="${(step%4)==0 }">
-					</tr>
-					<tr>
-						</c:if>
-						</td>
-						</c:forEach>
-					</tr>
-				</table>
+							<span class="list-font"> 작성일 : <fmt:parseDate
+									value=" ${i.regdate}" var="regDateParsed"
+									pattern="yyyy-MM-dd HH:mm:ss.s" /> <fmt:formatDate
+									value="${regDateParsed}" pattern="yyyy-MM-dd"
+									var="regDateFormatted" /> ${regDateFormatted }
+							</span><br> <span> <c:if test="${i.dealstatus==1}">판매중</c:if>
+								<c:if test="${i.dealstatus==0}">판매완료</c:if>
+							</span>
+						</div>
+					</c:forEach>
 				</div>
-			</section>
-		</div>
+				<div id="bList" class="flex-container-column">
+					<!-- 내가 쓴 동네생활글-->
+					<div style="padding: 15px;">
+						<h3>동네생활</h3>
+						<table class="table">
+							<tr>
+								<td>원글 번호</td>
+								<td>제목</td>
+								<td>내용</td>
+								<td>조회수</td>
+								<td>작성일</td>
+							</tr>
+							<c:forEach var="i" items="${bList}">
+								<tr>
+									<a href="detailView.bd?no=${i.ref}">
+										<td>${i.no}</td>
+										<td>${i.subject}</td>
+										<td>${fn:substring(i.contents,0,20)}</td>
+										<td>${i.regDate}</td>
+										<td>${i.readcount}</td>
+									</a>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+			
+					<!-- 내가쓴 동네생활 댓글 -->
+					<div style="padding: 15px;">
+						<h3>동네생활 댓글</h3>
+						<table class="table">
+							<c:forEach var="i" items="${rList}">
+								<tr>
+									<td>원글 번호</td>
+									<td>내용</td>
+									<td>작성일</td>
+								</tr>
+								<tr>
+									<a href="detailView.bd?no=${i.ref}">
+									<td>${i.ref}</td>
+									<td>${fn:substring(i.contents,0,20)}</td>
+									<td>${i.regDate}</td>
+									</a>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
 	</div>
+<%@ include file="./../common/main_bottom.jsp"%>
 </body>
-
 </html>

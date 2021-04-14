@@ -20,17 +20,20 @@
 	<select id="getAllBoard" resultType="board.model.BoardBean">
 		select * from town_board
 		where re_level =1
+		<if test="address!=null">
+		and address = #{address}
+		</if>
 		order by reg_date desc
 	</select>
 	<!-- no조건 게시글 가져오기 -->
 	<select id="getBoardByNo" resultType="board.model.BoardBean">
 		select * from town_board
-		where no=#{no}
+		where no=#{no} and re_level=1
 	</select>
 	<!-- no조건 댓글 가져오기 -->
 	<select id="getReplyByNo" resultType="board.model.BoardBean">
 		select * from town_board
-		where ref=#{no} order by reg_date asc
+		where ref=#{no} and re_level!=1 order by reg_date asc
 	</select>
 	<!-- category+keyword검색 -->
 	<select id="getBoardByCategoryKeyword"
@@ -104,4 +107,8 @@
 		insert into town_board(no,writer,contents,ref,re_level)
 		values(town_board_seq.nextval,#{writer},#{contents},#{ref},#{reLevel})
 	</insert>
+	<!-- 이미지 하나만 가져오기 -->
+	<select id="getThumnailName" resultType="String">
+	select filename from town_board_file where bno=#{no}  and rownum=1 order by no desc
+	</select>
 </mapper>
