@@ -31,12 +31,12 @@
 
 	$(function () {
 		if(myform.address2.value == 0){			
-	 	$("#address2").hide(); //address 2 숨김
+	 	$("#hideon").hide(); //address 2 숨김
 		}
 	});
 
 	 function changeSelect() {
-		$("#address2").show(); //address 2 보임
+		$("#hideon").show(); //address 2 보임
 		var s_sel = myform.address2; 
 		for (var i = s_sel.length-1; i > 0; i--) {// 리셋
 			s_sel.options[i] = null;
@@ -51,20 +51,20 @@
 	
 </script>
 
-<div class="fa">
-<select name="address1" id="address1" onchange="changeSelect()" class="nice-select">
+<div onload="ckmbean('${mbean.address2}')">
+<select name="address1" id="address1" onchange="changeSelect()">
 	<option value="0">광역시도 선택
 	<c:forEach var="i" items="<%=addr%>">
 	<option value="${i }" <c:if test="${fn:contains(mbean.address1, i) }">selected</c:if>>${i }
 	</c:forEach>
 </select>
-<select name="address2" id="address2" class="nice-select">
+</div>
+
+<div id="hideon">
+<select name="address2" id="address2">
 	<option value="0">시/군/구 선택
 	<c:if test="${mbean.address2!=null }">
 	<option value="${mbean.address2 }" selected="selected">${mbean.address2 }
 	</c:if>
 </select>
 </div>
-
-<!-- <div id="hideon" class="fa-border">
-</div> -->

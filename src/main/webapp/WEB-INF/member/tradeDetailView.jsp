@@ -117,10 +117,7 @@
 					판매리스트</span> <span onclick="callBlist()" class="list-table">동네생활
 					게시글 리스트</span></td>
 		</tr>
-		<tr>
-		<td>
-		<table id="pList">
-		<tr>
+		<tr id="pList">
 			<!-- 판매상품 리스트 이미지 -->
 			<c:set var="step" value="0" />
 			<c:forEach var="i" items="${pList }">
@@ -129,44 +126,42 @@
 					href="detail.prd?no=${i.no }&sellerid=${i.sellerid}"> <img
 						alt="" src="<%=request.getContextPath()%>/resources/${i.image1}"
 						height="200" width="200"><br>
-				</a> <span class="list-font"> ${i.subject }</span> <br> 
-				<span class="list-font"> 가격 : ${i.price } 원</span><br> 
-				<span class="list-font"> &#128065; : ${i.readcount }</span> <br> 
-				<span class="list-font"> 작성일 : 
-					<fmt:parseDate value=" ${i.regdate}" var="regDateParsed" pattern="yyyy-MM-dd HH:mm:ss.s" /> 
-					<fmt:formatDate	value="${regDateParsed}" pattern="yyyy-mm-dd" var="regDateFormatted" /> ${regDateFormatted }
-				</span> <br>
-				</td>
-				 <c:if test="${(step%4)==0 }"></tr><tr id="pList"></c:if>
-			</c:forEach>
-		</tr>
-		</table>
-		</td>
+				</a> <span class="list-font"> ${i.subject }</span> <br> <span
+					class="list-font"> 가격 : ${i.price } 원</span><br> <span
+					class="list-font"> &#128065; : ${i.readcount }</span> <br> <span
+					class="list-font"> 작성일 : <fmt:parseDate
+							value=" ${i.regdate}" var="regDateParsed"
+							pattern="yyyy-MM-dd HH:mm:ss.s" /> <fmt:formatDate
+							value="${regDateParsed}" pattern="yyyy-mm-dd"
+							var="regDateFormatted" /> ${regDateFormatted }
+				</span> </span><br> <c:if test="${(step%4)==0 }">
 		</tr>
 		<tr>
-			<td>
-			<table  id="bList">
-				<tr>
-					<!-- 동네 생활 게시글 리스트 이미지 -->
-					<c:set var="step" value="0" />
-					<c:forEach var="i" items="${bList }">
-						<c:set var="step" value="${step+1 }" />
-						<td style="padding: 15px;"><a href="detailView.bd?no=${i.no }">
-								<span class="list-font">${i.subject }</span> <br>
-						</a> <span class="list-font">&#128065; : ${i.readcount }</span><br>
-							<span class="list-font">작성일 : 
-							<fmt:parseDate value=" ${i.regDate}" var="regDateParsed" pattern="yyyy-MM-dd HH:mm:ss.s" /> 
-							<fmt:formatDate	value="${regDateParsed}" pattern="yyyy-mm-dd" var="regDateFormatted" />
-							 ${regDateFormatted }</span><br> 
-							 <span>${i.contents }</span>
-							  <c:if test="${(step%4)==0 }"></tr><tr id="bList"></c:if>
-					</td>
-					</c:forEach>
-				</tr>
-			</table>
+			</c:if>
 			</td>
-			</tr>
+			</c:forEach>
+		</tr>
+		<tr id="bList">
+			<!-- 동네 생활 게시글 리스트 이미지 -->
+			<c:set var="step" value="0" />
+			<c:forEach var="i" items="${bList }">
+				<c:set var="step" value="${step+1 }" />
+				<td style="padding: 15px;"><a href="detailView.bd?no=${i.no }">
+						<span class="list-font">${i.subject }</span> <br>
+				</a> <span class="list-font">&#128065; : ${i.readcount }</span><br>
+					<span class="list-font">작성일 : <fmt:parseDate
+							value=" ${i.regDate}" var="regDateParsed"
+							pattern="yyyy-MM-dd HH:mm:ss.s" /> <fmt:formatDate
+							value="${regDateParsed}" pattern="yyyy-mm-dd"
+							var="regDateFormatted" /> ${regDateFormatted }
+				</span><br> <span>${i.contents }</span> <c:if test="${(step%4)==0 }">
+		</tr>
+		<tr>
+			</c:if>
+			</td>
+			</c:forEach>
+		</tr>
 	</table>
-	<%@include file="./../common/main_bottom.jsp" %>
+	
 </body>
 </html>

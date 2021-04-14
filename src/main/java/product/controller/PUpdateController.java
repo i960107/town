@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,30 +37,10 @@ public class PUpdateController {
 	@Autowired
 	private ServletContext application;
 	
-	@RequestMapping(value = command, method = RequestMethod.GET)
-	public ModelAndView doAction(HttpSession session,
-			@RequestParam("no") int no
-			) {
-		MemberBean mbean = (MemberBean) session.getAttribute("loginInfo"); //로그인 아이디 세션정보
+	@RequestMapping(value = command)
+	public ModelAndView doAction() {
 		
 		ModelAndView mav = new ModelAndView();
-		System.out.println("product no : " + no);
-		ProductBean pbean = pDao.getProduct(no); //상품정보 호출
-		List<ProdCateBean> cateList = pDao.getAllCategory(); //카테고리 목록 호출
-		List<ProductFileBean> flist = pDao.getFile(no); //파일 리스트 호출
-
-		for(ProductFileBean fbean : flist) {
-			System.out.println("fileList : "+fbean.getFilename());
-		}
-		if(pbean.getContents()!=null) { //<br> > 엔터
-			String temp = pbean.getContents().replace("<br>", "\n\r");
-			pbean.setContents(temp);
-		}
-		//변수넘김
-		mav.addObject("mbean", mbean);
-		mav.addObject("flist", flist);
-		mav.addObject("cateList", cateList);
-		mav.addObject("pbean", pbean);
 		mav.setViewName(getPage);
 		return mav;
 	}

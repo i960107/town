@@ -29,7 +29,10 @@ public class boardListController {
 	BoardDao dao;
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
-	public String doActionGet(Model model, HttpSession session) {
+	public String doActionGet(Model model, HttpSession session,
+			@RequestParam(value = "address1", required = false) String address1, 
+			@RequestParam(value = "address2", required = false) String address2
+			) {
 		List<BoardCategoryBean> categoryList = dao.getAllCategory();
 		session.setAttribute("categoryList", categoryList);
 		List<BoardBean> boardList = dao.getAllBoard();
@@ -45,7 +48,8 @@ public class boardListController {
 
 	@RequestMapping(value = command, method = RequestMethod.POST)
 	public String doActionPost(Model model, @RequestParam(value = "category", required = false) String category,
-			@RequestParam(value = "keyword", required = false) String keyword, HttpServletResponse response)
+			@RequestParam(value = "keyword", required = false) String keyword, 
+			HttpServletResponse response)
 			throws IOException {
 		if (category == null) {
 			System.out.println("여기오나");

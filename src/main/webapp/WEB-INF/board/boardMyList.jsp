@@ -38,8 +38,8 @@ boardMyList.jsp <br>
 									<fmt:formatDate value="${regdate }" pattern="yyyy-MM-dd"/>
 									</label></th>
 									<th class="group-input"><label>${mblist.readcount } </label></th>
-									<th class="group-input"><label>삭제</label></th>
-									<th class="group-input"><label>수정</label></th>
+									<th class="group-input"><label><a href="update.bd?no=${mblist.no }">수정</a></label></th>
+									<th class="group-input"><label><a href="delete.bd?no=${mblist.no }">삭제</a></label></th>
 								</tr>
 							</c:forEach>
 				
