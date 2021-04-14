@@ -14,7 +14,11 @@
 <body>
 <div>
 <c:forEach var="chat" items="cList">
-	
+<c:set value="align='right'" var="chater"/>
+<c:if test="${chat.sellerid==mbean.id }">
+<c:set value="align='left'" var="chater"/>
+</c:if>
+	<p ${chater }></p>
 </c:forEach>
 </div>
 <form action="reply.prd">
