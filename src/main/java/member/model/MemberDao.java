@@ -69,7 +69,7 @@ public class MemberDao {
 		plists = sqlSessionTemplate.selectList(nameSpace+".getAllProductByID", sellerid);
 		return plists;
 	}
-
+	//판매자 글 보기
 	public List<BoardBean> getBoardById(String writer) {
 		List<BoardBean> blists = new ArrayList<BoardBean>();
 		blists = sqlSessionTemplate.selectList(nameSpace+".getBoardById", writer);
