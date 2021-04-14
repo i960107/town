@@ -170,6 +170,16 @@ public class ProductDao {
 		return 0;
 	}
 
+	public List<ProductChatBean> getChat(ProductChatBean cbean) {
+		List<ProductChatBean> clist = new ArrayList<ProductChatBean>();
+		int cnt = sqlSessionTemplate.selectOne(nameSpace+".checkChat", cbean);
+		if(cnt==0) {
+			sqlSessionTemplate.insert(nameSpace+".createChat", cbean);
+		}
+		clist = sqlSessionTemplate.selectList(nameSpace+".getChat", cbean);
+		return clist;
+	}
+
 
 
 

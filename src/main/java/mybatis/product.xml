@@ -152,4 +152,18 @@
 	where filename = ${filename}
 </delete>
 
+<select id="checkChat" resultType="int">
+	select count(*) from prd_reply
+	where pno = #{pno} and buyer_id = #{buyerid} and seller_id = #{seller_id}
+</select>
+
+<insert id="createChat">
+	insert into prd_reply
+	values(#{pno}, #{sellerid}, #{buyerid}, '채팅이 연결 되었습니다', sysdate )
+</insert>
+
+<select id="getChat" resultType="int">
+	select * from prd_reply
+	where pno = #{pno} and buyer_id = #{buyerid} and seller_id = #{seller_id}
+</select>
 </mapper>
