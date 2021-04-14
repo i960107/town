@@ -71,7 +71,8 @@ public String getContents() {
 	return contents;
 }
 public void setContents(String contents) {
-	this.contents = contents;
+	String contentsA=contents.replaceAll("\n","<br>");
+	this.contents = contentsA;
 }
 public int getRef() {
 	return ref;

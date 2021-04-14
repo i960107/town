@@ -7,6 +7,7 @@
 <style type="text/css">
 .board {
 	margin-bottom: 30px;
+	background-color: #F8F9FA;
 }
 
 .box {
@@ -15,8 +16,50 @@
 	border-radius: 50%;
 	overflow: hidden;
 }
-</style>
 
+.flex-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.flex-container-boardlist {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+	align-items: center
+}
+
+.flex-container-board {
+	display: flex;
+	flex-direction: row;
+	flex-grow:1
+	background-color: blue;
+	width: 100%;
+	margin-bottom:15px;
+	background-color:F8F9FA;
+}
+</style>
+<script type="text/javascript">
+	function displayTime(regdate) {
+		const timeValue = new Date(regdate);
+		const milliSeconds = new Date() - timeValue;
+		const seconds = milliSeconds / 1000;
+		if (seconds < 60)
+			return `방금 전`
+		const minutes = seconds / 60
+		if (minutes < 60)
+			return Math.floor(minutes) + '분 전';
+		const hours = minutes / 60
+		if (hours < 24)
+			return Math.floor(hours) + '시간 전';
+		const days = hours / 24
+		if (days < 7)
+			return Math.floor(days) + '일 전';
+		return timeValue.getFullYear() + '년 ' + timeValue.getMonth() + '월 '
+				+ timeValue.getDate() + '일';
+	}
+</script>
 <!-- 페이지설명 -->
 <section class="latest-blog spad">
 	<div class="container">
@@ -29,7 +72,7 @@
 			</div>
 			<!-- 검색필터설정 -->
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-12 col-md-12">
 					<form action="list.bd" method="post">
 
 						<table>
@@ -57,60 +100,59 @@
 										</c:forEach>
 									</c:if></td>
 							</tr>
-							<tr>
-								<td><button type="button" class="btn btn-warning"
-										onClick="location.href='insert.bd'" style="width: 100;">
-										<b>글쓰기</b>
-									</button>
-								<td height="50" align="right">결과 내 재검색 <input type="text"
-									name="keyword" value="${keyword}"> <input type="submit"
-									value="검색">
+							<tr style="background-color: #FFFFF0">
+								<td colspan=2 height="50" align="right">결과 내 재검색 <input
+									type="text" name="keyword" value="${keyword}"> <input
+									type="submit" value="검색">
 
 								</td>
 							</tr>
+
 						</table>
 					</form>
 				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-12" align="right"
-				style="padding-top: 40px; padding-bottom: 10px; vertical-align: bottom;">
-				<%@include file="../common/addrArray.jsp"%>
+			<div class="col-lg-12 col-md-12 flex-container"
+				style="padding-top: 10px; padding-bottom: 10px;">
+				<div>
+					<button type="button" class="btn btn-warning"
+						onClick="location.href='insert.bd'"
+						style="align: left; width: 100;">
+						<b>글쓰기</b>
+					</button>
+				</div>
+				<div>
+					<form name="myform" class="flex-container">
+					<c:set var="mbean" value="${loinInfo}"/>
+						<%@include file="../common/addrArray.jsp"%>
+					</form>
+				</div>
 			</div>
 		</div>
 
-		<c:forEach var="board" items="${boardList}">
-			<div class="row board" style="background-color: #F8F9FA">
-				<div class="col-lg-4 col-md-6">
-					<div class="single-latest-blog">
-						<c:set var="flag" value="false" />
-						<c:forEach var="bean" items="${boardFileList}">
-							<c:if test="${flag==false}">
-								<c:if test="${bean.bno==board.no}">
-									<img
-										src="${pageContext.request.contextPath}/resources/${bean.fileName}"
-										width=150 height=200 />
-									<c:set var="flag" value="true" />
-								</c:if>
-							</c:if>
-						</c:forEach>
-						<div class="latest-text">
-							<a href="#">
 
-								<h4><a href="tradeDetail.mb?sellerid=${board.writer}">${board.writer}</a></h4>
-							</a> </a> <i class="fa fa-calendar-o"></i>
-							<fmt:parseDate value=" ${board.regDate}" var="regDateParsed"
-								pattern="yyyy-MM-dd HH:mm:ss.s" />
-							<fmt:formatDate value="${regDateParsed}" pattern="yyyy-MM-dd"
-								var="regDateFormatted" />
-							${regDateFormatted } <i class="fa fa-comment-o"></i> 댓글수 <span>조회수</span>${board.readcount}
+		<!-- 본문출력 -->
+		<div class="flex-container-boardlist">
+			<c:forEach var="board" items="${boardList}">
+			<div class="flex-container-board">
+			
+				<c:set var="flag" value="false" />
+				<c:forEach var="bean" items="${boardFileList}">
+					<c:if test="${flag==false}">
+						<c:if test="${bean.bno==board.no}">
+							<div>
+								<img
+									src="${pageContext.request.contextPath}/resources/${bean.fileName}"
+									style="width: 200px; height: 200px; margin-top: 10px" />
+							</div>
+							<c:set var="flag" value="true" />
+						</c:if>
+					</c:if>
+				</c:forEach>
 
-
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-8 col-md-6" style="padding-bottom: 30px">
+				<div style="margin-left:10px">
 					<c:forTokens items="${board.category }" delims="," var="ctg">
 						<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
 							<c:if test="${categoryList[i].no==ctg}">
@@ -123,13 +165,25 @@
 					<h4>
 						<b>${board.subject}</b>
 					</h4>
-					<br> ${fn:substring(board.contents,0,10)}&nbsp&nbsp<a href='detailView.bd?no=${board.no}'>...더보기</a>
+					<br> ${fn:substring(board.contents,0,10)}&nbsp&nbsp<a
+						href='detailView.bd?no=${board.no}'>...더보기</a>
+
+					<div>
+						<span> <a href="tradeDetail.mb?sellerid=${board.writer}">${board.writer}</a>
+						</span> <i class="fa fa-calendar-o"></i>
+						<!-- 시간 바꿔서 출력하기 Javascript코드 -->
+						<span><script type="text/javascript">
+							document
+									.write(displayTime('<c:out value="${board.regDate}"/>'));
+						</script></span> <i class="fa fa-comment-o"></i> 댓글수 <span>조회수</span>${board.readcount}
+
+
+					</div>
+
 				</div>
-			</div>
-
-
-
-		</c:forEach>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
 </section>
 <style type="text/css">
@@ -250,3 +304,4 @@ keyframes animate-positive { 0% {
 		</fieldset>
 	</form>
 </div>
+<%@ include file="./../common/main_bottom.jsp"%>

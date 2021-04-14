@@ -20,78 +20,79 @@ public class BoardDao {
 	SqlSessionFactoryBean sqlSessionFactoryBean;
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
-	private String namespace="board.BoardBean";
+	private String namespace = "board.BoardBean";
+
 	public List<BoardCategoryBean> getAllCategory() {
-		List<BoardCategoryBean> category_list=new ArrayList<BoardCategoryBean>();
-		category_list=sqlSessionTemplate.selectList(namespace+".getAllCategory");
+		List<BoardCategoryBean> category_list = new ArrayList<BoardCategoryBean>();
+		category_list = sqlSessionTemplate.selectList(namespace + ".getAllCategory");
 		return category_list;
 	}
 
-	public List<BoardBean> getAllBoard(String address1, String address2) {
-		String address=null;
-		if(address1!=null && address2!=null) {
-		address= address1+address2+"%";
-		}
+	public List<BoardBean> getAllBoard() {
 		List<BoardBean> boardList = new ArrayList<BoardBean>();
-		boardList = sqlSessionTemplate.selectList(namespace + ".getAllBoard",address);
-
+		boardList = sqlSessionTemplate.selectList(namespace + ".getAllBoard");
 		return boardList;
 	}
+
 	public List<BoardBean> getBoardByCategoryKeyword(String category, String keyword) {
-		List<BoardBean> boardList=new ArrayList<BoardBean>();
+		List<BoardBean> boardList = new ArrayList<BoardBean>();
 		/*
 		 * List<String> categoryList=new ArrayList<String>(); try { String
 		 * categoryArr[]=category.split(","); for(String ctg:categoryArr) {
 		 * categoryList.add(ctg); } }catch(IndexOutOfBoundsException e) {
 		 * System.out.println("그럼 여기로 와야지"); categoryList.add(category); }
-		 */	
-		String cate="("+category+")";
+		 */
+		String cate = "(" + category + ")";
 		System.out.println(cate);
-		Map<String,Object> map=new HashMap<String,Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("cate", cate);
-		map.put("keyword", "%"+keyword+"%");
-		boardList=sqlSessionTemplate.selectList(namespace+".getBoardByCategoryKeyword",map);
+		map.put("keyword", "%" + keyword + "%");
+		boardList = sqlSessionTemplate.selectList(namespace + ".getBoardByCategoryKeyword", map);
 		return boardList;
 	}
+
 	public void insertBoard(BoardBean board) {
-		sqlSessionTemplate.selectList(namespace+".insertBoard",board);	
+		sqlSessionTemplate.selectList(namespace + ".insertBoard", board);
 	}
+
 	public void fileUpload(int no, String originalFileName) {
-		Map<String,Object> map=new HashMap<String,Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("bno", no);
 		map.put("fileName", originalFileName);
-		sqlSessionTemplate.selectList(namespace+".fileUpload",map);	
+		sqlSessionTemplate.selectList(namespace + ".fileUpload", map);
 	}
-	public List<BoardFileBean>  getFileBeans(List<BoardFileBean> boardFileList, int bno) {
-		List<BoardFileBean> list=sqlSessionTemplate.selectList(namespace+".getFileBeans",bno);
-		for(BoardFileBean bean:list) {
-		     boardFileList.add(bean);
+
+	public List<BoardFileBean> getFileBeans(List<BoardFileBean> boardFileList, int bno) {
+		List<BoardFileBean> list = sqlSessionTemplate.selectList(namespace + ".getFileBeans", bno);
+		for (BoardFileBean bean : list) {
+			boardFileList.add(bean);
 		}
 		return boardFileList;
 	}
+
 	public int getMaxBoardNo() {
-		int maxNo=sqlSessionTemplate.selectOne(namespace+".getMaxBoardNo");
+		int maxNo = sqlSessionTemplate.selectOne(namespace + ".getMaxBoardNo");
 		return maxNo;
 	}
+
 	public BoardBean getBoardByNo(int no) {
-		BoardBean board=sqlSessionTemplate.selectOne(namespace+".getBoardByNo",no);
+		BoardBean board = sqlSessionTemplate.selectOne(namespace + ".getBoardByNo", no);
 		return board;
 	}
 
-	
-	// 나의당근 - 내 글 
+	// 나의당근 - 내 글
 	public List<BoardBean> getBoardListById(String loginID) {
 		List<BoardBean> lists = new ArrayList<BoardBean>();
-		lists = sqlSessionTemplate.selectList(namespace+".GetBoardListById",loginID);
+		lists = sqlSessionTemplate.selectList(namespace + ".GetBoardListById", loginID);
 		return lists;
 	}
+
 	// 나의 당근 - 댓글
 	public List<BoardBean> getBoardReplyListById(String loginID) {
 		List<BoardBean> lists = new ArrayList<BoardBean>();
-		lists = sqlSessionTemplate.selectList(namespace+".GetBoardReplyListById",loginID);
+		lists = sqlSessionTemplate.selectList(namespace + ".GetBoardReplyListById", loginID);
 		return lists;
 	}
-	
 
 	// 조회수 증가
 	public void addReadcount(int no) {
@@ -107,8 +108,6 @@ public class BoardDao {
 
 	// 게시글 찜하기
 	public void boardLike(BoardLikeBean likeBean) {
-		System.out.println("likeBean.getUserId()"+likeBean.getUserId());
-		System.out.println("likeBean.getTownBoardNo()"+likeBean.getTownBoardNo());
 		sqlSessionTemplate.insert(namespace + ".boardLike", likeBean);
 	}
 
@@ -117,10 +116,25 @@ public class BoardDao {
 		sqlSessionTemplate.delete(namespace + ".boardUnlike", no);
 	}
 
-	//게시글 삭제
+	// 게시글 삭제
 	public void deleteBoard(int no) {
 		sqlSessionTemplate.delete(namespace + ".deleteBoard", no);
 	}
 
+	public void insertReply(String writer, String contents, int ref, int reLevel) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("writer", writer);
+		map.put("contents", contents);
+		map.put("ref", ref);
+		map.put("reLevel", reLevel);
+		System.out.println(writer + contents + ref + reLevel);
+		sqlSessionTemplate.insert(namespace + ".insertReply", map);
+	}
+
+	public List<BoardBean> getReplyByNo(int no) {
+		List<BoardBean> lists = new ArrayList<BoardBean>();
+		lists = sqlSessionTemplate.selectList(namespace + ".getReplyByNo", no);
+		return lists;
+	}
 
 }

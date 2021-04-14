@@ -35,7 +35,7 @@ public class boardListController {
 			) {
 		List<BoardCategoryBean> categoryList = dao.getAllCategory();
 		session.setAttribute("categoryList", categoryList);
-		List<BoardBean> boardList = dao.getAllBoard(address1,address2);
+		List<BoardBean> boardList = dao.getAllBoard();
 		List<BoardFileBean> boardFileList = new ArrayList<BoardFileBean>();
 		for (int i = 0; i < boardList.size(); i++) {
 			int bno = boardList.get(i).getNo();

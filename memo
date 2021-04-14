@@ -99,7 +99,7 @@ CREATE TABLE  town_board  (
   writer  varchar2(50) DEFAULT null NOT NULL,
   address  varchar2(120) DEFAULT null NULL,
   subject  varchar2(250)  NULL,
-  category  varchar2(40) NOT NULL,
+  category  varchar2(40) ,
   contents  varchar2(250)  NULL,
   ref  number  NULL,
   re_level  number  NULL,
@@ -255,12 +255,11 @@ nocache;
 
 -- 신고하기
 drop table report cascade constraints;
-CREATE TABLE report  (
-  no number primary key,
+CREATE TABLE  report  (
+  no  number primary key,
   report_user_name varchar2(50) DEFAULT null NOT NULL,
   reported_user_name varchar2(50) DEFAULT null NOT NULL,
-  contents varchar2(250) NULL,
-  count number DEFAULT 1
+  contents  varchar2(250)  NULL
 );
 
 
@@ -274,7 +273,4 @@ CREATE TABLE  prd_reply  (
   reg_date date default sysdate,
   CONSTRAINT chatno PRIMARY KEY(pno, seller_id, buyer_id)
 );
-
-
-
 
