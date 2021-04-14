@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="./../common/common.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.js"></script>
 <script type="text/javascript">
 //사용시 주의점 myform 안에 include 해야함
@@ -9,6 +9,7 @@
 	<%
 	String[] addr = {"서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"};
 	%>
+
 	var s_selarr = [
 		["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"],
 		["계양구","남구","남동구","동구","부평구","서구","연수구","중구","강화군","옹진군"],
@@ -27,13 +28,15 @@
 		["거제시","김해시","마산시","밀양시","사천시","양산시","진주시","진해시","창원시","통영시","거창군","고성군","남해군","산청군","의령군","창녕군","하동군","함안군","함양군","합천군"],
 		["서귀포시","제주시","남제주군","북제주군"]
 	]; 
+
 	$(function () {
 		if(myform.address2.value == 0){			
-	 	$("#address2").hide(); //address 2 숨김
+	 	$("#hideon").hide(); //address 2 숨김
 		}
 	});
+
 	 function changeSelect() {
-		$("#address2").show(); //address 2 보임
+		$("#hideon").show(); //address 2 보임
 		var s_sel = myform.address2; 
 		for (var i = s_sel.length-1; i > 0; i--) {// 리셋
 			s_sel.options[i] = null;
@@ -48,20 +51,20 @@
 	
 </script>
 
-<div class="fa">
-<select name="address1" id="address1" onchange="changeSelect()" class="nice-select">
+<div onload="ckmbean('${mbean.address2}')">
+<select name="address1" id="address1" onchange="changeSelect()">
 	<option value="0">광역시도 선택
 	<c:forEach var="i" items="<%=addr%>">
 	<option value="${i }" <c:if test="${fn:contains(mbean.address1, i) }">selected</c:if>>${i }
 	</c:forEach>
 </select>
-<select name="address2" id="address2" class="nice-select">
+</div>
+
+<div id="hideon">
+<select name="address2" id="address2">
 	<option value="0">시/군/구 선택
 	<c:if test="${mbean.address2!=null }">
 	<option value="${mbean.address2 }" selected="selected">${mbean.address2 }
 	</c:if>
 </select>
 </div>
-
-<!-- <div id="hideon" class="fa-border">
-</div> -->

@@ -9,33 +9,13 @@
 		location.href = "like.bd?townBoardNo=${board.no}&userId=${loginInfo.id}";
 	}
 	function prdUnLike(liker) {
-		location.href = "unlike.bd?townBoardNo=${board.no}&userId=${loginInfo.id}&no="
-				+ liker;
-	}
-	/* 시간바꿔주는 함수 */
-	function displayTime(regdate) {
-		const timeValue = new Date(regdate);
-		const milliSeconds = new Date() - timeValue;
-		const seconds = milliSeconds / 1000;
-		if (seconds < 60)
-			return `방금 전`
-		const minutes = seconds / 60
-		if (minutes < 60)
-			return Math.floor(minutes) + '분 전';
-		const hours = minutes / 60
-		if (hours < 24)
-			return Math.floor(hours) + '시간 전';
-		const days = hours / 24
-		if (days < 7)
-			return Math.floor(days) + '일 전';
-		return timeValue.getFullYear() + '년 ' + timeValue.getMonth() + '월 '
-				+ timeValue.getDate() + '일';
+		location.href = "unlike.bd?townBoardNo=${board.no}&userId=${loginInfo.id}&no=" + liker;
 	}
 </script>
 <style type="text/css">
 .carousel-item {
-	height: 350px;
-	width: 350px;
+	height: 400px;
+	width: 400px;
 }
 
 .box {
@@ -46,197 +26,148 @@
 }
 
 #carousel-example-generic {
-	width: 350px;
-	height: 350px;
-}
-
-.flex-container {
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-	background-color: cyan;
-}
-
-.flex-container-start {
-	display: flex;
-	justify-content: flex-start;
-	width: 100%;
+	width: 400px;
+	height: 400px;
 }
 </style>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="blog-details-inner">
+				<div class="blog-detail-title">
+					<h2>${board.subject}</h2>
+					<p>
+						<img class="box"
+							src="${pageContext.request.contextPath}/resources/members/${writer.image}">
+						<a href="tradeDetail.mb?sellerid=${board.writer}">${board.writer }</a> <span> <fmt:parseDate
+								value=" ${board.regDate}" var="regDateParsed"
+								pattern="yyyy-MM-dd HH:mm:ss.s" /> <fmt:formatDate
+								value="${regDateParsed}" pattern="yyyy-MM-dd"
+								var="regDateFormatted" /> ${regDateFormatted }
+						</span>
+					</p>
+				</div>
 
-<section class="blog-details spad">
-	<div class="container">
+			</div>
+		</div>
+	</div>
+	<c:if test="${fn:length(boardFileList)==0}">
 		<div class="row">
-			<div class="col-lg-12">
-				<div class="blog-details-inner">
-					<div class="blog-detail-title">
-						<h2>${board.subject}</h2>
-						<p>
-							<a href='tradeDetail.mb?sellerid=${board.writer}'> <img
-								src="${pageContext.request.contextPath}/resources/members/${writer.image}"
-								class="img-circle" /> ${writer.id }
-							</a>
+			<div class="col-lg-12">${board.contents}</div>
+		</div>
+	</c:if>
+	<c:if test="${fn:length(boardFileList)!=0}">
+		<div class="row">
+			<div class="col-lg-4">
+				<div id="carousel-example-generic" class="carousel slide">
+					<!-- Indicators(이미지 하단의 동그란것->class="carousel-indicators") -->
+					<ol class="carousel-indicators">
 
+						<c:forEach var="item" items="${boardFileList}" varStatus="i">
+							<li data-target="#carousel-example-generic"
+								data-slide-to="i.index"
+								<c:if test="${i.index==0}">class="active"</c:if>></li>
+						</c:forEach>
+					</ol>
+					<!-- Carousel items -->
 
-							<!-- 시간 바꿔서 출력하기 Javascript코드 -->
-							<span><script type="text/javascript">
-								document
-										.write(displayTime('<c:out value="${board.regDate}"/>'));
-							</script></span>
-						</p>
-					</div>
-					<div class="flex-container-start">
-						<!-- 파일있을때만 이미지 div 생김 -->
-						<c:if test="${fn:length(boardFileList)!=0}">
-							<div>
-								<div id="carousel-example-generic" class="carousel slide">
-									<!-- Indicators(이미지 하단의 동그란것->class="carousel-indicators") -->
-									<ol class="carousel-indicators">
-
-										<c:forEach var="item" items="${boardFileList}" varStatus="i">
-											<li data-target="#carousel-example-generic"
-												data-slide-to="i.index"
-												<c:if test="${i.index==0}">class="active"</c:if>></li>
-										</c:forEach>
-									</ol>
-									<!-- Carousel items -->
-
-									<div class="carousel-inner">
-										<c:forEach var="item" items="${boardFileList}" varStatus="i">
-											<div
-												class="carousel-item <c:if test="${i.index==0}">active</c:if> set-bg"
-												data-setbg="${pageContext.request.contextPath}/resources/${item.fileName}">
-											</div>
-										</c:forEach>
-									</div>
-								</div>
-							</div>
-						</c:if>
-						<div style="margin-left: 20px">${board.contents}</div>
-					</div>
-
-					<div class="tag-share flex-container">
-						<div class="details-tag">
-							<ul>
-								<li><i class="fa fa-tags"></i></li>
-								<c:if test="${board.category==null}">
-									<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
-										<c:if test="${categoryList[i].no==board.category}">
-											<li>${categoryList[i].categoryName}</li>
-										</c:if>
-									</c:forEach>
-								</c:if>
-								<c:if test="${board.category!=null}">
-									<c:forTokens items="${board.category}" delims="," var="ctg">
-										<c:forEach begin="0" end="${fn:length(categoryList)-1}"
-											var="i">
-											<c:if test="${categoryList[i].no==ctg}">
-												<li>${categoryList[i].categoryName}</li>
-											</c:if>
-										</c:forEach>
-									</c:forTokens>
-								</c:if>
-							</ul>
-						</div>
-						<div>
-							<i class="fa fa-comment-o"></i> 댓글수 <span>조회수</span>${board.readcount}
-							<c:set var="loginId">${loginInfo.id}</c:set>
-							<c:set var="heart" value="&#10084;" />
-							<c:set var="likecondition" value="prdLike()" />
-							<c:forEach var="i" items="${likeList }">
-								<c:if test="${loginId==i.userid }">
-									<c:set var="heart">&#128151; </c:set>
-									<c:set value="${i.no }" var="likeNo" />
-									<c:set var="likecondition" value="prdUnLike(${likeNo })" />
-								</c:if>
-							</c:forEach>
-							<input type="button" name="like" value="${heart }공감하기 ${likeCnt}"
-								onclick="${likecondition}" class="btn_img_like">
-						</div>
-					</div>
-					<div align="center">
-						<input type="button" onClick="location.href='list.bd'"
-							value="목록보기">
-					</div>
-					<div class="blog-post flex-container">
-
-						<c:if test="${previousBoard!=null}">
-							<a href="detailView.bd?no=${board.no-1}" class="prev-blog">
-
-								<div class="pb-text">
-									<span>Previous Post:</span>
-									<h5>${previousBoard.subject}</h5>
-								</div>
-							</a>
-						</c:if>
-						<c:if test="${nextBoard!=null}">
-							<a href="detailView.bd?no=${board.no+1}" class="next-blog">
-
-								<div class="nb-text">
-									<span>Next Post:</span>
-									<h5>${nextBoard.subject}</h5>
-								</div>
-							</a>
-						</c:if>
-					</div>
-					<!-- 댓글쓰기 -->
-					<div class="leave-comment">
-						<h4>댓글</h4>
-						<c:if test="${loginInfo!=null}">
-							<form action="reply.bd" class="comment-form">
-								<div class="row">
-									<input type="hidden" name="writer" value="${loginInfo.id}">
-									<input type="hidden" name="ref" value="${board.no}"> <input
-										type="hidden" name="reLevel" value="2">
-									<div class="col-lg-6">
-										<a href='tradeDetail.mb?sellerid=${loginInfo.id}'> <img
-											src="${pageContext.request.contextPath}/resources/members/${loginInfo.image}"
-											class="img-circle" /> ${loginInfo.id }
-										</a>
-									</div>
-									<div class="col-lg-12">
-										<textarea name="contents" placeholder="Message"></textarea>
-										<button type="submit" class="site-btn">댓글달기</button>
-									</div>
-								</div>
-							</form>
-						</c:if>
-						<c:if test="${loginInfo==null }">
-
-							<form class="comment-form">
-								<div class="row">
-
-									<div class="col-lg-12">
-
-										<textarea name="contents" placeholder="로그인이 필요한 페이지입니다"></textarea>
-										<button onclick="location.href='memberlogin.mb'"
-											class="site-btn">로그인하기</button>
-									</div>
-								</div>
-							</form>
-
-						</c:if>
-					</div>
-					<!-- 댓글출력 -->
-					<div>
-						<c:forEach var="reply" items="${replyList}">
-							<div class="posted-by">
-								<div class="pb-text">
-									<a href="tradeDetail?sellerid=${reply.writer}" style="display:inline">
-										${reply.writer }</a><span><script
-												type="text/javascript">
-											document.write(displayTime('<c:out value="${reply.regDate}"/>'));
-										</script></span>
-									 <p>${reply.contents}</p>
-								</div>
+					<div class="carousel-inner">
+						<c:forEach var="item" items="${boardFileList}" varStatus="i">
+							<div
+								class="carousel-item <c:if test="${i.index==0}">active</c:if> set-bg"
+								data-setbg="${pageContext.request.contextPath}/resources/${item.fileName}">
 							</div>
 						</c:forEach>
 					</div>
 				</div>
 			</div>
+			<div class="col-lg-8">
+				<div class="row">
+					<div class="col-lg-12">${board.contents}</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12" align="right">
+${board.category }
+						<c:if test="${board.category==null}">
+							<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
+								<c:if test="${categoryList[i].no==board.category}">
+									<button type="button" class="btn btn-danger">${categoryList[i].categoryName}</button>
+								</c:if>
+							</c:forEach>
+						</c:if>
+						<c:if test="${board.category!=null}">
+							<c:forTokens items="${board.category}" delims="," var="ctg">
+								<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
+									<c:if test="${categoryList[i].no==ctg}">
+										<button type="button" class="btn btn-danger">${categoryList[i].categoryName}</button>
+									</c:if>
+								</c:forEach>
+							</c:forTokens>
+						</c:if>
+					</div>
+				</div>
+
+
+			</div>
+
+
+		</div>
+		<div class="row"></div>
+	</c:if>
+	<div class="row">
+		<div class="col-lg-12">
+			<i class="fa fa-comment-o"></i> 댓글수 <span>조회수</span>${board.readcount}
+			<c:set var="loginId">${loginInfo.id}</c:set>
+			<c:set var="heart" value="&#10084;" />
+			<c:set var="likecondition" value="prdLike()" />
+			<c:forEach var="i" items="${likeList }">
+				<c:if test="${loginId==i.userid }">
+					<c:set var="heart">&#128151; </c:set>
+					<c:set value="${i.no }" var="likeNo" />
+					<c:set var="likecondition" value="prdUnLike(${likeNo })" />
+				</c:if>
+			</c:forEach>
+			<input type="button" name="like" value="${heart }공감하기 ${likeCnt}"
+				onclick="${likecondition}" class="btn_img_like">
+			</td>
+
+
 		</div>
 	</div>
-</section>
 
+	<div class="row">
+		<c:if test="${loginInfo==null}">
+			<div class="col-lg-12" align="right">
+			<h5><b>댓글</b></h5>
+				<form action="insertReply.bd">
+					<textarea rows="2" cols="100" readonly="readonly">로그인이 필요한 서비스 입니다</textarea>
+					<br> <input type="submit" disabled="disabled" value="댓글쓰기">
+				</form>
+			</div>
+		</c:if>
+		<c:if test="${loginInfo!=null}">
+
+			<div class="col-lg-2" align="right">
+				<h5><b>댓글</b></h5>
+				<a href="tradeDetail.mb?sellerid=${loginInfo.id}">
+				<img class="box"
+					src="${pageContext.request.contextPath}/resources/members/${loginInfo.image}">${loginInfo.id}
+				</a>
+			</div>
+			<div class="col-lg-10" align="right">
+				<form action="insertReply.bd">
+					<textarea rows="2" cols="100"></textarea>
+					<br> <input type="submit" value="댓글쓰기">
+				</form>
+			</div>
+		</c:if>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12" align="center">
+		<input type="button" onClick="location.href='list.bd'" value="목록보기">
+	</div>
+</div>
+<a href="delete.bd?no=${board.no}">삭제</a>
 
 <%@ include file="./../common/main_bottom.jsp"%>

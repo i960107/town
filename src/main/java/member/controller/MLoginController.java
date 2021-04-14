@@ -35,12 +35,13 @@ public class MLoginController {
 	}
 
 	@RequestMapping(value = command, method = RequestMethod.POST)
-	public ModelAndView doActionP(HttpServletRequest request, @RequestParam(value = "id", required = false) String id,
+	public ModelAndView doActionP(HttpServletRequest request,@RequestParam(value = "id", required = false) String id,
 			@RequestParam(value = "pw", required = true) String pw, HttpServletResponse response, HttpSession session)
 			throws IOException {
 
 		MemberBean mbean = new MemberBean();
 		mbean.setId(id);
+
 		// 아이디 체크하기
 		MemberBean midBean = mdao.loginCkId(mbean);
 
@@ -49,6 +50,7 @@ public class MLoginController {
 
 		ModelAndView mav = new ModelAndView();
 
+	
 		// 아이디 없음
 		if (midBean == null) {
 			pwriter.print("<script type='text/javascript'>");
@@ -62,10 +64,10 @@ public class MLoginController {
 			// id + pw
 			if (pw.equals(midBean.getPw())) {
 				session.setAttribute("loginInfo", midBean);
-
-				if (session.getAttribute("destination") != null) {
-					gotoPage = (String) session.getAttribute("destination");
-					session.removeAttribute("destination");
+				session.setAttribute("destination", "redirect:/main.mk");
+				
+				if(session.getAttribute("destination")!=null) {
+					gotoPage=(String)session.getAttribute("destination");
 				}
 				mav.setViewName(gotoPage);
 			}

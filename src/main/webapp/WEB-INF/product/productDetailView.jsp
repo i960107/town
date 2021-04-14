@@ -188,17 +188,6 @@
 		right: 5px;
 		opacity: 1;
 	}
-	.profile {
-	width: 110px;
-	height: 110px;
-	object-fit: cover;
-}
-.box {
-	width: 100px;
-	height: 100px;
-	border-radius: 40%;
-	overflow: hidden;
-}
 textarea {
 	width: 70%;
 	height: 30%;
@@ -219,9 +208,6 @@ textarea {
 	}
 	function prdUnLike(liker) {
 		location.href = "unlike.prd?no=${pBean.no}&like=" + liker;
-	}
-	function updateProduct() {
-		location.href = "update.prd?no=${pBean.no}";
 	}
 </script>
 <%@include file="prdStyle.jsp"%>
@@ -260,36 +246,9 @@ textarea {
 						</tr>
 						<tr height="72">
 							<td colspan="3" valign="top"><span class="mcontent">거래지역</span>
-								<span style="font-size: 15px; font-weight: bold; color: #A0A0A0;">
-								: ${pBean.address1 } ${pBean.address2 }</span>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<c:if test="${pBean.refundavailability==1 }">
-								<span style="font-size: 15px; font-weight: bold; color: #FF543E;">
-								환불불가
-								</span>
-								</c:if>
-								<c:if test="${pBean.refundavailability==0 }">
-								<span style="font-size: 15px; font-weight: bold; color: #4288F0;">
-								환불가능
-								</span>
-								</c:if>
-							</td>
-							<td>
-								<c:if test="${pBean.dealstatus==1 }">
-								<span style="font-size: 15px; font-weight: bold; color: #4288F0;">
-								거래가능
-								</span>
-								</c:if>
-								
-								<c:if test="${pBean.dealstatus==0 }">
-								<span style="font-size: 15px; font-weight: bold; color: #FF543E;">
-								거래완료
-								</span>
-								</c:if>
-							</td>
+								<span
+								style="font-size: 15px; font-weight: bold; color: #A0A0A0;">:
+									${pBean.address }</span></td>
 						</tr>
 						<tr height="72">
 
@@ -330,12 +289,9 @@ textarea {
 		<table>
 			<tr>
 				<!-- 회원 정보 -->
-				<td><a href="tradeDetail.mb?sellerid=${mbean.id }"> 
-				<div class="box">
-				<img alt="" src="<%=source%>resources/members/${mbean.image}" width="70" height="70" class="profile">
-				</a>
-				</div>
-				</td>
+				<td><a href="tradeDetail.mb?sellerid=${mbean.id }"> <img
+						alt="" src="<%=source%>resources/members/${mbean.image}"
+						width="70" height="70"></a></td>
 				<td valign="top"><a href="tradeDetail.mb?sellerid=${sellerid}"><span
 						style="font-size: 14px; color: #101010; font-weight: bold;">${sellerid }</span>
 				</a></td>

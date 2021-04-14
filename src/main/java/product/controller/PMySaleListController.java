@@ -30,6 +30,7 @@ public class PMySaleListController {
 		String loginID = member.getId();
 		
 		List<ProductBean> pbean = pdao.getListById(loginID);
+		
 		model.addAttribute("mySaleLists", pbean);
 		model.addAttribute("sellerid", loginID);
 		

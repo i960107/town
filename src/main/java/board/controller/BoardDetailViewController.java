@@ -26,31 +26,17 @@ public class BoardDetailViewController {
 	@Autowired
 	MemberDao mdao;
 
-	
-	
-	
 	@RequestMapping(command)
 	public String doAction(@RequestParam("no") int no, Model model) {
 		dao.addReadcount(no);
 		BoardBean board = dao.getBoardByNo(no);
-		BoardBean previousBoard = dao.getBoardByNo(no-1);
-		BoardBean nextBoard= dao.getBoardByNo(no+1);
 		List<BoardFileBean> boardFileList = new ArrayList<BoardFileBean>();
-		List<BoardBean> replyList = new ArrayList<BoardBean>();
 		List<BoardLikeBean> likeList = new ArrayList<BoardLikeBean>();
 		likeList = dao.getLike(no);
-		replyList = dao.getReplyByNo(no);
 		boardFileList = dao.getFileBeans(boardFileList, no);
 		MemberBean writer = mdao.getMember(board.getWriter());
 		model.addAttribute("writer", writer);
-		if(previousBoard!=null) {
-		model.addAttribute("previousBoard",previousBoard );
-		}
-		if(nextBoard!=null) {
-		model.addAttribute("nextBoard",nextBoard);
-		}
 		model.addAttribute("board", board);
-		model.addAttribute("replyList", replyList);
 		model.addAttribute("boardFileList", boardFileList);
 		model.addAttribute("likeList", likeList);
 		model.addAttribute("likeCnt", likeList.size());
