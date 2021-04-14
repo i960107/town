@@ -6,9 +6,12 @@ public class ProductChatBean {
 	private String sellerid ;
 	private String buyerid ;
 	private String contents ;
-	private String reg_date ;
+	private String regdate ;
 	private String chatno ;
 	
+	public ProductChatBean() {
+		super();
+	}
 	public int getPno() {
 		return pno;
 	}
@@ -33,11 +36,11 @@ public class ProductChatBean {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public String getReg_date() {
-		return reg_date;
+	public String getregdate() {
+		return regdate;
 	}
-	public void setReg_date(String reg_date) {
-		this.reg_date = reg_date;
+	public void setregdate(String regdate) {
+		this.regdate = regdate;
 	}
 	public String getChatno() {
 		return chatno;
@@ -45,14 +48,14 @@ public class ProductChatBean {
 	public void setChatno(String chatno) {
 		this.chatno = chatno;
 	}
-	public ProductChatBean(int pno, String sellerid, String buyerid, String contents, String reg_date,
+	public ProductChatBean(int pno, String sellerid, String buyerid, String contents, String regdate,
 			String chatno) {
 		super();
 		this.pno = pno;
 		this.sellerid = sellerid;
 		this.buyerid = buyerid;
 		this.contents = contents;
-		this.reg_date = reg_date;
+		this.regdate = regdate;
 		this.chatno = chatno;
 	}
 	
