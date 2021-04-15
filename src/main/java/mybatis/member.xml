@@ -129,8 +129,8 @@
 	</select>
 	
 	<insert id="kakaoRegister">
-		insert into member(id, pw, gender, email, image)
-		values(#{id}, #{pw}, #{gender}, #{email}, #{image})
+		insert into member(id, pw, gender, email, image, site_status)
+		values(#{id}, #{pw}, #{gender}, #{email}, #{image}, 1)
 	</insert>
 
 	<!-- 사용자 세부 내용 보기 -->
