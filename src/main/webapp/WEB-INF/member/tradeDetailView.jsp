@@ -42,11 +42,14 @@
 	right: 8px;
 }
 
-@-webkit-keyframes animate-positive {
- 0% { width: 0%;}
-}
-@keyframes animate-positive{ 
+@-webkit-keyframes animate-positive { 
 0% {width: 0%;}
+
+}
+@
+keyframes animate-positive {
+ 0% {width: 0%;}
+
 }
 .profile {
 	width: 180px;
@@ -80,6 +83,9 @@
 	justify-content: center;
 	align-items: flex-start;
 }
+#bList div{
+width:100%;
+}
 
 .flex-container-column {
 	display: flex;
@@ -110,7 +116,7 @@
 </script>
 </head>
 <body>
-<%@ include file="./../common/main_top.jsp"%>
+	<%@ include file="./../common/main_top.jsp"%>
 	<div class="flex-container">
 		<div class="flex-container-row" style="width: 70%">
 			<!-- 사진과 이이디 -->
@@ -127,7 +133,7 @@
 			<div class=" flex-container-column">
 				<div>${mBean.address}</div>
 				<div>
-					<span>판매상품 : ${fn:length(pList) }</span>
+					<span>판매상품 : ${fn:length(pList)}개</span>
 				</div>
 				<div>
 					<h3 class="progress-title">매너온도</h3>
@@ -160,12 +166,16 @@
 					<h2>
 						<span onmouseover="style='cursor:pointer'" onclick="callPlist()"
 							class="list-table">판매 상품 목록</span> / <span onclick="callBlist()"
-							onmouseover="style='cursor:pointer'" class="list-table">동네생활 게시글
-							목록</span>
+							onmouseover="style='cursor:pointer'" class="list-table">동네생활
+							게시글 목록</span>/<span onclick="callBlist()"
+							onmouseover="style='cursor:pointer'" class="list-table">유저 리뷰</span>
 					</h2>
 				</div>
 				<div id="pList" class="flex-container-row">
 					<!-- 판매상품 리스트 이미지 -->
+					<c:if test="${fn:length(pList)==0}">
+						<div>판매한 상품이 없습니다</div>
+					</c:if>
 					<c:forEach var="i" items="${pList}">
 						<div style="padding: 15px;">
 							<a href="detail.prd?no=${i.no }&sellerid=${i.sellerid}"> <img
@@ -197,6 +207,10 @@
 								<td>조회수</td>
 								<td>작성일</td>
 							</tr>
+							<c:if test="${fn:length(bList)==0}">
+								<tr>
+									<td colspan=4>등록한 글이 없습니다</td></tr>
+							</c:if>
 							<c:forEach var="i" items="${bList}">
 								<tr>
 									<a href="detailView.bd?no=${i.ref}">
@@ -210,17 +224,22 @@
 							</c:forEach>
 						</table>
 					</div>
-			
+
 					<!-- 내가쓴 동네생활 댓글 -->
 					<div style="padding: 15px;">
 						<h3>동네생활 댓글</h3>
 						<table class="table">
-							<c:forEach var="i" items="${rList}">
 								<tr>
 									<td>원글 번호</td>
 									<td>내용</td>
 									<td>작성일</td>
 								</tr>
+									<c:if test="${fn:length(rList)==0}">
+										<tr>
+											<td colspan=4>등록한 댓글이 없습니다</td>
+										</tr>
+									</c:if>
+							<c:forEach var="i" items="${rList}">
 								<tr>
 									<a href="detailView.bd?no=${i.ref}">
 									<td>${i.ref}</td>
@@ -235,6 +254,6 @@
 			</div>
 		</section>
 	</div>
-<%@ include file="./../common/main_bottom.jsp"%>
+	<%@ include file="./../common/main_bottom.jsp"%>
 </body>
 </html>

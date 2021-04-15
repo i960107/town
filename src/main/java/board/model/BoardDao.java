@@ -30,14 +30,11 @@ public class BoardDao {
 
 	public List<BoardBean> getAllBoard(String address1, String address2) {
 		List<BoardBean> boardList = new ArrayList<BoardBean>();
-		String address=null;
-		if(address1!=null && address2!=null) {
-			address=address1+address2;
-		}
-		System.out.println("address"+address);
+	
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("address", address);
-		boardList = sqlSessionTemplate.selectList(namespace + ".getAllBoard",map);
+		map.put("address1", address1);
+		map.put("address2", address2);
+		boardList = sqlSessionTemplate.selectList(namespace + ".getAllBoard", map);
 		return boardList;
 	}
 
@@ -143,10 +140,20 @@ public class BoardDao {
 		lists = sqlSessionTemplate.selectList(namespace + ".getReplyByNo", no);
 		return lists;
 	}
-	//이미지 하나만 가져오기
+
+	// 이미지 하나만 가져오기
 	public String getThumnailName(int no) {
-		String thumbailName=sqlSessionTemplate.selectOne(namespace + ".getThumnailName", no);
+		String thumbailName = sqlSessionTemplate.selectOne(namespace + ".getThumnailName", no);
 		return thumbailName;
+	}
+	//게시글 업데이트 
+	public int updateBoard(BoardBean board) {
+		int cnt=sqlSessionTemplate.update(namespace + ".updateBoard", board);
+		return cnt;
+	}
+
+	public void fileDelete(int bno) {
+		sqlSessionTemplate.update(namespace + ".fileDelete", bno);
 	}
 
 }
