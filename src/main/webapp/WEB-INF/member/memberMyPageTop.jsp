@@ -50,8 +50,6 @@
 <br>
 <center>
 	<h2>나의 당근(MY PAGE)</h2><br>
-	${loginInfo.sitestatus }<br>
-	${loginInfo.image}<br>
 </center>
 <br>
 

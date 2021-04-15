@@ -355,9 +355,16 @@ textarea {
 				<!-- 회원 정보 -->
 				<td><a href="tradeDetail.mb?sellerid=${mbean.id }"> 
                 <div class="box">
-                <img alt="" src="<%=source%>resources/members/${mbean.image}" width="70" height="70" class="profile">
-                </a>
+                <c:if test="${mbean.sitestatus==0 }">
+						<img class="profile" width="70" height="70"
+							src="<%=request.getContextPath()%>/resources/members/${mbean.image}">
+						</c:if>
+						<c:if test="${mbean.sitestatus==1 }">
+						<img class="profile" width="70" height="70"
+							src="${mbean.image}">
+				</c:if>
                 </div>
+                </a>
                 </td>
                 <td valign="top">
                	<span class="subject">${mbean.id }</span>

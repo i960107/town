@@ -181,7 +181,7 @@ public class MLoginController {
 		String gender = "여";
 		if(kakaoProfile2.getkakao_account().gethas_gender()==null) {
 			gender = "여";
-			if(kakaoProfile2.getkakao_account().gethas_gender().equals("남")) {
+			if(kakaoProfile2.getkakao_account().gethas_gender().equals("남자")) {
 				gender = "남";
 			}
 		}
@@ -194,25 +194,24 @@ public class MLoginController {
 		mbean.setName(kakaoProfile2.getkakao_account().getProfile().getNickname());
 		//프로필 이미지
 		mbean.setImage(kakaoProfile2.getkakao_account().getProfile().getthumbnail_image_url());
-		mbean.setsitestatus(1);
 		//회원정보 세팅
 		mav.addObject("mbean", mbean);
 		int ck = mdao.kakaoLogin(mbean);
 		System.out.println("logincontroller : " + mbean.getId());
 		if(ck==0) {
-			PrintWriter pwriter = httpresponse.getWriter();
 			httpresponse.setContentType("text/html; charset=UTF-8");
 			System.out.println("oauthjoin : " + mbean.getId());
 			
 			mdao.kakaoRegister(mbean);
 
 		}
-		session.setAttribute("loginInfo", mbean);
+		mbean = mdao.getMember(mbean.getId());
 
 		if (session.getAttribute("destination") != null) {
 			gotoPage = (String) session.getAttribute("destination");
 			session.removeAttribute("destination");
 		}
+		session.setAttribute("loginInfo", mbean);
 		mav.setViewName(gotoPage);
 		
 		return mav;
