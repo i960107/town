@@ -175,4 +175,9 @@
 	insert into prd_reply
 	values(reply_seq.nextval, #{pno}, #{sellerid}, #{buyerid}, #{contents}, sysdate )
 </insert>
+
+<select id="getChatList" resultType="product.model.ProductChatBean">
+	select * from prd_reply
+	where buyer_id = #{id} or seller_id = #{id}
+</select>
 </mapper>

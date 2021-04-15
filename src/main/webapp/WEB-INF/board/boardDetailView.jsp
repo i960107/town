@@ -39,7 +39,7 @@
 }
 
 .box {
-	display:inline-block;
+	display: inline-block;
 	width: 100px;
 	height: 100px;
 	border-radius: 50%;
@@ -68,10 +68,6 @@
 	justify-content: flex-start;
 	width: 100%;
 }
-
-
-
-
 </style>
 <section class="blog-details spad">
 	<div class="container">
@@ -80,10 +76,10 @@
 				<div class="blog-details-inner">
 					<div class="blog-detail-title">
 						<h2>${board.subject}</h2>
-						<p>
+						<p><div class="box">
 							<a href='tradeDetail.mb?sellerid=${board.writer}'> <img
 								src="${pageContext.request.contextPath}/resources/members/${writer.image}"
-								class="img-circle" /> ${writer.id }
+								class="profil" /></div> ${writer.id }
 							</a>
 
 
@@ -148,7 +144,8 @@
 							</ul>
 						</div>
 						<div>
-						 <span>조회수</span>${board.readcount}
+							<span>조회수</span>${board.readcount}
+
 							<c:set var="loginId">${loginInfo.id}</c:set>
 							<c:set var="heart" value="&#10084;" />
 							<c:set var="likecondition" value="prdLike()" />
@@ -160,12 +157,22 @@
 								</c:if>
 							</c:forEach>
 							<input type="button" name="like" value="${heart }공감하기 ${likeCnt}"
-								onclick="${likecondition}" class="btn_img_like">
+								onclick="${likecondition}" class="btn_img_like"> <a
+								href="report.mb?reported_userid=${board.writer}"> <span
+								class="mcontent">신고하기</span></a>
 						</div>
 					</div>
 					<div align="center">
 						<input type="button" onClick="location.href='list.bd'"
 							value="목록보기">
+							<c:if test="${loginInfo.id==board.writer}">
+							
+								<input type="button" onClick="location.href='update.bd?no=${board.no}'"
+							value="수정하기">
+								<input type="button" onClick="location.href='delete.bd?no=${board.no}'"
+							value="삭제하기">
+							
+							</c:if>
 					</div>
 					<div class="blog-post flex-container">
 
@@ -173,11 +180,11 @@
 							<div>
 								<a href="detailView.bd?no=${previousBoard.no}" class="prev-blog">
 									<div class="pb-pic">
-									<div class="box">
-										<i class="ti-arrow-left"></i> <img
-											src="${pageContext.request.contextPath}/resources/${prevImage}"
-											alt="" class="profile">
-									</div>
+										<div class="box">
+											<i class="ti-arrow-left"></i> <img
+												src="${pageContext.request.contextPath}/resources/${prevImage}"
+												alt="" class="profile">
+										</div>
 									</div>
 									<div class="pb-text">
 										<span>Previous Post:</span>
@@ -221,51 +228,54 @@
 									<input type="hidden" name="ref" value="${board.no}"> <input
 										type="hidden" name="reLevel" value="2">
 									<div class="col-lg-6">
-										<a href='tradeDetail.mb?sellerid=${loginInfo.id}'> <div class="box"><img
-											src="${pageContext.request.contextPath}/resources/members/${loginInfo.image}"
-											class="profile" /> ${loginInfo.id }
-										</a></div>
-									</div>
-									<div class="col-lg-12">
-										<textarea name="contents" placeholder="Message"
-											style="margin-bottom: 15px"></textarea>
-										<button type="submit" class="site-btn">댓글달기</button>
+										<a href='tradeDetail.mb?sellerid=${loginInfo.id}'>
+											<div class="box">
+												<img
+													src="${pageContext.request.contextPath}/resources/members/${loginInfo.image}"
+													class="profile" /> ${loginInfo.id}
+										</a>
 									</div>
 								</div>
-							</form>
-						</c:if>
-						<c:if test="${loginInfo==null }">
-							<form class="comment-form" action="reply.bd">
-								<div class="row">
-									<div class="col-lg-12">
-										<textarea name="contents" disabled="disabled"
-											placeholder="로그인이 필요한 페이지입니다" style="margin-bottom: 15px"></textarea>
-										<button class="site-btn">로그인하기</button>
-									</div>
+								<div class="col-lg-12">
+									<textarea name="contents" placeholder="Message"
+										style="margin-bottom: 15px"></textarea>
+									<button type="submit" class="site-btn">댓글달기</button>
 								</div>
-							</form>
-
-						</c:if>
 					</div>
-					<!-- 댓글출력 -->
-					<div>
-						<c:forEach var="reply" items="${replyList}">
-							<div class="posted-by">
-								<div class="pb-text">
-									<a href="tradeDetail?sellerid=${reply.writer}"
-										style="display: inline"> ${reply.writer }</a><span><script
-											type="text/javascript">
-											document
-													.write(displayTime('<c:out value="${reply.regDate}"/>'));
-										</script></span>
-									<p>${reply.contents}</p>
+					</form>
+					</c:if>
+					<c:if test="${loginInfo==null }">
+						<form class="comment-form" action="reply.bd">
+							<div class="row">
+								<div class="col-lg-12">
+									<textarea name="contents" disabled="disabled"
+										placeholder="로그인이 필요한 페이지입니다" style="margin-bottom: 15px"></textarea>
+									<button class="site-btn">로그인하기</button>
 								</div>
 							</div>
-						</c:forEach>
-					</div>
+						</form>
+
+					</c:if>
+				</div>
+				<!-- 댓글출력 -->
+				<div>
+					<c:forEach var="reply" items="${replyList}">
+						<div class="posted-by">
+							<div class="pb-text">
+								<a href="tradeDetail?sellerid=${reply.writer}"
+									style="display: inline"> ${reply.writer}</a><span><script
+										type="text/javascript">
+										document
+												.write(displayTime('<c:out value="${reply.regDate}"/>'));
+									</script></span>
+								<p>${reply.contents}</p>
+							</div>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </section>
 

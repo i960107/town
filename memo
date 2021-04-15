@@ -48,7 +48,7 @@ CREATE TABLE product (
   address1 varchar2(40) DEFAULT null NULL,
   address2 varchar2(40) DEFAULT null NULL,
   address3 varchar2(40) DEFAULT null NULL,
-  contents  varchar2(250)  NULL,
+  contents  varchar2(1000)  NULL,
   price  number  NULL,
   refund_availability  number DEFAULT 1 NULL, --1불가능 / 0가능
   reg_date  date DEFAULT sysdate NULL,
@@ -109,10 +109,11 @@ drop table town_board cascade constraints;
 CREATE TABLE  town_board  (
   no  number primary key,
   writer  varchar2(50) DEFAULT null NOT NULL,
-  address  varchar2(120) DEFAULT null NULL,
+  address1  varchar2(20) DEFAULT null NULL,
+  address2  varchar2(20) DEFAULT null NULL,
   subject  varchar2(250)  NULL,
-  category  varchar2(40) NOT NULL,
-  contents  varchar2(250)  NULL,
+  category  varchar2(40) ,
+  contents  varchar2(1000)  NULL,
   ref  number  NULL,
   re_level  number  NULL,
   re_step  number  NULL,
@@ -140,16 +141,16 @@ increment by 1
 minvalue 0
 nocache;
 
-insert into member values('hong','1234','홍길동','남','01012341234','hong@gmail.com','서울특별시 서초구 강남대로 12길 6','서울특별시','서초구','양재동','image.jpg',1,1);
+insert into member values('hong','1234','홍길동','남','01012341234','hong@gmail.com','서울특별시 서초구 강남대로 12길 6','서울특별시','서초구','양재동','image.jpg',1,1,0);
 insert into manner_temp values('hong',default);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','삼겹살 같이 먹어요',10001,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','소라 같이 먹어요',10001,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','회 같이 먹어요',10002,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','소고기 같이 먹어요',10003,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','엽떡 같이 먹어요',10005,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','돈까스 같이 먹어요',10004,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','국밥 같이 먹어요',10007,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시 서초구','술 같이 먹어요',10003,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시','서초구','삼겹살 같이 먹어요',10001,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시',' 서초구','소라 같이 먹어요',10001,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시',' 서초구','회 같이 먹어요',10002,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시','서초구','소고기 같이 먹어요',10003,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시',' 서초구','엽떡 같이 먹어요',10005,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 ','서초구','돈까스 같이 먹어요',10004,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 ','서초구','국밥 같이 먹어요',10007,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시 ','서초구','술 같이 먹어요',10003,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
 commit;
 
 insert into town_board_category values(10000+boardcate_seq.nextval,'같이해요');
@@ -290,15 +291,15 @@ CREATE TABLE  prd_reply  (
   reg_date date default sysdate
 );
 --product 카테고리 기본 설정
-insert into product_category values(prodcate_seq.nextval,'디지털/가전');
-insert into product_category values(prodcate_seq.nextval,'가구/인테리어');
-insert into product_category values(prodcate_seq.nextval,'유아동/유아도서');
-insert into product_category values(prodcate_seq.nextval,'생활/가공식품');
-insert into product_category values(prodcate_seq.nextval,'스포츠/레저');
-insert into product_category values(prodcate_seq.nextval,'스포츠/레저');
-insert into product_category values(prodcate_seq.nextval,'여성잡화');
-insert into product_category values(prodcate_seq.nextval,'여성의류');
-insert into product_category values(prodcate_seq.nextval,'남성패션/잡화');
+insert into product_category values(10000+prodcate_seq.nextval,'디지털/가전');
+insert into product_category values(10000+prodcate_seq.nextval,'가구/인테리어');
+insert into product_category values(10000+prodcate_seq.nextval,'유아동/유아도서');
+insert into product_category values(10000+prodcate_seq.nextval,'생활/가공식품');
+insert into product_category values(10000+prodcate_seq.nextval,'스포츠/레저');
+insert into product_category values(10000+prodcate_seq.nextval,'스포츠/레저');
+insert into product_category values(10000+prodcate_seq.nextval,'여성잡화');
+insert into product_category values(10000+prodcate_seq.nextval,'여성의류');
+insert into product_category values(10000+prodcate_seq.nextval,'남성패션/잡화');
 commit;
 commit;
 

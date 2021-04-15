@@ -20,8 +20,11 @@
 	<select id="getAllBoard" resultType="board.model.BoardBean">
 		select * from town_board
 		where re_level =1
-		<if test="address!=null">
-		and address = #{address}
+		<if test="address1!=null">
+		and address1 = #{address1}
+		</if>
+		<if test="address2!=null">
+		and address2 = #{address2}
 		</if>
 		order by reg_date desc
 	</select>
@@ -47,7 +50,7 @@
 	<!-- 원글쓰기 -->
 	<insert id="insertBoard">
 		insert into town_board
-		values(town_board_seq.nextval,#{writer},#{address},#{subject},#{category},#{contents},town_board_seq.currval,1,1,sysdate,0)
+		values(town_board_seq.nextval,#{writer},#{address1},#{address2},#{subject},#{category},#{contents},town_board_seq.currval,1,1,sysdate,0)
 	</insert>
 	<!-- 파일db업로드 -->
 	<insert id="fileUpload">
@@ -111,4 +114,11 @@
 	<select id="getThumnailName" resultType="String">
 	select filename from town_board_file where bno=#{no}  and rownum=1 order by no desc
 	</select>
+	<!-- 게시글 업데이트 -->
+	<update id="updateBoard">
+	update town_board set subject =#{subject} , address1=#{address1}, address2=#{address2}, contents=#{contents} category=#{category} where no=#{no}
+	</update>
+	<delete id="fileDelete">
+	delete town_board_file where bno=#{bno}
+	</delete>
 </mapper>

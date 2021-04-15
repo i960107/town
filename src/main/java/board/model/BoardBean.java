@@ -1,16 +1,19 @@
 package board.model;
 
+import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.Range;
-import org.springframework.web.multipart.MultipartFile;
 
 public class BoardBean {
 private int no;
 private String writer;
-private String address;
+	/* @Pattern(regexp="^[^0]",message="광역시도를 선택하세요") */
+private String address1;
+	/* @Pattern(regexp="^[^0]" ,message="시/군/구를 선택하세요") */
+private String address2;
 @NotBlank(message = "제목은 필수 입력사항입니다.")
 private String subject;
 @NotNull(message="카테고리 1개 이상 선택해주세요")
@@ -18,25 +21,11 @@ private String category;
 @NotNull(message = "10자 이상 입력해주세요.")
 @Size(min=10, message = "10자 이상 입력해주세요.")
 private String contents;
-public BoardBean() {
-	super();
-	// TODO Auto-generated constructor stub
-}
-public BoardBean(int no, String writer, String address, String subject, String category, String contents, int ref,
-		int reLevel, int reStep, String regDate, int readcount) {
-	super();
-	this.no = no;
-	this.writer = writer;
-	this.address = address;
-	this.subject = subject;
-	this.category = category;
-	this.contents = contents;
-	this.ref = ref;
-	this.reLevel = reLevel;
-	this.reStep = reStep;
-	this.regDate = regDate;
-	this.readcount = readcount;
-}
+private int ref;
+private int reLevel;
+private int reStep;
+private String regDate;
+private int readcount;
 public int getNo() {
 	return no;
 }
@@ -49,11 +38,17 @@ public String getWriter() {
 public void setWriter(String writer) {
 	this.writer = writer;
 }
-public String getAddress() {
-	return address;
+public String getAddress1() {
+	return address1;
 }
-public void setAddress(String address) {
-	this.address = address;
+public void setAddress1(String address1) {
+	this.address1 = address1;
+}
+public String getAddress2() {
+	return address2;
+}
+public void setAddress2(String address2) {
+	this.address2 = address2;
 }
 public String getSubject() {
 	return subject;
@@ -71,8 +66,7 @@ public String getContents() {
 	return contents;
 }
 public void setContents(String contents) {
-	String contentsA=contents.replaceAll("\n","<br>");
-	this.contents = contentsA;
+	this.contents = contents;
 }
 public int getRef() {
 	return ref;
@@ -104,10 +98,5 @@ public int getReadcount() {
 public void setReadcount(int readcount) {
 	this.readcount = readcount;
 }
-private int ref;
-private int reLevel;
-private int reStep;
-private String regDate;
-private int readcount;
 
 }

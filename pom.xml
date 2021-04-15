@@ -177,6 +177,7 @@
 			<version>1.3.2</version>
 		</dependency>
 
+		<!-- object mapper library -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>

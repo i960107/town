@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="./../common/common.jsp"%>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+
 <script type="text/javascript">
 	//사용시 주의점 myform 안에 include 해야함
 	//selected 기능은 session loginid에를 기준으로 MemberBean mbean;을 넘겨야 사용 가능
@@ -77,8 +76,8 @@
 			class="nice-select ">
 			<option value="0">광역시도 선택
 				<c:forEach var="i" items="<%=addr%>">
-					<option value="${i}" <c:if test="${searchAddress1==i}">selected</c:if>
-						<c:if test="${searchAddress1==null and fn:contains(mbean.address1, i) }">selected</c:if>>${i }
+					<option value="${i}" <c:if test="${address1==i}">selected</c:if>
+						<c:if test="${address1==null and mbean.address1==i}">selected</c:if>>${i }
 				</c:forEach>
 		</select>
 	</div>
@@ -86,10 +85,10 @@
 		<select name="address2" id="address2" class="nice-select "
 			onchange="changeSelect2()">
 			<option value="0">시/군/구 선택
-				<c:if test="${searchAddress2!=null}">
-					<option value="${searchAddress2}" selected="selected">${searchAddress2}
+				<c:if test="${address2!=null}">
+					<option value="${address2}" selected="selected">${searchAddress2}
 				</c:if>
-				<c:if test="${searchAddress2==null and mbean.address2!=null}">
+				<c:if test="${address2==null and mbean.address2!=null}">
 					<option value="${mbean.address2 }" selected="selected">${mbean.address2 }
 				</c:if>
 		</select>
