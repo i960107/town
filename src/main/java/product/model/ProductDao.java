@@ -184,6 +184,12 @@ public class ProductDao {
 		sqlSessionTemplate.insert(nameSpace+".insertChat", cbean);
 	}
 
+	public List<ProductChatBean> getChatList(String id) {
+		List<ProductChatBean> clist = new ArrayList<ProductChatBean>();
+		clist = sqlSessionTemplate.selectList(nameSpace+".getChatList", id);
+		return clist;
+	}
+
 
 
 

@@ -111,7 +111,7 @@ public class MLoginController {
 	}
 	
 	@RequestMapping(value = "kakaologin.mb", method = RequestMethod.GET)
-	public @ResponseBody ModelAndView doAction(String code,
+	public @ResponseBody ModelAndView doAction(String code, //responsebody는 json을 이용해서 비동기통신을 위해 사용
 			HttpServletResponse httpresponse,
 			HttpSession session) throws IllegalStateException, IOException {
 		System.out.println(code);
@@ -196,15 +196,17 @@ public class MLoginController {
 		mbean.setImage(kakaoProfile2.getkakao_account().getProfile().getthumbnail_image_url());
 		//회원정보 세팅
 		mav.addObject("mbean", mbean);
+		//가입여부 체크
 		int ck = mdao.kakaoLogin(mbean);
 		System.out.println("logincontroller : " + mbean.getId());
 		if(ck==0) {
 			httpresponse.setContentType("text/html; charset=UTF-8");
 			System.out.println("oauthjoin : " + mbean.getId());
-			
+			//DB입력
 			mdao.kakaoRegister(mbean);
 
 		}
+		//session 입력용 mbean 최신 정보 로드
 		mbean = mdao.getMember(mbean.getId());
 
 		if (session.getAttribute("destination") != null) {

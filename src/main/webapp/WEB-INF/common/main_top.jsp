@@ -131,7 +131,7 @@
 							<li><a href="<%=saleList %>">중고거래</a></li>
 							<li><a href="<%=boardList %>">동네생활</a></li>
 							<li><a href="<%=productWrite %>">판매하기</a></li>
-							<li><a href="">채팅</a></li>
+							<li><a href="chatList.prd">채팅</a></li>
 						</ul>
 					</nav>
 				</div>
