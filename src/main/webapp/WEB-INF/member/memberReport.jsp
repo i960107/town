@@ -44,11 +44,14 @@
 </style>
 
 <script type="text/javascript">
-	function report(){
-		alert("1");
-		//var keyword = $("#keyword").val();
-		//location.href='saleList.prd?keyword='+keyword;
+	// 체크하지 않았을 경우
+	function check(){
+		if( $('input[type=radio][name=report]:checked').length == 0 ) {
+		    alert("신고 사유를 선택해주세요");
+		    return false;
+		}
 	}
+	
 </script>
 
 <h2><b> 사용자 신고하기</b></h2>
@@ -60,7 +63,7 @@
                 <div class="col-lg-12">
                     <div class="faq-accordin">
                         <div class="accordion" id="accordionExample">
-                        <form action="report.mb" name="report" method="post">
+                        <form action="report.mb" name="myform" method="post" onsubmit="return check()">
                          	
                   			<!-- 판매자=신고당한사람 hidden으로 챙겨서 넘겨주기 -->
                          	<input type="hidden" name="reported_userid" value="${reported_userid}">

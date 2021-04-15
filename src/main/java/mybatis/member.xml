@@ -122,4 +122,9 @@
 		where id = #{id}
 	</update>
 	
+	<!-- 사용자 세부 내용 보기 -->
+	<select id="getReportDetailById" resultType="member.model.MemberReportBean">
+		select * from report order by no
+	</select>
+	
 </mapper>

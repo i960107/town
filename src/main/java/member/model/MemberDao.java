@@ -115,6 +115,13 @@ public class MemberDao {
 		return 0;
 	}
 
+	// memberReportDetail 리스트 조회
+	public List<MemberReportBean> getReportDetailById(String id) {
+		List<MemberReportBean> lists = new ArrayList<MemberReportBean>();
+		lists = sqlSessionTemplate.selectList(nameSpace+".getReportDetailById");
+		return lists;
+	}
+
 
 
 }
