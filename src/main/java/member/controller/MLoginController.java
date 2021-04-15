@@ -178,14 +178,14 @@ public class MLoginController {
 		//이메일
 		mbean.setEmail(kakaoProfile2.getkakao_account().getEmail());
 		//성별
-		String gender = "남";
+		String gender = "여";
 		if(kakaoProfile2.getkakao_account().gethas_gender()==null) {
-			gender = "남";
-			if(kakaoProfile2.getkakao_account().gethas_gender()!=true) {
-				gender = "여";
+			gender = "여";
+			if(kakaoProfile2.getkakao_account().gethas_gender().equals("남")) {
+				gender = "남";
 			}
 		}
-		
+		mbean.setName(kakaoProfile2.getkakao_account().getProfile().getNickname());
 		mbean.setGender(gender);
 		//패스워드 랜덤값
 		UUID temppw = UUID.randomUUID();
@@ -203,12 +203,13 @@ public class MLoginController {
 			httpresponse.setContentType("text/html; charset=UTF-8");
 			System.out.println("oauthjoin : " + mbean.getId());
 			//1. 업로드 위치
-			String uploadPath = servletContext.getRealPath("/resources/members");
+			String uploadPath = servletContext.getRealPath("/resources/members/");
 			System.out.println("uploadPath:"+uploadPath+mbean.getImage());
 			
 			
 			MultipartFile multi = mbean.getUpload();
 			InputStream in = new URL(mbean.getImage()).openStream();
+			System.out.println("image url upload test" + in);
 			int joinCnt = mdao.kakaoRegister(mbean);
 			
 			if(joinCnt == 1) {
