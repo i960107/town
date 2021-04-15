@@ -19,12 +19,12 @@
 
 	</select>
 
-	<!-- 회원가입 -->
+	<!-- 일반 회원가입 -->
 	<insert id="Register">
 		insert into member
 		values(#{id}, #{pw}, #{name}, #{gender}, #{phonenumber}, #{email}, #{address},
 		#{address1}, #{address2}, #{address3},
-		#{image}, default, 1, 0)
+		#{image}, default, default, default, 0)
 
 	</insert>
 
@@ -122,9 +122,20 @@
 		where id = #{id}
 	</update>
 	
+
+	<select id="ckkakaoLogin" resultType="int">
+		select count(*) from member
+		where id = #{id}
+	</select>
+	
+	<insert id="kakaoRegister">
+		insert into member(id, pw, gender, email, image, site_status)
+		values(#{id}, #{pw}, #{gender}, #{email}, #{image}, 1)
+	</insert>
+
 	<!-- 사용자 세부 내용 보기 -->
 	<select id="getReportDetailById" resultType="member.model.MemberReportBean">
 		select * from report order by no
 	</select>
-	
+
 </mapper>
