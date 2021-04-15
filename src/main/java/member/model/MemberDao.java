@@ -133,6 +133,10 @@ public class MemberDao {
 
 	}
 
+	public void updateAddrOAuth(MemberBean mbean) {
+		sqlSessionTemplate.update(nameSpace+".updateAddrOAuth", mbean);
+	}
+
 
 
 }

@@ -138,4 +138,8 @@
 		select * from report order by no
 	</select>
 
+	<update id="updateAddrOAuth">
+		update member set address = #{address}, address1 = #{address1}, address2 = #{address2}, address3 = #{address3}
+		where id = #{id} 
+	</update>
 </mapper>
