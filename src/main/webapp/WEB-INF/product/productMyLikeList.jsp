@@ -31,7 +31,7 @@
 										<div class="product-price">
 											<a href="#">${plList.sellerid}</a>
 										</div>
-										<h5>${plList.address}</h5>
+										<h5>${plList.address1} ${plList.address2}</h5>
 										<h5>	
 											<fmt:formatNumber value="${plList.price}" pattern="###,###"/> won
 										</h5>

@@ -34,7 +34,16 @@ public class ProductBean {
 	private List<MultipartFile> upload;
 	private String image1;
 	
+	// mysalelist에서 카테고리 볼라고 넣어둠
+	private String categoryName;
 	
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
 	// 메인에서 디테일뷰 넘어가는것 땜에 넣어둠
 	private int rank;
 	
