@@ -30,9 +30,9 @@ MLoginController - > memberLoginForm.jsp
 													 <a href="#" class="forget-pass">Forget your Password</a>
 												</div>
 											</div>
-											<button type="submit" class="site-btn login-btn">Sign In</button><br>
+											<button type="submit" class="site-btn login-btn">Sign In</button><br> <Br>
 											<a href="https://kauth.kakao.com/oauth/authorize?client_id=6a065330b97f7755c569892d3485de7b&redirect_uri=http://localhost:8080/ex/kakaologin.mb&response_type=code">
-											<img alt="" src="<%=source%>resources/img/kakao_login_btn.png" width="232px"></a>
+											<img src="<%=source%>resources/kakaologin.png"></a>
 									</form>
 									<div class="switch-login">
 									<a href="memberJoin.mb" class="or-login">Or Create An Account</a>
