@@ -5,14 +5,15 @@
 
 
 MListController -> memberList.jsp <br>
-
+<!-- 
 <script type="text/javascript">
+	// 계정 정지 클릭했을 때
 	function stopId(){
-		alert("1");
-		location.href='';
+		var returnValue = confirm("계정을 정지하겠습니까?");
+		alert(returnValue);
 	}
 </script>
-
+ -->
 
 <form action="memberReportUpdate.mb" method="post" name="myform">
 <table align="center">
@@ -34,7 +35,7 @@ MListController -> memberList.jsp <br>
 								<th class="group-input"><label>주소</label></th>
 								<th class="group-input"><label>신고횟수</label></th>
 								<th class="group-input"><label>계정 상태</label></th>
-								<th class="group-input"><label>계정 정지</label></th>
+								<th class="group-input"><label>계정 정지/복구</label></th>
 							</tr>
 							
 							<c:forEach var="mlist" items="${lists }">
@@ -54,7 +55,7 @@ MListController -> memberList.jsp <br>
 									<td class="group-input"><label>${mlist.address }</label></td>
 									<td class="group-input">
 										<label>
-											<a href="memberReportDetail.mb?id=${mlist.id}">${mlist.reportcount }</a>
+											<a href="memberReportDetail.mb?id=${mlist.id}">${mlist.reportcount } 회</a>
 										</label>
 									</td>
 									<td class="group-input"><label>
@@ -63,7 +64,15 @@ MListController -> memberList.jsp <br>
 									</label></td>
 									<td class="group-input">
 										<lable>
-											<a href="memberStatusUpdate.mb?id=${mlist.id}&memberstatus=${mlist.memberstatus}">계정 정지</a>
+											<c:if test="${mlist.memberstatus == 1 }">
+												<a href="memberStatusUpdate.mb?id=${mlist.id}&memberstatus=${mlist.memberstatus}"
+												onclick="return confirm('계정을 정지하겠습니까?');">계정 정지</a>
+											</c:if>
+											
+											<c:if test="${mlist.memberstatus != 1 }">
+												<a href="memberStatusUpdate.mb?id=${mlist.id}&memberstatus=${mlist.memberstatus}"
+												onclick="return confirm('계정을 복구하겠습니까?');">계정 복구</a>
+											</c:if>
 										</lable>
 									</td>
 								</tr>
