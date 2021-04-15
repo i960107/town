@@ -63,7 +63,7 @@
 	<select id="getAllProductByID"
 		resultType="product.model.ProductBean">
 		select * from product
-		where seller_id = #{sellerid} and deal_status = 1
+		where seller_id = #{sellerid}
 	</select>
 
 	<!-- 판매자 게시글 보기 -->

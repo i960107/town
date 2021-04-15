@@ -14,7 +14,17 @@ function goPopup(){
 		document.form.emdNm.value = emdNm;
 	}
 </script>
-
+<style type="text/css">
+.flex-container {
+	display: flex;
+	justify-content: start;
+}
+.err{
+font-weight:bold;
+color:red;
+font-size:15px;
+}
+</style>
 <center>
 	<div class="register-form">
 		<h2>동네생활 글쓰기${board.category}</h2>
@@ -36,8 +46,12 @@ function goPopup(){
 				</tr>
 				<tr>
 					<td class="group-input" width="200px"><label>주소</label></td>
-					<td class="group-input" width="500px"><input type="text"
-						name="address" readOnly value="${loginInfo.address}"></td>
+					<td class="group-input" width="500px">
+						<form name="myform">
+							<c:set var="mbean" value="${loginInfo}" />
+							<%@include file="../common/addrArray.jsp"%>
+						</form>
+					</td>
 				</tr>
 
 				<tr>
