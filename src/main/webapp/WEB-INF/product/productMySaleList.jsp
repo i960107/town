@@ -74,7 +74,7 @@ productMySaleList.jsp
 
 
 					</table>
-						</form>
+					</form>
 
 				</div>
 			</div>

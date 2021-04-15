@@ -42,6 +42,39 @@ public class MemberBean {
 	@NotBlank(message = "비밀번호 확인은 필수 입력사항입니다")
 	private String pwCheck;
 	
+	// 신고 갯수
+	private int reportcount;
+	
+	public int getReportcount() {
+		return reportcount;
+	}
+
+	public void setReportcount(int reportcount) {
+		this.reportcount = reportcount;
+	}
+
+	// 신고하기 cnt 받아오는 값
+	private int count;
+	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+	
+	// 신고하기 계정 상태
+	private int reportstatus;
+	
+	public int getReportstatus() {
+		return reportstatus;
+	}
+
+	public void setReportstatus(int reportstatus) {
+		this.reportstatus = reportstatus;
+	}
+
 	//이미지 파일명 받아오려고 필요함
 	private MultipartFile upload;
 	
@@ -69,7 +102,7 @@ public class MemberBean {
 
 	public MemberBean(String id, String pw, String name, String gender, String phonenumber, String email,
 			String address, String address1, String address2, String address3, String image, String memberstatus,
-			int authority) {
+			int authority, String pwCheck, int reportcount, int count, MultipartFile upload) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -84,6 +117,10 @@ public class MemberBean {
 		this.image = image;
 		this.memberstatus = memberstatus;
 		this.authority = authority;
+		this.pwCheck = pwCheck;
+		this.reportcount = reportcount;
+		this.count = count;
+		this.upload = upload;
 	}
 
 	public String getId() {
@@ -189,5 +226,6 @@ public class MemberBean {
 	public void setAuthority(int authority) {
 		this.authority = authority;
 	}
+
 
 }

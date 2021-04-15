@@ -13,12 +13,15 @@ MListController -> memberList.jsp <br>
 	}
 </script>
 
+
+<form action="memberReportUpdate.mb" method="post" name="myform">
 <table align="center">
 	<tr>
 		<td>
 			<div class="register-login-section spad">
 				<div class="register-form">
 					<h2>회원 관리</h2>
+					
 					<table width="1100px" class="sectable" border="1">
 						<div class="group-input">
 							<tr align="center">
@@ -32,9 +35,8 @@ MListController -> memberList.jsp <br>
 								<th class="group-input"><label>신고횟수</label></th>
 								<th class="group-input"><label>계정 상태</label></th>
 								<th class="group-input"><label>계정 정지</label></th>
-
 							</tr>
-
+							
 							<c:forEach var="mlist" items="${lists }">
 								<tr align="center">
 									<td class="group-input">
@@ -43,32 +45,36 @@ MListController -> memberList.jsp <br>
 											<c:if test="${mlist.authority != 0 }" > user </c:if>
 										</label>
 									</td>
+								
 									<td class="group-input"><label>${mlist.id } </label></td>
 									<td class="group-input"><label>${mlist.name } </label></td>
 									<td class="group-input"><label>${mlist.gender }</label></td>
 									<td class="group-input"><label>${mlist.phonenumber } </label></td>
 									<td class="group-input"><label>${mlist.email }</label></td>
 									<td class="group-input"><label>${mlist.address }</label></td>
-									<td class="group-input"><label>신고횟수</label></td>
+									<td class="group-input"><label>${mlist.reportcount }</label></td>
 									<td class="group-input"><label>
 										<c:if test="${mlist.memberstatus == 1 }"> 활동 가능</c:if>
 										<c:if test="${mlist.memberstatus != 1 }"> 정지</c:if>
 									</label></td>
 									<td class="group-input">
-										<input type="button" onClick="stopId()" value="계정 정지">
+										<lable>
+											<a href="memberStatusUpdate.mb?id=${mlist.id}&memberstatus=${mlist.memberstatus}">계정 정지</a>
+										</lable>
 									</td>
-									
 								</tr>
 							</c:forEach>
 				
 						</div>
+						
 					</table>
-
+					
 				</div>
 			</div>
 		</td>
 	</tr>
 </table>
+</form>
 
 <br>
 <br>
