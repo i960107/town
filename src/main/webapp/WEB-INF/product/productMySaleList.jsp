@@ -14,6 +14,7 @@ productMySaleList.jsp
 			<div class="register-login-section spad">
 				<div class="register-form">
 					<h2>나의 판매상품</h2>
+					<b>※ 글 내용 수정은 상세보기 페이지에서 가능합니다.</b> <br><br>
 					<form action="prodDealup.prd" method="post" id="myForm">
 					
 					<table width="900px" class="sectable" border="1">
@@ -46,7 +47,7 @@ productMySaleList.jsp
 											href="detail.prd?no=${mslist.no}&sellerid=${sellerid}">
 												${mslist.subject } </a>
 									</label></td>
-									<td class="group-input"><label>${mslist.category }
+									<td class="group-input"><label>${mslist.categoryName }
 									</label></td>
 									<td class="group-input"><label>${mslist.contents }
 									</label></td>
