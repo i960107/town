@@ -122,4 +122,20 @@
 		where id = #{id}
 	</update>
 	
+
+	<select id="ckkakaoLogin" resultType="int">
+		select count(*) from member
+		where id = #{id}
+	</select>
+	
+	<insert id="kakaoRegister">
+		insert into member(id, pw, gender, email, image)
+		values(#{id}, #{pw}, #{gender}, #{email}, #{image})
+	</insert>
+
+	<!-- 사용자 세부 내용 보기 -->
+	<select id="getReportDetailById" resultType="member.model.MemberReportBean">
+		select * from report order by no
+	</select>
+
 </mapper>

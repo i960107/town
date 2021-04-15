@@ -52,7 +52,11 @@ MListController -> memberList.jsp <br>
 									<td class="group-input"><label>${mlist.phonenumber } </label></td>
 									<td class="group-input"><label>${mlist.email }</label></td>
 									<td class="group-input"><label>${mlist.address }</label></td>
-									<td class="group-input"><label>${mlist.reportcount }</label></td>
+									<td class="group-input">
+										<label>
+											<a href="memberReportDetail.mb?id=${mlist.id}">${mlist.reportcount }</a>
+										</label>
+									</td>
 									<td class="group-input"><label>
 										<c:if test="${mlist.memberstatus == 1 }"> 활동 가능</c:if>
 										<c:if test="${mlist.memberstatus != 1 }"> 정지</c:if>

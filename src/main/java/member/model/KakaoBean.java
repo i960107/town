@@ -21,6 +21,15 @@ public class KakaoBean {
 		private Boolean is_email_verified;
 		private String email;
 		private Boolean has_gender;
+		private Boolean gender;
+		public Boolean getGender() {
+			return gender;
+		}
+
+		public void setGender(Boolean gender) {
+			this.gender = gender;
+		}
+
 		private Boolean gender_needs_agreement;
 		private Map<String, Object> additional_properties = new HashMap<String, Object>();
 
@@ -58,7 +67,7 @@ public class KakaoBean {
 			this.gender_needs_agreement = gender_needs_agreement;
 		}
 		
-		class Profile {
+		public class Profile {
 
 			private String nickname;
 			private String thumbnail_image_url;
