@@ -224,7 +224,8 @@ textarea {
         location.href = "update.prd?no=${pBean.no}";
     }
     function chat() {
-		location.href = "reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}";
+    	window.open("reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}", "구매연락하기", "width=500, height=700, left=100, top=50");
+		//location.href = "reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}";
 	}
     
 	/* 신고하기 함수 호출 */
@@ -238,6 +239,12 @@ textarea {
 		아니면 ....
 	}
 	 */
+	 
+	 
+	 
+	 
+	 
+	 
 </script>
 <script src="${pageContext.request.contextPath}/resources/script/timeFormat.js"></script>
 <%@include file="prdStyle.jsp"%>
