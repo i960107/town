@@ -24,7 +24,7 @@
 		insert into member
 		values(#{id}, #{pw}, #{name}, #{gender}, #{phonenumber}, #{email}, #{address},
 		#{address1}, #{address2}, #{address3},
-		#{image}, default, 1)
+		#{image}, default, 1, 0)
 
 	</insert>
 
@@ -63,7 +63,7 @@
 	<select id="getAllProductByID"
 		resultType="product.model.ProductBean">
 		select * from product
-		where seller_id = #{sellerid} and deal_status = 1
+		where seller_id = #{sellerid}
 	</select>
 
 	<!-- 판매자 게시글 보기 -->
@@ -104,8 +104,22 @@
 	</insert>
 	
 	<!-- 사용자 신고하기 갯수 -->
-<!--<select id="getReportCnt" resultType="member.model.MemberReportBeans">
-		select * from report
-	</select> -->
+	<select id="getReportCnt" resultType="int">
+	select REPORTED_USERID, count(*) as count from report
+	where REPORTED_USERID = #{REPORTED_USERID}
+	GROUP BY REPORTED_USERID;
+	</select>
+	
+	<!-- 신고당한 횟수 cnt update -->
+	<update id="getUpCount">
+		update member set report_count =  report_count+1
+		where id = #{reported_userid}
+	</update>
+
+	<!-- 신고하기 계정상태 업데이트 -->
+	<update id="getUpStatus">
+		update member set member_status = #{memberstatus}
+		where id = #{id}
+	</update>
 	
 </mapper>

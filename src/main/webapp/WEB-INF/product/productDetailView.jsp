@@ -223,6 +223,10 @@ textarea {
     function updateProduct() {
         location.href = "update.prd?no=${pBean.no}";
     }
+    function chat() {
+		location.href = "reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}";
+	}
+    
 	/* 신고하기 함수 호출 */
 /* 	function report(sellerid){
 		alert("신고하기 버튼 클릭");
@@ -235,7 +239,7 @@ textarea {
 	}
 	 */
 </script>
-
+<script src="${pageContext.request.contextPath}/resources/script/timeFormat.js"></script>
 <%@include file="prdStyle.jsp"%>
 
 <%
@@ -267,7 +271,9 @@ textarea {
 							<!-- 조회수 / 등록일 / 신고 -->
 							<td width="120"><span class="mcontent">&#128065;
 									${pBean.readcount }</span></td>
-							<td width="120"><span class="mcontent">${pBean.regdate }</span></td>
+							<td width="120"><span class="mcontent"><script >
+					document.write(displayTime('<c:out value="${pBean.regdate}"/>'));
+				</script> </span></td>
 							<!-- <td width="120"><input type="button" onclick="report()" value="신고하기"></td> 신고하기 버튼 -->
 							<td width="120">
 								<a href="report.mb?reported_userid=${sellerid}">
@@ -327,7 +333,7 @@ textarea {
 
 							<td>
 								<!-- 판매자 = 수정하기 / 구매자 = 연락하기 --> <c:set var="btnType">연락하기</c:set>
-								<c:set var="scriptType">chat()</c:set> <c:if
+									<c:set var="scriptType">chat()</c:set> <c:if
 									test="${loginId==pBean.sellerid }">
 									<c:set var="btnType">수정하기</c:set>
 									<c:set var="scriptType">updateProduct()</c:set>
@@ -352,6 +358,9 @@ textarea {
                 <img alt="" src="<%=source%>resources/members/${mbean.image}" width="70" height="70" class="profile">
                 </a>
                 </div>
+                </td>
+                <td valign="top">
+               	<span class="subject">${mbean.id }</span>
                 </td>
 			</tr>
 		</table>

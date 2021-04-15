@@ -12,7 +12,8 @@ CREATE TABLE member (
  address3 varchar2(40) DEFAULT null NULL,
  image varchar2(100)  NULL,
  member_status number DEFAULT 1 NULL, -- 0일 경우 계정 정지
- authority number  default 1
+ authority number  default 1,
+ report_count number default 0 -- 사용자 신고하기 갯수 칼럼 추가
 );
 insert into member values('admin','1234','관리자','남','01012341234','admin@admin.com','서울특별시 마포구 신촌로 176','서울특별시','마포구','신촌로 176','image.jpg','1',0);
 
@@ -274,11 +275,29 @@ CREATE TABLE  report  (
 -- 중고거래 방법   - 
 drop table prd_reply cascade constraints;
 CREATE TABLE  prd_reply  (
+	no number primary key,
   pno  number ,
-  seller_id varchar2(50) DEFAULT null NOT NULL,
-  buyer_id varchar2(50) DEFAULT null NOT NULL,
-  contents  varchar2(250)  NULL,
-  reg_date date default sysdate,
-  CONSTRAINT chatno PRIMARY KEY(pno, seller_id, buyer_id)
+  seller_id varchar2(50) NOT NULL,
+  buyer_id varchar2(50)  NOT NULL,
+  contents  varchar2(250) ,
+  reg_date date default sysdate
 );
+--product 카테고리 기본 설정
+insert into product_category values(prodcate_seq.nextval,'디지털/가전');
+insert into product_category values(prodcate_seq.nextval,'가구/인테리어');
+insert into product_category values(prodcate_seq.nextval,'유아동/유아도서');
+insert into product_category values(prodcate_seq.nextval,'생활/가공식품');
+insert into product_category values(prodcate_seq.nextval,'스포츠/레저');
+insert into product_category values(prodcate_seq.nextval,'스포츠/레저');
+insert into product_category values(prodcate_seq.nextval,'여성잡화');
+insert into product_category values(prodcate_seq.nextval,'여성의류');
+insert into product_category values(prodcate_seq.nextval,'남성패션/잡화');
+commit;
+commit;
 
+drop sequence reply_seq;
+create sequence reply_seq
+start with 0
+increment by 1
+minvalue 0
+nocache;
