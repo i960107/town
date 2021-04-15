@@ -63,13 +63,13 @@
 
 					<c:if test="${loginInfo.image != null}">
 						<a href="memberUpdate.mb"> 
-						<c:if test="${loginInfo.sitestatus==0 }">
+						<c:if test="${mbean.sitestatus==0 }">
 						<img class="profile"
-							src="<%=request.getContextPath()%>/resources/members/${loginInfo.image}">
+							src="<%=request.getContextPath()%>/resources/members/${mbean.image}">
 						</c:if>
-						<c:if test="${loginInfo.sitestatus==1 }">
+						<c:if test="${mbean.sitestatus==1 }">
 						<img class="profile"
-							src="${loginInfo.image}">
+							src="${mbean.image}">
 						</c:if>
 						</a>
 					</c:if>

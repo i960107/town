@@ -17,7 +17,8 @@ CREATE TABLE member (
  site_status number  NULL -- 일반회원,카카오 회원 설정 , 일반0 카카오 1
 );
 insert into member values('admin','1234','관리자','남','01012341234','admin@admin.com','서울특별시 마포구 신촌로 176','서울특별시','마포구','신촌로 176','image.jpg',0,1,0,0);
-
+update member set authority = 0 where id = 'admin'; -- 관리자 권한 업데이트
+commit;
 
 drop table member_deal cascade constraints;
 CREATE TABLE member_deal (

@@ -31,7 +31,7 @@
 	from (select rank() over(order by readcount desc) as rank,
 	no,seller_id, subject, price, readcount, category, address1, address2, image1, reg_date
 	from product )
-	where rank between 1 and 12
+	where rank between 1 and 10
 </select>
 
 <!-- 상품 목록 조회 -->
