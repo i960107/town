@@ -20,8 +20,8 @@
 			<c:set var="step" value="0" />
 			<c:forEach var="i" items="${searchList}">
 				<c:set var="step" value="${step+1 }" />
-				<td width="300" height="300"><a
-					href="detail.prd?no=${i.no}&sellerid=${i.sellerid}"> <img
+				<td width="300" height="300">
+				<a href="detail.prd?no=${i.no}&sellerid=${i.sellerid}"> <img
 						alt="" src="<%=request.getContextPath()%>/resources/${i.image1}"
 						height="200" width="200">
 				</a> <br><script >

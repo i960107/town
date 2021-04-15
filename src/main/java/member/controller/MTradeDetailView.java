@@ -43,7 +43,7 @@ public class MTradeDetailView {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(getPage);
 		//판매자 정보
-		MemberBean mBean = mDao.getMember(sellerid);
+		MemberBean mbean = mDao.getMember(sellerid);
 		//판매자 상품리스트
 		List<ProductBean> pList = mDao.getAllProductByID(sellerid);
 		//판매자 게시글 리스트
@@ -53,7 +53,7 @@ public class MTradeDetailView {
 		//매너온도
 		float mtemp = mDao.getTemp(sellerid);
 		//조회하려는 유저가 관리자일때 뒤로가기
-		if(mBean.getAuthority()==0) {
+		if(mbean.getAuthority()==0) {
 			response.setCharacterEncoding("text/html;charset=UTF-8");
 			PrintWriter out=response.getWriter();
 			String str="<script type='text/javascript'>";
@@ -64,7 +64,7 @@ public class MTradeDetailView {
 			return null;
 		}
 		//데이터 넘김
-		mav.addObject("mBean", mBean);
+		mav.addObject("mbean", mbean);
 		mav.addObject("bList", bList);
 		mav.addObject("rList", rList);
 		mav.addObject("mtemp", mtemp);
