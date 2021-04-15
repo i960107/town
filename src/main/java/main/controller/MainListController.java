@@ -26,7 +26,7 @@ public class MainListController {
 		mav.setViewName(getPage);
 		List<ProductBean> list = pDao.getPopList();
 		
-		System.out.println("메인리스트 prd no:"+ list.get(0).getNo()); //null이 맞음  rank 별칭선언으로 넘어오는거 rank로 받아옴
+		//System.out.println("메인리스트 prd no:"+ list.get(0).getNo()); //null이 맞음  rank 별칭선언으로 넘어오는거 rank로 받아옴
 		
 		mav.addObject("list", list);
 		
