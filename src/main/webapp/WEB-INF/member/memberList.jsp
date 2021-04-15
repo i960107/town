@@ -51,7 +51,7 @@ MListController -> memberList.jsp <br>
 									</td>
 									<td class="group-input"><label>
 										<c:if test="${mlist.memberstatus == 1 }"> 활동 가능</c:if>
-										<c:if test="${mlist.memberstatus != 1 }"> 정지</c:if>
+										<c:if test="${mlist.memberstatus == 0 }"> 정지</c:if>
 									</label></td>
 									<td class="group-input">
 										<lable>
@@ -60,7 +60,7 @@ MListController -> memberList.jsp <br>
 												onclick="return confirm('계정을 정지하겠습니까?');">계정 정지</a>
 											</c:if>
 											
-											<c:if test="${mlist.memberstatus != 1 }">
+											<c:if test="${mlist.memberstatus == 0 }">
 												<a href="memberStatusUpdate.mb?id=${mlist.id}&memberstatus=${mlist.memberstatus}"
 												onclick="return confirm('계정을 복구하겠습니까?');">계정 복구</a>
 											</c:if>

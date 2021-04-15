@@ -24,6 +24,7 @@ public class MReportController {
 	private final String command = "report.mb";
 	private final String getPage = "memberReport";
 	private final String gotoPage = "redirect:saleList.prd";
+	private final String go2Page = "memberLoginForm";
 	
 	@Autowired
 	MemberDao mDao;
@@ -78,6 +79,7 @@ public class MReportController {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		ModelAndView mav = new ModelAndView();
+		
 		
 		if(reportBean.getReport() != null) {
 			if(reportID.equals(reportBean.getReported_userid())) {
