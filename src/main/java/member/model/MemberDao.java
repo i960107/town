@@ -125,6 +125,13 @@ public class MemberDao {
 		sqlSessionTemplate.insert(nameSpace+".mannerTemp", mbean);
 		return cnt;
 	}
+	// memberReportDetail 리스트 조회
+	public List<MemberReportBean> getReportDetailById(String id) {
+		List<MemberReportBean> lists = new ArrayList<MemberReportBean>();
+		lists = sqlSessionTemplate.selectList(nameSpace+".getReportDetailById");
+		return lists;
+
+	}
 
 
 

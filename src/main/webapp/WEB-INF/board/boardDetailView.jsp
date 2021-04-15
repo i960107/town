@@ -73,7 +73,6 @@
 
 
 </style>
-
 <section class="blog-details spad">
 	<div class="container">
 		<div class="row">
