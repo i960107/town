@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -27,22 +28,23 @@ public class boardListController {
 	private String goToPage = "boardList";
 	@Autowired
 	BoardDao dao;
+	@Autowired
+	ServletContext context;
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String doActionGet(Model model, HttpSession session,
-			@RequestParam(value = "address1", required = false) String address1, 
-			@RequestParam(value = "address2", required = false) String address2
-			) {
+			@RequestParam(value = "address1", required = false) String address1,
+			@RequestParam(value = "address2", required = false) String address2) {
 		List<BoardCategoryBean> categoryList = dao.getAllCategory();
-		session.setAttribute("categoryList", categoryList);
-		List<BoardBean> boardList = dao.getAllBoard(address1,address2);
+		context.setAttribute("categoryList", categoryList);
+		List<BoardBean> boardList = dao.getAllBoard(address1, address2);
 		List<BoardFileBean> boardFileList = new ArrayList<BoardFileBean>();
 		for (int i = 0; i < boardList.size(); i++) {
 			int bno = boardList.get(i).getNo();
 			boardFileList = dao.getFileBeans(boardFileList, bno);
 		}
-		model.addAttribute("searchAddress1", address1);
-		model.addAttribute("searchAddress2", address2);
+		model.addAttribute("address1", address1);
+		model.addAttribute("address2", address2);
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("boardFileList", boardFileList);
 		return goToPage;
@@ -50,10 +52,9 @@ public class boardListController {
 
 	@RequestMapping(value = command, method = RequestMethod.POST)
 	public String doActionPost(Model model, @RequestParam(value = "category", required = false) String category,
-			@RequestParam(value = "keyword", required = false) String keyword, 
-			@RequestParam(value = "address1", required = false) String address1, 
-			@RequestParam(value = "address2", required = false) String address2,
-			HttpServletResponse response)
+			@RequestParam(value = "keyword", required = false) String keyword,
+			@RequestParam(value = "address1", required = false) String address1,
+			@RequestParam(value = "address2", required = false) String address2, HttpServletResponse response)
 			throws IOException {
 		if (category == null) {
 			System.out.println("여기오나");
@@ -65,7 +66,7 @@ public class boardListController {
 			pwriter.print("</script>");
 			pwriter.flush();
 		}
-		System.out.println("주소"+address1+address2);
+		System.out.println("주소" + address1 + address2);
 		model.addAttribute("category", category);
 		model.addAttribute("keyword", keyword);
 		List<BoardBean> boardList = dao.getBoardByCategoryKeyword(category, keyword);

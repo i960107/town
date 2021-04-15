@@ -28,15 +28,18 @@ public class BoardDetailViewController {
 
 	@RequestMapping(command)
 	public String doAction(@RequestParam("no") int no, Model model) {
+		
+		//조회수 올리기
+		dao.addReadcount(no);
 		// 글,댓글 가져오기
 		BoardBean board = dao.getBoardByNo(no);
-		List<BoardFileBean> boardFileList = new ArrayList<BoardFileBean>();
 		model.addAttribute("board", board);
+		List<BoardFileBean> boardFileList = new ArrayList<BoardFileBean>();
+		boardFileList = dao.getFileBeans(boardFileList, no);
 		model.addAttribute("boardFileList", boardFileList);
 		List<BoardBean> replyList = new ArrayList<BoardBean>();
-		model.addAttribute("replyList", replyList);
 		replyList = dao.getReplyByNo(no);
-		boardFileList = dao.getFileBeans(boardFileList, no);
+		model.addAttribute("replyList", replyList);
 		
 		// 이전글 가져오기
 		int previousNo = no - 1;

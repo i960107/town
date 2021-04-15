@@ -38,10 +38,8 @@ public class boardInsertController {
 	public String doActionPost(MultipartHttpServletRequest mhsq, @ModelAttribute("board") @Valid BoardBean board,
 			BindingResult result) throws IllegalStateException, IOException {
 		if (result.hasErrors()) {
-			System.out.println("오류인데");
 			return getPage;
 		} else {
-
 			dao.insertBoard(board);
 			int bno=dao.getMaxBoardNo();
 			String uploadPath = servletContext.getRealPath("resources");

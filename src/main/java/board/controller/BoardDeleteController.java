@@ -27,6 +27,7 @@ public class BoardDeleteController {
 	@RequestMapping(command)
 	private String doAction(@RequestParam("no") int no) {
 		dao.deleteBoard(no);
+		dao.fileDelete(no);
 		List<BoardFileBean> boardFileList = new ArrayList<BoardFileBean>();
 		boardFileList = dao.getFileBeans(boardFileList, no);
 		String uploadPath = context.getRealPath("resources");

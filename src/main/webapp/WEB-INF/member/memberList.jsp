@@ -5,15 +5,6 @@
 
 
 MListController -> memberList.jsp <br>
-<!-- 
-<script type="text/javascript">
-	// 계정 정지 클릭했을 때
-	function stopId(){
-		var returnValue = confirm("계정을 정지하겠습니까?");
-		alert(returnValue);
-	}
-</script>
- -->
 
 <form action="memberReportUpdate.mb" method="post" name="myform">
 <table align="center">
@@ -23,7 +14,7 @@ MListController -> memberList.jsp <br>
 				<div class="register-form">
 					<h2>회원 관리</h2>
 					
-					<table width="1100px" class="sectable" border="1">
+					<table width="1200px" class="sectable" border="1">
 						<div class="group-input">
 							<tr align="center">
 								<th class="group-input"><label>권한 </label></th>

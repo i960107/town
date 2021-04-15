@@ -18,6 +18,7 @@
 		<!-- 인터셉터:로그인 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/tradeReview.mb" />
+			<mvc:mapping path="/report.mb" />
 			<ref bean="AuthLoginInterceptor" />
 		</mvc:interceptor>
 		<!-- 인터셉터:일반사용자만 -->
