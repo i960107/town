@@ -2,7 +2,11 @@ package member.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -174,14 +178,14 @@ public class MLoginController {
 		//이메일
 		mbean.setEmail(kakaoProfile2.getkakao_account().getEmail());
 		//성별
-		String gender = "남";
+		String gender = "여";
 		if(kakaoProfile2.getkakao_account().gethas_gender()==null) {
-			gender = "남";
-			if(kakaoProfile2.getkakao_account().gethas_gender()!=true) {
-				gender = "여";
+			gender = "여";
+			if(kakaoProfile2.getkakao_account().gethas_gender().equals("남자")) {
+				gender = "남";
 			}
 		}
-		
+		mbean.setName(kakaoProfile2.getkakao_account().getProfile().getNickname());
 		mbean.setGender(gender);
 		//패스워드 랜덤값
 		UUID temppw = UUID.randomUUID();
@@ -195,33 +199,19 @@ public class MLoginController {
 		int ck = mdao.kakaoLogin(mbean);
 		System.out.println("logincontroller : " + mbean.getId());
 		if(ck==0) {
-			PrintWriter pwriter = httpresponse.getWriter();
 			httpresponse.setContentType("text/html; charset=UTF-8");
 			System.out.println("oauthjoin : " + mbean.getId());
-			//1. 업로드 위치
-			String uploadPath = servletContext.getRealPath("/resources/members");
-			System.out.println("uploadPath:"+uploadPath+mbean.getImage());
 			
-			
-			MultipartFile multi = mbean.getUpload();
-			
-			int joinCnt = mdao.kakaoRegister(mbean);
-			
-			if(joinCnt == 1) {
-				/*if(mbean.getImage() != "") {
-					File file = new File(uploadPath+"/"+mbean.getImage());
-					multi.transferTo(file);
-				}
-				*/
-				
-			}
+			mdao.kakaoRegister(mbean);
+
 		}
-		session.setAttribute("loginInfo", mbean);
+		mbean = mdao.getMember(mbean.getId());
 
 		if (session.getAttribute("destination") != null) {
 			gotoPage = (String) session.getAttribute("destination");
 			session.removeAttribute("destination");
 		}
+		session.setAttribute("loginInfo", mbean);
 		mav.setViewName(gotoPage);
 		
 		return mav;

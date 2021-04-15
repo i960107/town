@@ -1,13 +1,10 @@
 package member.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import member.model.MemberBean;
 import member.model.MemberDao;
@@ -34,21 +31,15 @@ public class MemberStatusUpdate {
 		System.out.println("mbean.getId():" + mbean.getId());
 		System.out.println("mbean.getMemberstatus():" + mbean.getMemberstatus());
 		
-		//if(Integer.parseInt(memberstatus) == 1) { // 활동 가능
-		if(memberstatus.equals("활동 가능")) { // 활동 가능
-			mbean.setMemberstatus("활동 불가"); // string -> int로....????
+		if(memberstatus.equals("1")) { // 활동 가능
+			mbean.setMemberstatus("0");
 		}
-		//if(Integer.parseInt(memberstatus) == 0) { // 활동 불가
-		if(memberstatus.equals("활동 불가")) { // 활동 불가
-			mbean.setMemberstatus("활동 가능");
+		if(memberstatus.equals("0")) { // 활동 불가
+			mbean.setMemberstatus("1");
 		}
 		
 		int upStatus = mdao.getUpStatus(mbean);
-		/*
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("lists", lists);
-		mav.setViewName(getPage);
-		*/
+
 		return getPage;
 	}
 	

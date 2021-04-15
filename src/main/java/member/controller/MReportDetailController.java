@@ -24,8 +24,10 @@ public class MReportDetailController {
 		
 		MemberBean member = new MemberBean();
 		String id = member.getId();
+		System.out.println("MReportDetail id:" + id);
 		
-		List<MemberReportBean> mrbean = mdao.getReportDetailById(id);
+		List<MemberReportBean> mrbean = mdao.getReportDetailById(member.getId());
+		System.out.println("mrbean:" + mrbean);
 		
 		model.addAttribute("mrbean", mrbean);
 		model.addAttribute("id", id);
