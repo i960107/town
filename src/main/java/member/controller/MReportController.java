@@ -85,9 +85,15 @@ public class MReportController {
 				/*pwriter.print("<script type='text/javascript'>");
 				pwriter.print("alert('판매자와 신고자가 같습니다.");
 				pwriter.print("</script>");
-				pwriter.flush(); */
+				pwriter.flush();
+				redirect 전에 alert 창 띄우기
+				컨트롤러 redirect 전에 script로 alert 창 띄우기 안됨 ................
+				*/
+				
 			}else {
+				// 신고하기 DB에 삽입
 				int cnt = mDao.reportUser(reportBean);
+				mDao.getUpCount(reported_userid);
 			}
 		}
 		
@@ -95,7 +101,7 @@ public class MReportController {
 		/*if(reportID.equals(reported_userid)) {
 			pwriter.print("<script type='text/javascript'>");
 			pwriter.print("alert('판매자와 신고자가 같습니다.");
-			pwriter.print("location.href='-1'");
+			pwriter.print("window.location.href='-2'");
 			pwriter.print("</script>");
 			pwriter.flush();
 			mav.setViewName(getPage);
@@ -109,8 +115,11 @@ public class MReportController {
 			mav.setViewName("gotoPage");
 			return mav;
 		}*/
+		
 		mav.setViewName(gotoPage);
 		return mav;
+		
+		
 	}
 	
 

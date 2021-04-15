@@ -96,14 +96,25 @@ public class MemberDao {
 		return cnt;
 	}
 
-	//신고하기 개수 가져오기
-/*	
-	public List<MemberReportBean> getReport(int no) {
-		List<MemberReportBean> reportList = new ArrayList<MemberReportBean>();
-		reportList = sqlSessionTemplate.selectList(nameSpace+".getReport", no);
-		return reportList;
+	//신고하기 갯수 가져오기
+	public int getReportCnt(String reported_userid, int count) {
+		int reportCnt = sqlSessionTemplate.selectOne(nameSpace+".getReportCnt");
+		return reportCnt;
 	}
-	*/
 	
+	// memberTable count 업데이트
+	public void getUpCount(String reported_userid) {
+		int upCountmember = sqlSessionTemplate.update(nameSpace+".getUpCount",reported_userid);
+			System.out.println("멤버 신고하기 갯수 업데이트:"+upCountmember);
+	}
+	
+	// memberTable status 업데이트
+	public int getUpStatus(MemberBean mbean) {
+		int upStatus = sqlSessionTemplate.update(nameSpace+".getUpStatus", mbean);
+		System.out.println("upStatus:" + upStatus);
+		return 0;
+	}
+
+
 
 }

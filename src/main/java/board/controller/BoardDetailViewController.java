@@ -26,32 +26,60 @@ public class BoardDetailViewController {
 	@Autowired
 	MemberDao mdao;
 
-	
-	
-	
 	@RequestMapping(command)
 	public String doAction(@RequestParam("no") int no, Model model) {
-		dao.addReadcount(no);
+		// 글,댓글 가져오기
 		BoardBean board = dao.getBoardByNo(no);
-		BoardBean previousBoard = dao.getBoardByNo(no-1);
-		BoardBean nextBoard= dao.getBoardByNo(no+1);
 		List<BoardFileBean> boardFileList = new ArrayList<BoardFileBean>();
+		model.addAttribute("board", board);
+		model.addAttribute("boardFileList", boardFileList);
 		List<BoardBean> replyList = new ArrayList<BoardBean>();
-		List<BoardLikeBean> likeList = new ArrayList<BoardLikeBean>();
-		likeList = dao.getLike(no);
+		model.addAttribute("replyList", replyList);
 		replyList = dao.getReplyByNo(no);
 		boardFileList = dao.getFileBeans(boardFileList, no);
+		
+		// 이전글 가져오기
+		int previousNo = no - 1;
+		BoardBean previousBoard = null;
+		while (previousBoard == null) {
+			previousBoard = dao.getBoardByNo(previousNo);
+			previousNo = previousNo - 1;
+			if (previousNo < 1)
+				break;
+		}
+		if (previousBoard != null) {
+			String prevImage=dao.getThumnailName(previousBoard.getNo());
+			model.addAttribute("previousBoard", previousBoard);
+			model.addAttribute("prevImage", prevImage);
+		}
+		//다음글 가져오기
+		int nextNo = no + 1;
+		int maxNo=dao.getMaxBoardNo();
+		BoardBean nextBoard = null;
+		while (nextBoard == null) {
+			nextBoard = dao.getBoardByNo(nextNo);
+			nextNo = nextNo + 1;
+			if (nextNo > maxNo)
+				break;
+		}
+		if (nextBoard != null) {
+			String nextImage=dao.getThumnailName(nextBoard.getNo());
+			model.addAttribute("nextBoard", nextBoard);
+			model.addAttribute("nextImage", nextImage);
+		}
+			
+		
+		//공감하기 가져오기
+		List<BoardLikeBean> likeList = new ArrayList<BoardLikeBean>();
+		likeList = dao.getLike(no);
+	
+		
+		//글쓴이 정보 가져오기
 		MemberBean writer = mdao.getMember(board.getWriter());
 		model.addAttribute("writer", writer);
-		if(previousBoard!=null) {
-		model.addAttribute("previousBoard",previousBoard );
-		}
-		if(nextBoard!=null) {
-		model.addAttribute("nextBoard",nextBoard);
-		}
-		model.addAttribute("board", board);
-		model.addAttribute("replyList", replyList);
-		model.addAttribute("boardFileList", boardFileList);
+
+	
+	
 		model.addAttribute("likeList", likeList);
 		model.addAttribute("likeCnt", likeList.size());
 		return getPage;

@@ -39,10 +39,17 @@
 }
 
 .box {
-	width: 30px;
-	height: 30px;
+	display:inline-block;
+	width: 100px;
+	height: 100px;
 	border-radius: 50%;
 	overflow: hidden;
+}
+
+.profile {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 #carousel-example-generic {
@@ -54,7 +61,6 @@
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
-	background-color: cyan;
 }
 
 .flex-container-start {
@@ -62,6 +68,10 @@
 	justify-content: flex-start;
 	width: 100%;
 }
+
+
+
+
 </style>
 
 <section class="blog-details spad">
@@ -139,7 +149,7 @@
 							</ul>
 						</div>
 						<div>
-							<i class="fa fa-comment-o"></i> 댓글수 <span>조회수</span>${board.readcount}
+						 <span>조회수</span>${board.readcount}
 							<c:set var="loginId">${loginInfo.id}</c:set>
 							<c:set var="heart" value="&#10084;" />
 							<c:set var="likecondition" value="prdLike()" />
@@ -161,22 +171,45 @@
 					<div class="blog-post flex-container">
 
 						<c:if test="${previousBoard!=null}">
-							<a href="detailView.bd?no=${board.no-1}" class="prev-blog">
-
-								<div class="pb-text">
-									<span>Previous Post:</span>
-									<h5>${previousBoard.subject}</h5>
-								</div>
-							</a>
+							<div>
+								<a href="detailView.bd?no=${previousBoard.no}" class="prev-blog">
+									<div class="pb-pic">
+									<div class="box">
+										<i class="ti-arrow-left"></i> <img
+											src="${pageContext.request.contextPath}/resources/${prevImage}"
+											alt="" class="profile">
+									</div>
+									</div>
+									<div class="pb-text">
+										<span>Previous Post:</span>
+										<h5>${previousBoard.subject}</h5>
+									</div>
+								</a>
+							</div>
+						</c:if>
+						<c:if test="${previousBoard==null}">
+							<div>처음 글 입니다</div>
 						</c:if>
 						<c:if test="${nextBoard!=null}">
-							<a href="detailView.bd?no=${board.no+1}" class="next-blog">
-
-								<div class="nb-text">
-									<span>Next Post:</span>
-									<h5>${nextBoard.subject}</h5>
-								</div>
-							</a>
+							<div>
+								<a href="detailView.bd?no=${nextBoard.no}" class="next-blog">
+									<div class="pb-pic">
+										<div class="box">
+											<img
+												src="${pageContext.request.contextPath}/resources/${nextImage}"
+												alt="" class="profile">
+										</div>
+										<i class="ti-arrow-right"></i>
+									</div>
+									<div class="nb-text">
+										<span>Next Post:</span>
+										<h5>${nextBoard.subject}</h5>
+									</div>
+								</a>
+							</div>
+						</c:if>
+						<c:if test="${nextBoard==null}">
+							<div>마지막 글 입니다</div>
 						</c:if>
 					</div>
 					<!-- 댓글쓰기 -->
@@ -189,28 +222,26 @@
 									<input type="hidden" name="ref" value="${board.no}"> <input
 										type="hidden" name="reLevel" value="2">
 									<div class="col-lg-6">
-										<a href='tradeDetail.mb?sellerid=${loginInfo.id}'> <img
+										<a href='tradeDetail.mb?sellerid=${loginInfo.id}'> <div class="box"><img
 											src="${pageContext.request.contextPath}/resources/members/${loginInfo.image}"
-											class="img-circle" /> ${loginInfo.id }
-										</a>
+											class="profile" /> ${loginInfo.id }
+										</a></div>
 									</div>
 									<div class="col-lg-12">
-										<textarea name="contents" placeholder="Message"></textarea>
+										<textarea name="contents" placeholder="Message"
+											style="margin-bottom: 15px"></textarea>
 										<button type="submit" class="site-btn">댓글달기</button>
 									</div>
 								</div>
 							</form>
 						</c:if>
 						<c:if test="${loginInfo==null }">
-
-							<form class="comment-form">
+							<form class="comment-form" action="reply.bd">
 								<div class="row">
-
 									<div class="col-lg-12">
-
-										<textarea name="contents" placeholder="로그인이 필요한 페이지입니다"></textarea>
-										<button onclick="location.href='memberlogin.mb'"
-											class="site-btn">로그인하기</button>
+										<textarea name="contents" disabled="disabled"
+											placeholder="로그인이 필요한 페이지입니다" style="margin-bottom: 15px"></textarea>
+										<button class="site-btn">로그인하기</button>
 									</div>
 								</div>
 							</form>
@@ -222,12 +253,13 @@
 						<c:forEach var="reply" items="${replyList}">
 							<div class="posted-by">
 								<div class="pb-text">
-									<a href="tradeDetail?sellerid=${reply.writer}" style="display:inline">
-										${reply.writer }</a><span><script
-												type="text/javascript">
-											document.write(displayTime('<c:out value="${reply.regDate}"/>'));
+									<a href="tradeDetail?sellerid=${reply.writer}"
+										style="display: inline"> ${reply.writer }</a><span><script
+											type="text/javascript">
+											document
+													.write(displayTime('<c:out value="${reply.regDate}"/>'));
 										</script></span>
-									 <p>${reply.contents}</p>
+									<p>${reply.contents}</p>
 								</div>
 							</div>
 						</c:forEach>

@@ -239,7 +239,7 @@ textarea {
 	}
 	 */
 </script>
-
+<script src="${pageContext.request.contextPath}/resources/script/timeFormat.js"></script>
 <%@include file="prdStyle.jsp"%>
 
 <%
@@ -271,7 +271,9 @@ textarea {
 							<!-- 조회수 / 등록일 / 신고 -->
 							<td width="120"><span class="mcontent">&#128065;
 									${pBean.readcount }</span></td>
-							<td width="120"><span class="mcontent">${pBean.regdate }</span></td>
+							<td width="120"><span class="mcontent"><script >
+					document.write(displayTime('<c:out value="${pBean.regdate}"/>'));
+				</script> </span></td>
 							<!-- <td width="120"><input type="button" onclick="report()" value="신고하기"></td> 신고하기 버튼 -->
 							<td width="120">
 								<a href="report.mb?reported_userid=${sellerid}">
