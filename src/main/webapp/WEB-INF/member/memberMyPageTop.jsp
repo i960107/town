@@ -49,7 +49,9 @@
 
 <br>
 <center>
-	<h2>나의 당근(MY PAGE)</h2>
+	<h2>나의 당근(MY PAGE)</h2><br>
+	${loginInfo.sitestatus }<br>
+	${loginInfo.image}<br>
 </center>
 <br>
 
@@ -60,8 +62,15 @@
 				<div class="box">
 
 					<c:if test="${loginInfo.image != null}">
-						<a href="memberUpdate.mb"> <img class="profile"
+						<a href="memberUpdate.mb"> 
+						<c:if test="${loginInfo.sitestatus==0 }">
+						<img class="profile"
 							src="<%=request.getContextPath()%>/resources/members/${loginInfo.image}">
+						</c:if>
+						<c:if test="${loginInfo.sitestatus==1 }">
+						<img class="profile"
+							src="${loginInfo.image}">
+						</c:if>
 						</a>
 					</c:if>
 

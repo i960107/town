@@ -194,6 +194,7 @@ public class MLoginController {
 		mbean.setName(kakaoProfile2.getkakao_account().getProfile().getNickname());
 		//프로필 이미지
 		mbean.setImage(kakaoProfile2.getkakao_account().getProfile().getthumbnail_image_url());
+		mbean.setsitestatus(1);
 		//회원정보 세팅
 		mav.addObject("mbean", mbean);
 		int ck = mdao.kakaoLogin(mbean);
@@ -202,25 +203,9 @@ public class MLoginController {
 			PrintWriter pwriter = httpresponse.getWriter();
 			httpresponse.setContentType("text/html; charset=UTF-8");
 			System.out.println("oauthjoin : " + mbean.getId());
-			//1. 업로드 위치
-			String uploadPath = servletContext.getRealPath("/resources/members/");
-			System.out.println("uploadPath:"+uploadPath+mbean.getImage());
 			
-			
-			MultipartFile multi = mbean.getUpload();
-			InputStream in = new URL(mbean.getImage()).openStream();
-			System.out.println("image url upload test" + in);
-			int joinCnt = mdao.kakaoRegister(mbean);
-			
-			if(joinCnt == 1) {
-				Files.copy(in, Paths.get(uploadPath));
-				/*if(mbean.getImage() != "") {
-					File file = new File(uploadPath+"/"+mbean.getImage());
-					multi.transferTo(file);
-				}
-				*/
-				
-			}
+			mdao.kakaoRegister(mbean);
+
 		}
 		session.setAttribute("loginInfo", mbean);
 
