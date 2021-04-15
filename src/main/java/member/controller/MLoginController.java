@@ -28,6 +28,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import member.model.OAuthTokenBean;
+import member.model.KakaoBean;
 import member.model.MemberBean;
 import member.model.MemberDao;
 
@@ -139,9 +140,20 @@ public class MLoginController {
 		
 		// post 방식으로 http 요청
 		ResponseEntity<String> response2 = rt2.exchange(
-				"https://kauth.kakao.com/v2/user/me", HttpMethod.POST, kakaoProfile, String.class
+				"https://kapi.kakao.com/v2/user/me", 
+				HttpMethod.POST,
+				kakaoProfile,
+				String.class
 				); //토큰 발급 요청주소, 요청방식, 넘길 데이터, 받을 데이터 타입
 		mav.setViewName(gotoPage);
+		System.out.println(response2.getBody());
+		
+		ObjectMapper objectMapper2 = new ObjectMapper();
+		KakaoBean kakaoProfile2 = objectMapper2.readValue(response2.getBody(), KakaoBean.class);
+		
+		System.out.println("-------카카오 정보-----");
+		System.out.println(kakaoProfile2.getId());
+		System.out.println(kakaoProfile2.getkakao_account().getEmail());
 		
 		return response2.getBody();
 	}
