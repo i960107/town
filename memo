@@ -1,7 +1,7 @@
  drop table member cascade constraints;
 CREATE TABLE member (
  id varchar2(50) primary key,
- pw varchar2(30)  NULL,
+ pw varchar2(50)  NULL,
  name varchar2(15)  NULL,
  gender varchar2(6) DEFAULT null NULL,
  phone_number varchar2(50) DEFAULT null NULL,
@@ -33,7 +33,7 @@ CREATE TABLE manner_temp (
 );
 
 insert into manner_temp
-value('admin', 100);
+values('admin', 100);
 
 drop table product cascade constraints;
 CREATE TABLE product (

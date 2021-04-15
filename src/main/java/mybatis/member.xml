@@ -122,4 +122,13 @@
 		where id = #{id}
 	</update>
 	
+	<select id="ckkakaoLogin" resultType="int">
+		select count(*) from member
+		where id = #{id}
+	</select>
+	
+	<insert id="kakaoRegister">
+		insert into member(id, pw, gender, email, image)
+		values(#{id}, #{pw}, #{gender}, #{email}, #{image})
+	</insert>
 </mapper>

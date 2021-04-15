@@ -115,6 +115,17 @@ public class MemberDao {
 		return 0;
 	}
 
+	public int kakaoLogin(MemberBean mbean) {
+		int ck = sqlSessionTemplate.selectOne(nameSpace+".ckkakaoLogin", mbean);
+		return ck;
+	}
+
+	public int kakaoRegister(MemberBean mbean) {
+		int cnt = sqlSessionTemplate.insert(nameSpace+".kakaoRegister", mbean);
+		sqlSessionTemplate.insert(nameSpace+".mannerTemp", mbean);
+		return cnt;
+	}
+
 
 
 }
