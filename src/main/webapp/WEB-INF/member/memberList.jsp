@@ -6,14 +6,6 @@
 
 MListController -> memberList.jsp <br>
 
-<script type="text/javascript">
-	function stopId(){
-		alert("1");
-		location.href='';
-	}
-</script>
-
-
 <form action="memberReportUpdate.mb" method="post" name="myform">
 <table align="center">
 	<tr>
@@ -22,7 +14,7 @@ MListController -> memberList.jsp <br>
 				<div class="register-form">
 					<h2>회원 관리</h2>
 					
-					<table width="1100px" class="sectable" border="1">
+					<table width="1200px" class="sectable" border="1">
 						<div class="group-input">
 							<tr align="center">
 								<th class="group-input"><label>권한 </label></th>
@@ -34,7 +26,7 @@ MListController -> memberList.jsp <br>
 								<th class="group-input"><label>주소</label></th>
 								<th class="group-input"><label>신고횟수</label></th>
 								<th class="group-input"><label>계정 상태</label></th>
-								<th class="group-input"><label>계정 정지</label></th>
+								<th class="group-input"><label>계정 정지/복구</label></th>
 							</tr>
 							
 							<c:forEach var="mlist" items="${lists }">
@@ -52,14 +44,26 @@ MListController -> memberList.jsp <br>
 									<td class="group-input"><label>${mlist.phonenumber } </label></td>
 									<td class="group-input"><label>${mlist.email }</label></td>
 									<td class="group-input"><label>${mlist.address }</label></td>
-									<td class="group-input"><label>${mlist.reportcount }</label></td>
+									<td class="group-input">
+										<label>
+											<a href="memberReportDetail.mb?id=${mlist.id}">${mlist.reportcount } 회</a>
+										</label>
+									</td>
 									<td class="group-input"><label>
 										<c:if test="${mlist.memberstatus == 1 }"> 활동 가능</c:if>
 										<c:if test="${mlist.memberstatus != 1 }"> 정지</c:if>
 									</label></td>
 									<td class="group-input">
 										<lable>
-											<a href="memberStatusUpdate.mb?id=${mlist.id}&memberstatus=${mlist.memberstatus}">계정 정지</a>
+											<c:if test="${mlist.memberstatus == 1 }">
+												<a href="memberStatusUpdate.mb?id=${mlist.id}&memberstatus=${mlist.memberstatus}"
+												onclick="return confirm('계정을 정지하겠습니까?');">계정 정지</a>
+											</c:if>
+											
+											<c:if test="${mlist.memberstatus != 1 }">
+												<a href="memberStatusUpdate.mb?id=${mlist.id}&memberstatus=${mlist.memberstatus}"
+												onclick="return confirm('계정을 복구하겠습니까?');">계정 복구</a>
+											</c:if>
 										</lable>
 									</td>
 								</tr>

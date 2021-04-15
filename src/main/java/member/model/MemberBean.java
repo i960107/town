@@ -37,6 +37,7 @@ public class MemberBean {
 	private String image; // 프로필사진
 	private String memberstatus; // 계정중지
 	private int authority; // 관리자 권한
+	private int sitestatus;
 	
 	// 패스워드 유효성 체크용
 	@NotBlank(message = "비밀번호 확인은 필수 입력사항입니다")
@@ -102,7 +103,7 @@ public class MemberBean {
 
 	public MemberBean(String id, String pw, String name, String gender, String phonenumber, String email,
 			String address, String address1, String address2, String address3, String image, String memberstatus,
-			int authority, String pwCheck, int reportcount, int count, MultipartFile upload) {
+			int authority, String pwCheck, int reportcount, int count, MultipartFile upload, int sitestatus) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -121,6 +122,7 @@ public class MemberBean {
 		this.reportcount = reportcount;
 		this.count = count;
 		this.upload = upload;
+		this.sitestatus = sitestatus; 
 	}
 
 	public String getId() {
@@ -225,6 +227,14 @@ public class MemberBean {
 
 	public void setAuthority(int authority) {
 		this.authority = authority;
+	}
+
+	public int getsitestatus() {
+		return sitestatus;
+	}
+
+	public void setsitestatus(int sitestatus) {
+		this.sitestatus = sitestatus;
 	}
 
 

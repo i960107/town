@@ -464,7 +464,7 @@ ol {
 }
 
 .inner-header .advanced-search .input-group {
-	max-width: 72%;
+	/* max-width: 72%; */
 	height: 45px;
 }
 
@@ -740,6 +740,7 @@ ol {
 	display: -ms-inline-flexbox;
 	display: inline-flex;
 	position: relative;
+	height: 44px;
 }
 
 .nav-item .nav-menu li {
@@ -3896,7 +3897,8 @@ ol {
 		padding: 16px 12px 12px 11px;
 	}
 	.nav-item .nav-menu li a {
-		padding: 16px 45px 15px;
+		/* padding: 16px 45px 15px; */
+		padding: 15px 70px 15px 70px;
 	}
 }
 
@@ -3913,10 +3915,11 @@ ol {
 		max-width: 36%;
 	}
 	.inner-header .advanced-search .input-group {
-		max-width: 64%;
+		/* max-width: 64%; */
 	}
 	.nav-item .nav-menu li a {
-		padding: 16px 26px 15px;
+		/* padding: 16px 45px 15px; */
+		padding: 15px 70px 15px 70px;
 	}
 	.hero-items .owl-nav button[type=button] {
 		left: 5px;
@@ -4022,7 +4025,7 @@ ol {
 		padding-right: 25px;
 	}
 	.inner-header .advanced-search .input-group {
-		max-width: 60%;
+		/* max-width: 60%; */
 	}
 	.inner-header .nav-right li {
 		margin-left: 8px;
@@ -4031,7 +4034,8 @@ ol {
 		padding: 14px 40px 14px 18px;
 	}
 	.nav-item .nav-menu li a {
-		padding: 16px 10px 15px;
+		/* padding: 16px 45px 15px; */
+		padding: 15px 70px 15px 70px;
 	}
 	.instagram-photo .insta-item .inside-text h5 {
 		font-size: 14px;

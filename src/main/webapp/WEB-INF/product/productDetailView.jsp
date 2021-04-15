@@ -224,7 +224,8 @@ textarea {
         location.href = "update.prd?no=${pBean.no}";
     }
     function chat() {
-		location.href = "reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}";
+    	window.open("reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}", "구매연락하기", "width=500, height=700, left=100, top=50");
+		//location.href = "reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}";
 	}
     
 	/* 신고하기 함수 호출 */
@@ -238,6 +239,12 @@ textarea {
 		아니면 ....
 	}
 	 */
+	 
+	 
+	 
+	 
+	 
+	 
 </script>
 <script src="${pageContext.request.contextPath}/resources/script/timeFormat.js"></script>
 <%@include file="prdStyle.jsp"%>
@@ -275,9 +282,10 @@ textarea {
 					document.write(displayTime('<c:out value="${pBean.regdate}"/>'));
 				</script> </span></td>
 							<!-- <td width="120"><input type="button" onclick="report()" value="신고하기"></td> 신고하기 버튼 -->
-							<td width="120">
-								<a href="report.mb?reported_userid=${sellerid}">
-									<span class="mcontent">신고하기</span></a>
+							<td width="120">			
+								<a href="report.mb?reported_userid=${sellerid}"
+								onclick="return confirm('이 사용자를 신고하시겠습니까?');">
+								<span class="mcontent">신고하기</span></a>
 							</td>
 									
 						</tr>
@@ -355,9 +363,16 @@ textarea {
 				<!-- 회원 정보 -->
 				<td><a href="tradeDetail.mb?sellerid=${mbean.id }"> 
                 <div class="box">
-                <img alt="" src="<%=source%>resources/members/${mbean.image}" width="70" height="70" class="profile">
-                </a>
+                <c:if test="${mbean.sitestatus==0 }">
+						<img class="profile" width="70" height="70"
+							src="<%=request.getContextPath()%>/resources/members/${mbean.image}">
+						</c:if>
+						<c:if test="${mbean.sitestatus==1 }">
+						<img class="profile" width="70" height="70"
+							src="${mbean.image}">
+				</c:if>
                 </div>
+                </a>
                 </td>
                 <td valign="top">
                	<span class="subject">${mbean.id }</span>

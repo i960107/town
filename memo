@@ -1,7 +1,7 @@
  drop table member cascade constraints;
 CREATE TABLE member (
  id varchar2(50) primary key,
- pw varchar2(30)  NULL,
+ pw varchar2(50)  NULL,
  name varchar2(15)  NULL,
  gender varchar2(6) DEFAULT null NULL,
  phone_number varchar2(50) DEFAULT null NULL,
@@ -13,9 +13,12 @@ CREATE TABLE member (
  image varchar2(100)  NULL,
  member_status number DEFAULT 1 NULL, -- 0일 경우 계정 정지
  authority number  default 1,
- report_count number default 0 -- 사용자 신고하기 갯수 칼럼 추가
+ report_count number default 0, -- 사용자 신고하기 갯수 칼럼 추가
+ site_status number  NULL -- 일반회원,카카오 회원 설정 , 일반0 카카오 1
 );
-insert into member values('admin','1234','관리자','남','01012341234','admin@admin.com','서울특별시 마포구 신촌로 176','서울특별시','마포구','신촌로 176','image.jpg','1',0);
+insert into member values('admin','1234','관리자','남','01012341234','admin@admin.com','서울특별시 마포구 신촌로 176','서울특별시','마포구','신촌로 176','image.jpg',0,1,0,0);
+update member set authority = 0 where id = 'admin'; -- 관리자 권한 업데이트
+commit;
 
 drop table member_deal cascade constraints;
 CREATE TABLE member_deal (
@@ -33,7 +36,7 @@ CREATE TABLE manner_temp (
 );
 
 insert into manner_temp
-value('admin', 100);
+values('admin', 100);
 
 drop table product cascade constraints;
 CREATE TABLE product (
@@ -265,12 +268,16 @@ nocache;
 
 -- 신고하기
 drop table report cascade constraints;
-CREATE TABLE  report  (
-  no  number primary key,
-  report_user_name varchar2(50) DEFAULT null NOT NULL,
-  reported_user_name varchar2(50) DEFAULT null NOT NULL,
-  contents  varchar2(250)  NULL
+CREATE TABLE report  (
+  no number primary key,
+  report_userid varchar2(50) DEFAULT null NOT NULL,
+  reported_userid varchar2(50) DEFAULT null NOT NULL,
+  contents varchar2(250) NULL,
+  count number DEFAULT 1
 );
+
+select * from report;
+select * from report order by no;
 
 
 -- 중고거래 방법   - 

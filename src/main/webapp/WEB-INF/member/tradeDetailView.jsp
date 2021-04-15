@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <!-- MTradeDetailController >> -->
-<title>판매자 : ${mBean.id } 정보보기</title>
+<title>판매자 : ${mbean.id } 정보보기</title>
 <style type="text/css">
 .progress-title {
 	font-size: 16px;
@@ -122,16 +122,22 @@ width:100%;
 			<!-- 사진과 이이디 -->
 			<div>
 				<div class="box ">
-					<img src="<%=source%>/resources/members/${mBean.image}"
-						class="profile">
+					<c:if test="${mbean.sitestatus==0 }">
+						<img class="profile"
+							src="<%=request.getContextPath()%>/resources/members/${mbean.image}">
+					</c:if>
+					<c:if test="${mbean.sitestatus==1 }">
+						<img class="profile"
+							src="${mbean.image}">
+					</c:if>
 				</div>
 				<div>
-					<b><font size="10px">${mBean.id}</font></b> 님의 정보
+					<b><font size="10px">${mbean.id}</font></b> 님의 정보
 				</div>
 			</div>
 			<!-- 매너온도 -->
 			<div class=" flex-container-column">
-				<div>${mBean.address}</div>
+				<div>${mbean.address}</div>
 				<div>
 					<span>판매상품 : ${fn:length(pList)}개</span>
 				</div>
