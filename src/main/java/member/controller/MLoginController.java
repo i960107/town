@@ -2,7 +2,11 @@ package member.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -204,10 +208,11 @@ public class MLoginController {
 			
 			
 			MultipartFile multi = mbean.getUpload();
-			
+			InputStream in = new URL(mbean.getImage()).openStream();
 			int joinCnt = mdao.kakaoRegister(mbean);
 			
 			if(joinCnt == 1) {
+				Files.copy(in, Paths.get(uploadPath));
 				/*if(mbean.getImage() != "") {
 					File file = new File(uploadPath+"/"+mbean.getImage());
 					multi.transferTo(file);
