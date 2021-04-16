@@ -289,12 +289,9 @@ insert into product_category values(10000+prodcate_seq.nextval,'가구/인테리
 insert into product_category values(10000+prodcate_seq.nextval,'유아동/유아도서');
 insert into product_category values(10000+prodcate_seq.nextval,'생활/가공식품');
 insert into product_category values(10000+prodcate_seq.nextval,'스포츠/레저');
-insert into product_category values(10000+prodcate_seq.nextval,'스포츠/레저');
 insert into product_category values(10000+prodcate_seq.nextval,'여성잡화');
 insert into product_category values(10000+prodcate_seq.nextval,'여성의류');
 insert into product_category values(10000+prodcate_seq.nextval,'남성패션/잡화');
-commit;
-commit;
 
 --채팅 시퀀스
 drop sequence reply_seq;
@@ -311,3 +308,4 @@ start with 0
 increment by 1
 minvalue 0
 nocache;
+commit;
