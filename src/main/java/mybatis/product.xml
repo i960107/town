@@ -155,29 +155,36 @@
 	where filename = ${filename}
 </delete>
 
+<!-- 채팅방 체크 -->
 <select id="checkChat" resultType="int">
 	select count(*) from prd_reply
 	where pno = #{pno} and buyer_id = #{buyerid} and seller_id = #{sellerid}
 </select>
 
+<!-- 채팅방 생성 -->
 <insert id="createChat">
 	insert into prd_reply
 	values(reply_seq.nextval, #{pno}, #{sellerid}, #{buyerid}, '채팅이 연결 되었습니다', sysdate )
 </insert>
 
+<!-- 대화방 채팅 읽기 -->
 <select id="getChat" resultType="product.model.ProductChatBean">
 	select * from prd_reply
 	where pno = #{pno} and buyer_id = #{buyerid} and seller_id = #{sellerid}
 	order by reg_date
 </select>
 
+<!-- 채팅 보내기 -->
 <insert id="insertChat">
 	insert into prd_reply
 	values(reply_seq.nextval, #{pno}, #{sellerid}, #{buyerid}, #{contents}, sysdate )
 </insert>
 
+<!-- 가장 최신 채팅 pno 기준으로 검색 채팅 리스트 호출용 -->
 <select id="getChatList" resultType="product.model.ProductChatBean">
-	select * from prd_reply
-	where buyer_id = #{id} or seller_id = #{id}
+	select max(no), pno from prd_reply
+	where seller_id = #{id} or buyer_id = #{id}
+	group by pno
 </select>
+
 </mapper>

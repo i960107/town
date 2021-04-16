@@ -77,7 +77,7 @@
                     	
                     	<c:if test="<%= loginInfo != null %>">
                     	<a href="<%=logout %>" class="login-panel"><i class="fa fa-user"></i>LogOut</a>
-                    	<a href="<%=myPage %>" class="login-panel"><%= loginInfo.getId() %> 님</a>
+                    	<a href="<%=myPage %>" class="login-panel"><%= loginInfo.getName() %> 님</a>
                     	</c:if>
                     </div>
                 </div>
