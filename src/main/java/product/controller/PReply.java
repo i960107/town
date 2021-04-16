@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import category.model.ProdCateBean;
 import member.model.MemberBean;
+import product.model.ProductBean;
 import product.model.ProductChatBean;
 import product.model.ProductDao;
 
@@ -59,17 +60,20 @@ public class PReply {
 			if(sellerid==null) { //팬매자면 로그인 기록으로 변수 입력
 				sellerid = member.getId();				
 			}
-			
-			ProductChatBean cbean = new ProductChatBean(pno, sellerid, buyerid, "", "", "");
+			ProductBean pbean = pDao.getProduct(pno);
+			ProductChatBean cbean = new ProductChatBean(0, pno, sellerid, buyerid, 0, pbean.getSubject(), "", "", member.getId());
 			
 			List<ProductChatBean> clist = pDao.getChat(cbean);
-			
+			int room = clist.get(0).getRoom();
 			MemberBean sbean = pDao.getSellerInfo(sellerid); //판매자 정보 조회
 			MemberBean bbean = pDao.getSellerInfo(buyerid);
 			mav.addObject("pno", pno);
+			mav.addObject("login", member.getId());
 			mav.addObject("bbean", bbean);
+			mav.addObject("pbean", pbean);
 			mav.addObject("sbean", sbean);
 			mav.addObject("clist", clist);
+			mav.addObject("room", room);
 			return mav;
 		}
 		
@@ -80,7 +84,7 @@ public class PReply {
 			
 			ModelAndView mav = new ModelAndView();
 			pDao.insertChat(cbean);
-			mav.setViewName("redirect:reply.prd?sellerid="+cbean.getsellerid()+"&buyerid="+cbean.getbuyerid()+"&no="+cbean.getPno());
+			mav.setViewName("redirect:reply.prd?sellerid="+cbean.getSellerid()+"&buyerid="+cbean.getBuyerid()+"&no="+cbean.getPno());
 			
 			return mav;
 		}

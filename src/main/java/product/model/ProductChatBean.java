@@ -2,15 +2,27 @@ package product.model;
 
 public class ProductChatBean {
 
+	private int no ;
 	private int pno  ;
 	private String sellerid ;
 	private String buyerid ;
+	private int room;
+	private String subject;
 	private String contents ;
 	private String regdate ;
-	private String chatno ;
+	private String talker;
 	
-	public ProductChatBean() {
-		super();
+	public String getTalker() {
+		return talker;
+	}
+	public void setTalker(String talker) {
+		this.talker = talker;
+	}
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
 	}
 	public int getPno() {
 		return pno;
@@ -18,17 +30,29 @@ public class ProductChatBean {
 	public void setPno(int pno) {
 		this.pno = pno;
 	}
-	public String getsellerid() {
+	public String getSellerid() {
 		return sellerid;
 	}
-	public void setsellerid(String sellerid) {
+	public void setSellerid(String sellerid) {
 		this.sellerid = sellerid;
 	}
-	public String getbuyerid() {
+	public String getBuyerid() {
 		return buyerid;
 	}
-	public void setbuyerid(String buyerid) {
+	public void setBuyerid(String buyerid) {
 		this.buyerid = buyerid;
+	}
+	public int getRoom() {
+		return room;
+	}
+	public void setRoom(int room) {
+		this.room = room;
+	}
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 	public String getContents() {
 		return contents;
@@ -36,28 +60,29 @@ public class ProductChatBean {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public String getregdate() {
+	public String getRegdate() {
 		return regdate;
 	}
-	public void setregdate(String regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	public String getChatno() {
-		return chatno;
-	}
-	public void setChatno(String chatno) {
-		this.chatno = chatno;
-	}
-	public ProductChatBean(int pno, String sellerid, String buyerid, String contents, String regdate,
-			String chatno) {
+	public ProductChatBean(int no, int pno, String sellerid, String buyerid, int room, String subject, String contents,
+			String regdate, String talker) {
 		super();
+		this.no = no;
 		this.pno = pno;
 		this.sellerid = sellerid;
 		this.buyerid = buyerid;
+		this.room = room;
+		this.subject = subject;
 		this.contents = contents;
 		this.regdate = regdate;
-		this.chatno = chatno;
+		this.talker = talker;
+	}
+	public ProductChatBean() {
+		super();
 	}
 	
 	
+
 }

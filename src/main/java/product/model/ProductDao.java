@@ -190,6 +190,11 @@ public class ProductDao {
 		return clist;
 	}
 
+	public ProductChatBean getChatInfo(ProductChatBean room) {
+		ProductChatBean cbean = sqlSessionTemplate.selectOne(nameSpace+".getChatInfo", room);
+		return cbean;
+	}
+
 
 
 
