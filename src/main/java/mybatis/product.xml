@@ -192,4 +192,36 @@
 	where no = #{no}
 	order by reg_date desc
 </select>
+
+<!-- 키워드 -->
+<insert id="inputKeyword">
+	insert into product_keyword
+	values(keyword_seq.nextval, #{keyword}, default)
+</insert>
+
+<select id="getKeyword" resultType="int">
+	select count(*)
+	from product_keyword
+	where keyword = #{keyword}
+</select>
+
+<!-- 키워드 upCount -->
+<update id="upKeywordCnt">
+	update product_keyword 
+	set count = count + 1
+	where keyword = #{keyword}
+</update>
+
+<!-- 인기 키워드 리스트 -->
+<select id="getKeywordList" resultType="product.model.ProductKeywordBean">
+	select no, keyword, count
+	from product_keyword
+	where ROWNUM
+	<![CDATA[
+	<
+	]]>
+	6
+	order by count desc
+</select>
+
 </mapper>

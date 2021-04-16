@@ -27,6 +27,20 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
 </head>
 <body>
+
+<script type="text/javascript">
+/* 	function statusChange(statusItem) {
+	   var strText = $(statusItem).text();
+	} */
+	
+	function statusChange( statusItem ) {
+	   var strText = $(statusItem).text();
+
+	   // strText 에 전체 문자열이 입력된다.
+	   $("#keyword").val(strText);
+	}
+</script> 
+
     <!-- Banner Section Begin -->
     <div class="banner-section spad">
         <div class="container-fluid">
@@ -54,17 +68,19 @@
 	<!-- 인기 키워드 시작 -->
 	<h3 align="center">인기 키워드</h3> <br>
 	
-	<table border="0" align="center" width="1200px">
+	<table border="0" align="center" width="500px">
 		<tr align="center">
-			<td>
-			
-			</td>
+			<c:forEach var="key" items="${klist }">
+				<td>
+					#<a href="#" onclick="statusChange(this)">${key.keyword}</a>
+				</td>
+			</c:forEach>
 		</tr>
 	</table>
 	<!-- 인기 키워드 끝 -->
-
+	<br><br>
 	<!-- 인기매물 시작 -->
-	<h3 align="center">인기 매물 리스트</h3> <br>
+	<h3 align="center">인기 매물 리스트</h3>
 	
 	<table border="0" align="center" width="1200px">
 	  	<tr align="center">
