@@ -89,22 +89,29 @@ public class MemberDao {
 		sqlSessionTemplate.selectList(nameSpace+".updateMannertemp", map);
 	}
 	
-	//신고하기
+	// 신고하기
 	public int reportUser(MemberReportBean reportBean) {
 		int cnt = sqlSessionTemplate.insert(nameSpace+".reportUser", reportBean);
 		System.out.println("insert Cnt:"+cnt);
 		return cnt;
 	}
 
-	//신고하기 갯수 가져오기
-	public int getReportCnt(String reported_userid, int count) {
+	// 신고하기 갯수 가져오기
+	public int getReportCnt(String reporteduserid, int count) {
 		int reportCnt = sqlSessionTemplate.selectOne(nameSpace+".getReportCnt");
 		return reportCnt;
 	}
 	
+	// 신고하기 상세보기 리스트 조회
+	public List<MemberReportBean> getReportDetailById(String id) {
+		List<MemberReportBean> lists = new ArrayList<MemberReportBean>();
+		lists = sqlSessionTemplate.selectList(nameSpace+".getReportDetailById", id);
+		return lists;
+	}
+	
 	// memberTable count 업데이트
-	public void getUpCount(String reported_userid) {
-		int upCountmember = sqlSessionTemplate.update(nameSpace+".getUpCount",reported_userid);
+	public void getUpCount(String reporteduserid) {
+		int upCountmember = sqlSessionTemplate.update(nameSpace+".getUpCount",reporteduserid);
 			System.out.println("멤버 신고하기 갯수 업데이트:"+upCountmember);
 	}
 	
@@ -125,14 +132,6 @@ public class MemberDao {
 		sqlSessionTemplate.insert(nameSpace+".mannerTemp", mbean);
 		return cnt;
 	}
-	// memberReportDetail 리스트 조회
-	public List<MemberReportBean> getReportDetailById(String id) {
-		List<MemberReportBean> lists = new ArrayList<MemberReportBean>();
-		lists = sqlSessionTemplate.selectList(nameSpace+".getReportDetailById");
-		return lists;
 
-	}
-
-
-
+	
 }

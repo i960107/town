@@ -52,7 +52,7 @@
     <!-- Banner Section End -->
 
 	<!-- 인기 키워드 시작 -->
-	<!-- <h3 align="center">인기 키워드</h3> <br> -->
+	<h3 align="center">인기 키워드</h3> <br>
 	
 	<table border="0" align="center" width="1200px">
 		<tr align="center">

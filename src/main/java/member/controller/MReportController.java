@@ -31,11 +31,11 @@ public class MReportController {
 	
 	@RequestMapping(value=command, method=RequestMethod.GET)
 	public String doAction(
-			@RequestParam(value="reported_userid") String reported_userid,
+			@RequestParam(value="reporteduserid") String reporteduserid,
 			Model model) {
 		
-		System.out.println("reported_userid:"+reported_userid);
-		model.addAttribute("reported_userid", reported_userid);
+		System.out.println("reported_userid:"+reporteduserid);
+		model.addAttribute("reporteduserid", reporteduserid);
 		
 		return getPage;
 	}
@@ -60,10 +60,10 @@ public class MReportController {
 		
 		
 		// 판매자 변수 설정 하기 
-		System.out.println("reported_userid:"+reportBean.getReported_userid());
+		System.out.println("reported_userid:"+reportBean.getReporteduserid());
 		
-		String reported_userid = reportBean.getReported_userid();
-		System.out.println("신고하기 reported_userid:" + reported_userid);
+		String reporteduserid = reportBean.getReporteduserid();
+		System.out.println("신고하기 reported_userid:" + reporteduserid);
 		
 		// 로그인한 session 정보 가져온거
 		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
@@ -71,8 +71,8 @@ public class MReportController {
 		System.out.println("리포트아이디(로그인아이디):"+reportID);
 		
 		//사용자  ---- MemberReportBean 에 report_userid에 로그인한 아이디 setting
-		reportBean.setReport_userid(reportID); 
-		System.out.println("셋팅된 리포트ID:"+ reportBean.getReport_userid());
+		reportBean.setReportuserid(reportID); 
+		System.out.println("셋팅된 리포트ID:"+ reportBean.getReportuserid());
 		
 		
 		PrintWriter pwriter = response.getWriter();
@@ -82,7 +82,7 @@ public class MReportController {
 		
 		
 		if(reportBean.getReport() != null) {
-			if(reportID.equals(reportBean.getReported_userid())) {
+			if(reportID.equals(reportBean.getReporteduserid())) {
 				System.out.println("아이디 같아");
 				/*pwriter.print("<script type='text/javascript'>");
 				pwriter.print("alert('판매자와 신고자가 같습니다.");
@@ -95,7 +95,7 @@ public class MReportController {
 			}else {
 				// 신고하기 DB에 삽입
 				int cnt = mDao.reportUser(reportBean);
-				mDao.getUpCount(reported_userid);
+				mDao.getUpCount(reporteduserid);
 			}
 		}
 		

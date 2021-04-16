@@ -10,7 +10,7 @@
 <body>
 
 
-<form action="memberReportDetail.mb" method="get">
+<form action="memberReportDetail.mb" method="post">
 <table align="center">
 	<tr>
 		<td>
@@ -27,12 +27,12 @@
 								<th class="group-input"><label>신고횟수</label></th>
 							</tr>
 							
-							<c:forEach var="rlist" items="${lists }">
+							<c:forEach var="mrbean" items="${mrbean }">
 								<tr align="center">
-									<td class="group-input"><label>${rlist.reportuserid } </label></td>
-									<td class="group-input"><label>${rlist.reporteduserid } </label></td>
-									<td class="group-input"><label>${rlist.contents }</label></td>
-									<td class="group-input"><label>${rlist.count }</label></td>
+									<td class="group-input"><label>${mrbean.reportuserid } </label></td>
+									<td class="group-input"><label>${mrbean.reporteduserid } </label></td>
+									<td class="group-input"><label>${mrbean.contents }</label></td>
+									<td class="group-input"><label>${mrbean.count }</label></td>
 								</tr>
 							</c:forEach>
 						</div>
