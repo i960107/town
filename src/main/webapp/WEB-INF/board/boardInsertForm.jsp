@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="./../common/main_top.jsp"%>
+<%@ include file="./../common/mainW_top.jsp"%>
 <%@include file="../common/common.jsp"%>
 
 <style type="text/css">
@@ -45,10 +45,8 @@ font-size:15px;
 					<td class="group-input" width="500px">
 							<c:set var="mbean" value="${loginInfo}" />
 							<jsp:include page="../common/addrArray.jsp"></jsp:include>
-							<form:errors cssClass="err" path="address1">
-						</form:errors>
-						<form:errors cssClass="err" path="address2">
-						</form:errors>
+							<form:errors cssClass="err" path="address1"/>
+						<form:errors cssClass="err" path="address2"/>
 					</td>
 				</tr>
 

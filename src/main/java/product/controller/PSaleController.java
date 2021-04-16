@@ -76,7 +76,7 @@ public class PSaleController {
 			mav.addObject("mbean", mbean);
 		}
 		mav.setViewName(getPage);
-		
+		mav.addObject("requestPage", "saleList.prd");
 		return mav;
 	}
 	
