@@ -3,14 +3,18 @@ package member.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import member.model.MemberBean;
 import member.model.MemberDao;
 import member.model.MemberReportBean;
 
+@Controller
 public class MReportDetailController {
 	
 	private final String command = "/memberReportDetail.mb";
@@ -20,19 +24,20 @@ public class MReportDetailController {
 	MemberDao mdao;
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)
-	public String doAction(Model model) {
+	public ModelAndView doAction(@RequestParam(value = "id") String id) {
 		
-		MemberBean member = new MemberBean();
-		String id = member.getId();
-		System.out.println("MReportDetail id:" + id);
+		ModelAndView mav = new ModelAndView();
 		
-		List<MemberReportBean> mrbean = mdao.getReportDetailById(member.getId());
-		System.out.println("mrbean:" + mrbean);
+		List<MemberReportBean> mrbean = mdao.getReportDetailById(id);
 		
-		model.addAttribute("mrbean", mrbean);
-		model.addAttribute("id", id);
+		mav.addObject("mrbean", mrbean);
+		mav.addObject("id", id);
 		
-		return getPage;
+		//System.out.println("mrbean:" + mrbean); 주소만 출력
+		System.out.println("신고된 id:" + id);
+		
+		mav.setViewName(getPage);
+		return mav;
 	}
 	
 }

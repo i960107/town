@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import category.model.ProdCateBean;
-import main.model.MainBean;
 import member.model.MemberBean;
 import member.model.MemberDealBean;
 

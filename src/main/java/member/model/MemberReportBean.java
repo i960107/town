@@ -3,8 +3,8 @@ package member.model;
 public class MemberReportBean {
 	
 	private int no;
-	private String report_userid;
-	private String reported_userid;
+	private String reportuserid;
+	private String reporteduserid;
 	private String contents;
 	private int count;
 	
@@ -24,13 +24,15 @@ public class MemberReportBean {
 		super();
 	}
 
-	public MemberReportBean(int no, String report_userid, String reported_userid, String contents, int count) {
+	public MemberReportBean(int no, String reportuserid, String reporteduserid, String contents, int count,
+			String report) {
 		super();
 		this.no = no;
-		this.report_userid = report_userid;
-		this.reported_userid = reported_userid;
+		this.reportuserid = reportuserid;
+		this.reporteduserid = reporteduserid;
 		this.contents = contents;
 		this.count = count;
+		this.report = report;
 	}
 
 	public int getNo() {
@@ -41,20 +43,20 @@ public class MemberReportBean {
 		this.no = no;
 	}
 
-	public String getReport_userid() {
-		return report_userid;
+	public String getReportuserid() {
+		return reportuserid;
 	}
 
-	public void setReport_userid(String report_userid) {
-		this.report_userid = report_userid;
+	public void setReportuserid(String reportuserid) {
+		this.reportuserid = reportuserid;
 	}
 
-	public String getReported_userid() {
-		return reported_userid;
+	public String getReporteduserid() {
+		return reporteduserid;
 	}
 
-	public void setReported_userid(String reported_userid) {
-		this.reported_userid = reported_userid;
+	public void setReporteduserid(String reporteduserid) {
+		this.reporteduserid = reporteduserid;
 	}
 
 	public String getContents() {
@@ -73,6 +75,7 @@ public class MemberReportBean {
 		this.count = count;
 	}
 
+	
 	
 	
 	

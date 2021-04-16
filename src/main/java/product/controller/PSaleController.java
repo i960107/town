@@ -29,14 +29,14 @@ public class PSaleController {
 	
 	@RequestMapping(value=command)
 	public ModelAndView doAction(
-			@RequestParam(value="whatColumn",required = false) String whatColumn,
+			//@RequestParam(value="whatColumn",required = false) String whatColumn,
 			@RequestParam(value="keyword",required = false) String keyword,
 			HttpServletRequest request,
 			HttpSession session) {
 		
 		/* mainList.jsp 검색어 조회 설정 */
 		Map<Object,String> map = new HashMap<Object,String>();
-		map.put("whatColumn", whatColumn);
+		//map.put("whatColumn", whatColumn);
 		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
 		
 		if(keyword != null) { //keyword 공백제거 검색 성능 향상

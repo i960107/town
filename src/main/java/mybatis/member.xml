@@ -11,7 +11,8 @@
 	<!-- 로그인 아이디 체크 -->
 	<select id="LoginCkId" resultType="member.model.MemberBean">
 		select * from member
-		where id = #{id}
+		where id =
+		#{id}
 	</select>
 
 	<select id="GetAllData" resultType="member.model.MemberBean">
@@ -22,8 +23,10 @@
 	<!-- 일반 회원가입 -->
 	<insert id="Register">
 		insert into member
-		values(#{id}, #{pw}, #{name}, #{gender}, #{phonenumber}, #{email}, #{address},
-		#{address1}, #{address2}, #{address3},
+		values(#{id}, #{pw}, #{name},
+		#{gender}, #{phonenumber}, #{email}, #{address},
+		#{address1},
+		#{address2}, #{address3},
 		#{image}, default, default, default, 0)
 
 	</insert>
@@ -71,49 +74,55 @@
 		select * from town_board
 		where writer = #{writer} and re_level = 1
 	</select>
+
 	<!-- 거래후기등록 -->
 	<insert id="insertDealReview">
 		insert into
-		member_deal_review values(review_seq.nextval,#{productNo},#{sellerId},#{buyerId},#{contents},#{rating},sysdate)
+		member_deal_review
+		values(review_seq.nextval,#{productNo},#{sellerId},#{buyerId},#{contents},#{rating},sysdate)
 	</insert>
+
 	<!-- 매너온도 조정 -->
 	<insert id="updateMannertemp">
-	update manner_temp set manner_temp
-	<if test="rating==5">
-	=manner_temp+10
-	</if>
-	<if test="rating==4">
-	=manner_temp+5
-	</if>
-	<if test="rating==3">
-	=manner_temp
-	</if>
-	<if test="rating==2">
-	=manner_temp-5
-	</if>
-	<if test="rating==1">
-	=manner_temp-10
-	</if>
-	where id=#{sellerId}
+		update manner_temp set manner_temp
+		<if test="rating==5">
+			=manner_temp+10
+		</if>
+		<if test="rating==4">
+			=manner_temp+5
+		</if>
+		<if test="rating==3">
+			=manner_temp
+		</if>
+		<if test="rating==2">
+			=manner_temp-5
+		</if>
+		<if test="rating==1">
+			=manner_temp-10
+		</if>
+		where id=#{sellerId}
 	</insert>
-	
+
 	<!-- 사용자 신고하기 -->
 	<insert id="reportUser">
-	insert into report
-	values(report_seq.nextval, #{report_userid}, #{reported_userid}, #{contents}, default)
+		insert into report
+		values(report_seq.nextval,
+		#{reportuserid}, #{reporteduserid}, #{contents}, default)
 	</insert>
-	
+
 	<!-- 사용자 신고하기 갯수 -->
 	<select id="getReportCnt" resultType="int">
-	select REPORTED_USERID, count(*) as count from report
-	where REPORTED_USERID = #{REPORTED_USERID}
-	GROUP BY REPORTED_USERID;
+		select REPORTED_USERID,
+		count(*) as count from report
+		where REPORTED_USERID = #{REPORTEDUSERID}
+		GROUP BY REPORTED_USERID;
 	</select>
-	
+
 	<!-- 신고당한 횟수 cnt update -->
 	<update id="getUpCount">
-		update member set report_count =  report_count+1
-		where id = #{reported_userid}
+		update member set report_count = report_count+1
+		where
+		id = #{reporteduserid}
 	</update>
 
 	<!-- 신고하기 계정상태 업데이트 -->
@@ -121,22 +130,28 @@
 		update member set member_status = #{memberstatus}
 		where id = #{id}
 	</update>
-	
+
+	<!-- 사용자 세부 내용 보기 -->
+	<select id="getReportDetailById"
+		resultType="member.model.MemberReportBean">
+		select * from report
+		where reported_userid = #{id}
+		order by
+		no
+	</select>
 
 	<select id="ckkakaoLogin" resultType="int">
 		select count(*) from member
 		where id = #{id}
 	</select>
-	
+
 	<insert id="kakaoRegister">
-		insert into member(id, pw, name, gender, email, image, site_status, authority)
-		values(#{id}, #{pw}, #{name}, #{gender}, #{email}, #{image}, 1, 1)
+		insert into member(id, pw, name, gender, email,
+		image, site_status, authority)
+		values(#{id}, #{pw}, #{name}, #{gender},
+		#{email}, #{image}, 1, 1)
 	</insert>
 
-	<!-- 사용자 세부 내용 보기 -->
-	<select id="getReportDetailById" resultType="member.model.MemberReportBean">
-		select * from report order by no
-	</select>
 
 	<update id="updateAddrOAuth">
 		update member set address = #{address}, address1 = #{address1}, address2 = #{address2}, address3 = #{address3}
