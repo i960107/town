@@ -13,6 +13,13 @@ font-weight:bold;
 color:red;
 font-size:15px;
 }
+.fileupload-img{
+		background: url("<%=source%>resources/img/insert_img.jpg");
+		border: none;
+	    width: 150px;
+	    cursor : pointer;
+	    height: 150px;
+	}
 </style>
 <center>
 	<div class="register-form">
@@ -59,7 +66,8 @@ font-size:15px;
 				<tr>
 					<td class="group-input" width="200px"><label>사진선택<br><font size="2">ctrl을 누르고 여러개 선택 가능</font></label></td>
 					<td class="group-input" width="500px">
-					<input type="file" name="uploadFile" multiple="multiple" onchange="handleFiles(this.files)">
+					<label for="upload_file" class="fileupload-img"></label><br>
+					<input type="file" name="uploadFile" multiple="multiple" onchange="handleFiles(this.files)" id="upload_file" hidden="" >
 						<div id="select_img">
 							
 						</div></td>
@@ -112,3 +120,4 @@ font-size:15px;
 
 	</div>
 </center>
+<%@ include file="./../common/main_bottom.jsp"%>

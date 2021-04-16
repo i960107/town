@@ -45,14 +45,12 @@
 		
 			<div class="chat-div">
 			<c:forEach var="chat" items="${clist }">
-			<c:set value="align='left'" var="chater"/>
-			<c:if test="${chat.sellerid==sbean.id }">
-			<c:set value="align='right'" var="chater"/>
+			<c:if test="${login==chat.talker }">
+			<p align="right" >${chat.contents }</p>
 			</c:if>
-			<c:if test="${chat.buyerid==bbean.id }">
-			<c:set value="align='right'" var="chater"/>
+			<c:if test="${login!=chat.talker }">
+			<p align="left" >${chat.contents }</p>
 			</c:if>
-				<p ${chater } >${chat.contents }</p>
 			</c:forEach>
 			</div>
 			
@@ -63,6 +61,9 @@
 	<input type="hidden" name="sellerid" value="${sbean.id }">
 	<input type="hidden" name="buyerid" value="${bbean.id }">
 	<input type="hidden" name="pno" value="${pno }">
+	<input type="hidden" name="room" value="${room }">
+	<input type="hidden" name="subject" value="${pbean.subject }">
+	<input type="hidden" name="talker" value="${login }">
 	<table align="center">
 	<tr>
 	<td>

@@ -133,5 +133,10 @@ public class MemberDao {
 		return cnt;
 	}
 
+	public void updateAddrOAuth(MemberBean mbean) {
+		sqlSessionTemplate.update(nameSpace+".updateAddrOAuth", mbean);
+	}
+
+
 	
 }

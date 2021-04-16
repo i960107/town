@@ -225,7 +225,6 @@ textarea {
     }
     function chat() {
     	window.open("reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}", "구매연락하기", "width=500, height=700, left=100, top=50");
-		//location.href = "reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}";
 	}
     
 	/* 신고하기 함수 호출 */

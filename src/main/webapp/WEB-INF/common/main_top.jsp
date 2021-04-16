@@ -45,6 +45,7 @@
 	String saleList = request.getContextPath() + "/saleList.prd"; // 중고거래
 	String boardList = request.getContextPath() + "/list.bd"; // 동네생활
 	String productWrite = request.getContextPath() + "/pWrite.prd"; // 글쓰기
+	String chat = request.getContextPath() + "/chatList.prd"; // 채팅
 	
 	String source = request.getContextPath()+"/"; //소스 경로 요청용 약어
 	//로그인한 아이디 세션 가져오기 
@@ -77,7 +78,7 @@
                     	
                     	<c:if test="<%= loginInfo != null %>">
                     	<a href="<%=logout %>" class="login-panel"><i class="fa fa-user"></i>LogOut</a>
-                    	<a href="<%=myPage %>" class="login-panel"><%= loginInfo.getId() %> 님</a>
+                    	<a href="<%=myPage %>" class="login-panel"><%= loginInfo.getName() %> 님</a>
                     	</c:if>
                     </div>
                 </div>
@@ -131,7 +132,7 @@
 							<li><a href="<%=saleList %>">중고거래</a></li>
 							<li><a href="<%=boardList %>">동네생활</a></li>
 							<li><a href="<%=productWrite %>">판매하기</a></li>
-							<li><a href="chatList.prd">채팅</a></li>
+							<li><a href="<%=chat%>">채팅</a></li>
 						</ul>
 					</nav>
 				</div>
