@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import product.model.ProductBean;
 import product.model.ProductDao;
+import product.model.ProductKeywordBean;
 
 @Controller
 public class MainListController {
@@ -25,10 +26,11 @@ public class MainListController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(getPage);
 		List<ProductBean> list = pDao.getPopList();
-		
+		mav.addObject("list", list);
 		//System.out.println("메인리스트 prd no:"+ list.get(0).getNo()); //null이 맞음  rank 별칭선언으로 넘어오는거 rank로 받아옴
 		
-		mav.addObject("list", list);
+		List<ProductKeywordBean> klist = pDao.getKeywordList();
+		mav.addObject("klist", klist);
 		
 		return mav;
 	}

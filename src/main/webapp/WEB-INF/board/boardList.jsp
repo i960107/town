@@ -57,7 +57,7 @@
 				<!-- 검색필터설정 -->
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
-						<form action="list.bd" method="post">
+						<form action="list.bd" method="post" name="myform">
 							<table>
 								<tr style="background-color: #FFFFF0;">
 									<td colspan=2 align="center" style="padding-top: 10px"
@@ -92,7 +92,7 @@
 								</tr>
 
 							</table>
-						</form>
+						
 					</div>
 				</div>
 			</div>
@@ -107,7 +107,7 @@
 						</button>
 					</div>
 					<div>
-						<form name="myform">
+						
 							<input type="hidden" name="request" value="list.bd">
 							<c:set var="mbean" value="${loginInfo}" />
 							<%@include file="../common/addrArray.jsp"%>
