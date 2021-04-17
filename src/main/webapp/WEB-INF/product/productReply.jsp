@@ -43,10 +43,14 @@
 
 
 <script type="text/javascript">
-	function updateDealStatus(){
+	function updateDealStatus(sellerid,buyerid){
 		alert("딜수정해");
 		alert("상품번호:"+ ${pno }+","+"거래상태"+${pbean.dealstatus});
-		location.href="updateDeal.prd?no="+${pno }+"&deal="+${pbean.dealstatus};
+		alert("판매자:"+sellerid);
+		alert("구매자:"+buyerid);
+		location.href="updateDeal.prd?no="+${pno }+"&deal="+${pbean.dealstatus}
+					+"&sellerid="+sellerid+"&buyerid="+buyerid;
+						
 	}
 	
 	function saleCompleted(){
@@ -95,7 +99,7 @@
 	<td>
 		<!-- 판매자 -->
 		<c:if test="${sbean.id eq login && pbean.dealstatus == 1 }">
-		<input type="button" value="거래완료" onclick="updateDealStatus()"><br><br>
+		<input type="button" value="거래완료" onclick="updateDealStatus('${sbean.id }','${bbean.id }')"><br><br>
 		</c:if>
 		
 		<c:if test="${sbean.id eq login && pbean.dealstatus == 0 }">
