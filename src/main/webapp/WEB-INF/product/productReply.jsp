@@ -327,8 +327,12 @@
 		</c:if>
 		
 		<!-- 거래자 -->
-		<c:if test="${sbean.id ne login && pbean.dealstatus == 0 }">
-		<div class="div-saleInfo"><b>구매완료</b>	</div><br>
+		<c:if test="${sbean.id ne login && pbean.dealstatus == 1}">
+		<div class="div-saleInfo"><b>구매 가능</b>	</div><br>
+		</c:if>
+		
+		<c:if test="${sbean.id ne login && pbean.dealstatus == 0}">
+		<div class="div-saleInfo"><b>구매 완료</b>	</div><br>
 		</c:if>
 	
 
