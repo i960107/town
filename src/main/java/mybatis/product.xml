@@ -231,4 +231,11 @@
 	order by count desc
 </select>
 
+<!-- memberDeal 삽입 -->
+<insert id="insertDeal">
+	insert into member_deal 
+	values(20000+memdeal_seq.nextval, #{productNo}, #{sellerId}, #{buyerId}, default, sysdate)
+</insert>
+
+
 </mapper>
