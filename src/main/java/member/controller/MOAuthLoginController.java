@@ -111,11 +111,11 @@ public class MOAuthLoginController {
 		String gender = kakaoProfile2.getkakao_account().getGender();
 		if(gender==null) {
 			gender = "남";
-			if(gender.equals("male")) {
-				gender = "남";
-			}else {
-				gender = "여";
-			}
+		}
+		if(gender.equals("male")) {
+			gender = "남";
+		}else {
+			gender = "여";
 		}
 		mbean.setGender(gender);
 		//패스워드 랜덤값
