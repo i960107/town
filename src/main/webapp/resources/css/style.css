@@ -99,7 +99,7 @@ a:hover,
 a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #5D5D5D;  
+	color: #fff;
 }
 
 ul,
@@ -425,7 +425,7 @@ ol {
 }
 
 .inner-header .advanced-search {
-	height: 0px; /* origin: 50px */
+	height: 50px;
 	border: 1px solid #ebebeb;
 }
 
@@ -464,12 +464,13 @@ ol {
 }
 
 .inner-header .advanced-search .input-group {
-	/* max-width: 72%; */
-	height: 45px;
+	max-width: 70%;
+	height: 100%;
 }
 
 .inner-header .advanced-search .input-group input {
 	width: 100%;
+	height: 100%;
 	border: none;
 	font-size: 16px;
 	color: #d1d1d1;
@@ -740,14 +741,13 @@ ol {
 	display: -ms-inline-flexbox;
 	display: inline-flex;
 	position: relative;
-	height: 44px;
 }
 
 .nav-item .nav-menu li {
-    list-style: none;
-    position: relative;
-    width: 200px;
-    margin: auto;
+	list-style: none;
+	display: inline-block;
+	margin-left: -5px;
+	position: relative;
 }
 
 .nav-item .nav-menu li.active a {
@@ -1501,7 +1501,7 @@ ol {
 
 .footer-section {
 	background: #191919;
-	padding: 30px; /* orign: padding-top: 75px  */
+	padding-top: 75px;
 }
 
 .footer-left {
@@ -1518,7 +1518,7 @@ ol {
 
 .footer-left ul li {
 	list-style: none;
-	color: #fff; /* #b2b2b2 */
+	color: #b2b2b2;
 	font-size: 16px;
 	line-height: 30px;
 }
@@ -3897,8 +3897,7 @@ ol {
 		padding: 16px 12px 12px 11px;
 	}
 	.nav-item .nav-menu li a {
-		/* padding: 16px 45px 15px; */
-		padding: 15px 70px 15px 70px;
+		padding: 16px 45px 15px;
 	}
 }
 
@@ -3915,11 +3914,10 @@ ol {
 		max-width: 36%;
 	}
 	.inner-header .advanced-search .input-group {
-		/* max-width: 64%; */
+		max-width: 64%;
 	}
 	.nav-item .nav-menu li a {
-		/* padding: 16px 45px 15px; */
-		padding: 15px 70px 15px 70px;
+		padding: 16px 26px 15px;
 	}
 	.hero-items .owl-nav button[type=button] {
 		left: 5px;
@@ -4025,7 +4023,7 @@ ol {
 		padding-right: 25px;
 	}
 	.inner-header .advanced-search .input-group {
-		/* max-width: 60%; */
+		max-width: 60%;
 	}
 	.inner-header .nav-right li {
 		margin-left: 8px;
@@ -4034,8 +4032,7 @@ ol {
 		padding: 14px 40px 14px 18px;
 	}
 	.nav-item .nav-menu li a {
-		/* padding: 16px 45px 15px; */
-		padding: 15px 70px 15px 70px;
+		padding: 16px 10px 15px;
 	}
 	.instagram-photo .insta-item .inside-text h5 {
 		font-size: 14px;

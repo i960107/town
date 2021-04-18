@@ -64,6 +64,16 @@ public class ProductBean {
 		this.userid = userid;
 	}
 	
+	// 메인 인기 키워드 
+	private String keyword;
+	
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	
 	
 	public int getNo() {
 		return no;
