@@ -196,7 +196,6 @@ public class ProductDao {
 	
 	// 키워드 입력값 DB 삽입
 	public void inputKeyword(ProductKeywordBean keywordBean) {
-		/* List<ProductKeywordBean> klist = new ArrayList<ProductKeywordBean>(); */
 		sqlSessionTemplate.insert(nameSpace+".inputKeyword", keywordBean);
 	}
 
@@ -213,8 +212,8 @@ public class ProductDao {
 	}
 	
 	/* 인기 키워드 리스트 */
-	public List<ProductKeywordBean> getKeywordList() {
-		List<ProductKeywordBean> klist = new ArrayList<ProductKeywordBean>();
+	public List<ProductBean> getKeywordList() {
+		List<ProductBean> klist = new ArrayList<ProductBean>();
 		klist = sqlSessionTemplate.selectList(nameSpace+".getKeywordList");
 		return klist;
 	}

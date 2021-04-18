@@ -33,7 +33,7 @@ public class MainListController {
 		mav.addObject("list", list);
 		//System.out.println("메인리스트 prd no:"+ list.get(0).getNo()); //null이 맞음  rank 별칭선언으로 넘어오는거 rank로 받아옴
 		
-		List<ProductKeywordBean> klist = pDao.getKeywordList();
+		List<ProductBean> klist = pDao.getKeywordList();
 		mav.addObject("klist", klist);
 		
 		//주소 셀렉용

@@ -27,20 +27,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
 </head>
 <body>
-
+<!-- 
 <script type="text/javascript">
-/* 	function statusChange(statusItem) {
-	   var strText = $(statusItem).text();
-	} */
-	
 	function statusChange( statusItem ) {
 	   var strText = $(statusItem).text();
 
-	   // strText 에 전체 문자열이 입력된다.
+	   // strText 에 전체 문자열이 입력됨
 	   $("#keyword").val(strText);
 	}
 </script> 
-
+ -->
     <!-- Banner Section Begin -->
     <div class="banner-section spad">
         <div class="container-fluid">
@@ -66,13 +62,13 @@
     <!-- Banner Section End -->
 
 	<!-- 인기 키워드 시작 -->
-	<h3 align="center">인기 키워드</h3> <br>
+	<h3 align="center">중고거래 인기 키워드</h3> <br>
 	
 	<table border="0" align="center" width="500px">
 		<tr align="center">
 			<c:forEach var="key" items="${klist }">
 				<td>
-					#<a href="#" onclick="statusChange(this)">${key.keyword}</a>
+					#<a href="detail.prd?no=${key.no}&sellerid=${sellerid}">${key.keyword}</a>
 				</td>
 			</c:forEach>
 		</tr>

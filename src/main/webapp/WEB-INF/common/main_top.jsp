@@ -101,6 +101,11 @@
                     <div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
     	                        <div class="input-group">
+	                        		<select name="whatColumn">
+	                                    <!-- <option value="all">전체검색</option> -->
+	                                    <option value="product"  >중고거래</option> <%-- <c:out value="${whatColumn eq 'product' ? 'selected':'' }"/> --%>
+	                                    <option value="town" >동네생활</option> <%-- <c:out value="${whatColumn eq 'town' ? 'selected':'' }"/> --%>
+	                                </select>
 	                                <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." value="${keyword}">
 	                                <button type="submit" ><i class="ti-search"></i></button> <!-- themify-icons.css -->
 	                            </div>
@@ -133,37 +138,6 @@
 			</div>
 		</div>
       	</form>
-        <%-- <div>
-        	<c:if test="${requestPage=='list.bd' }">
-        	<table align="center">
-								<tr style="background-color: #FFFFF0;">
-									<td colspan=2 align="center" style="padding-top: 10px"\
-										valign="middle"><h5>
-											<b>카테고리</b>
-										</h5></td>
-								</tr>
-								<tr style="background-color: #FFFFF0">
-									<td colspan=2 height="100"><c:if test="${category==null}">
-											<c:forEach items="${categoryList}" var="ctg">
-												<span class="col-md-2"><input type="checkbox"
-													name="category" value="${ctg.no}" checked>${ctg.categoryName}
-												</span>
-											</c:forEach>
-										</c:if> <c:if test="${category!=null}">
-											<c:forEach items="${categoryList}" var="ctg">
-												<span class="col-md-2"> <input type="checkbox"
-													name="category" value="${ctg.no}"
-													<c:forTokens items="${category}" delims="," var="ct">
-													<c:if test="${ct==ctg.no}">checked</c:if>
-													</c:forTokens>>${ctg.categoryName}
-												</span>
-											</c:forEach>
-										</c:if></td>
-								</tr>
-
-							</table>
-							</c:if>
-        </div> --%>
        <div class="nav-item">
 			<!-- <div class="container"> -->
 			<div class="row">
@@ -171,17 +145,6 @@
 					<nav class="nav-menu mobile-menu">
 						<ul>
 							<li class="active"><a href="<%=viewMain %>">Home</a></li>
-							<!-- <li> 
-								<div class="col-lg-7 col-md-7">
-									<div class="advanced-search">
-										<button type="button" class="category-btn">All Categories</button>
-									<div class="input-group">
-										<input type="text" placeholder="What do you need?">
-										<button type="button"><i class="ti-search"></i></button>
-									</div>
-									</div>
-								</div>
-							</li>  -->
 							<li><a href="<%=saleList %>">중고거래</a></li>
 							<li><a href="<%=boardList %>">동네생활</a></li>
 							<li><a href="<%=productWrite %>">판매하기</a></li>
