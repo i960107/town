@@ -2,9 +2,11 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
-
+<%@include file="../common/common.jsp"%>
+<%@include file="./../common/main_top.jsp"%>
 <script
 	src="${pageContext.request.contextPath}/resources/script/timeFormat.js"></script>
+
 <style type="text/css">
 .board {
 	margin-bottom: 30px;
@@ -42,22 +44,28 @@
 </style>
 </head>
 <body>
-	<%@include file="../common/common.jsp"%>
-	<%@include file="./../common/main_top.jsp"%>
+
 	<!-- 페이지설명 -->
 	<section class="latest-blog spad">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="section-title">
-						<h2>동네생활</h2>
+						<h2>게시판</h2>
 						<h3>우리 동네의 다양한 이야기를 이웃과 함께 나누어요.</h3>
 					</div>
 				</div>
 				<!-- 검색필터설정 -->
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
-						<form action="list.bd" method="post" name="myform">
+						<form action="list.bd" name="categoryform">
+							<script>
+								var keyword = document.searchform.keyword.value;
+								if (keyword != "") {
+									document
+											.write("<input type='hidden' name='keyword' value='"+keyword+"'>");
+								}
+							</script>
 							<table>
 								<tr style="background-color: #FFFFF0;">
 									<td colspan=2 align="center" style="padding-top: 10px"
@@ -67,34 +75,28 @@
 								</tr>
 								<tr style="background-color: #FFFFF0">
 									<td colspan=2 height="100"><c:if test="${category==null}">
-										<label for="out_category">
 											<c:forEach items="${categoryList}" var="ctg">
 												<span class="col-md-2"><input type="checkbox"
-													name="category" value="${ctg.no}" checked>${ctg.categoryName}
+													name="category" class="category" value="${ctg.no}" checked>${ctg.categoryName}
 												</span>
 											</c:forEach>
 										</c:if> <c:if test="${category!=null}">
 											<c:forEach items="${categoryList}" var="ctg">
 												<span class="col-md-2"> <input type="checkbox"
-													name="category" value="${ctg.no}"
+													name="category" class="category" value="${ctg.no}"
 													<c:forTokens items="${category}" delims="," var="ct">
 													<c:if test="${ct==ctg.no}">checked</c:if>
 													</c:forTokens>>${ctg.categoryName}
 												</span>
 											</c:forEach>
-										</label>
+
 										</c:if></td>
 								</tr>
-								<%-- <tr style="background-color: #FFFFF0">
-									<td colspan=2 height="50" align="right">결과 내 재검색 <input
-										type="text" name="keyword" value="${keyword}"> <input
-										type="submit" value="검색">
-
-									</td>
-								</tr> --%>
-
+								<tr>
+									<td style="background-color: #FFFFF0;" colspan=2 align="right"><input
+										type="submit" value="카테고리 조건 검색"></td>
 							</table>
-						
+						</form>
 					</div>
 				</div>
 			</div>
@@ -109,11 +111,34 @@
 						</button>
 					</div>
 					<div>
-						
-							<input type="hidden" name="request" value="list.bd">
+						<form name="myform">
 							<c:set var="mbean" value="${loginInfo}" />
+							<script>
+								/* 키워드 넘기기 */
+								document
+										.write("<input type='hidden' name='keyword' value='"+document.searchform.keyword.value+"'>");
+								/* 카테고리 넘기기 */
+								var categoryObj = document.categoryform.category;
+								var category = "";
+								for (i = 0; i < categoryObj.length; i++) {
+
+									if (categoryObj[i].checked) {
+										if (i != 0) {
+											category += ","
+										}
+										category += categoryObj[i].value
+									}
+									;
+
+								}
+								document
+										.write("<input type='hidden' name='category' value='"+category+"'>");
+							</script>
+							<input type="hidden" name="request" value="list.bd">
+							<%@include file="./../common/addrArray.jsp"%>
 						</form>
 					</div>
+
 				</div>
 			</div>
 
@@ -124,7 +149,7 @@
 					<div class="flex-container-board">
 						<c:set var="flag" value="false" />
 						<c:forEach var="bean" items="${boardFileList}">
-								<c:if test="${flag==false}">
+							<c:if test="${flag==false}">
 								<c:if test="${bean.bno==board.no}">
 									<div>
 										<img
@@ -149,7 +174,7 @@
 							<h4>
 								<b>${board.subject}</b>
 							</h4>
-							<br> ${fn:substring(board.contents,0,10)}<br><a
+							<br> ${fn:substring(board.contents,0,10)}<br> <a
 								href='detailView.bd?no=${board.no}'>...더보기</a>
 
 							<div>

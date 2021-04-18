@@ -135,14 +135,17 @@ nocache;
 insert into member values('hong','1234','홍길동','남','01012341234','hong@gmail.com','서울특별시 서초구 강남대로 12길 6','서울특별시','서초구','양재동','image.jpg',1,1,0,0);
 insert into manner_temp values('hong',default);
 insert into town_board values(town_board_seq.nextval,'hong','서울특별시','서초구','삼겹살 같이 먹어요',10001,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시',' 서초구','소라 같이 먹어요',10001,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시',' 서초구','회 같이 먹어요',10002,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시','서초구','소라 같이 먹어요',10001,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시','서초구','회 같이 먹어요',10002,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
 insert into town_board values(town_board_seq.nextval,'hong','서울특별시','서초구','소고기 같이 먹어요',10003,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
-insert into town_board values(town_board_seq.nextval,'hong','서울특별시',' 서초구','엽떡 같이 먹어요',10005,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
+insert into town_board values(town_board_seq.nextval,'hong','서울특별시','서초구','엽떡 같이 먹어요',10005,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
 insert into town_board values(town_board_seq.nextval,'hong','서울특별시 ','서초구','돈까스 같이 먹어요',10004,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
 insert into town_board values(town_board_seq.nextval,'hong','서울특별시 ','서초구','국밥 같이 먹어요',10007,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
 insert into town_board values(town_board_seq.nextval,'hong','서울특별시 ','서초구','술 같이 먹어요',10003,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
 commit;
+
+insert into town_board_file values(town_board_file_seq.nextval,'8','img1.jpg');
+insert into town_board_file values(town_board_file_seq.nextval,'8','img2.jpg');
 
 insert into town_board_category values(10000+boardcate_seq.nextval,'같이해요') ;
 insert into town_board_category values(10000+boardcate_seq.nextval,'동네사진전');

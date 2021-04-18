@@ -25,7 +25,7 @@ import member.model.MemberBean;
 @Controller
 public class boardListController {
 	private final String command = "/list.bd";
-	private String getPage = "redirect:/list.bd";
+	private String getPage = "/list.bd";
 	private String goToPage = "boardList";
 	@Autowired
 	BoardDao dao;
@@ -37,37 +37,28 @@ public class boardListController {
 			@RequestParam(value = "address1", required = false) String address1,
 			@RequestParam(value = "address2", required = false) String address2,
 			@RequestParam(value = "category", required = false) String category,
-			@RequestParam(value = "keyword", required = false) String keyword,
-			HttpServletResponse response
-			) throws IOException 
-	{
-		
-		//카테고리 하나이상 선택 필수 아니면 되돌아가기
-		if (category == null) {
-			System.out.println("여기오나");
-			PrintWriter pwriter = response.getWriter();
-			response.setContentType("text/html; charset=UTF-8");
-			pwriter.print("<script type='text/javascript'>");
-			pwriter.print("alert('카테고리는 하나이상 선택해주세요')");
-			pwriter.print("location.href='" + getPage + "'");
-			pwriter.print("</script>");
-			pwriter.flush();
-		}
-		
-		//카테고리 들고오기
+			@RequestParam(value = "keyword", required = false) String keyword, HttpServletResponse response)
+			throws IOException {
+		System.out.println("address1" + address1);
+		System.out.println("address2" + address2);
+		System.out.println("category" + category);
+		System.out.println("keyword" + keyword);
+
+
+
+		// 카테고리 들고오기
 		List<BoardCategoryBean> categoryList = dao.getAllCategory();
 		context.setAttribute("categoryList", categoryList);
-		
-		//조건에 맞는 board가져오기
-		List<BoardBean> boardList = dao.getBoardList(keyword,category,address1, address2);
-		//조건에 맞는 boardfile 가져오기
+
+		// 조건에 맞는 board가져오기
+		List<BoardBean> boardList = dao.getBoardList(keyword, category, address1, address2);
+		// 조건에 맞는 boardfile 가져오기
 		List<BoardFileBean> boardFileList = new ArrayList<BoardFileBean>();
 		for (int i = 0; i < boardList.size(); i++) {
 			int bno = boardList.get(i).getNo();
 			boardFileList = dao.getFileBeans(boardFileList, bno);
 		}
-		
-		
+
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("category", category);

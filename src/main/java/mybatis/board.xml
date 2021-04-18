@@ -20,17 +20,22 @@
 	<select id="getBoardList" resultType="board.model.BoardBean">
 		select * from town_board
 		where re_level =1
-		<if test="category!=null">
-		and category in ${category}
-		</if>
 		<if test="keyword!=null">
-		and subject like #{keyword}
+			and subject like #{keyword}
 		</if>
 		<if test="address1!=null">
-		and address1 = #{address1}
+			and address1 = #{address1}
 		</if>
 		<if test="address2!=null">
-		and address2 = #{address2}
+			and address2 = #{address2}
+		</if>
+		<if test="category!=null">
+		and (
+		<foreach item="item" index="index" collection="category"
+			separator="or" >
+			#{item} in category
+		</foreach>
+		)
 		</if>
 		order by reg_date desc
 	</select>
@@ -113,37 +118,43 @@
 	</delete>
 	<!-- 댓글쓰기 -->
 	<insert id="insertReply">
-		insert into town_board(no,writer,contents,ref,re_level)
+		insert into
+		town_board(no,writer,contents,ref,re_level)
 		values(town_board_seq.nextval,#{writer},#{contents},#{ref},#{reLevel})
 	</insert>
 	<!-- 이미지 하나만 가져오기 -->
 	<select id="getThumnailName" resultType="String">
-	select filename from town_board_file where bno=#{no}  and rownum=1 order by no desc
+		select filename from town_board_file where bno=#{no} and rownum=1 order by
+		no desc
 	</select>
 	<!-- 게시글 업데이트 -->
 	<update id="updateBoard">
-	update town_board set subject =#{subject} , address1=#{address1}, address2=#{address2}, contents=#{contents} category=#{category} where no=#{no}
+		update town_board set subject =#{subject} , address1=#{address1},
+		address2=#{address2}, contents=#{contents} category=#{category} where
+		no=#{no}
 	</update>
 	<delete id="fileDelete">
-	delete town_board_file where bno=#{bno}
+		delete town_board_file where bno=#{bno}
 	</delete>
-	
+
 
 	<select id="getMemberById" resultType="member.model.MemberBean">
 		select * from member
-		where id = #{id}
+		where
+		id = #{id}
 	</select>
 
 	<!-- 메인 검색어 입력 -->
-	<select id="getSearchBoardList" resultType="board.model.BoardBean">
-	select * from town_board
-	<if test="keyword != null">
-		where subject like #{keyword} and deal_status = 1
-	</if>
-	<if test="keyword == null">
-		where deal_status = 1
-	</if>
-	order by no desc
+	<select id="getSearchBoardList"
+		resultType="board.model.BoardBean">
+		select * from town_board
+		<if test="keyword != null">
+			where subject like #{keyword} and deal_status = 1
+		</if>
+		<if test="keyword == null">
+			where deal_status = 1
+		</if>
+		order by no desc
 	</select>
 
 

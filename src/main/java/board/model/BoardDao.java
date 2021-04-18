@@ -32,11 +32,26 @@ public class BoardDao {
 
 	public List<BoardBean> getBoardList(String keyword,String category,String address1, String address2) {
 		List<BoardBean> boardList = new ArrayList<BoardBean>();
-		Map<String, String> map = new HashMap<String, String>();
+		List<String> cateList = null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(keyword!=null) {
 		map.put("keyword", "%"+keyword+"%");
-		map.put("category", "("+category+")");
+		}else {
+			map.put("keyword", null);
+		}
+		
+		  if(category!=null) { 
+			  cateList=new ArrayList<String>();
+			  String[]cateArr=category.split(","); for(String
+		  c:cateArr) {
+			
+			  cateList.add(c); 
+			  }
+		  }
+		map.put("category",cateList);
 		map.put("address1", address1);
 		map.put("address2", address2);
+		System.out.println(map);
 		boardList = sqlSessionTemplate.selectList(namespace + ".getBoardList", map);
 		return boardList;
 	}
