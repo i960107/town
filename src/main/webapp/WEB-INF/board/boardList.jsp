@@ -123,7 +123,7 @@
 					<div class="flex-container-board">
 						<c:set var="flag" value="false" />
 						<c:forEach var="bean" items="${boardFileList}">
-							<c:if test="${flag==false}">
+								<c:if test="${flag==false}">
 								<c:if test="${bean.bno==board.no}">
 									<div>
 										<img
