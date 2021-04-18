@@ -7,7 +7,6 @@
 
 <br>
 
-
 	<div style="width: 80%; margin: 0 auto;" > 
             <div class="row">
                 <div class="col-md-12">
@@ -86,7 +85,8 @@
             </div>
  		</div> 
 
-
+	</td>
+	</table>
 <br>
 <br>
 

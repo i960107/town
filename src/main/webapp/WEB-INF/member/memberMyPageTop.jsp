@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="./../common/mainW_top.jsp"%>
+<%@ include file="./../common/main_top.jsp"%>
 <%@ include file="./../common/common.jsp"%>
 
 
@@ -29,7 +29,7 @@
 </center>
 <br>
 
-<tr>
+
 	<table width="70%" border="1" align="center">
 		<tr rowspan="3" height="300">
 			<td colspan="2" align="center">
@@ -100,7 +100,7 @@
 			<c:if test="${loginInfo.authority == 0 }">
 				<td class="tab-item">
 					<ul class="nav" role="tablist">
-						<li><a class="active" href="Category.jsp">Category</a></li>
+						<li><a class="active" href="categoryList.ct">Category</a></li>
 					</ul>
 				</td>
 
@@ -113,12 +113,9 @@
 
 		</tr>
 		
-	</table>
-	
-	
-	
+		<tr>
+		<td colspan="8">
+		
 
 
-
-
-
+<%-- <%@ include file="./../common/main_bottom.jsp"%> --%>

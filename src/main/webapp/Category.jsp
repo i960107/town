@@ -218,8 +218,8 @@
 
 
 
-<div align="center">
 <table border="1">
+<div align="center">
 
 <h4>카테고리 관리</h4> 
 <tr>
@@ -242,7 +242,12 @@
 <a href="productCateInsert.ct">중고물간 카테 등록</a>
 </td>
 </tr>
+</div>
 </table>
 
-</div>
-<%-- <%@ include file="./../WEB-INF/common/main_bottom.jsp"%> --%>
+</td>
+</tr>
+</table>
+
+
+<%@ include file="./../WEB-INF/common/main_bottom.jsp"%>

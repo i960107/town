@@ -79,29 +79,57 @@
 
 	<!-- Header Section Begin -->
 	<!-- 로그인 영역 시작 -->
-	<header class="header-section">
-		<div class="header-top">
-			<div class="container">
-				<div class="ht-right">
-					<!-- <a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a> -->
-					<div class="lan-selector">
-						<a href="<%=myPage%>" class="login-panel">나의당근</a>
-					</div>
-					<div class="top-social">
-						<a href="<%=join%>" class="login-panel">회원가입</a>
 
-						<c:if test="<%=loginInfo == null%>">
-							<a href="<%=login%>" class="login-panel"><i
-								class="fa fa-user"></i>Login</a>
-						</c:if>
-
-						<c:if test="<%=loginInfo != null%>">
-							<a href="<%=logout%>" class="login-panel"><i
-								class="fa fa-user"></i>LogOut</a>
-							<a href="<%=myPage%>" class="login-panel"><%=loginInfo.getName()%>
-								님</a>
-						</c:if>
-					</div>
+    <header class="header-section">
+        <div class="header-top">
+            <div class="container">
+            	<div class="ht-right">
+                    <!-- <a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a> -->
+                    <div class="lan-selector">
+                        <a href="<%=myPage %>" class="login-panel">나의당근</a>
+                    </div>
+                    <div class="top-social">
+                        <a href="<%=join %>" class="login-panel">회원가입</a>
+                        
+                        <c:if test="<%= loginInfo == null %>">
+                    	<a href="<%=login %>" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                    	</c:if>
+                    	
+                    	<c:if test="<%= loginInfo != null %>">
+                    	<a href="<%=logout %>" class="login-panel"><i class="fa fa-user"></i>LogOut</a>
+                    	<a href="<%=myPage %>" class="login-panel"><%= loginInfo.getName() %> 님</a>
+                    	</c:if>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 로그인 영역 끝 -->
+        
+        <!-- 카테고리 영역 시작 -->
+		<form action="${requestPage }" method="post" name="myform">
+        <div class="container">
+            <div class="inner-header">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2">
+                        <div class="logo">
+                            <a href="<%=viewMain %>">
+                                <img src="<%=request.getContextPath()%>/resources/img/logo.png" alt="logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7">
+                        <div class="advanced-search">
+    	                        <div class="input-group">
+	                        		<select name="whatColumn" class="nice-select">
+	                                    <!-- <option value="all">전체검색</option> -->
+	                                    <option value="product"  >중고거래</option> <%-- <c:out value="${whatColumn eq 'product' ? 'selected':'' }"/> --%>
+	                                    <option value="town" >동네생활</option> <%-- <c:out value="${whatColumn eq 'town' ? 'selected':'' }"/> --%>
+	                                </select>
+	                                <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." value="${keyword}">
+	                                <button type="submit" ><i class="ti-search"></i></button> <!-- themify-icons.css -->
+	                            </div>
+                        </div>
+                    </div>
 				</div>
 			</div>
 		</div>

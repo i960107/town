@@ -20,7 +20,7 @@ public class CategoryDeleteController {
 		
 		int cnt = cdao.delBoardCate(bcno);
 		
-		return "redirect:/boardCateList.ct";
+		return "redirect:/categoryList.ct";
 	}
 	
 	
@@ -30,9 +30,8 @@ public class CategoryDeleteController {
 		
 		int cnt = cdao.delProdCate(pcno);
 		
-		return "redirect:/productCateList.ct";
+		return "redirect:/categoryList.ct";
 	}
-	
 	
 
 	
