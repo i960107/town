@@ -1,7 +1,6 @@
 package member.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +15,7 @@ import board.model.BoardBean;
 import board.model.BoardDao;
 import member.model.MemberBean;
 import member.model.MemberDao;
+import member.model.MemberDealReviewBean;
 import product.model.ProductBean;
 
 @Controller
@@ -52,23 +52,15 @@ public class MTradeDetailView {
 		List<BoardBean> rList = bDao.getBoardReplyListById(sellerid);
 		//매너온도
 		float mtemp = mDao.getTemp(sellerid);
-		//조회하려는 유저가 관리자일때 뒤로가기
-		if(mbean.getAuthority()==0) {
-			response.setCharacterEncoding("text/html;charset=UTF-8");
-			PrintWriter out=response.getWriter();
-			String str="<script type='text/javascript'>";
-			str+="alert('관리자는 조회할 수 없습니다')";
-			str+="history.go(-1)";
-			str+="</script>";
-			out.println(str);
-			return null;
-		}
+		//멤버 딜 리뷰
+		List<MemberDealReviewBean> reviewList =mDao.getMemberDealReview(sellerid);
 		//데이터 넘김
 		mav.addObject("mbean", mbean);
 		mav.addObject("bList", bList);
 		mav.addObject("rList", rList);
 		mav.addObject("mtemp", mtemp);
 		mav.addObject("pList", pList);
+		mav.addObject("reviewList", reviewList);
 
 		return mav;
 	}

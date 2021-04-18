@@ -140,7 +140,7 @@ textarea {
 														src="<%=request.getContextPath()%>/resources/members/${mbean.image}">
 												</div>
 										</a></td>
-										<td valign="top"><span class="subject">${mbean.id }</span></td>
+										<td valign="top"><a href="tradeDetail.mb?sellerid=${mbean.id }"><span class="subject">${mbean.id }</span></a></td>
 									</tr>
 									<tr height="72">
 										<!-- 조회수 / 등록일 / 신고 -->

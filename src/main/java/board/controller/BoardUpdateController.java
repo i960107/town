@@ -70,36 +70,7 @@ public class BoardUpdateController {
 				}
 			}
 			}
-		/*
-		 * if(cnt==1) { List<MultipartFile> mf = pbean.getUpload(); //이미지 list로 받음
-		 * List<String> pf = fbean.getFiletemp(); File dir = new File(uploadPath); if
-		 * (!dir.isDirectory()) { //파일충돌 방지? dir.mkdirs(); }
-		 * 
-		 * if(pf!=null) { for (int i = 0; i < pf.size(); i++) { //삭제할 이미지 처리
-		 * System.out.println("delfile name : " + pf.get(i)); File f = new
-		 * File(uploadPath+"/"+pf.get(i)); //폴더에서 파일 삭제 f.delete(); delcnt +=
-		 * pDao.deleteFile(pf.get(i)); } } System.out.println("삭제한 파일 수 : " + delcnt);
-		 * 
-		 * int pno = pbean.getNo(); if(mf.size() == 1 &&
-		 * mf.get(0).getOriginalFilename().equals("")) { //파일 넘어왔는지 체크
-		 * 
-		 * }else { String saveName = ""; //product.image 넣을 임시변수 for (int i = 0; i <
-		 * mf.size(); i++) { String genId = UUID.randomUUID().toString(); //파일이름 난수 생성
-		 * String originalfileName = mf.get(i).getOriginalFilename(); //파일 이름 받아옴 String
-		 * saveFileName = genId + "." + originalfileName; //저장 파일 이름 if(i==0) { saveName
-		 * = genId + "." + originalfileName; //대표 이미지 저장용 임시 변수 } String savePath =
-		 * uploadPath+saveFileName; //저장 경로 mf.get(i).transferTo(new File(savePath));
-		 * //파일 폴더에 입력
-		 * 
-		 * pDao.fileUpload(originalfileName, saveFileName, pno); //파일 테이블 입력 -
-		 * product_file table } pDao.fileUpload2(saveName, pno); //대표 이미지 주소 업데이트 -
-		 * product table }
-		 * 
-		 * 
-		 * }else { mav.setViewName(getPage); //실패 - 되 돌아가기 }
-		 * 
-		 * 
-		 * 
-		 */		return goToPage;
+			return goToPage;
+
 	}
 }

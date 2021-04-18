@@ -69,6 +69,9 @@
 	display: flex;
 	flex-direction: row;
 }
+#address1, #address2{
+height:40px;
+}
 </style>
 <div class="flex-container-addr">
 	

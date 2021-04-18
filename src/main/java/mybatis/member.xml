@@ -157,4 +157,7 @@
 		update member set address = #{address}, address1 = #{address1}, address2 = #{address2}, address3 = #{address3}
 		where id = #{id} 
 	</update>
+	<select id="getMemberDealReview" resultType="member.model.MemberDealReviewBean">
+	select * from member_deal_review where seller_id=#{sellerid}
+	</select>
 </mapper>

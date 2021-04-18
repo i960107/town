@@ -36,7 +36,7 @@
 .flex-container-board {
 	display: flex;
 	flex-direction: row;
-	flex-grow: 1 background-color: blue;
+	font-size:25px;
 	width: 100%;
 	margin-bottom: 15px;
 	background-color: #dcdcdc;
@@ -51,7 +51,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="section-title">
-						<h2>게시판</h2>
+						<h2>동네생활</h2>
 						<h3>우리 동네의 다양한 이야기를 이웃과 함께 나누어요.</h3>
 					</div>
 				</div>
@@ -61,6 +61,7 @@
 						<form action="list.bd" name="categoryform">
 							<script>
 								var keyword = document.searchform.keyword.value;
+								
 								if (keyword != "") {
 									document
 											.write("<input type='hidden' name='keyword' value='"+keyword+"'>");
@@ -161,7 +162,7 @@
 							</c:if>
 						</c:forEach>
 
-						<div style="margin-left: 10px">
+						<div style="margin-left: 30px">
 							<c:forTokens items="${board.category }" delims="," var="ctg">
 								<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
 									<c:if test="${categoryList[i].no==ctg}">
@@ -171,20 +172,22 @@
 								</c:forEach>
 							</c:forTokens>
 							<br>
-							<h4>
-								<b>${board.subject}</b>
-							</h4>
-							<br> ${fn:substring(board.contents,0,10)}<br> <a
+							<font color="orange" ><b>
+							${board.subject}
+							</b>
+							</font>
+							
+							<br> ${fn:substring(board.contents,0,10)} <a
 								href='detailView.bd?no=${board.no}'>...더보기</a>
 
-							<div>
+							<div style="margin-top:30px">
 								<span> <a href="tradeDetail.mb?sellerid=${board.writer}">${board.writer}</a>
 								</span> <i class="fa fa-calendar-o"></i>
 								<!-- 시간 바꿔서 출력하기 Javascript코드 -->
 								<span><script type="text/javascript">
 									document
 											.write(displayTime('<c:out value="${board.regDate}"/>'));
-								</script></span> <span>조회수</span>${board.readcount}
+								</script> </span> <span>조회수</span>${board.readcount}
 
 
 							</div>

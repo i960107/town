@@ -30,10 +30,10 @@
 			and address2 = #{address2}
 		</if>
 		<if test="category!=null">
-		and (
+		and(
 		<foreach item="item" index="index" collection="category"
 			separator="or" >
-			#{item} in category
+			 category like '%'||#{item}||'%'
 		</foreach>
 		)
 		</if>

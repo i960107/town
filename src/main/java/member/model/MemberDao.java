@@ -137,6 +137,12 @@ public class MemberDao {
 		sqlSessionTemplate.update(nameSpace+".updateAddrOAuth", mbean);
 	}
 
+	public List<MemberDealReviewBean> getMemberDealReview(String sellerid) {
+
+		List<MemberDealReviewBean> reviewList=sqlSessionTemplate.selectList(nameSpace+".getMemberDealReview", sellerid);
+		return reviewList;
+	}
+
 
 	
 }

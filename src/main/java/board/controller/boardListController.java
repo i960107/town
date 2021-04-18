@@ -43,8 +43,7 @@ public class boardListController {
 		System.out.println("address2" + address2);
 		System.out.println("category" + category);
 		System.out.println("keyword" + keyword);
-
-
+		
 
 		// 카테고리 들고오기
 		List<BoardCategoryBean> categoryList = dao.getAllCategory();
