@@ -224,5 +224,11 @@ public class ProductDao {
 		System.out.println("memberDeal insert Cnt:"+cnt);
 		return cnt;
 	}
+
+	public List<ProdCategoryBean> getAllPrdCategory() {
+		List<ProdCategoryBean> clist = new ArrayList<ProdCategoryBean>();
+		clist = sqlSessionTemplate.selectList(nameSpace+".getAllPrdCategory");
+		return clist;
+	}
 	
 }

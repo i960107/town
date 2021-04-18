@@ -80,15 +80,6 @@ CREATE TABLE  product_category  (
   category_name  varchar2(50)  NULL
 );
 
-insert into product_category
-values(prdseq.nextval, 'test1');
-
-insert into product_category
-values(prdseq.nextval, 'test2');
-
-insert into product_category
-values(prdseq.nextval, 'test3');
-
 drop table town_board_category cascade constraints;
 CREATE TABLE  town_board_category  (
   no  number primary key,

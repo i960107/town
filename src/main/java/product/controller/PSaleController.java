@@ -1,10 +1,13 @@
 package product.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import category.model.ProdCateBean;
 import member.model.MemberBean;
+import product.model.ProdCategoryBean;
 import product.model.ProductBean;
 import product.model.ProductDao;
 import product.model.ProductKeywordBean;
@@ -50,6 +55,10 @@ public class PSaleController {
 		mav.setViewName(getPage);
 		mav.addObject("searchList", searchList);
 		mav.addObject("requestPage", "saleList.prd");
+		
+		//카테고리 리스트
+		List<ProdCategoryBean> clist = pDao.getAllPrdCategory();
+		mav.addObject("categoryList", clist);
 		return mav;
 	}
 	
@@ -57,9 +66,23 @@ public class PSaleController {
 	public ModelAndView doAction(
 			@RequestParam(value="whatColumn",required = false) String whatColumn,
 			@RequestParam(value="keyword",required = false) String keyword,
+			@RequestParam(value = "category", required = false) String category,
 			ProductKeywordBean keywordBean,
 			HttpServletRequest request,
-			HttpSession session) {
+			HttpSession session,
+			HttpServletResponse response) throws IOException {
+		
+		System.out.println(category);
+		List<ProdCategoryBean> clist = pDao.getAllPrdCategory();
+		if (category == null) {
+			PrintWriter pwriter = response.getWriter();
+			response.setContentType("text/html; charset=UTF-8");
+			pwriter.print("<script type='text/javascript'>");
+			pwriter.print("alert('카테고리는 하나이상 선택해주세요')");
+			pwriter.print("location.href='" + getPage + "'");
+			pwriter.print("</script>");
+			pwriter.flush();
+		}
 		
 		/* mainList.jsp 검색어 조회 설정 */
 		Map<Object,String> map = new HashMap<Object,String>();
@@ -108,11 +131,14 @@ public class PSaleController {
 			mav.setViewName(getPage);
 		}
 		
-		
+		//로그인 정보
 		if (member != null) {
 			MemberBean mbean = pDao.getSellerInfo(member.getId());
 			mav.addObject("mbean", mbean);
 		}
+		//카테고리 리스트
+		mav.addObject("categoryList", clist);
+		mav.addObject("category", category);
 		mav.setViewName(getPage);
 		mav.addObject("requestPage", "saleList.prd");
 		return mav;
