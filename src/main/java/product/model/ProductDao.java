@@ -217,5 +217,12 @@ public class ProductDao {
 		klist = sqlSessionTemplate.selectList(nameSpace+".getKeywordList");
 		return klist;
 	}
+
+	// memberDeal 삽입
+	public int insertDeal(MemberDealBean mdbean) {
+		int cnt = sqlSessionTemplate.insert(nameSpace+".insertDeal", mdbean);
+		System.out.println("memberDeal insert Cnt:"+cnt);
+		return cnt;
+	}
 	
 }

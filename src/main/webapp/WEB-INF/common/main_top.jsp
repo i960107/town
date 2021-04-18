@@ -86,6 +86,7 @@
         <!-- 로그인 영역 끝 -->
         
         <!-- 카테고리 영역 시작 -->
+		<form action="${requestPage }" method="get" name="myform">
         <div class="container">
             <div class="inner-header">
                 <div class="row">
@@ -99,6 +100,7 @@
                   
                     <div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
+<<<<<<< HEAD
                         	<form action="saleList.prd" method="get" name="myform">
                         		<div class="input-group">
 	                        	<select name="whatColumn">
@@ -108,17 +110,54 @@
 	                            </select>
                             	</div>
                             	
+=======
+>>>>>>> 419b03c918eaa92736253a855f396cc12a6a434a
     	                        <div class="input-group">
 	                                <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." value="${keyword}">
 	                                <button type="submit"><i class="ti-search"></i></button> <!-- themify-icons.css -->
 	                            </div>
-                        	</form>
                         </div>
                     </div>
 				</div>
 			</div>
 		</div>
-        
+		<div class="input-group" style="margin: position:absolute; left:50%;">
+			<div class="col-lg-7 col-md-7">
+				<%@include file="./../common/addrArray.jsp" %>
+			</div>
+		</div>
+      	</form>
+        <%-- <div>
+        	<c:if test="${requestPage=='list.bd' }">
+        	<table align="center">
+								<tr style="background-color: #FFFFF0;">
+									<td colspan=2 align="center" style="padding-top: 10px"\
+										valign="middle"><h5>
+											<b>카테고리</b>
+										</h5></td>
+								</tr>
+								<tr style="background-color: #FFFFF0">
+									<td colspan=2 height="100"><c:if test="${category==null}">
+											<c:forEach items="${categoryList}" var="ctg">
+												<span class="col-md-2"><input type="checkbox"
+													name="category" value="${ctg.no}" checked>${ctg.categoryName}
+												</span>
+											</c:forEach>
+										</c:if> <c:if test="${category!=null}">
+											<c:forEach items="${categoryList}" var="ctg">
+												<span class="col-md-2"> <input type="checkbox"
+													name="category" value="${ctg.no}"
+													<c:forTokens items="${category}" delims="," var="ct">
+													<c:if test="${ct==ctg.no}">checked</c:if>
+													</c:forTokens>>${ctg.categoryName}
+												</span>
+											</c:forEach>
+										</c:if></td>
+								</tr>
+
+							</table>
+							</c:if>
+        </div> --%>
        <div class="nav-item">
 			<!-- <div class="container"> -->
 			<div class="row">

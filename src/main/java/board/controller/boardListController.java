@@ -47,6 +47,7 @@ public class boardListController {
 		model.addAttribute("address2", address2);
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("boardFileList", boardFileList);
+		model.addAttribute("requestPage", "list.bd");
 		return goToPage;
 	}
 
@@ -77,6 +78,7 @@ public class boardListController {
 			boardFileList = dao.getFileBeans(boardFileList, bno);
 		}
 		model.addAttribute("boardFileList", boardFileList);
+		model.addAttribute("requestPage", "list.bd");
 		return goToPage;
 	}
 }
