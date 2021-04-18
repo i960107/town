@@ -221,13 +221,6 @@
 
 <!-- 인기 키워드 리스트 -->
 <select id="getKeywordList" resultType="product.model.ProductKeywordBean">
-	<!-- select no, keyword, count
-	from product_keyword
-	where ROWNUM
-	<![CDATA[ < ]]> 6
-	and count <![CDATA[ >= ]]> 2
-	order by count desc -->
-	
 	select p.no, p.subject, pk.keyword, pk.count
 	from product_keyword pk inner join product p
 	on p.subject like '%' || pk.keyword || '%'
