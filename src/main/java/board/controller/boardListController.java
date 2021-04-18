@@ -20,6 +20,7 @@ import board.model.BoardBean;
 import board.model.BoardCategoryBean;
 import board.model.BoardDao;
 import board.model.BoardFileBean;
+import member.model.MemberBean;
 
 @Controller
 public class boardListController {
@@ -34,7 +35,8 @@ public class boardListController {
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String doActionGet(Model model, HttpSession session,
 			@RequestParam(value = "address1", required = false) String address1,
-			@RequestParam(value = "address2", required = false) String address2) {
+			@RequestParam(value = "address2", required = false) String address2) 
+	{
 		List<BoardCategoryBean> categoryList = dao.getAllCategory();
 		context.setAttribute("categoryList", categoryList);
 		List<BoardBean> boardList = dao.getAllBoard(address1, address2);
@@ -48,6 +50,12 @@ public class boardListController {
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("boardFileList", boardFileList);
 		model.addAttribute("requestPage", "list.bd");
+		//주소 셀렉용
+		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
+		if (member != null) {
+			MemberBean mbean = dao.getMemberById(member.getId());
+			model.addAttribute("mbean", mbean);
+		}
 		return goToPage;
 	}
 
@@ -55,7 +63,9 @@ public class boardListController {
 	public String doActionPost(Model model, @RequestParam(value = "category", required = false) String category,
 			@RequestParam(value = "keyword", required = false) String keyword,
 			@RequestParam(value = "address1", required = false) String address1,
-			@RequestParam(value = "address2", required = false) String address2, HttpServletResponse response)
+			@RequestParam(value = "address2", required = false) String address2, HttpServletResponse response,
+			HttpSession session
+			)
 			throws IOException {
 		if (category == null) {
 			System.out.println("여기오나");
@@ -79,6 +89,13 @@ public class boardListController {
 		}
 		model.addAttribute("boardFileList", boardFileList);
 		model.addAttribute("requestPage", "list.bd");
+		
+		//주소 셀렉용
+		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
+		if (member != null) {
+			MemberBean mbean = dao.getMemberById(member.getId());
+			model.addAttribute("mbean", mbean);
+		}
 		return goToPage;
 	}
 }

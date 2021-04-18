@@ -87,7 +87,7 @@
         <!-- 로그인 영역 끝 -->
         
         <!-- 카테고리 영역 시작 -->
-		<form action="${requestPage }" method="get" name="myform">
+		<form action="${requestPage }" method="post" name="myform">
         <div class="container">
             <div class="inner-header">
                 <div class="row">
@@ -112,6 +112,24 @@
 		<div class="input-group" style="margin: position:absolute; left:50%;">
 			<div class="col-lg-7 col-md-7">
 				<%@include file="./../common/addrArray.jsp" %>
+			</div>
+			<div hidden="" id="board_category">
+				<c:if test="${category==null}">
+						<c:forEach items="${categoryList}" var="ctg">
+							<span class="col-md-2"><input type="checkbox"
+								name="category" value="${ctg.no}" checked>${ctg.categoryName}
+							</span>
+						</c:forEach>
+					</c:if> <c:if test="${category!=null}">
+						<c:forEach items="${categoryList}" var="ctg">
+							<span class="col-md-2"> <input type="checkbox"
+								name="category" value="${ctg.no}"
+								<c:forTokens items="${category}" delims="," var="ct">
+								<c:if test="${ct==ctg.no}">checked</c:if>
+								</c:forTokens>>${ctg.categoryName}
+							</span>
+						</c:forEach>
+					</c:if>
 			</div>
 		</div>
       	</form>

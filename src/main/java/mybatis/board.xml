@@ -121,4 +121,9 @@
 	<delete id="fileDelete">
 	delete town_board_file where bno=#{bno}
 	</delete>
+	
+	<select id="getMemberById" resultType="member.model.MemberBean">
+		select * from member
+		where id = #{id}
+	</select>
 </mapper>

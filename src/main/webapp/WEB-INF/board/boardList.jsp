@@ -67,6 +67,7 @@
 								</tr>
 								<tr style="background-color: #FFFFF0">
 									<td colspan=2 height="100"><c:if test="${category==null}">
+										<label for="board_category">
 											<c:forEach items="${categoryList}" var="ctg">
 												<span class="col-md-2"><input type="checkbox"
 													name="category" value="${ctg.no}" checked>${ctg.categoryName}
@@ -81,15 +82,16 @@
 													</c:forTokens>>${ctg.categoryName}
 												</span>
 											</c:forEach>
+										</label>
 										</c:if></td>
 								</tr>
-								<tr style="background-color: #FFFFF0">
+								<%-- <tr style="background-color: #FFFFF0">
 									<td colspan=2 height="50" align="right">결과 내 재검색 <input
 										type="text" name="keyword" value="${keyword}"> <input
 										type="submit" value="검색">
 
 									</td>
-								</tr>
+								</tr> --%>
 
 							</table>
 						

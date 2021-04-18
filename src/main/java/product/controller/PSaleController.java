@@ -35,6 +35,29 @@ public class PSaleController {
 			//@RequestParam(value="whatColumn",required = false) String whatColumn,
 			@RequestParam(value="keyword",required = false) String keyword,
 			ProductKeywordBean keywordBean,
+			HttpSession session) {
+		
+		ModelAndView mav = new ModelAndView();
+		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
+		
+		if (member != null) {
+			MemberBean mbean = pDao.getSellerInfo(member.getId());
+			mav.addObject("mbean", mbean);
+		}
+		
+		List<ProductBean> searchList = pDao.getList();
+		
+		mav.setViewName(getPage);
+		mav.addObject("searchList", searchList);
+		mav.addObject("requestPage", "saleList.prd");
+		return mav;
+	}
+	
+	@RequestMapping(value=command, method = RequestMethod.POST)
+	public ModelAndView doAction(
+			//@RequestParam(value="whatColumn",required = false) String whatColumn,
+			@RequestParam(value="keyword",required = false) String keyword,
+			ProductKeywordBean keywordBean,
 			HttpServletRequest request,
 			HttpSession session) {
 		
@@ -44,7 +67,7 @@ public class PSaleController {
 		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
 		
 		if (keyword != null) { //keyword 공백제거 검색 성능 향상
-			keyword.trim();			
+			keyword = keyword.trim();			
 			System.out.println("keyword : " + keyword);
 			map.put("keyword", "%"+keyword+"%");
 			

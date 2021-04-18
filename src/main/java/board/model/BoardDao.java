@@ -12,6 +12,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import member.model.MemberBean;
+
 @Component
 public class BoardDao {
 	@Autowired
@@ -154,6 +156,11 @@ public class BoardDao {
 
 	public void fileDelete(int bno) {
 		sqlSessionTemplate.update(namespace + ".fileDelete", bno);
+	}
+
+	public MemberBean getMemberById(String id) {
+		MemberBean mbean = sqlSessionTemplate.selectOne(namespace+".getMemberById", id);
+		return mbean;
 	}
 
 }
