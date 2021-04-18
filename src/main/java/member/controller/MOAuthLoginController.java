@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -43,7 +44,8 @@ public class MOAuthLoginController {
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public @ResponseBody ModelAndView doAction(String code, //responsebody는 json을 이용해서 비동기통신을 위해 사용
 			HttpServletResponse httpresponse,
-			HttpSession session) throws IllegalStateException, IOException {
+			HttpSession session,
+			HttpServletRequest request) throws IllegalStateException, IOException {
 		System.out.println(code);
 		ModelAndView mav = new ModelAndView();
 		RestTemplate rt = new RestTemplate(); //httpsURLConnection post방식으로 java에서 넘기기
@@ -53,11 +55,15 @@ public class MOAuthLoginController {
 		
 		//content-type header 넘기는 url
 		header.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-		
+		System.out.println("----TEST-----");
+		System.out.println(request.getServerPort());
+		String requestUri = "http://localhost:"+request.getServerPort()+request.getContextPath()+"/kakaologin.mb";
+		System.out.println(requestUri);
+		System.out.println("----TEST-----");
 		//http object 토큰과 코드들
 		params.add("grant_type", "authorization_code");
 		params.add("client_id", "6a065330b97f7755c569892d3485de7b");
-		params.add("redirect_uri", "http://localhost:8080/ex/kakaologin.mb");
+		params.add("redirect_uri", requestUri);
 		params.add("code", code);
 		
 		//http로 넘길 map파일
