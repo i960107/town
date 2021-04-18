@@ -67,7 +67,7 @@
 								</tr>
 								<tr style="background-color: #FFFFF0">
 									<td colspan=2 height="100"><c:if test="${category==null}">
-										<label for="board_category">
+										<label for="out_category">
 											<c:forEach items="${categoryList}" var="ctg">
 												<span class="col-md-2"><input type="checkbox"
 													name="category" value="${ctg.no}" checked>${ctg.categoryName}

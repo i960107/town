@@ -12,8 +12,37 @@
 	<table align="center" width="1200px";>
 		<tr>
 			<td colspan="4">
+			<div class="section-title">
 				<h3>나의 당근 판매 내역 리스트</h3>
+			</div>
 			</td>
+			<tr style="background-color: #FFFFF0;">
+									<td colspan=2 align="center" style="padding-top: 10px"
+										valign="middle"><h5>
+											<b>카테고리</b>
+										</h5></td>
+								</tr>
+								<tr style="background-color: #FFFFF0">
+									<td colspan=2 height="100"><c:if test="${category==null}">
+										<label for="out_category">
+											<c:forEach items="${categoryList}" var="ctg">
+												<span class="col-md-2"><input type="checkbox"
+													name="category" value="${ctg.no}" checked>${ctg.categoryName}
+												</span>
+											</c:forEach>
+										</c:if> 
+										<c:if test="${category!=null}">
+											<c:forEach items="${categoryList}" var="ctg">
+												<span class="col-md-2"> <input type="checkbox"
+													name="category" value="${ctg.no}"
+													<c:forTokens items="${category}" delims="," var="ct">
+													<c:if test="${ct==ctg.no}">checked</c:if>
+													</c:forTokens>>${ctg.categoryName}
+												</span>
+											</c:forEach>
+										</label>
+										</c:if></td>
+								</tr>
 		</tr>
 		<tr>
 			<c:set var="step" value="0" />
