@@ -169,6 +169,7 @@ public class ProductDao {
 		return 0;
 	}
 
+	//채팅 시작
 	public List<ProductChatBean> getChat(ProductChatBean cbean) {
 		List<ProductChatBean> clist = new ArrayList<ProductChatBean>();
 		int cnt = sqlSessionTemplate.selectOne(nameSpace+".checkChat", cbean); //채팅방 있는지 탐색
@@ -179,16 +180,19 @@ public class ProductDao {
 		return clist;
 	}
 
+	//채팅 입력
 	public void insertChat(ProductChatBean cbean) {
 		sqlSessionTemplate.insert(nameSpace+".insertChat", cbean);
 	}
 
+	//채팅 리스트 호출
 	public List<ProductChatBean> getChatList(String id) {
 		List<ProductChatBean> clist = new ArrayList<ProductChatBean>();
 		clist = sqlSessionTemplate.selectList(nameSpace+".getChatList", id);
 		return clist;
 	}
 
+	//채팅방 정보 호출
 	public ProductChatBean getChatInfo(ProductChatBean room) {
 		ProductChatBean cbean = sqlSessionTemplate.selectOne(nameSpace+".getChatInfo", room);
 		return cbean;
@@ -225,6 +229,7 @@ public class ProductDao {
 		return cnt;
 	}
 
+	//카테고리 호출
 	public List<ProdCategoryBean> getAllPrdCategory() {
 		List<ProdCategoryBean> clist = new ArrayList<ProdCategoryBean>();
 		clist = sqlSessionTemplate.selectList(nameSpace+".getAllPrdCategory");
