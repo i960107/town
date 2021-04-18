@@ -9,7 +9,7 @@
 <title>채팅 리스트</title>
 <script>
 	function chat(pno, sellerid, buyerid) {
-		window.open("reply.prd?no="+pno+"&sellerid="+sellerid+"&buyerid="+buyerid+"", "구매연락하기", "width=500, height=700, left=100, top=50");
+		window.open("reply.prd?no="+pno+"&sellerid="+sellerid+"&buyerid="+buyerid+"", "구매연락하기", "width=650, height=700, left=100, top=50");
 	}
 </script>
 </head>

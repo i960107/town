@@ -54,13 +54,14 @@ textarea {
 	function prdUnLike(liker) {
 		location.href = "unlike.prd?no=${pBean.no}&like=" + liker;
 	}
-	function updateProduct() {
-		location.href = "update.prd?no=${pBean.no}";
+
+    function updateProduct() {
+        location.href = "update.prd?no=${pBean.no}";
+    }
+    function chat() {
+    	window.open("reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}", "구매연락하기", "width=650, height=700, left=100, top=50");
 	}
-	function chat() {
-		window.open("reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}",
-				"구매연락하기", "width=500, height=700, left=100, top=50");
-	}
+	
 
 	/* 신고하기 함수 호출 */
 	/* 	function report(sellerid){

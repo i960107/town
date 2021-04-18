@@ -118,14 +118,15 @@
 			<div class="col-lg-7 col-md-7">
 				<%@include file="./../common/addrArray.jsp" %>
 			</div>
-			<div hidden="" id="board_category">
+			<div hidden="" id="out_category">
 				<c:if test="${category==null}">
 						<c:forEach items="${categoryList}" var="ctg">
 							<span class="col-md-2"><input type="checkbox"
 								name="category" value="${ctg.no}" checked>${ctg.categoryName}
 							</span>
 						</c:forEach>
-					</c:if> <c:if test="${category!=null}">
+					</c:if> 
+					<c:if test="${category!=null}">
 						<c:forEach items="${categoryList}" var="ctg">
 							<span class="col-md-2"> <input type="checkbox"
 								name="category" value="${ctg.no}"

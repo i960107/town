@@ -236,5 +236,8 @@
 	values(20000+memdeal_seq.nextval, #{productNo}, #{sellerId}, #{buyerId}, default, sysdate)
 </insert>
 
-
+<select id="getAllPrdCategory" resultType="product.model.ProdCategoryBean">
+	select * from product_category
+	order by no
+</select>
 </mapper>

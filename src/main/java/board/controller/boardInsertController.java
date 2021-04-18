@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import board.model.BoardBean;
 import board.model.BoardDao;
+import member.model.MemberBean;
 
 @Controller
 public class boardInsertController {
@@ -30,7 +33,15 @@ public class boardInsertController {
 	ServletContext servletContext;
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
-	public String doActionGet() {
+	public String doActionGet(HttpSession session,
+			Model model) {
+		
+		//주소 셀렉용
+		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
+		if (member != null) {
+			MemberBean mbean = dao.getMemberById(member.getId());
+			model.addAttribute("mbean", mbean);
+		}
 		return getPage;
 	}
 
