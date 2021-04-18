@@ -196,7 +196,6 @@ public class ProductDao {
 	
 	// 키워드 입력값 DB 삽입
 	public void inputKeyword(ProductKeywordBean keywordBean) {
-		/* List<ProductKeywordBean> klist = new ArrayList<ProductKeywordBean>(); */
 		sqlSessionTemplate.insert(nameSpace+".inputKeyword", keywordBean);
 	}
 

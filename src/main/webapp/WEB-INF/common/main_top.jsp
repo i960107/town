@@ -48,8 +48,7 @@
 	String chat = request.getContextPath() + "/chatList.prd"; // 채팅
 	
 	String source = request.getContextPath()+"/"; //소스 경로 요청용 약어
-	//로그인한 아이디 세션 가져오기 
-	MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
+	MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo"); //로그인한 아이디 세션 가져오기 
 	
 	
 	%>
@@ -97,12 +96,21 @@
                             </a>
                         </div>
                     </div>
+                  
                     <div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
-                        	<form action="saleList.prd" method="get">
+                        	<form action="saleList.prd" method="get" name="myform">
+                        		<div class="input-group">
+	                        	<select name="whatColumn">
+	                            	<!-- <option value="all">전체검색</option> -->
+	                            	<option value="product"  >중고거래</option> <%-- <c:out value="${whatColumn eq 'product' ? 'selected':'' }"/> --%>
+	                            	<option value="town" >동네생활</option> <%-- <c:out value="${whatColumn eq 'town' ? 'selected':'' }"/> --%>
+	                            </select>
+                            	</div>
+                            	
     	                        <div class="input-group">
 	                                <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." value="${keyword}">
-	                                <button type="submit" ><i class="ti-search"></i></button> <!-- themify-icons.css -->
+	                                <button type="submit"><i class="ti-search"></i></button> <!-- themify-icons.css -->
 	                            </div>
                         	</form>
                         </div>
@@ -118,17 +126,6 @@
 					<nav class="nav-menu mobile-menu">
 						<ul>
 							<li class="active"><a href="<%=viewMain %>">Home</a></li>
-							<!-- <li> 
-								<div class="col-lg-7 col-md-7">
-									<div class="advanced-search">
-										<button type="button" class="category-btn">All Categories</button>
-									<div class="input-group">
-										<input type="text" placeholder="What do you need?">
-										<button type="button"><i class="ti-search"></i></button>
-									</div>
-									</div>
-								</div>
-							</li>  -->
 							<li><a href="<%=saleList %>">중고거래</a></li>
 							<li><a href="<%=boardList %>">동네생활</a></li>
 							<li><a href="<%=productWrite %>">판매하기</a></li>
@@ -157,5 +154,3 @@
 
 </body>
 </html>
-
-

@@ -32,7 +32,7 @@ public class PSaleController {
 	
 	@RequestMapping(value=command, method = RequestMethod.GET)
 	public ModelAndView doAction(
-			//@RequestParam(value="whatColumn",required = false) String whatColumn,
+			@RequestParam(value="whatColumn",required = false) String whatColumn,
 			@RequestParam(value="keyword",required = false) String keyword,
 			ProductKeywordBean keywordBean,
 			HttpServletRequest request,
@@ -40,12 +40,13 @@ public class PSaleController {
 		
 		/* mainList.jsp 검색어 조회 설정 */
 		Map<Object,String> map = new HashMap<Object,String>();
-		//map.put("whatColumn", whatColumn);
+		map.put("whatColumn", whatColumn);
 		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
+		System.out.println("whatColumn:" + whatColumn);
 		
 		if (keyword != null) { //keyword 공백제거 검색 성능 향상
 			keyword.trim();			
-			System.out.println("keyword : " + keyword);
+			System.out.println("keyword :" + keyword);
 			map.put("keyword", "%"+keyword+"%");
 			
 			// 키워드 존재여부 확인
@@ -61,15 +62,29 @@ public class PSaleController {
 			}
 		}
 		
+		
 		ModelAndView mav = new ModelAndView();
-		
-		/*List<ProductBean> list = pDao.getList(); //상품 리스트 검색
+		/*
+		List<ProductBean> list = pDao.getList(); //상품 리스트 검색
 		mav.addObject("list", list); //상품 리스트
-		System.out.println("list:" + list);*/
+		System.out.println("list:" + list);
+		mav.setViewName(getPage);
+		*/
 		
-		List<ProductBean> searchList = pDao.getSearchList(map);
-		mav.addObject("searchList", searchList);
-		System.out.println("searchList:" + searchList);
+		//검색 카테고리 선택 시
+		if(whatColumn.equals("town")) {
+			mav.addObject("keyword", keyword);
+			mav.setViewName("redirect:/list.bd");
+			
+		}
+		else  { // whatColumn == product
+			//Map<Object,String> map2 = new HashMap<Object,String>();
+			List<ProductBean> searchList = pDao.getSearchList(map);
+			mav.addObject("searchList", searchList);
+			System.out.println("searchList:" + searchList);
+			mav.setViewName(getPage);
+		}
+		
 		
 		if (member != null) {
 			MemberBean mbean = pDao.getSellerInfo(member.getId());
@@ -79,5 +94,5 @@ public class PSaleController {
 		mav.addObject("requestPage", "saleList.prd");
 		return mav;
 	}
-	
+
 }

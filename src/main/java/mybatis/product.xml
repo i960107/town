@@ -224,10 +224,8 @@
 	select no, keyword, count
 	from product_keyword
 	where ROWNUM
-	<![CDATA[
-	<
-	]]>
-	6
+	<![CDATA[ < ]]> 6
+	and count <![CDATA[ >= ]]> 2
 	order by count desc
 </select>
 
