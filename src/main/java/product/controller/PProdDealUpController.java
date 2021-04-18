@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import member.model.MemberDealBean;
 import product.model.ProductBean;
 import product.model.ProductDao;
 
@@ -21,12 +22,17 @@ public class PProdDealUpController {
 	@Autowired
 	ProductDao pdao;
 	
+	
 	@RequestMapping(value=command)
 	public String doAction(@RequestParam(value="no",required = true) int pno,
-			@RequestParam(value="deal",required = true) int deal) {
+			@RequestParam(value="deal",required = true) int deal,
+			@RequestParam(value="sellerid",required = true) String sellerid,
+			@RequestParam(value="buyerid",required = true) String buyerid) {
 		
 		System.out.println("수정 no:"+ pno);
 		System.out.println("수정 deal:"+ deal);
+		System.out.println("sellerid:"+sellerid); // 판매자
+		System.out.println("buyerid:"+buyerid);  // 구매자
 		
 		ProductBean pbean = new ProductBean();
 		pbean.setNo(pno);
@@ -39,6 +45,9 @@ public class PProdDealUpController {
 		}
 		
 		int updealCnt = pdao.upDealStatus(pbean);
+		
+		MemberDealBean mdbean = new MemberDealBean(0, pno, sellerid, buyerid, 0, "0");
+		int insertCnt = pdao.insertDeal(mdbean);
 		
 		
 		

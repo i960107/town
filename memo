@@ -64,9 +64,9 @@ CREATE TABLE  product_like  (
 );
 drop table product_keyword cascade constraints;
 CREATE TABLE  product_keyword  (
-	no number primary key,
+  no number primary key,
   keyword  varchar2(50)  NOT NULL,
-  count  number  NULL
+  count number default 1 NOT NULL
 );
 drop table town_board_like cascade constraints;
 CREATE TABLE  town_board_like  (
@@ -146,7 +146,7 @@ insert into town_board values(town_board_seq.nextval,'hong','서울특별시 ','
 insert into town_board values(town_board_seq.nextval,'hong','서울특별시 ','서초구','술 같이 먹어요',10003,'~~~~~~',town_board_seq.currval,1,1,sysdate,0);
 commit;
 
-insert into town_board_category values(10000+boardcate_seq.nextval,'같이해요');
+insert into town_board_category values(10000+boardcate_seq.nextval,'같이해요') ;
 insert into town_board_category values(10000+boardcate_seq.nextval,'동네사진전');
 insert into town_board_category values(10000+boardcate_seq.nextval,'일상');
 insert into town_board_category values(10000+boardcate_seq.nextval,'동네소식');
@@ -211,16 +211,6 @@ create table product_file(
 );
 
 --프로덕트 파일 시퀀스
-drop sequence prdfile_seq;   
-create sequence prdfile_seq
-start with 0
-increment by 1
-minvalue 0
-nocache;
-
-commit;
-
---프로덕트 파일 시퀀스
 drop sequence keyword_seq;   
 create sequence keyword_seq
 start with 0
@@ -276,12 +266,15 @@ select * from report order by no;
 -- 중고거래 방법   - 
 drop table prd_reply cascade constraints;
 CREATE TABLE  prd_reply  (
-	no number primary key,
+  no number primary key,
   pno  number ,
+  subject  varchar2(100),
+  room number,
   seller_id varchar2(50) NOT NULL,
   buyer_id varchar2(50)  NOT NULL,
   contents  varchar2(250) ,
-  reg_date date default sysdate
+  reg_date date default sysdate,
+  talker varchar2(50)
 );
 --product 카테고리 기본 설정
 insert into product_category values(10000+prodcate_seq.nextval,'디지털/가전');
@@ -289,15 +282,30 @@ insert into product_category values(10000+prodcate_seq.nextval,'가구/인테리
 insert into product_category values(10000+prodcate_seq.nextval,'유아동/유아도서');
 insert into product_category values(10000+prodcate_seq.nextval,'생활/가공식품');
 insert into product_category values(10000+prodcate_seq.nextval,'스포츠/레저');
-insert into product_category values(10000+prodcate_seq.nextval,'스포츠/레저');
 insert into product_category values(10000+prodcate_seq.nextval,'여성잡화');
 insert into product_category values(10000+prodcate_seq.nextval,'여성의류');
 insert into product_category values(10000+prodcate_seq.nextval,'남성패션/잡화');
-commit;
-commit;
 
+--채팅 시퀀스
 drop sequence reply_seq;
 create sequence reply_seq
+start with 0
+increment by 1
+minvalue 0
+nocache;
+
+--채팅방 시퀀스
+drop sequence room_seq;
+create sequence room_seq
+start with 0
+increment by 1
+minvalue 0
+nocache;
+commit;
+
+-- 키워드 시퀀스
+drop sequence keyword_seq;   
+create sequence keyword_seq
 start with 0
 increment by 1
 minvalue 0

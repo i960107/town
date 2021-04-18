@@ -42,8 +42,8 @@
 </style>
 </head>
 <body>
-	<%@ include file="./../common/main_top.jsp"%>
 	<%@include file="../common/common.jsp"%>
+	<%@include file="./../common/main_top.jsp"%>
 	<!-- 페이지설명 -->
 	<section class="latest-blog spad">
 		<div class="container">
@@ -57,7 +57,7 @@
 				<!-- 검색필터설정 -->
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
-						<form action="list.bd" method="post">
+						<form action="list.bd" method="post" name="myform">
 							<table>
 								<tr style="background-color: #FFFFF0;">
 									<td colspan=2 align="center" style="padding-top: 10px"
@@ -67,6 +67,7 @@
 								</tr>
 								<tr style="background-color: #FFFFF0">
 									<td colspan=2 height="100"><c:if test="${category==null}">
+										<label for="board_category">
 											<c:forEach items="${categoryList}" var="ctg">
 												<span class="col-md-2"><input type="checkbox"
 													name="category" value="${ctg.no}" checked>${ctg.categoryName}
@@ -81,18 +82,19 @@
 													</c:forTokens>>${ctg.categoryName}
 												</span>
 											</c:forEach>
+										</label>
 										</c:if></td>
 								</tr>
-								<tr style="background-color: #FFFFF0">
+								<%-- <tr style="background-color: #FFFFF0">
 									<td colspan=2 height="50" align="right">결과 내 재검색 <input
 										type="text" name="keyword" value="${keyword}"> <input
 										type="submit" value="검색">
 
 									</td>
-								</tr>
+								</tr> --%>
 
 							</table>
-						</form>
+						
 					</div>
 				</div>
 			</div>
@@ -107,10 +109,9 @@
 						</button>
 					</div>
 					<div>
-						<form name="myform">
+						
 							<input type="hidden" name="request" value="list.bd">
 							<c:set var="mbean" value="${loginInfo}" />
-							<%@include file="../common/addrArray.jsp"%>
 						</form>
 					</div>
 				</div>

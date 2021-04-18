@@ -225,7 +225,6 @@ textarea {
     }
     function chat() {
     	window.open("reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}", "구매연락하기", "width=500, height=700, left=100, top=50");
-		//location.href = "reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}";
 	}
     
 	/* 신고하기 함수 호출 */
@@ -283,7 +282,7 @@ textarea {
 				</script> </span></td>
 							<!-- <td width="120"><input type="button" onclick="report()" value="신고하기"></td> 신고하기 버튼 -->
 							<td width="120">			
-								<a href="report.mb?reported_userid=${sellerid}"
+								<a href="report.mb?reporteduserid=${sellerid}"
 								onclick="return confirm('이 사용자를 신고하시겠습니까?');">
 								<span class="mcontent">신고하기</span></a>
 							</td>

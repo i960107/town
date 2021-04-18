@@ -44,7 +44,7 @@
 </style>
 
 <script type="text/javascript">
-	// 체크하지 않았을 경우
+	// 라디오버튼 체크하지 않았을 경우
 	function check(){
 		if( $('input[type=radio][name=report]:checked').length == 0 ) {
 		    alert("신고 사유를 선택해주세요");
@@ -66,7 +66,7 @@
                         <form action="report.mb" name="myform" method="post" onsubmit="return check()">
                          	
                   			<!-- 판매자=신고당한사람 hidden으로 챙겨서 넘겨주기 -->
-                         	<input type="hidden" name="reported_userid" value="${reported_userid}">
+                         	<input type="hidden" name="reporteduserid" value="${reporteduserid}">
                             
                             <div class="card">
                                 <div class="card-heading active">

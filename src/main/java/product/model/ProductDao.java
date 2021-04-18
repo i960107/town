@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import category.model.ProdCateBean;
-import main.model.MainBean;
 import member.model.MemberBean;
 import member.model.MemberDealBean;
 
@@ -190,7 +189,40 @@ public class ProductDao {
 		return clist;
 	}
 
+	public ProductChatBean getChatInfo(ProductChatBean room) {
+		ProductChatBean cbean = sqlSessionTemplate.selectOne(nameSpace+".getChatInfo", room);
+		return cbean;
+	}
+	
+	// 키워드 입력값 DB 삽입
+	public void inputKeyword(ProductKeywordBean keywordBean) {
+		sqlSessionTemplate.insert(nameSpace+".inputKeyword", keywordBean);
+	}
 
+	// 키워드 존재 여부 확인
+	public boolean isKeyword(String keyword) {
+		int keywordCnt = sqlSessionTemplate.selectOne(nameSpace+".getKeyword", keyword);
+		return keywordCnt > 0;
+	}
 
+	// 키워드 중복 입력 시 count up
+	public void upKeywordCnt(String keyword) {
+		int upKeywordCnt = sqlSessionTemplate.update(nameSpace+".upKeywordCnt", keyword);
+		
+	}
+	
+	/* 인기 키워드 리스트 */
+	public List<ProductBean> getKeywordList() {
+		List<ProductBean> klist = new ArrayList<ProductBean>();
+		klist = sqlSessionTemplate.selectList(nameSpace+".getKeywordList");
+		return klist;
+	}
 
+	// memberDeal 삽입
+	public int insertDeal(MemberDealBean mdbean) {
+		int cnt = sqlSessionTemplate.insert(nameSpace+".insertDeal", mdbean);
+		System.out.println("memberDeal insert Cnt:"+cnt);
+		return cnt;
+	}
+	
 }

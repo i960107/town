@@ -45,13 +45,14 @@ function jusoCallBack(roadFullAddr,siNm,sggNm,emdNm) {
 					<div class="register-login-section spad">
 						<div class="register-form">
 							<h2>추가 정보 입력</h2>
-							<form:form commandName="member" action="" method="post" enctype="multipart/form-data" name="form">
+							<form:form commandName="member" action="kakaoJoin.mb" method="post" enctype="multipart/form-data" name="form">
 								
 								<table width="700px" class="sectable">
 									<div class="group-input">
 									<tr>
 										<td class="group-input" width="200px"><label>* Address</label></td>
 										<td class="group-input" width="500px" >
+											<input type="hidden" name="id" value="${loginInfo.id }">
 												<input type="text" id="roadFullAddr" name="address" value="${mbean.address }"/>
 												<input type="button" onClick="goPopup()" value="검색">
 												<form:errors cssClass="err" path="address"></form:errors> 
