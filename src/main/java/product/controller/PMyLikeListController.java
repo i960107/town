@@ -1,8 +1,11 @@
 package product.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +32,7 @@ public class PMyLikeListController {
 	
 		
 	@RequestMapping(value=command,method = RequestMethod.GET)
-	public String doAction(HttpSession session, Model model) {
+	public String doAction(HttpSession session, Model model, HttpServletResponse response) throws IOException {
 		
 		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
 		String loginID = member.getId();
@@ -39,7 +42,10 @@ public class PMyLikeListController {
 		// 찜한 상품 리스트 가져오기
 		List<ProductBean> prodLikeLists = pdao.getLikeProdList(loginID);
 		
-		System.out.println("찜하기 제목:"+prodLikeLists.get(0).getSubject());
+		System.out.println("prodLikeLists size:"+ prodLikeLists.size());
+		
+		
+		//System.out.println("찜하기 제목:"+prodLikeLists.get(0).getSubject());
 		
 		model.addAttribute("plLists", prodLikeLists);	
 		return getPage;

@@ -36,7 +36,8 @@ public class CategoryController {
 		model.addAttribute("bcbean", bcbean);
 		
 		
-		return "boardCateList";
+		// return "boardCateList";
+		return "Category";
 	}
 	
 	@RequestMapping(value="/boardCateInsert.ct", method = RequestMethod.GET)
@@ -63,7 +64,8 @@ public class CategoryController {
 		List<ProdCategoryBean> pcbean = cdao.getProdCateData();
 		model.addAttribute("pcbean", pcbean);
 		
-		return "productCateList";
+		//return "productCateList";
+		return "Category";
 	}
 	
 	
