@@ -17,9 +17,15 @@
 		town_board_no = #{no}
 	</select>
 	<!-- list전체가져오기 -->
-	<select id="getAllBoard" resultType="board.model.BoardBean">
+	<select id="getBoardList" resultType="board.model.BoardBean">
 		select * from town_board
 		where re_level =1
+		<if test="category!=null">
+		and category in ${category}
+		</if>
+		<if test="keyword!=null">
+		and subject like #{keyword}
+		</if>
 		<if test="address1!=null">
 		and address1 = #{address1}
 		</if>

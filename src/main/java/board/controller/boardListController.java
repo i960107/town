@@ -32,41 +32,17 @@ public class boardListController {
 	@Autowired
 	ServletContext context;
 
-	@RequestMapping(value = command, method = RequestMethod.GET)
+	@RequestMapping(value = command)
 	public String doActionGet(Model model, HttpSession session,
 			@RequestParam(value = "address1", required = false) String address1,
-			@RequestParam(value = "address2", required = false) String address2) 
-	{
-		List<BoardCategoryBean> categoryList = dao.getAllCategory();
-		context.setAttribute("categoryList", categoryList);
-		List<BoardBean> boardList = dao.getAllBoard(address1, address2);
-		List<BoardFileBean> boardFileList = new ArrayList<BoardFileBean>();
-		for (int i = 0; i < boardList.size(); i++) {
-			int bno = boardList.get(i).getNo();
-			boardFileList = dao.getFileBeans(boardFileList, bno);
-		}
-		model.addAttribute("address1", address1);
-		model.addAttribute("address2", address2);
-		model.addAttribute("boardList", boardList);
-		model.addAttribute("boardFileList", boardFileList);
-		model.addAttribute("requestPage", "list.bd");
-		//주소 셀렉용
-		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
-		if (member != null) {
-			MemberBean mbean = dao.getMemberById(member.getId());
-			model.addAttribute("mbean", mbean);
-		}
-		return goToPage;
-	}
-
-	@RequestMapping(value = command, method = RequestMethod.POST)
-	public String doActionPost(Model model, @RequestParam(value = "category", required = false) String category,
+			@RequestParam(value = "address2", required = false) String address2,
+			@RequestParam(value = "category", required = false) String category,
 			@RequestParam(value = "keyword", required = false) String keyword,
-			@RequestParam(value = "address1", required = false) String address1,
-			@RequestParam(value = "address2", required = false) String address2, HttpServletResponse response,
-			HttpSession session
-			)
-			throws IOException {
+			HttpServletResponse response
+			) throws IOException 
+	{
+		
+		//카테고리 하나이상 선택 필수 아니면 되돌아가기
 		if (category == null) {
 			System.out.println("여기오나");
 			PrintWriter pwriter = response.getWriter();
@@ -77,25 +53,29 @@ public class boardListController {
 			pwriter.print("</script>");
 			pwriter.flush();
 		}
-		System.out.println("주소" + address1 + address2);
-		model.addAttribute("category", category);
-		model.addAttribute("keyword", keyword);
-		List<BoardBean> boardList = dao.getBoardByCategoryKeyword(category, keyword);
-		model.addAttribute("boardList", boardList);
+		
+		//카테고리 들고오기
+		List<BoardCategoryBean> categoryList = dao.getAllCategory();
+		context.setAttribute("categoryList", categoryList);
+		
+		//조건에 맞는 board가져오기
+		List<BoardBean> boardList = dao.getBoardList(keyword,category,address1, address2);
+		//조건에 맞는 boardfile 가져오기
 		List<BoardFileBean> boardFileList = new ArrayList<BoardFileBean>();
 		for (int i = 0; i < boardList.size(); i++) {
 			int bno = boardList.get(i).getNo();
 			boardFileList = dao.getFileBeans(boardFileList, bno);
 		}
+		
+		
+		model.addAttribute("boardList", boardList);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("category", category);
+		model.addAttribute("address1", address1);
+		model.addAttribute("address2", address2);
 		model.addAttribute("boardFileList", boardFileList);
 		model.addAttribute("requestPage", "list.bd");
-		
-		//주소 셀렉용
-		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
-		if (member != null) {
-			MemberBean mbean = dao.getMemberById(member.getId());
-			model.addAttribute("mbean", mbean);
-		}
 		return goToPage;
 	}
+
 }
