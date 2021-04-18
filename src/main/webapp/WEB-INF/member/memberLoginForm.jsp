@@ -30,8 +30,9 @@ MLoginController - > memberLoginForm.jsp
 													 <a href="#" class="forget-pass">Forget your Password</a>
 												</div>
 											</div>
+											<%int myPort = request.getServerPort(); %>
 											<button type="submit" class="site-btn login-btn">Sign In</button><br> <Br>
-											<a href="https://kauth.kakao.com/oauth/authorize?client_id=6a065330b97f7755c569892d3485de7b&redirect_uri=http://localhost:8080/ex/kakaologin.mb&response_type=code">
+											<a href="https://kauth.kakao.com/oauth/authorize?client_id=6a065330b97f7755c569892d3485de7b&redirect_uri=http://localhost:<%=myPort %>/ex/kakaologin.mb&response_type=code">
 											<img src="<%=source%>resources/kakaologin.png"></a>
 									</form>
 									<div class="switch-login">
