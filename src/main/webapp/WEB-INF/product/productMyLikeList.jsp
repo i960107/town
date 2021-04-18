@@ -4,13 +4,25 @@
 <%@ include file="./../common/common.jsp"%>
 <%@ include file="../../WEB-INF/member/memberMyPageTop.jsp"%>
 
-<br>
+<br><br>
 <center>
 <div class="group-input">
-	<h3>My Like List</h3>
+	<h3><b>My Like List</b></h3>
 </div>
 </center>
 <br>
+<c:if test="${fn:length(plLists) == 0}"> 
+	<center>
+	<table>
+		<tr >
+		<td align="center"> <h4> 찜한 상품이 없습니다. </h4> </td>
+		</tr>
+	</table>
+	</center>				
+
+</c:if>
+
+<c:if test="${fn:length(plLists) != 0 }">
 <table align="center" width="80%" >
 	<tr>
 		<td>
@@ -50,5 +62,6 @@
 		</td>
 	</tr>
 </table>
+</c:if>
 <br><br>
 <%@ include file="./../common/main_bottom.jsp" %>
