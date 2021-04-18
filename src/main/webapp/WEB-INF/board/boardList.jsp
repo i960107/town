@@ -110,7 +110,6 @@
 						
 							<input type="hidden" name="request" value="list.bd">
 							<c:set var="mbean" value="${loginInfo}" />
-							<%@include file="../common/addrArray.jsp"%>
 						</form>
 					</div>
 				</div>
