@@ -65,7 +65,7 @@ public class MLoginController {
 			// id + pw
 			if (pw.equals(midBean.getPw())) {
 				session.setAttribute("loginInfo", midBean);
-
+				mav.addObject("mbean", midBean);
 				if (session.getAttribute("destination") != null) {
 					gotoPage = (String) session.getAttribute("destination");
 					session.removeAttribute("destination");

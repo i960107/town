@@ -12,6 +12,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import member.model.MemberBean;
+
 @Component
 public class BoardDao {
 	@Autowired
@@ -156,12 +158,19 @@ public class BoardDao {
 		sqlSessionTemplate.update(namespace + ".fileDelete", bno);
 	}
 
+
+	public MemberBean getMemberById(String id) {
+		MemberBean mbean = sqlSessionTemplate.selectOne(namespace+".getMemberById", id);
+		return mbean;
+	}
+	
 	// 우리동네 검색
 	public List<BoardBean> getSearchBoardList(Map<Object, String> map) {
 		List<BoardBean> searchBoardList = new ArrayList<BoardBean>();
 		searchBoardList = sqlSessionTemplate.selectList(namespace + ".getSearchBoardList", map);
 		System.out.println("searchBoardList" + searchBoardList);
 		return searchBoardList;
+
 	}
 
 }

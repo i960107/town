@@ -48,7 +48,8 @@
 	String chat = request.getContextPath() + "/chatList.prd"; // 채팅
 	
 	String source = request.getContextPath()+"/"; //소스 경로 요청용 약어
-	MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo"); //로그인한 아이디 세션 가져오기 
+	//로그인한 아이디 세션 가져오기 
+	MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
 	
 	
 	%>
@@ -86,7 +87,7 @@
         <!-- 로그인 영역 끝 -->
         
         <!-- 카테고리 영역 시작 -->
-		<%-- <form action="${requestPage }" method="get" name="myform"> --%>
+		<form action="${requestPage }" method="post" name="myform">
         <div class="container">
             <div class="inner-header">
                 <div class="row">
@@ -97,65 +98,46 @@
                             </a>
                         </div>
                     </div>
-                  
                     <div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
-                        	<form action="saleList.prd" method="get" name="myform">
-                        		<div class="input-group">
-	                        	<select name="whatColumn">
-	                            	<!-- <option value="all">전체검색</option> -->
-	                            	<option value="product"  >중고거래</option> <%-- <c:out value="${whatColumn eq 'product' ? 'selected':'' }"/> --%>
-	                            	<option value="town" >동네생활</option> <%-- <c:out value="${whatColumn eq 'town' ? 'selected':'' }"/> --%>
-	                            </select>
-                            	</div>
-                            	
     	                        <div class="input-group">
+	                        		<select name="whatColumn">
+	                                    <!-- <option value="all">전체검색</option> -->
+	                                    <option value="product"  >중고거래</option> <%-- <c:out value="${whatColumn eq 'product' ? 'selected':'' }"/> --%>
+	                                    <option value="town" >동네생활</option> <%-- <c:out value="${whatColumn eq 'town' ? 'selected':'' }"/> --%>
+	                                </select>
 	                                <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." value="${keyword}">
-	                                <button type="submit"><i class="ti-search"></i></button> <!-- themify-icons.css -->
+	                                <button type="submit" ><i class="ti-search"></i></button> <!-- themify-icons.css -->
 	                            </div>
-                        	</form>
                         </div>
                     </div>
 				</div>
 			</div>
 		</div>
-<%-- 		<div class="input-group" style="margin: position:absolute; left:50%;">
+		<div class="input-group" style="margin: position:absolute; left:50%;">
 			<div class="col-lg-7 col-md-7">
 				<%@include file="./../common/addrArray.jsp" %>
 			</div>
+			<div hidden="" id="board_category">
+				<c:if test="${category==null}">
+						<c:forEach items="${categoryList}" var="ctg">
+							<span class="col-md-2"><input type="checkbox"
+								name="category" value="${ctg.no}" checked>${ctg.categoryName}
+							</span>
+						</c:forEach>
+					</c:if> <c:if test="${category!=null}">
+						<c:forEach items="${categoryList}" var="ctg">
+							<span class="col-md-2"> <input type="checkbox"
+								name="category" value="${ctg.no}"
+								<c:forTokens items="${category}" delims="," var="ct">
+								<c:if test="${ct==ctg.no}">checked</c:if>
+								</c:forTokens>>${ctg.categoryName}
+							</span>
+						</c:forEach>
+					</c:if>
+			</div>
 		</div>
-      	</form> --%>
-        <%-- <div>
-        	<c:if test="${requestPage=='list.bd' }">
-        	<table align="center">
-								<tr style="background-color: #FFFFF0;">
-									<td colspan=2 align="center" style="padding-top: 10px"\
-										valign="middle"><h5>
-											<b>카테고리</b>
-										</h5></td>
-								</tr>
-								<tr style="background-color: #FFFFF0">
-									<td colspan=2 height="100"><c:if test="${category==null}">
-											<c:forEach items="${categoryList}" var="ctg">
-												<span class="col-md-2"><input type="checkbox"
-													name="category" value="${ctg.no}" checked>${ctg.categoryName}
-												</span>
-											</c:forEach>
-										</c:if> <c:if test="${category!=null}">
-											<c:forEach items="${categoryList}" var="ctg">
-												<span class="col-md-2"> <input type="checkbox"
-													name="category" value="${ctg.no}"
-													<c:forTokens items="${category}" delims="," var="ct">
-													<c:if test="${ct==ctg.no}">checked</c:if>
-													</c:forTokens>>${ctg.categoryName}
-												</span>
-											</c:forEach>
-										</c:if></td>
-								</tr>
-
-							</table>
-							</c:if>
-        </div> --%>
+      	</form>
        <div class="nav-item">
 			<!-- <div class="container"> -->
 			<div class="row">
@@ -191,3 +173,5 @@
 
 </body>
 </html>
+
+
