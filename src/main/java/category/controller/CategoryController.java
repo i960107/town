@@ -2,6 +2,7 @@ package category.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,62 +25,34 @@ public class CategoryController {
 	@Autowired
 	CategoryDao cdao;
 	
-	
-	@RequestMapping(value="/boardCateList.ct", method = RequestMethod.GET)
-	public String doActionL(Model model) {
+	@RequestMapping(value="/categoryList.ct")
+	public String doAction(Model model) {
 		
 		List<BoardCategoryBean> bcbean = cdao.getBoardCateData();
-		
-		System.out.println(bcbean.get(0).getCategoryName());
-		//System.out.println(bcbean.get(0).getName());
+		List<ProdCategoryBean> pcbean = cdao.getProdCateData();
 		
 		model.addAttribute("bcbean", bcbean);
+		model.addAttribute("pcbean", pcbean);
 		
-		
-		// return "boardCateList";
 		return "Category";
 	}
-	
-	@RequestMapping(value="/boardCateInsert.ct", method = RequestMethod.GET)
-	public String doActionI() {
-		
-		return "boardCateInsertForm";
-	}
+
 	
 	@RequestMapping(value="/boardCateInsert.ct", method = RequestMethod.POST)
 	public String doActionI(@RequestParam(value="category_name") String category_name) {
 		
 		int cnt = cdao.insertBoardCate(category_name);
 		
-		return "redirect:/boardCateList.ct";
+		return "redirect:/categoryList.ct";
 	}
 	
-	
-	
-	
-	/* Product CateGory */
-	@RequestMapping(value="/productCateList.ct" , method = RequestMethod.GET)
-	public String doActionPCL(Model model) {
-		
-		List<ProdCategoryBean> pcbean = cdao.getProdCateData();
-		model.addAttribute("pcbean", pcbean);
-		
-		//return "productCateList";
-		return "Category";
-	}
-	
-	
-	@RequestMapping(value="/productCateInsert.ct", method = RequestMethod.GET)
-	public String doActionPCI() {
-		return "productCateInsertForm";
-	}
-	
+
 	@RequestMapping(value="/productCateInsert.ct", method = RequestMethod.POST)
 	public String doActionPCI(@RequestParam(value="category_name") String category_name) {
 
 		int prodCateInCnt = cdao.insertProdCate(category_name);
 		
-		return "redirect:/productCateList.ct";
+		return "redirect:/categoryList.ct";
 	}
 	
 }

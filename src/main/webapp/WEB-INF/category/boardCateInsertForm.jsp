@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
     
-<%@ include file="./../../Category.jsp"%>
+<%@ include file="./Category.jsp"%>
 <style type="text/css">
 .err{
 	font-size: 9pt;

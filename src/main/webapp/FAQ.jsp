@@ -319,6 +319,10 @@
             </div>
         </div>
     </div>
-
+    
+<!-- mytop꺼야  -->
+</td>
+</table>
+<br><br>
 
 <%@ include file="./../WEB-INF/common/main_bottom.jsp"%>

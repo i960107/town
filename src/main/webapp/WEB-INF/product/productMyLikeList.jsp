@@ -63,5 +63,10 @@
 	</tr>
 </table>
 </c:if>
+
+<!-- mytop꺼야  -->
+</td>
+</table>
+
 <br><br>
 <%@ include file="./../common/main_bottom.jsp" %>
