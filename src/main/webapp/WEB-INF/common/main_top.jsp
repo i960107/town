@@ -101,7 +101,7 @@
                     <div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
     	                        <div class="input-group">
-	                        		<select name="whatColumn">
+	                        		<select name="whatColumn" class="nice-select">
 	                                    <!-- <option value="all">전체검색</option> -->
 	                                    <option value="product"  >중고거래</option> <%-- <c:out value="${whatColumn eq 'product' ? 'selected':'' }"/> --%>
 	                                    <option value="town" >동네생활</option> <%-- <c:out value="${whatColumn eq 'town' ? 'selected':'' }"/> --%>
