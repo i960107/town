@@ -66,13 +66,11 @@
 	
 	<table border="0" align="center" width="500px">
 		<tr align="center">
-			<%-- <c:forEach var="i" items="${list }"> --%>
 			<c:forEach var="key" items="${klist }">
 				<td>
-					#<a href="detail.prd?no=${no}&sellerid=${sellerid}">${key.keyword}</a>
+					#<a href="detail.prd?no=${key.no}&sellerid=${sellerid}">${key.keyword}</a>
 				</td>
 			</c:forEach>
-			<%-- </c:forEach> --%>
 		</tr>
 	</table>
 	<!-- 인기 키워드 끝 -->
