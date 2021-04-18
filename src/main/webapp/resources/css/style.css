@@ -464,7 +464,7 @@ ol {
 }
 
 .inner-header .advanced-search .input-group {
-	max-width: 70%;
+	/* max-width: 70%; */
 	height: 100%;
 }
 
@@ -653,6 +653,7 @@ ol {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
+	height: 52px; /* 추가: 메인 카테고리 높이 */
 }
 
 .nav-item .nav-depart {
@@ -745,9 +746,11 @@ ol {
 
 .nav-item .nav-menu li {
 	list-style: none;
-	display: inline-block;
-	margin-left: -5px;
+/* 	display: inline-block;
+	margin-left: -5px; */
 	position: relative;
+	width: 250px;
+    margin: auto;
 }
 
 .nav-item .nav-menu li.active a {
@@ -757,7 +760,8 @@ ol {
 .nav-item .nav-menu li a {
 	font-size: 14px;
 	font-weight: 700;
-	display: block;
+	/* display: block; 수정 */
+	display: inline-block;
 	color: #ffffff;
 	border-right: 2px solid #3b3b3b;
 	text-transform: uppercase;
@@ -3897,7 +3901,8 @@ ol {
 		padding: 16px 12px 12px 11px;
 	}
 	.nav-item .nav-menu li a {
-		padding: 16px 45px 15px;
+		/* padding: 16px 45px 15px; */
+		padding: 15px 70px 15px 70px;
 	}
 }
 
@@ -3917,7 +3922,8 @@ ol {
 		max-width: 64%;
 	}
 	.nav-item .nav-menu li a {
-		padding: 16px 26px 15px;
+		/* padding: 16px 45px 15px; */
+		padding: 15px 70px 15px 70px;
 	}
 	.hero-items .owl-nav button[type=button] {
 		left: 5px;
@@ -4032,7 +4038,8 @@ ol {
 		padding: 14px 40px 14px 18px;
 	}
 	.nav-item .nav-menu li a {
-		padding: 16px 10px 15px;
+		/* padding: 16px 45px 15px; */
+		padding: 15px 70px 15px 70px;
 	}
 	.instagram-photo .insta-item .inside-text h5 {
 		font-size: 14px;
