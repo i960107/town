@@ -17,39 +17,15 @@
 	height: 100%;
 	object-fit: cover;
 }
+
 </style>
 
-
-<!-- <script>
-	$(document).ready(function(){
-		$('#mySale').click(function(){
-			alert("버튼누름");
-			
-			$.ajax({
-				type : "GET",
-				url : "productMySaleList.jsp",
-				dataType: "json",
-				success : function test(data){
-					$("#content").html(a);
-					},
-				error : function error(){alert("error발생");}
-			});
-			
-			
-		});
-		
-		
-	});
-
-</script> -->
-
-
-
-
-
-<br>
+<br><br>
 <center>
-	<h2>나의 당근(MY PAGE)</h2><br>
+	<div class="section-title">
+                        <h2>나의 당근(MY PAGE)</h2>
+                    </div>
+
 </center>
 <br>
 
@@ -79,7 +55,14 @@
 					</c:if>
 				</div>
 			</td>
-			<td colspan="6"><a href="memberUpdate.mb"> 프로필 수정 </a></td>
+			<td colspan="6">
+                 <div class="cart-buttons" align="left" style="margin-left: 30px">
+                        <a href="memberUpdate.mb" class="primary-btn up-cart">프로필 수정하기 </a>
+				<br><br><br>
+				 <h4><b>${loginInfo.id}</b>님 </h4><br>
+				  ${loginInfo.address }<br><br>
+				  </div>
+			</td>
 		</tr>
 
 		<tr>
@@ -130,28 +113,12 @@
 
 		</tr>
 		
-		<tr>
-			<td colspan="8">
-				<div id="content"></div>
-			
-			</td>
-		</tr>
-		
-		
 	</table>
-<!-- </tr> -->
+	
+	
+	
 
 
 
 
 
-<!-- 		<tr>
-			<td align="center"><a href="">판매내역</a></td>
-			<td align="center"><a href="purchaseList.prd">구매내역</a></td>
-			<td align="center"><a href="">동네생활(글/댓글)</a></td>
-			<td align="center"><a href="like.prd">관심 목록</a></td>
-			<td align="center"><a href="QnA.jsp">QNA</a></td>
-			<td align="center"><a href="Category.jsp">카테고리 관리</a></td>
-			<td align="center"><a href="notice.jsp">공지사항 관리</a></td>
-			<td align="center"><a href="memberList.mb">회원관리</a></td> 
-		</tr> -->

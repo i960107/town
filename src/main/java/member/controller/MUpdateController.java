@@ -120,7 +120,11 @@ public class MUpdateController {
 				}
 			
 			}
-			session.setAttribute("loginInfo", member);
+			// 위에서 업데이트 했고,업데이트 한 정보 가지고 와서 넘기기 
+			MemberBean midBean = mdao.loginCkId(member);
+			float mtemp = mdao.getTemp(member.getId());
+			mav.addObject("mtemp", mtemp);
+			session.setAttribute("loginInfo", midBean);
 		}
 
 		return mav;

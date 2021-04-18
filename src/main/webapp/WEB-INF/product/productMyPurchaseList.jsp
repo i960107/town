@@ -4,36 +4,50 @@
 <%@ include file="../../WEB-INF/member/memberMyPageTop.jsp"%>
 
 
-<div class="register-login-section spad">
-	<div class="register-form">
-		<h2>나의 구매상품</h2>
-		<div class="group-input">
-			<table class="sectable" border="1">
-				<tr align="center">
-					<th class="group-input"><label>NO </label></th>
-					<th class="group-input"><label>상품번호 </label></th>
-					<th class="group-input"><label>판매자</label></th>
-					<th class="group-input"><label>구매날짜</label></th>
-				</tr>
 
-				<c:forEach var="mdlist" items="${mdlists }">
-					<tr align="center">
-						<th class="group-input"><label>${mdlist.no } </label></th>
-						<th class="group-input"><label>${mdlist.productNo } </label></th>
-						<th class="group-input"><label>${mdlist.sellerId } </label></th>
-						<th class="group-input"><label> <fmt:parseDate
-									value="${mdlist.dealDate } " var="dealDate"
-									pattern="yyyy-MM-dd" /> <fmt:formatDate value="${dealDate }"
-									pattern="yyyy-MM-dd" />
-						</label></th>
-					</tr>
-				</c:forEach>
+<div style="width: 70%; margin: 0 auto;">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="cart-table">
+				<br><br>
+				<h3 align="center" class="group-input">
+					<b>My Purchase List</b> <br><br>
+				</h3>
 
-			</table>
+				<table>
+					<thead>
+						<tr>
+							<th>거래번호</th>
+							<th>구매 상품 번호</th>
+							<th>판매자</th>
+							<th>구매날짜</th>
+							<th>구매내역 삭제 <i class="ti-close"></i></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="mdlist" items="${mdlists }">
+							<tr align="center">
+								<th class="group-input"><label>${mdlist.no } </label></th>
+								<th class="group-input"><label>${mdlist.productNo }
+								</label></th>
+								<th class="group-input"><label><a href="tradeDetail.mb?sellerid=${mdlist.sellerId }">${mdlist.sellerId }</a>
+								</label></th>
+								<th class="group-input"><label> <fmt:parseDate
+											value="${mdlist.dealDate } " var="dealDate"
+											pattern="yyyy-MM-dd" /> <fmt:formatDate value="${dealDate }"
+											pattern="yyyy-MM-dd" />
+								</label></th>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+
 		</div>
-
 	</div>
 </div>
+
+
 
 
 <br>
