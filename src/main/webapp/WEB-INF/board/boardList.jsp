@@ -198,7 +198,7 @@
 								<span><script type="text/javascript">
 									document
 											.write(displayTime('<c:out value="${board.regDate}"/>'));
-								</script> </span> <span>조회수</span>${board.readcount}
+								</script> </span> <span>&#128065; </span>${board.readcount}
 
 
 							</div>

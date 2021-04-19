@@ -37,6 +37,7 @@
 											pattern="yyyy-MM-dd" /> <fmt:formatDate value="${dealDate }"
 											pattern="yyyy-MM-dd" />
 								</label></th>
+								<th> <a href=""><i class="ti-close"></i></a> </th>
 							</tr>
 						</c:forEach>
 					</tbody>
