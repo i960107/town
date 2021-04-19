@@ -49,8 +49,10 @@ public class BoardDao {
 			}
 		}
 		//블락된 아이디 가져오기
-		List<String> blockedId=new ArrayList<String>();
-		blockedId=mdao.getBlockedId();
+		List<String> blockedId = mdao.getBlockedId();
+		if(blockedId.size()==0) {
+			blockedId=null;
+		}
 		map.put("category", cateList);
 		map.put("address1", address1);
 		map.put("address2", address2);

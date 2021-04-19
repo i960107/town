@@ -56,6 +56,13 @@
 		<if test="address2!=null">
 			and address2 = #{address2}
 		</if>
+		<if test="blockedId!=null">
+			and seller_id not in
+			<foreach item="id" index="index" collection="blockedId"
+				separator="," open="(" close=")">
+				#{id}
+			</foreach>
+		</if>
 		<if test="category!=null">
 			and(
 			<foreach item="item" index="index" collection="category"
@@ -64,13 +71,7 @@
 			</foreach>
 			)
 		</if>
-		<if test="blockedId!=null">
-			and seller_id not in
-			<foreach item="id" index="index" collection="blockedId"
-				separator="," open="(" close=")">
-				#{id}
-			</foreach>
-		</if>
+
 		order by reg_date desc
 	</select>
 
@@ -329,7 +330,7 @@
 		select * from product_file
 		where no = #{minno}
 	</select>
-	
+
 	<update id="PUpdateRegDate">
 		update product
 		set reg_date = sysdate

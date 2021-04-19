@@ -29,6 +29,13 @@
 		<if test="address2!=null">
 			and address2 = #{address2}
 		</if>
+		<if test="blockedId!=null">
+			and writer not in
+			<foreach item="id" index="index" collection="blockedId"
+				separator="," open="(" close=")">
+				#{id}
+			</foreach>
+		</if>
 		<if test="category!=null">
 			and(
 			<foreach item="item" index="index" collection="category"
@@ -36,13 +43,6 @@
 				category like '%'||#{item}||'%'
 			</foreach>
 			)
-		</if>
-		<if test="blockedId!=null">
-			and writer not in
-			<foreach item="id" index="index" collection="blockedId"
-				separator="," open="(" close=")">
-				#{id}
-			</foreach>
 		</if>
 		order by reg_date desc
 	</select>
@@ -169,6 +169,7 @@
 	</select>
 	<!-- 대댓글 이전 스텝 가져오기 -->
 	<select id="getpreStep" resultType="Integer">
-		select max(re_step) from town_board where ref=#{ref}
+		select max(re_step) from
+		town_board where ref=#{ref}
 	</select>
 </mapper>
