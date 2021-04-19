@@ -254,8 +254,13 @@ public class ProductDao {
 		return clist;
 	}
 
-	public ProductFileBean getFileNameMin(int pno) {
-		ProductFileBean fbean = sqlSessionTemplate.selectOne(nameSpace+".getFileNameMin", pno);
+	public int getFileNameMin(int pno) {
+		int minno = sqlSessionTemplate.selectOne(nameSpace+".getFileNameMin", pno);
+		return minno;
+	}
+
+	public ProductFileBean getFileByNo(int minno) {
+		ProductFileBean fbean = sqlSessionTemplate.selectOne(nameSpace+".getFileByNo", minno);
 		return fbean;
 	}
 
