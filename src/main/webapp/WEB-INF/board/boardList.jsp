@@ -9,7 +9,7 @@
 
 <style type="text/css">
 .mcontent {
-	font-size: 15px;
+	font-size: 20px;
 	color: #CCCCCC;
 }
 .board {
@@ -189,7 +189,7 @@
 							</font> <br> ${fn:substring(board.contents,0,10)} <a
 								href='detailView.bd?no=${board.no}'>...더보기</a>
 
-							<div style="margin-top: 30px">
+							<div style="margin-top: 30px" class="mcontent">
 								<span> <a href="tradeDetail.mb?sellerid=${board.writer}">${board.writer}</a>
 								<span>${board.address1}&nbsp${board.address2}</span>
 								<br>
