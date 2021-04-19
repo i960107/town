@@ -65,7 +65,7 @@
 		String login = request.getContextPath() + "/memberlogin.mb"; // 로그인
 		String logout = request.getContextPath() + "/memberlogout.mb"; // 로그아웃
 		String join = request.getContextPath() + "/memberJoin.mb"; // 회원가입
-		String myPage = request.getContextPath() + "/myPage.mb"; // 나의당근
+		String myPage = request.getContextPath() + "/mySaleList.prd"; // 나의당근
 		String viewMain = request.getContextPath() + "/main.mk"; // 메인페이지
 		String saleList = request.getContextPath() + "/saleList.prd"; // 중고거래
 		String boardList = request.getContextPath() + "/list.bd"; // 동네생활
