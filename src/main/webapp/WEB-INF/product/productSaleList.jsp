@@ -59,6 +59,7 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-12">
 					<form action="" name="categoryform">
+						<input type="hidden" name="isCategorySelected" value="true">
 						<script>
 							var keyword = document.searchform.keyword.value;
 
@@ -78,12 +79,10 @@
 								<td colspan=2 class="flex-container-category"><c:if
 										test="${category==null}">
 										<c:forEach items="${categoryList}" var="ctg">
-
 											<span class="col-md-2"><input type="checkbox"
 												name="category" class="category" value="${ctg.no}" checked>${ctg.categoryName}
 											</span>
 										</c:forEach>
-
 									</c:if> <c:if test="${category!=null}">
 										<c:forEach items="${categoryList}" var="ctg">
 											<span class="col-md-2"> <input type="checkbox"
@@ -138,6 +137,7 @@
 							document
 									.write("<input type='hidden' name='category' value='"+category+"'>");
 						</script>
+						<input type="hidden" name="isCategorySelected" value="true">
 						<input type="hidden" name="request" value="saleList.prd">
 						<%@include file="./../common/addrArray.jsp"%>
 					</form>

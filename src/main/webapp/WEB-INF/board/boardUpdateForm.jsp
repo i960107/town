@@ -8,9 +8,7 @@
 <script type="text/javascript">
 
 function goPopup(){
-	var pop= window.open("<%=request.getContextPath()%>
-	/popup/jusoPopup.jsp", "pop",
-				"width=570,height=420, scrollbars=yes, resizable=yes");
+	var pop= window.open("<%=request.getContextPath()%>/popup/jusoPopup.jsp", "pop","width=570,height=420, scrollbars=yes, resizable=yes");
 	}
 	function jusoCallBack(roadFullAddr, siNm, sggNm, emdNm) {
 		document.form.roadFullAddr.value = roadFullAddr;

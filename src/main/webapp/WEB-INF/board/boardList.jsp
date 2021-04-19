@@ -59,6 +59,7 @@
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
 						<form action="list.bd" name="categoryform">
+							<input type="hidden" name="isCategorySelected" value="true">
 							<script>
 								var keyword = document.searchform.keyword.value;
 								
@@ -113,6 +114,7 @@
 					</div>
 					<div>
 						<form name="myform">
+							<input type="hidden" name="isCategorySelected" value="true">
 							<c:set var="mbean" value="${loginInfo}" />
 							<script>
 								/* 키워드 넘기기 */

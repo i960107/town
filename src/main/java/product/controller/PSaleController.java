@@ -30,7 +30,7 @@ public class PSaleController {
 	// 전체 상품 목록 보기
 	private final String command = "saleList.prd";
 	private final String getPage = "productSaleList";
-	private final String gotoPage = "redirect:main.mk";
+	private final String gotoPage = "redirect:saleList.mk";
 
 	@Autowired
 	ProductDao pDao;
@@ -40,9 +40,30 @@ public class PSaleController {
 			@RequestParam(value = "address2", required = false) String address2,
 			@RequestParam(value = "category", required = false) String category,
 			@RequestParam(value = "keyword", required = false) String keyword, HttpServletResponse response,
-			ProductKeywordBean keywordBean, HttpSession session) {
-
+			@RequestParam(value = "isCategorySelected", required = false) boolean isCategorySelected,
+			ProductKeywordBean keywordBean, HttpSession session) throws IOException {
 		ModelAndView mav = new ModelAndView();
+		List<ProdCategoryBean> clist = pDao.getAllPrdCategory();
+		
+		// 카테고리 1이상 선택 필수
+		if (isCategorySelected == true && category == null) {
+			System.out.println("여기");
+			PrintWriter pwriter = response.getWriter();
+			response.setContentType("text/html; charset=UTF-8");
+			pwriter.print("<script type='text/javascript'>");
+			pwriter.print("alert('카테고리는 하나이상 선택해주세요')");
+			pwriter.print("</script>");
+			pwriter.flush();
+			mav.addObject("category", null);
+			mav.addObject("categoryList", clist);
+			mav.addObject("keyword", keyword);
+			mav.addObject("address1", address1);
+			mav.addObject("address2", address2);
+			mav.setViewName(getPage);
+			return mav;
+		}
+
+		
 		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
 
 		if (member != null) {
@@ -57,7 +78,7 @@ public class PSaleController {
 		mav.addObject("requestPage", "saleList.prd");
 		// 키워드
 		Map<Object, String> map = new HashMap<Object, String>();
-		if (keyword != null&& keyword!="") { // keyword 공백제거 검색 성능 향상
+		if (keyword != null && keyword != "") { // keyword 공백제거 검색 성능 향상
 			keyword = keyword.trim();
 			System.out.println("keyword : " + keyword);
 			map.put("keyword", "%" + keyword + "%");
@@ -76,8 +97,8 @@ public class PSaleController {
 		}
 
 		// 카테고리 리스트
-		List<ProdCategoryBean> clist = pDao.getAllPrdCategory();
-		session.setAttribute("categoryList", clist);
+		mav.addObject("categoryList", clist);
+		mav.addObject("category", category);
 		return mav;
 	}
 
