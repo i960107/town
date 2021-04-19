@@ -58,23 +58,34 @@
 	span{
 		align-self: center;
 	}
+	
+	.div-style{
+		position: absolute;
+		width: 80%;
+		height : 100px;
+		margin: 0 22.5%;
+		text-align: center;
+	}
 
 </style>
 
+<br><br><br>
+<span><h3 align="center"><b>카테고리 관리</b></h3></span>
 
-<span><h3><b>카테고리 관리</b></h3></span>
+<div class="div-style filter-control">
 
 
-<div class="filter-control" style="margin: 0 auto; width:80%">
      <ul>
      <li class="active" onmouseover="style='cursor:pointer'" onclick="townCateList()">동네생활 카테고리</li>
      <li class="active" onmouseover="style='cursor:pointer'" onclick="townInsert()">동네생활 카테고리 등록</li>
      <li class="active" onmouseover="style='cursor:pointer'" onclick="prodCateList()">중고거래 카테고리 </li>
      <li class="active" onmouseover="style='cursor:pointer'" onclick="productInsert()">중고거래 카테고리 등록</li>
      </ul>
- </div>
  
+
+</div>
  
+
  <br><br><br><br>
 
 

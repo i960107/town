@@ -20,6 +20,7 @@
 	    cursor : pointer;
 	    height: 150px;
 	}
+	
 </style>
 
 <script type="text/javascript">
@@ -33,6 +34,22 @@ function jusoCallBack(roadFullAddr,siNm,sggNm,emdNm) {
       document.myform.address2.value = sggNm;
       document.myform.address3.value = emdNm;
    }
+
+function handleFiles(fileList) {
+	if (fileList.length < 1)
+		return;
+	$("#select_img").empty();
+	for (i = 0; i < fileList.length; i++) {
+		var reader = new FileReader();
+		var file = fileList[i];
+		reader.onload = function(e) {
+			$("#select_img")
+					.append("<img src='"+e.target.result+"' width=115 height=115>");
+		}
+		reader.readAsDataURL(file);
+	}
+	;
+};
 
 </script>
 
@@ -56,7 +73,10 @@ function jusoCallBack(roadFullAddr,siNm,sggNm,emdNm) {
 			<td class="group-input" >
 				<!-- 다중 파일 선택: multiple="multiple" -->
 				<label for="upload_file" class="fileupload-img"></label><br>
-				<input multiple="multiple" type="file" name="upload" id="upload_file" hidden="">
+				<input multiple="multiple" type="file" name="upload" id="upload_file" hidden="" onchange="handleFiles(this.files)">
+				<div id="select_img">
+							
+				</div>
 				<form:errors cssClass="err" path="image1"/>
 			</td>
 		</tr>
@@ -150,7 +170,7 @@ function jusoCallBack(roadFullAddr,siNm,sggNm,emdNm) {
 		
 		<tr>
 			<td class="group-input"  colspan="2" align="right">
-				<input type="submit" value="수정하기">
+				<input type="submit" value="수정하기" class="site-btn register-btn">
 			</td>
 		</tr>
 	<!-- </div> -->
