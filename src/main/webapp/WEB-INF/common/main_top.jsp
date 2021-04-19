@@ -14,6 +14,7 @@
 <title>main</title>
 
 <!-- Google Font -->
+
 <link
 	href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
 	rel="stylesheet">
@@ -83,35 +84,39 @@
 	<!-- Header Section Begin -->
 	<!-- 로그인 영역 시작 -->
 
-    <header class="header-section">
-        <div class="header-top">
-            <div class="container">
-            	<div class="ht-right">
-                    <!-- <a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a> -->
-                    <div class="lan-selector">
-                        <a href="<%=myPage %>" class="login-panel">나의당근</a>
-                    </div>
-                    <div class="top-social">
-                        <a href="<%=join %>" class="login-panel">회원가입</a>
-                        
-                        <c:if test="<%= loginInfo == null %>">
-                    	<a href="<%=login %>" class="login-panel"><i class="fa fa-user"></i>Login</a>
-                    	</c:if>
-                    	
-                    	<c:if test="<%= loginInfo != null %>">
-                    	<a href="<%=logout %>" class="login-panel"><i class="fa fa-user"></i>LogOut</a>
-                    	<a href="<%=myPage %>" class="login-panel"><%= loginInfo.getName() %> 님</a>
-                    	</c:if>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- 로그인 영역 끝 -->
-        
- 	
+	<header class="header-section">
+		<div class="header-top">
+			<div class="container">
+				<div class="ht-right">
+					<!-- <a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a> -->
+					<div class="lan-selector">
+						<a href="<%=myPage%>" class="login-panel">나의당근</a>
+					</div>
+					<div class="top-social">
+						<a href="<%=join%>" class="login-panel">회원가입</a>
+
+						<c:if test="<%=loginInfo == null%>">
+							<a href="<%=login%>" class="login-panel"><i
+								class="fa fa-user"></i>Login</a>
+						</c:if>
+
+						<c:if test="<%=loginInfo != null%>">
+							<a href="<%=logout%>" class="login-panel"><i
+								class="fa fa-user"></i>LogOut</a>
+							<a href="<%=myPage%>" class="login-panel"><%=loginInfo.getName()%>
+								님</a>
+						</c:if>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 로그인 영역 끝 -->
+
+
 
 		<!-- 검색 영역 시작 -->
-		<form action="${requestPage}" method="post" name="searchform" id="mainForm">
+		<form action="${requestPage}" method="post" name="searchform"
+			id="mainForm">
 			<div class="container">
 				<div class="inner-header">
 					<div class="row">
@@ -128,9 +133,11 @@
 								<div class="input-group">
 									<select name="whatColumn" onchange="searchWhere()">
 										<!-- <option value="all">전체검색</option> -->
-										<option value="saleList.prd" <c:if test="${requestPage=='saleList.prd'}">selected="selected"</c:if>>중고거래</option>
+										<option value="saleList.prd"
+											<c:if test="${requestPage=='saleList.prd'}">selected="selected"</c:if>>중고거래</option>
 										<%-- <c:out value="${whatColumn eq 'product' ? 'selected':'' }"/> --%>
-										<option value="list.bd"  <c:if test="${requestPage!='saleList.prd'}">selected="selected"</c:if>>동네생활</option>
+										<option value="list.bd"
+											<c:if test="${requestPage!='saleList.prd'}">selected="selected"</c:if>>동네생활</option>
 										<%-- <c:out value="${whatColumn eq 'town' ? 'selected':'' }"/> --%>
 									</select> <input type="text" id="keyword" name="keyword"
 										placeholder="검색어를 입력하세요." value="${keyword}">
@@ -147,7 +154,7 @@
 			<div class="input-group"
 				style="margin: position:absolute; left: 50%;">
 
-			<%-- 	<div id="out_category">
+				<%-- 	<div id="out_category">
 					<c:if test="${category==null}">
 						<c:forEach items="${categoryList}" var="ctg">
 							<span class="col-md-2"><input type="checkbox"

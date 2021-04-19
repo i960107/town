@@ -12,6 +12,9 @@
 	font-size: 20px;
 	color: #CCCCCC;
 }
+.contents{
+font-size:20px;
+}
 .board {
 	margin-bottom: 30px;
 	background-color: #F8F9FA;
@@ -40,10 +43,11 @@
 .flex-container-board {
 	display: flex;
 	flex-direction: row;
-	font-size: 25px; width : 100%;
+	font-size: 25px; 
 	margin-bottom: 15px;
 	background-color: #eee;
 	width: 100%;
+	border-radius: 10px;
 }
 .flex-container-category {
 	display: flex;
@@ -166,10 +170,10 @@
 						<c:forEach var="bean" items="${boardFileList}">
 							<c:if test="${flag==false}">
 								<c:if test="${bean.bno==board.no}">
-									<div>
+									<div style="width:340px; height:340px;" >
 										<img
 											src="${pageContext.request.contextPath}/resources/${bean.fileName}"
-											style="width: 200px; height: 200px; margin-top: 10px" />
+											style="width:310px; height:310px;margin:10px;"/>
 									</div>
 									<c:set var="flag" value="true" />
 								</c:if>
@@ -186,7 +190,7 @@
 								</c:forEach>
 							</c:forTokens>
 							<br> <font color="orange"><b> ${board.subject} </b>
-							</font> <br> ${fn:substring(board.contents,0,10)} <a
+							</font> <br> <span class="contents">${fn:substring(board.contents,0,10)} </span><a
 								href='detailView.bd?no=${board.no}'>...더보기</a>
 
 							<div style="margin-top: 30px" class="mcontent">
