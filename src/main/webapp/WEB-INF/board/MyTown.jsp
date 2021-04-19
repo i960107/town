@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./WEB-INF/member/memberMyPageTop.jsp"%>
+<%@ include file="./../../WEB-INF/member/memberMyPageTop.jsp"%>
 
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 
 <script type="text/javascript">
-	$(document).ready(function(){
+ 	$(document).ready(function(){
 		$("#myBoardList").hide();
 		$("#myBoardReplyList").hide();
-	});
+	}); 
 	
 	function myBoardList(){
 		//location.href="/myBoard.bd";
@@ -22,19 +22,30 @@
 	}
 
 </script>
+<style>
 
+	.div-style{
+		position: absolute;
+		width: 60%;
+		height : 100px;
+		margin: 0 42.5%;
+		text-align: center;
+	}
+
+</style>
 
 
 <br>
 <h4 align="center">동네생활 관리</h4> 
 
 
-<div class="filter-control" style="margin: 0 auto; width: 80%">
+<div class="filter-control div-style" >
      <ul>
      <li class="active" onmouseover="style='cursor:pointer'" onclick="myBoardList()">내 글</li>
      <li class="active" onmouseover="style='cursor:pointer'" onclick="myBoardReplyList()">내 댓글</li>
      </ul>
  </div>
+ <br>
 
 <div id="myBoardList">
 <table align="center">
@@ -127,31 +138,7 @@
 </div>
 
 
-
-
-
-
 <br>
-<div align="center">
-<table border="1">
-
-
-<tr>
-	<td>
-<a href="myBoard.bd">내 글</a> 
-
-&nbsp;
-</td>
-<td>
-<a href="myReply.bd">내 댓글</a>
-
-&nbsp;
-</td>
-
-</tr>
-</table>
-
-</div>
 
 <!-- mytop꺼야  -->
 </td>
@@ -159,4 +146,4 @@
 
 <br><br>
 
-<%-- <%@ include file="./../WEB-INF/common/main_bottom.jsp"%> --%>
+<%@ include file="./../../WEB-INF/common/main_bottom.jsp"%> 

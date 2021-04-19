@@ -65,7 +65,7 @@
 		String login = request.getContextPath() + "/memberlogin.mb"; // 로그인
 		String logout = request.getContextPath() + "/memberlogout.mb"; // 로그아웃
 		String join = request.getContextPath() + "/memberJoin.mb"; // 회원가입
-		String myPage = request.getContextPath() + "/myPage.mb"; // 나의당근
+		String myPage = request.getContextPath() + "/mySaleList.prd"; // 나의당근
 		String viewMain = request.getContextPath() + "/main.mk"; // 메인페이지
 		String saleList = request.getContextPath() + "/saleList.prd"; // 중고거래
 		String boardList = request.getContextPath() + "/list.bd"; // 동네생활
@@ -135,17 +135,16 @@
 									<select name="whatColumn" onchange="searchWhere()">
 										<!-- <option value="all">전체검색</option> -->
 										<option value="saleList.prd"
-											<c:if test="${requestPage=='saleList.prd'}">selected="selected"</c:if>>중고거래</option>
-										<%-- <c:out value="${whatColumn eq 'product' ? 'selected':'' }"/> --%>
+											<c:if test="${requestPage=='saleList.prd'}">selected="selected"</c:if>>중고거래
+										</option>
 										<option value="list.bd"
-											<c:if test="${requestPage!='saleList.prd'}">selected="selected"</c:if>>동네생활</option>
-										<%-- <c:out value="${whatColumn eq 'town' ? 'selected':'' }"/> --%>
+											<c:if test="${requestPage!='saleList.prd'}">selected="selected"</c:if>>동네생활
+										</option>
 									</select> <input type="text" id="keyword" name="keyword"
 										placeholder="검색어를 입력하세요." value="${keyword}">
 									<button type="submit">
 										<i class="ti-search"></i>
 									</button>
-									<!-- themify-icons.css -->
 								</div>
 							</div>
 						</div>
