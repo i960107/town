@@ -92,7 +92,7 @@
 			<c:set var="step" value="${step+1 }"/>
 		    	<td height="200px" align="center">
 		    		<p><a href="detail.prd?no=${i.no}&sellerid=${i.sellerid}" class=".popkeyword">
-						<img src="<%=request.getContextPath()%>/resources/${i.image1}" width="250" height="250" alt="상품사진"> <br>
+						<img src="<%=request.getContextPath()%>/resources/${i.image1}" width="200" height="200" alt="상품사진"> <br>
 		    		</a></p>
 		    		<font size="4pt">
 					제목 : ${i.subject} <br>
