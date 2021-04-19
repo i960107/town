@@ -7,11 +7,18 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#myBoardList").hide();
+		$("#myBoardReplyList").hide();
 	});
 	
 	function myBoardList(){
-		location.href="/myBoard.bd";
+		//location.href="/myBoard.bd";
 		$("#myBoardList").show();
+		$("#myBoardReplyList").hide();
+	}
+	
+	function myBoardReplyList(){
+		$("#myBoardReplyList").show();
+		$("#myBoardList").hide();
 	}
 
 </script>
@@ -25,7 +32,7 @@
 <div class="filter-control" style="margin: 0 auto; width: 80%">
      <ul>
      <li class="active" onmouseover="style='cursor:pointer'" onclick="myBoardList()">내 글</li>
-     <li class="active" onmouseover="style='cursor:pointer'" onclick="townInsert()">내 댓글</li>
+     <li class="active" onmouseover="style='cursor:pointer'" onclick="myBoardReplyList()">내 댓글</li>
      </ul>
  </div>
 
@@ -35,7 +42,6 @@
 		<td>
 			<div class="register-login-section spad">
 				<div class="register-form">
-					<h2>나의 동네생활 글</h2>
 					<table width="900px" class="sectable" border="1">
 						<div class="group-input">
 							<tr align="center">
@@ -77,8 +83,48 @@
 </div>
 
 
+<div id="myBoardReplyList">
+<table align="center">
+	<tr>
+		<td>
+			<div class="register-login-section spad">
+				<div class="register-form">
+					<table width="900px" class="sectable" border="1">
+						<div class="group-input">
+							<tr align="center">
+								<th class="group-input"><label>NO </label></th>
+								<th class="group-input"><label>제목</label></th>
+								<th class="group-input"><label>카테고리</label></th>
+								<th class="group-input"><label>댓글 내용</label></th>
+								<th class="group-input"><label>등록일</label></th>
+								<th class="group-input"><label>삭제</label></th>
+								<th class="group-input"><label>수정</label></th>
+							</tr>
 
+							<c:forEach var="mbrlist" items="${mbrlists }">
+								<tr align="center">
+									<th class="group-input"><label>${mbrlist.no } </label></th>
+									<th class="group-input"><label>${mbrlist.subject } </label></th>
+									<th class="group-input"><label>${mbrlist.category } </label></th>
+									<th class="group-input"><label>${mbrlist.contents } </label></th>
+									<th class="group-input"><label>
+									<fmt:parseDate value="${mbrlist.regDate } " var="regdate" pattern="yyyy-MM-dd"/>
+									<fmt:formatDate value="${regdate }" pattern="yyyy-MM-dd"/>
+									</label></th>
+									<th class="group-input"><label>삭제</label></th>
+									<th class="group-input"><label>수정</label></th>
+								</tr>
+							</c:forEach>
+				
+						</div>
+					</table>
 
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>
+</div>
 
 
 

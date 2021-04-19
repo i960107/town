@@ -232,8 +232,8 @@
 
 <style>
 	.div-style{
-		width: auto;
-		height: auto;
+		width: 100%;
+		height: 90%;
 		border: 5px solid #FFC19E;
 		border-radius: 10%;
 		align-content: center;		
@@ -248,7 +248,7 @@
 		height: auto;
 	}
 	.div-saleInfo{
-		width: 65px;
+		width: 75px;
 		height:  auto;
 		border: 2px solid #4641D9;
 		background-color : #4641D9;
