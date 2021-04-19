@@ -37,6 +37,25 @@
 	}
 </script> 
  -->
+ 
+<style type="text/css">
+.popkeyword {
+	font-size:16pt;
+	color:black;
+}
+.popkeyword a:link { text-decoration:none; color: black; }
+.popkeyword a:visited { text-decoration:none; color: black; }
+.popkeyword a:active { text-decoration:none; color: #EDA900; }
+.popkeyword a:hover { text-decoration:none; color: #EDA900; } /* #007BFF */
+</style>
+<!--
+	a:link 클릭하지 않았을 때 링크 상태
+	a:visited 한번 클릭했거나 들어가보았던 링크 상태
+	a:active 링크 부분에서 마우스를 누르고 있는 상태
+	a:hover 링크를 클릭하려고 마우스를 가져갔을 때 상태
+	text-decoration -> underline; 밑줄, none; 밑줄 없음
+ -->
+ 
     <!-- Banner Section Begin -->
     <div class="banner-section spad">
         <div class="container-fluid">
@@ -62,7 +81,9 @@
     <!-- Banner Section End -->
 
 	<!-- 인기 키워드 시작 -->
-	<h3 align="center">중고거래 인기 키워드</h3> <br>
+	<div class="section-title">
+		<h2 align="center">중고거래 인기 키워드</h2>
+	</div>
 	
 	<table border="0" align="center" width="500px">
 		<tr align="center">
@@ -74,9 +95,11 @@
 		</tr>
 	</table>
 	<!-- 인기 키워드 끝 -->
-	<br><br>
+	<br><br><br>
 	<!-- 인기매물 시작 -->
-	<h3 align="center">인기 매물 리스트</h3>
+	<div class="section-title">
+		<h2 align="center">인기 매물 리스트</h2>
+	</div>
 	
 	<table border="0" align="center" width="1200px">
 	  	<tr align="center">
@@ -112,5 +135,7 @@
 
 </body>
 </html>
+
+<br><br><br><br>
 
 <%@ include file="./../common/main_bottom.jsp" %>
