@@ -127,18 +127,18 @@
 							<ul>
 								<li><i class="fa fa-tags"></i></li>
 								<c:if test="${board.category==null}">
-									<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
-										<c:if test="${categoryList[i].no==board.category}">
-											<li>${categoryList[i].categoryName}</li>
+									<c:forEach begin="0" end="${fn:length(bCategoryList)-1}" var="i">
+										<c:if test="${bCategoryList[i].no==board.category}">
+											<li>${bCategoryList[i].categoryName}</li>
 										</c:if>
 									</c:forEach>
 								</c:if>
 								<c:if test="${board.category!=null}">
 									<c:forTokens items="${board.category}" delims="," var="ctg">
-										<c:forEach begin="0" end="${fn:length(categoryList)-1}"
+										<c:forEach begin="0" end="${fn:length(bCategoryList)-1}"
 											var="i">
-											<c:if test="${categoryList[i].no==ctg}">
-												<li>${categoryList[i].categoryName}</li>
+											<c:if test="${bCategoryList[i].no==ctg}">
+												<li>${bCategoryList[i].categoryName}</li>
 											</c:if>
 										</c:forEach>
 									</c:forTokens>
