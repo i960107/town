@@ -169,8 +169,8 @@ public class ProductDao {
 		return cnt;
 	}
 
-	public int deleteFile(String filename) {
-		int cnt = sqlSessionTemplate.delete(nameSpace + ".deleteFile", filename);
+	public int deleteFile(ProductFileBean fbean) {
+		int cnt = sqlSessionTemplate.delete(nameSpace + ".deleteFile", fbean);
 		return cnt;
 	}
 
@@ -251,6 +251,11 @@ public class ProductDao {
 		List<ProdCategoryBean> clist = new ArrayList<ProdCategoryBean>();
 		clist = sqlSessionTemplate.selectList(nameSpace + ".getAllPrdCategory");
 		return clist;
+	}
+
+	public ProductFileBean getFileNameMin(int pno) {
+		ProductFileBean fbean = sqlSessionTemplate.selectOne(nameSpace+".getFileNameMin", pno);
+		return fbean;
 	}
 
 }

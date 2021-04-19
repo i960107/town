@@ -33,7 +33,14 @@ public class ProductBean {
 	private int readcount  ;
 	private List<MultipartFile> upload;
 	private String image1;
-	
+	private String filename;
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
 	// mysalelist에서 카테고리 볼라고 넣어둠
 	private String categoryName;
 	
