@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="./../common/main_top.jsp"%>
 <%@include file="../common/common.jsp"%>
+<%@include file="./../product/prdStyle.jsp" %>
 <link rel="stylesheet" href="../common/style.css">
 <script type="text/javascript">
 	/* 좋아요 싫어요 함수 호출 */
@@ -154,7 +155,7 @@
 							</ul>
 						</div>
 						<div>
-							<span>조회수</span>${board.readcount}
+							<span class="mcontent">&#128065; : ${board.readcount}</span>
 
 							<c:set var="loginId">${loginInfo.id}</c:set>
 							<c:set var="heart" value="&#10084;" />
@@ -168,19 +169,21 @@
 							</c:forEach>
 							<input type="button" name="like" value="${heart }공감하기 ${likeCnt}"
 								onclick="${likecondition}" class="btn_img_like"> <a
-								href="report.mb?reported_userid=${board.writer}"> <span
+								href="report.mb?reported_userid=${board.writer}">
+								<c:if test="${loginInfo.id==board.writer}">
+								<input type="button" onClick="location.href='update.bd?no=${board.no}'"
+							value="수정하기" class="btn_img_nomal">
+							</c:if>
+								 <span
 								class="mcontent">신고하기</span></a>
 						</div>
 					</div>
 					<div align="center">
 						<input type="button" onClick="location.href='list.bd'"
-							value="목록보기">
+							value="목록보기" class="site-btn register-btn">
 							<c:if test="${loginInfo.id==board.writer}">
-							
-								<input type="button" onClick="location.href='update.bd?no=${board.no}'"
-							value="수정하기">
 								<input type="button" onClick="location.href='delete.bd?no=${board.no}'"
-							value="삭제하기">
+							value="삭제하기" class="site-btn register-btn">
 							
 							</c:if>
 					</div>
