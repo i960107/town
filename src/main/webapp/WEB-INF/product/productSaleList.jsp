@@ -78,10 +78,12 @@
 								<td colspan=2 class="flex-container-category"><c:if
 										test="${category==null}">
 										<c:forEach items="${categoryList}" var="ctg">
+
 											<span class="col-md-2"><input type="checkbox"
 												name="category" class="category" value="${ctg.no}" checked>${ctg.categoryName}
 											</span>
 										</c:forEach>
+
 									</c:if> <c:if test="${category!=null}">
 										<c:forEach items="${categoryList}" var="ctg">
 											<span class="col-md-2"> <input type="checkbox"

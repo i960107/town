@@ -32,7 +32,6 @@ public class BoardDao {
 
 	public List<BoardBean> getBoardList(String keyword,String category,String address1, String address2) {
 		List<BoardBean> boardList = new ArrayList<BoardBean>();
-		List<String> cateList = null;
 		Map<String, Object> map = new HashMap<String, Object>();
 		if(keyword!=null) {
 		map.put("keyword", "%"+keyword+"%");
@@ -40,6 +39,7 @@ public class BoardDao {
 			map.put("keyword", null);
 		}
 		
+		List<String> cateList = null;
 		  if(category!=null) { 
 			  cateList=new ArrayList<String>();
 			  String[]cateArr=category.split(","); for(String
