@@ -17,7 +17,8 @@ import member.model.MemberBean;
 public class BoardMyListController {
 	
 	private final String command = "/myBoard.bd";
-	private final String getPage = "boardMyList";
+	//private final String getPage = "boardMyList";
+	private final String getPage = "MyTown";
 	
 	@Autowired
 	BoardDao bdao;
@@ -25,11 +26,19 @@ public class BoardMyListController {
 	@RequestMapping(value=command)
 	public String doAction(HttpSession session, Model model) {
 		
+		System.out.println("게시글 가지러 넘어왔니 ...? ");
 		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
 		String loginID = member.getId();
+		
+		//게시글
 		List<BoardBean> mblists = bdao.getBoardListById(loginID);
 		
+		//댓글
+		List<BoardBean> mbrlists = bdao.getBoardReplyListById(loginID);
+	
+		
 		model.addAttribute("mblists", mblists);
+		model.addAttribute("mbrlists", mbrlists);
 		return getPage;
 	}
 }

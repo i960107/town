@@ -54,6 +54,10 @@
 			var keyword = $("#keyword").val();
 			location.href='saleList.prd?keyword='+keyword;
 		} */
+		function searchWhere() {
+			var getGo = searchform.whatColumn.value;
+			$("#mainForm").attr("action", getGo);
+		}
 	</script>
 
 	<%
@@ -66,7 +70,6 @@
 		String boardList = request.getContextPath() + "/list.bd"; // 동네생활
 		String productWrite = request.getContextPath() + "/pWrite.prd"; // 글쓰기
 		String chat = request.getContextPath() + "/chatList.prd"; // 채팅
-
 		String source = request.getContextPath() + "/"; //소스 경로 요청용 약어
 		//로그인한 아이디 세션 가져오기 
 		MemberBean loginInfo = (MemberBean) session.getAttribute("loginInfo");
@@ -108,7 +111,7 @@
  	
 
 		<!-- 검색 영역 시작 -->
-		<form action="${requestPage}" method="post" name="searchform">
+		<form action="${requestPage}" method="post" name="searchform" id="mainForm">
 			<div class="container">
 				<div class="inner-header">
 					<div class="row">
@@ -123,11 +126,11 @@
 						<div class="col-lg-7 col-md-7">
 							<div class="advanced-search">
 								<div class="input-group">
-									<select name="whatColumn">
+									<select name="whatColumn" onchange="searchWhere()">
 										<!-- <option value="all">전체검색</option> -->
-										<option value="psalelist.prd">중고거래</option>
+										<option value="saleList.prd" <c:if test="${requestPage=='saleList.prd'}">selected="selected"</c:if>>중고거래</option>
 										<%-- <c:out value="${whatColumn eq 'product' ? 'selected':'' }"/> --%>
-										<option value="list.bd">동네생활</option>
+										<option value="list.bd"  <c:if test="${requestPage!='saleList.prd'}">selected="selected"</c:if>>동네생활</option>
 										<%-- <c:out value="${whatColumn eq 'town' ? 'selected':'' }"/> --%>
 									</select> <input type="text" id="keyword" name="keyword"
 										placeholder="검색어를 입력하세요." value="${keyword}">

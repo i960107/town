@@ -81,7 +81,7 @@
 
 			<td class="tab-item" width="16%">
 				<ul class="nav" role="tablist">
-					<li><a class="active" href="MyTown.jsp">My Town</a></li>
+					<li><a class="active" href="myBoard.bd">My Town</a></li>
 				</ul>
 			</td>
 
