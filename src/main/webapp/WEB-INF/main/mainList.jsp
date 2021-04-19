@@ -31,29 +31,10 @@
 <script type="text/javascript">
 	function statusChange( statusItem ) {
 	   var strText = $(statusItem).text();
-
 	   // strText 에 전체 문자열이 입력됨
 	   $("#keyword").val(strText);
 	}
 </script> 
- -->
- 
-<style type="text/css">
-.popkeyword {
-	font-size:16pt;
-	color:black;
-}
-.popkeyword a:link { text-decoration:none; color: black; }
-.popkeyword a:visited { text-decoration:none; color: black; }
-.popkeyword a:active { text-decoration:none; color: #EDA900; }
-.popkeyword a:hover { text-decoration:none; color: #EDA900; } /* #007BFF */
-</style>
-<!--
-	a:link 클릭하지 않았을 때 링크 상태
-	a:visited 한번 클릭했거나 들어가보았던 링크 상태
-	a:active 링크 부분에서 마우스를 누르고 있는 상태
-	a:hover 링크를 클릭하려고 마우스를 가져갔을 때 상태
-	text-decoration -> underline; 밑줄, none; 밑줄 없음
  -->
  
     <!-- Banner Section Begin -->
@@ -89,7 +70,9 @@
 		<tr align="center">
 			<c:forEach var="key" items="${klist }">
 				<td>
+					<font size="4pt">
 					#<a href="detail.prd?no=${key.no}&sellerid=${sellerid}">${key.keyword}</a>
+					</font>
 				</td>
 			</c:forEach>
 		</tr>
@@ -107,13 +90,15 @@
 			<c:forEach var="i" items="${list }">
 			<c:set var="step" value="${step+1 }"/>
 		    	<td height="200px" align="center">
-		    		<p><a href="detail.prd?no=${i.no}&sellerid=${i.sellerid}">
-						<img src="<%=request.getContextPath()%>/resources/${i.image1}" width="150" height="150" alt="상품사진"> <br>
+		    		<p><a href="detail.prd?no=${i.no}&sellerid=${i.sellerid}" class=".popkeyword">
+						<img src="<%=request.getContextPath()%>/resources/${i.image1}" width="250" height="250" alt="상품사진"> <br>
 		    		</a></p>
-					제목: ${i.subject} <br>
-					가격: <fmt:formatNumber value="${i.price }" pattern="###,###" /> <br>
-					주소: ${i.address1} ${i.address2 } <br>
-					조회수: ${i.readcount} <br>
+		    		<font size="4pt">
+					제목 : ${i.subject} <br>
+					가격 : <fmt:formatNumber value="${i.price }" pattern="###,###" /> <br>
+					주소 : ${i.address1} ${i.address2 } <br>
+					조회수 : ${i.readcount} <br>
+					</font>
 				</td>
 			<c:if test="${(step%5) == 0 }"></tr><tr></c:if>
 			</c:forEach>
