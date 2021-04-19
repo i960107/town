@@ -265,6 +265,9 @@ textarea {
 					<input type="button"
 					style="margin-bottom: 10px" onClick="return delPrd()"
 					value="삭제하기" class="site-btn register-btn">
+					<input type="button"
+					style="margin-bottom: 10px" onClick="javascript:location.href='updateRegDate.prd?no=${pBean.no}&sellerid=${mbean.id }'"
+					value="끌올하기" class="site-btn register-btn">
 					</c:if>
 					</td>
 			</tr>
