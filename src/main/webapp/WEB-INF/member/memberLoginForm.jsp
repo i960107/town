@@ -26,7 +26,7 @@
 											</div>
 											<div class="group-input gi-check">
 												<div class="gi-more" >
-													 <a href="#" class="forget-pass">Forget your Password</a>
+													 <a href="findpw.mb" class="forget-pass">Forget your Password</a>
 												</div>
 											</div>
 											<%int myPort = request.getServerPort(); %>

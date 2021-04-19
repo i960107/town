@@ -94,7 +94,7 @@
 
 			<td class="tab-item" width="16%">
 				<ul class="nav" role="tablist">
-					<li><a class="active" href="FAQ.jsp">FAQ</a></li>
+					<li><a class="active" href="FAQ.jsp">FAQ &nbsp;&nbsp;</a></li>
 				</ul>
 			</td>
 
