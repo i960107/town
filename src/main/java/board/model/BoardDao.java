@@ -127,17 +127,25 @@ public class BoardDao {
 	public void deleteBoard(int no) {
 		sqlSessionTemplate.delete(namespace + ".deleteBoard", no);
 	}
-
+//댓글 입력
 	public void insertReply(String writer, String contents, int ref, int reLevel) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("writer", writer);
 		map.put("contents", contents);
 		map.put("ref", ref);
 		map.put("reLevel", reLevel);
+		int prevStep=getpreStep(ref);
+		map.put("reStep", prevStep+1);
 		System.out.println(writer + contents + ref + reLevel);
 		sqlSessionTemplate.insert(namespace + ".insertReply", map);
 	}
 
+	/* 대댓글 이전 스텝 가져오기 */
+	private int getpreStep(int ref) {
+		int prevStep=sqlSessionTemplate.selectOne(namespace + ".getpreStep", ref);
+		return prevStep;
+	}
+//댓글 가져오기
 	public List<BoardBean> getReplyByNo(int no) {
 		List<BoardBean> lists = new ArrayList<BoardBean>();
 		lists = sqlSessionTemplate.selectList(namespace + ".getReplyByNo", no);

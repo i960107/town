@@ -44,6 +44,7 @@ textarea {
 	height: 350px;
 	width: 350px;
 }
+
 .memberstatus{
 	font-size:10pt;
 	color:red;

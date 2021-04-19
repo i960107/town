@@ -3,7 +3,7 @@
 <%@ include file="./../common/common.jsp"%>
 <%@ include file="./../common/main_top.jsp" %>
 
-MUpdateController -> memberUpdateForm.jsp <br><br>
+<br><br>
 
 <h2> 회원정보 수정하기 </h2>
 

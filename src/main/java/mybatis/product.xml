@@ -205,7 +205,7 @@
 
 	</update>
 
-	<delete id="deleteFile">
+	<delete id="deleteFile" parameterType="product.model.ProductFileBean">
 		delete from product_file
 		where filename = ${filename}
 	</delete>
@@ -308,5 +308,10 @@
 		resultType="product.model.ProdCategoryBean">
 		select * from product_category
 		order by no
+	</select>
+	
+	<select id="getFileNameMin" resultType="product.model.ProductFileBean">
+		select min(no) no from product_file
+		where pno = #{pno}
 	</select>
 </mapper>
