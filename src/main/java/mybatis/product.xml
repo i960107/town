@@ -297,12 +297,9 @@
 		from product_keyword pk
 		inner join product p
 		on p.subject like '%' || pk.keyword || '%'
-		where
-		ROWNUM
-	<![CDATA[ < ]]>
-		6
-		and count <![CDATA[ >= ]]>
-		2
+		where ROWNUM
+		<![CDATA[ < ]]> 6
+		and count <![CDATA[ >= ]]> 3
 		order by count desc
 	</select>
 

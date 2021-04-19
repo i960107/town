@@ -134,17 +134,16 @@
 									<select name="whatColumn" onchange="searchWhere()">
 										<!-- <option value="all">전체검색</option> -->
 										<option value="saleList.prd"
-											<c:if test="${requestPage=='saleList.prd'}">selected="selected"</c:if>>중고거래</option>
-										<%-- <c:out value="${whatColumn eq 'product' ? 'selected':'' }"/> --%>
+											<c:if test="${requestPage=='saleList.prd'}">selected="selected"</c:if>>중고거래
+										</option>
 										<option value="list.bd"
-											<c:if test="${requestPage!='saleList.prd'}">selected="selected"</c:if>>동네생활</option>
-										<%-- <c:out value="${whatColumn eq 'town' ? 'selected':'' }"/> --%>
+											<c:if test="${requestPage!='saleList.prd'}">selected="selected"</c:if>>동네생활
+										</option>
 									</select> <input type="text" id="keyword" name="keyword"
 										placeholder="검색어를 입력하세요." value="${keyword}">
 									<button type="submit">
 										<i class="ti-search"></i>
 									</button>
-									<!-- themify-icons.css -->
 								</div>
 							</div>
 						</div>
