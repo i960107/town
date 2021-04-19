@@ -160,4 +160,8 @@
 	<select id="getMemberDealReview" resultType="member.model.MemberDealReviewBean">
 	select * from member_deal_review where seller_id=#{sellerid}
 	</select>
+	<!-- 블록된 아이디 가져오기 -->
+	<select id="getBlockedId" resultType="String">
+	 select id from member where member_status=0
+	</select>
 </mapper>

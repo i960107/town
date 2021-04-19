@@ -5,20 +5,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import category.model.ProdCateBean;
 import member.model.MemberBean;
+import member.model.MemberDao;
 import member.model.MemberDealBean;
 
 @Component("myProductDao")
 public class ProductDao {
 
 	private String nameSpace = "product.model.ProductBean";
-
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
@@ -58,14 +57,24 @@ public class ProductDao {
 				cateList.add(c);
 			}
 		}
+		// 블락된 아이디 가져오기
+		List<String> blockedId = new ArrayList<String>();
+		blockedId = getBlockedId();
 		map.put("category", cateList);
 		map.put("address1", address1);
 		map.put("address2", address2);
+		map.put("blockedId", blockedId);
 		System.out.println(map);
-		lists = sqlSessionTemplate.selectList(nameSpace + ".getList",map);
+		lists = sqlSessionTemplate.selectList(nameSpace + ".getList", map);
 		return lists;
 	}
-
+	/* 블록된 아이디 가져오기 */
+	public List<String> getBlockedId() {
+		List<String> blockedId = new ArrayList<String>();
+		System.out.println("block1"+sqlSessionTemplate);
+		blockedId = sqlSessionTemplate.selectList("member.model.MemberBean.getBlockedId");
+		return blockedId;
+	}
 	// 상품 등록
 	public int insertProduct(ProductBean productbean) {
 		System.out.println(productbean.getAddress());
@@ -255,12 +264,12 @@ public class ProductDao {
 	}
 
 	public int getFileNameMin(int pno) {
-		int minno = sqlSessionTemplate.selectOne(nameSpace+".getFileNameMin", pno);
+		int minno = sqlSessionTemplate.selectOne(nameSpace + ".getFileNameMin", pno);
 		return minno;
 	}
 
 	public ProductFileBean getFileByNo(int minno) {
-		ProductFileBean fbean = sqlSessionTemplate.selectOne(nameSpace+".getFileByNo", minno);
+		ProductFileBean fbean = sqlSessionTemplate.selectOne(nameSpace + ".getFileByNo", minno);
 		return fbean;
 	}
 

@@ -145,4 +145,14 @@ public class MemberDao {
 		return reviewList;
 	}
 
+	/* 블록된 아이디 가져오기 */
+	public List<String> getBlockedId() {
+		List<String> blockedId = new ArrayList<String>();
+		System.out.println("block1"+sqlSessionTemplate);
+		blockedId = sqlSessionTemplate.selectList(nameSpace + ".getBlockedId");
+		System.out.println("block1"+blockedId.size());
+		System.out.println("block2"+blockedId==null);
+		return blockedId;
+	}
+
 }
