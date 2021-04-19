@@ -144,8 +144,12 @@ textarea {
 										<!-- 회원 정보 -->
 										<td><a href="tradeDetail.mb?sellerid=${mbean.id }">
 												<div class="box">
-													<img class="profile"
-														src="<%=request.getContextPath()%>/resources/members/${mbean.image}">
+												<c:if test="${mbean.sitestatus==1 }">
+													<img class="profile" src="${mbean.image}">
+												</c:if>
+												<c:if test="${mbean.sitestatus==0 }">
+													<img class="profile" src="<%=request.getContextPath()%>/resources/members/${mbean.image}">
+												</c:if>
 												</div>
 										</a></td>
 										<td valign="top">
@@ -242,9 +246,26 @@ textarea {
 				</td>
 			</tr>
 			<tr>
-				<td colspan=2 align="center"><input type="button"
+				<td colspan=2 align="center">
+				<input type="button"
 					style="margin-bottom: 10px" onClick="location.href='saleList.prd'"
-					value="목록보기"></td>
+					value="목록보기" class="site-btn register-btn">
+					<c:if test="${loginId==pBean.sellerid }">
+					<script>
+					function delPrd() {
+						var ckDelete = confirm("삭제하시겠습니까?");
+						if(ckDelete){
+							location.href='delete.prd?no=${pBean.no}';
+						}else{
+							return;
+						}
+					}
+					</script>
+					<input type="button"
+					style="margin-bottom: 10px" onClick="return delPrd()"
+					value="삭제하기" class="site-btn register-btn">
+					</c:if>
+					</td>
 			</tr>
 		</table>
 </body>
