@@ -55,13 +55,13 @@ textarea {
 		location.href = "unlike.prd?no=${pBean.no}&like=" + liker;
 	}
 
-    function updateProduct() {
-        location.href = "update.prd?no=${pBean.no}";
-    }
-    function chat() {
-    	window.open("reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}", "구매연락하기", "width=650, height=700, left=100, top=50");
+	function updateProduct() {
+		location.href = "update.prd?no=${pBean.no}";
 	}
-	
+	function chat() {
+		window.open("reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}",
+				"구매연락하기", "width=650, height=700, left=100, top=50");
+	}
 
 	/* 신고하기 함수 호출 */
 	/* 	function report(sellerid){
@@ -123,8 +123,21 @@ textarea {
 							<!-- 상품정보 -->
 							<td>
 								<table>
-									<tr height="72">
-										<td colspan="3"><span class="subject">${pBean.subject }</span></td>
+									<tr>
+									
+									<tr height="72"><td colspan="3">
+									<c:forTokens items="${pBean.category}" delims=","
+												var="ctg">
+												<c:forEach begin="0" end="${fn:length(pCategoryList)-1}"
+													var="i">
+													<c:if test="${pCategoryList[i].no==ctg}">
+														<button type="button" class="btn btn-danger"
+															style="margin: 10px 5px;">${pCategoryList[i].categoryName}</button>
+													</c:if>
+												</c:forEach>
+											</c:forTokens>
+											<br>
+										<span class="subject">${pBean.subject }</span></td>
 									</tr>
 									<tr height="72">
 										<td colspan="3"><span class="price"> <fmt:formatNumber
@@ -144,7 +157,9 @@ textarea {
 												</c:if>
 												</div>
 										</a></td>
-										<td valign="top"><a href="tradeDetail.mb?sellerid=${mbean.id }"><span class="subject">${mbean.id }</span></a></td>
+										<td valign="top"><a
+											href="tradeDetail.mb?sellerid=${mbean.id }"><span
+												class="subject">${mbean.id }</span></a></td>
 									</tr>
 									<tr height="72">
 										<!-- 조회수 / 등록일 / 신고 -->

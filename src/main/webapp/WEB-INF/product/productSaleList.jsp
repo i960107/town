@@ -31,9 +31,10 @@
 
 .flex-container-product {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	width: 100%;
 	flex-wrap: wrap;
+
 }
 
 .flex-container-product-item {
@@ -42,6 +43,7 @@
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 	font-weight: bold;
+		margin:40px
 }
 </style>
 <!-- PSaleController -> productSaleList.jsp -->
@@ -59,6 +61,7 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-12">
 					<form action="" name="categoryform">
+						<input type="hidden" name="isCategorySelected" value="true">
 						<script>
 							var keyword = document.searchform.keyword.value;
 
@@ -77,15 +80,13 @@
 							<tr style="background-color: #FFFFF0">
 								<td colspan=2 class="flex-container-category"><c:if
 										test="${category==null}">
-										<c:forEach items="${categoryList}" var="ctg">
-
+										<c:forEach items="${pCategoryList}" var="ctg">
 											<span class="col-md-2"><input type="checkbox"
 												name="category" class="category" value="${ctg.no}" checked>${ctg.categoryName}
 											</span>
 										</c:forEach>
-
 									</c:if> <c:if test="${category!=null}">
-										<c:forEach items="${categoryList}" var="ctg">
+										<c:forEach items="${pCategoryList}" var="ctg">
 											<span class="col-md-2"> <input type="checkbox"
 												name="category" class="category" value="${ctg.no}"
 												<c:forTokens items="${category}" delims="," var="ct">
@@ -138,6 +139,7 @@
 							document
 									.write("<input type='hidden' name='category' value='"+category+"'>");
 						</script>
+						<input type="hidden" name="isCategorySelected" value="true">
 						<input type="hidden" name="request" value="saleList.prd">
 						<%@include file="./../common/addrArray.jsp"%>
 					</form>
@@ -165,10 +167,10 @@
 					</div>
 					<div>
 						<c:forTokens items="${i.category}" delims="," var="ctg">
-							<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
-								<c:if test="${categoryList[i].no==ctg}">
+							<c:forEach begin="0" end="${fn:length(pCategoryList)-1}" var="i">
+								<c:if test="${pCategoryList[i].no==ctg}">
 									<button type="button" class="btn btn-danger"
-										style="margin: 10px 5px;">${categoryList[i].categoryName}</button>
+										style="margin: 10px 5px;">${pCategoryList[i].categoryName}</button>
 								</c:if>
 							</c:forEach>
 						</c:forTokens>

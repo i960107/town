@@ -36,10 +36,10 @@
 .flex-container-board {
 	display: flex;
 	flex-direction: row;
-	font-size:25px;
-	width: 100%;
+	font-size: 25px; width : 100%;
 	margin-bottom: 15px;
 	background-color: #dcdcdc;
+	width: 100%;
 }
 </style>
 </head>
@@ -59,9 +59,10 @@
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
 						<form action="list.bd" name="categoryform">
+							<input type="hidden" name="isCategorySelected" value="true">
 							<script>
 								var keyword = document.searchform.keyword.value;
-								
+
 								if (keyword != "") {
 									document
 											.write("<input type='hidden' name='keyword' value='"+keyword+"'>");
@@ -76,13 +77,13 @@
 								</tr>
 								<tr style="background-color: #FFFFF0">
 									<td colspan=2 height="100"><c:if test="${category==null}">
-											<c:forEach items="${categoryList}" var="ctg">
+											<c:forEach items="${bCategoryList}" var="ctg">
 												<span class="col-md-2"><input type="checkbox"
 													name="category" class="category" value="${ctg.no}" checked>${ctg.categoryName}
 												</span>
 											</c:forEach>
 										</c:if> <c:if test="${category!=null}">
-											<c:forEach items="${categoryList}" var="ctg">
+											<c:forEach items="${bCategoryList}" var="ctg">
 												<span class="col-md-2"> <input type="checkbox"
 													name="category" class="category" value="${ctg.no}"
 													<c:forTokens items="${category}" delims="," var="ct">
@@ -113,6 +114,7 @@
 					</div>
 					<div>
 						<form name="myform">
+							<input type="hidden" name="isCategorySelected" value="true">
 							<c:set var="mbean" value="${loginInfo}" />
 							<script>
 								/* 키워드 넘기기 */
@@ -164,23 +166,18 @@
 
 						<div style="margin-left: 30px">
 							<c:forTokens items="${board.category }" delims="," var="ctg">
-								<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
-									<c:if test="${categoryList[i].no==ctg}">
+								<c:forEach begin="0" end="${fn:length(bCategoryList)-1}" var="i">
+									<c:if test="${bCategoryList[i].no==ctg}">
 										<button type="button" class="btn btn-danger"
-											style="margin: 10px 5px; text-align: justify;">${categoryList[i].categoryName}</button>
+											style="margin: 10px 5px; text-align: justify;">${bCategoryList[i].categoryName}</button>
 									</c:if>
 								</c:forEach>
 							</c:forTokens>
-							<br>
-							<font color="orange" ><b>
-							${board.subject}
-							</b>
-							</font>
-							
-							<br> ${fn:substring(board.contents,0,10)} <a
+							<br> <font color="orange"><b> ${board.subject} </b>
+							</font> <br> ${fn:substring(board.contents,0,10)} <a
 								href='detailView.bd?no=${board.no}'>...더보기</a>
 
-							<div style="margin-top:30px">
+							<div style="margin-top: 30px">
 								<span> <a href="tradeDetail.mb?sellerid=${board.writer}">${board.writer}</a>
 								</span> <i class="fa fa-calendar-o"></i>
 								<!-- 시간 바꿔서 출력하기 Javascript코드 -->
