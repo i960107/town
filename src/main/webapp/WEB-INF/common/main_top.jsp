@@ -125,9 +125,9 @@
 								<div class="input-group">
 									<select name="whatColumn">
 										<!-- <option value="all">전체검색</option> -->
-										<option value="product">중고거래</option>
+										<option value="psalelist.prd">중고거래</option>
 										<%-- <c:out value="${whatColumn eq 'product' ? 'selected':'' }"/> --%>
-										<option value="town">동네생활</option>
+										<option value="list.bd">동네생활</option>
 										<%-- <c:out value="${whatColumn eq 'town' ? 'selected':'' }"/> --%>
 									</select> <input type="text" id="keyword" name="keyword"
 										placeholder="검색어를 입력하세요." value="${keyword}">
