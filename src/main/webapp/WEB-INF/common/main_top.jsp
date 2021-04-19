@@ -108,7 +108,7 @@
  	
 
 		<!-- 검색 영역 시작 -->
-		<form action="${requestPage }" method="post" name="searchform">
+		<form action="${requestPage}" method="post" name="searchform">
 			<div class="container">
 				<div class="inner-header">
 					<div class="row">
@@ -144,7 +144,7 @@
 			<div class="input-group"
 				style="margin: position:absolute; left: 50%;">
 
-				<div hidden="" id="out_category">
+			<%-- 	<div id="out_category">
 					<c:if test="${category==null}">
 						<c:forEach items="${categoryList}" var="ctg">
 							<span class="col-md-2"><input type="checkbox"
@@ -162,7 +162,7 @@
 							</span>
 						</c:forEach>
 					</c:if>
-				</div>
+				</div> --%>
 			</div>
 		</form>
 		<div class="nav-item">
