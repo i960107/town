@@ -118,7 +118,3 @@
 		</td>
 		</tr>
 		</table>
-		
-
-
-<%@ include file="./../common/main_bottom.jsp"%>

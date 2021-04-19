@@ -79,9 +79,17 @@
 					<div class="blog-detail-title">
 						<h2>${board.subject}</h2>
 						<p><div class="box">
-							<a href='tradeDetail.mb?sellerid=${board.writer}'> <img
+							<a href='tradeDetail.mb?sellerid=${board.writer}'> 
+						<c:if test="${writer.sitestatus==0}">
+							<img
 								src="${pageContext.request.contextPath}/resources/members/${writer.image}"
 								class="profil" /></div> ${writer.id }
+						</c:if>
+						<c:if test="${writer.sitestatus==1}">
+							<img
+								src="${writer.image}"
+								class="profil" /></div> ${writer.id }
+						</c:if>
 							</a>
 
 
