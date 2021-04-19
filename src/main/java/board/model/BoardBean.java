@@ -5,14 +5,17 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
 public class BoardBean {
 private int no;
 private String writer;
 	/* @Pattern(regexp="^[^0]",message="광역시도를 선택하세요") */
+@Length(min = 2, message = "주소를 입력하세요")
 private String address1;
 	/* @Pattern(regexp="^[^0]" ,message="시/군/구를 선택하세요") */
+@Length(min = 2, message = "주소를 입력하세요")
 private String address2;
 @NotBlank(message = "제목은 필수 입력사항입니다.")
 private String subject;

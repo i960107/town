@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,8 +18,9 @@ public class ProductBean {
 	@NotNull(message = "카테고리를 선택하세요")
 	private int category  ;
 	private String address  ;
+	@Length(min = 2, message = "주소를 입력하세요")
 	private String address1  ;
-	@NotNull(message = "주소를 입력하세요")
+	@Length(min = 2, message = "주소를 입력하세요")
 	private String address2  ;
 	private String address3  ;
 	private String contents  ;
