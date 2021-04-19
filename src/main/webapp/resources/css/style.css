@@ -1506,7 +1506,9 @@ ol {
 
 .footer-section {
 	background: #191919;
-	padding-top: 75px;
+	/* padding-top: 75px; */
+	padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .footer-left {

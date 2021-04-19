@@ -169,9 +169,9 @@
 							value="목록보기">
 							<c:if test="${loginInfo.id==board.writer}">
 							
-								<%-- <input type="button" onClick="location.href='update.bd?no=${board.no}'"
+								<input type="button" onClick="location.href='update.bd?no=${board.no}'"
 							value="수정하기">
- --%>								<input type="button" onClick="location.href='delete.bd?no=${board.no}'"
+								<input type="button" onClick="location.href='delete.bd?no=${board.no}'"
 							value="삭제하기">
 							
 							</c:if>

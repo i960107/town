@@ -108,7 +108,7 @@
  	
 
 		<!-- 검색 영역 시작 -->
-		<form action="${requestPage }" method="post" name="searchform">
+		<form action="${requestPage}" method="post" name="searchform">
 			<div class="container">
 				<div class="inner-header">
 					<div class="row">
@@ -125,9 +125,9 @@
 								<div class="input-group">
 									<select name="whatColumn">
 										<!-- <option value="all">전체검색</option> -->
-										<option value="product">중고거래</option>
+										<option value="product" <c:if test="${requestPage=='saleList.prd'}">selected="selected"</c:if>>중고거래</option>
 										<%-- <c:out value="${whatColumn eq 'product' ? 'selected':'' }"/> --%>
-										<option value="town">동네생활</option>
+										<option value="town" <c:if test="${requestPage!='saleList.prd'}">selected="selected"</c:if>>동네생활</option>
 										<%-- <c:out value="${whatColumn eq 'town' ? 'selected':'' }"/> --%>
 									</select> <input type="text" id="keyword" name="keyword"
 										placeholder="검색어를 입력하세요." value="${keyword}">
@@ -144,7 +144,7 @@
 			<div class="input-group"
 				style="margin: position:absolute; left: 50%;">
 
-				<div hidden="" id="out_category">
+			<%-- 	<div id="out_category">
 					<c:if test="${category==null}">
 						<c:forEach items="${categoryList}" var="ctg">
 							<span class="col-md-2"><input type="checkbox"
@@ -162,7 +162,7 @@
 							</span>
 						</c:forEach>
 					</c:if>
-				</div>
+				</div> --%>
 			</div>
 		</form>
 		<div class="nav-item">

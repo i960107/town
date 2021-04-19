@@ -130,9 +130,10 @@
 	<!-- 게시글 업데이트 -->
 	<update id="updateBoard">
 		update town_board set subject =#{subject} , address1=#{address1},
-		address2=#{address2}, contents=#{contents} category=#{category} where
+		address2=#{address2}, contents=#{contents}, category=#{category} where
 		no=#{no}
 	</update>
+	
 	<delete id="fileDelete">
 		delete town_board_file where bno=#{bno}
 	</delete>

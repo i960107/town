@@ -36,7 +36,7 @@ function goPopup(){
 		<h2>동네생활 글쓰기</h2>
 		<form:form commandName="board" action="update.bd" method="post"
 			enctype="multipart/form-data" name="myform">
-
+	<input type="hidden" name="no" value="${board.no}">
 			<table class="sectable">
 				<tr>
 					<td class="group-input" width="200px"><label>제목</label></td>
@@ -64,7 +64,7 @@ function goPopup(){
 				<tr>
 					<td rowspan=2 class="group-input" width="200px"></td>
 					<td class="group-input" width="500px"><textarea
-							class="form-control" rows="20" name="contents">${board.contents}</textarea>
+							class="form-control" rows="20" name="contents" >${fn:replace(board.contents,"<br>","")}</textarea>
 				</tr>
 				<tr>
 					<td><form:errors cssClass="err" path="contents">
