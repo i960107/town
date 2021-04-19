@@ -61,6 +61,7 @@ public class ProductDao {
 		map.put("category", cateList);
 		map.put("address1", address1);
 		map.put("address2", address2);
+		System.out.println(map);
 		lists = sqlSessionTemplate.selectList(nameSpace + ".getList",map);
 		return lists;
 	}

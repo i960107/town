@@ -61,14 +61,16 @@
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
-	font-size:20px;
+	font-size: 20px;
 }
-
+flex-container-reply{
+display:flex;
+}
 .flex-container-start {
 	display: flex;
 	justify-content: flex-start;
 	width: 100%;
-	font-size:20px;
+	font-size: 20px;
 }
 </style>
 <section class="blog-details spad">
@@ -78,18 +80,20 @@
 				<div class="blog-details-inner">
 					<div class="blog-detail-title">
 						<h2>${board.subject}</h2>
-						<p><div class="box">
+						<p>
+						<div class="box">
 							<a href='tradeDetail.mb?sellerid=${board.writer}'> <img
 								src="${pageContext.request.contextPath}/resources/members/${writer.image}"
-								class="profil" /></div> ${writer.id }
-							</a>
+								class="profil" />
+						</div>
+						${writer.id } </a>
 
 
-							<!-- 시간 바꿔서 출력하기 Javascript코드 -->
-							<span><script type="text/javascript">
-								document
-										.write(displayTime('<c:out value="${board.regDate}"/>'));
-							</script></span>
+						<!-- 시간 바꿔서 출력하기 Javascript코드 -->
+						<span><script type="text/javascript">
+							document
+									.write(displayTime('<c:out value="${board.regDate}"/>'));
+						</script></span>
 						</p>
 					</div>
 					<div class="flex-container-start">
@@ -127,7 +131,8 @@
 							<ul>
 								<li><i class="fa fa-tags"></i></li>
 								<c:if test="${board.category==null}">
-									<c:forEach begin="0" end="${fn:length(bCategoryList)-1}" var="i">
+									<c:forEach begin="0" end="${fn:length(bCategoryList)-1}"
+										var="i">
 										<c:if test="${bCategoryList[i].no==board.category}">
 											<li>${bCategoryList[i].categoryName}</li>
 										</c:if>
@@ -167,14 +172,14 @@
 					<div align="center">
 						<input type="button" onClick="location.href='list.bd'"
 							value="목록보기">
-							<c:if test="${loginInfo.id==board.writer}">
-							
-								<input type="button" onClick="location.href='update.bd?no=${board.no}'"
-							value="수정하기">
-								<input type="button" onClick="location.href='delete.bd?no=${board.no}'"
-							value="삭제하기">
-							
-							</c:if>
+						<c:if test="${loginInfo.id==board.writer}">
+
+							<input type="button"
+								onClick="location.href='update.bd?no=${board.no}'" value="수정하기">
+							<input type="button"
+								onClick="location.href='delete.bd?no=${board.no}'" value="삭제하기">
+
+						</c:if>
 					</div>
 					<div class="blog-post flex-container">
 
@@ -262,24 +267,59 @@
 				<!-- 댓글출력 -->
 				<div>
 					<c:forEach var="reply" items="${replyList}">
-						<div class="posted-by">
-							<div class="pb-text">
-								<a href="tradeDetail?sellerid=${reply.writer}"
-									style="display: inline"> ${reply.writer}</a><span><script
-										type="text/javascript">
-										document
-												.write(displayTime('<c:out value="${reply.regDate}"/>'));
-									</script></span>
-								<p>${reply.contents}</p>
-							</div>
+						<div class="posted-by flex-container-row">
+								  <div class="pb-pic">
+									<c:if test="${reply.reLevel>=3}">
+										<img
+											src="${pageContext.request.contextPath}/resources/right-arrow.png"
+											width="50">
+									</c:if>
+								</div>
+								<div>
+									<a href="tradeDetail?sellerid=${reply.writer}"
+										style="display: inline"> ${reply.writer}</a><span><script
+											type="text/javascript">
+											document
+													.write(displayTime('<c:out value="${reply.regDate}"/>'));
+										</script></span>
+									<p>${reply.contents}
+										<input data-toggle="modal" data-target="#myModal"
+											type="button" value="답글 달기">
+									</p>
+								</div>
 						</div>
 					</c:forEach>
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
 </section>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form name="myform" action="reply.bd">
+					<input type="hidden" name="writer" value="${loginInfo.id}">
+					<input type="hidden" name="ref" value="${board.no}"> <input
+						type="hidden" name="reLevel" value="3">
+					<textarea name="contents" cols="40"></textarea>
+					<button type="submit" class="btn btn-primary">답글달기</button>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+			</div>
+		</div>
+	</div>
+</div>
 
 
 <%@ include file="./../common/main_bottom.jsp"%>

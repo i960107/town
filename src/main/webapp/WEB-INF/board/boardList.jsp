@@ -8,6 +8,10 @@
 	src="${pageContext.request.contextPath}/resources/script/timeFormat.js"></script>
 
 <style type="text/css">
+.mcontent {
+	font-size: 15px;
+	color: #CCCCCC;
+}
 .board {
 	margin-bottom: 30px;
 	background-color: #F8F9FA;
@@ -38,8 +42,15 @@
 	flex-direction: row;
 	font-size: 25px; width : 100%;
 	margin-bottom: 15px;
-	background-color: #dcdcdc;
+	background-color: #eee;
 	width: 100%;
+}
+.flex-container-category {
+	display: flex;
+	justify-content: flex-start;
+	margin:20px;
+	width: 100%;
+	flex-wrap: wrap;
 }
 </style>
 </head>
@@ -76,23 +87,24 @@
 										</h5></td>
 								</tr>
 								<tr style="background-color: #FFFFF0">
-									<td colspan=2 height="100"><c:if test="${category==null}">
-											<c:forEach items="${bCategoryList}" var="ctg">
-												<span class="col-md-2"><input type="checkbox"
-													name="category" class="category" value="${ctg.no}" checked>${ctg.categoryName}
-												</span>
-											</c:forEach>
-										</c:if> <c:if test="${category!=null}">
-											<c:forEach items="${bCategoryList}" var="ctg">
-												<span class="col-md-2"> <input type="checkbox"
-													name="category" class="category" value="${ctg.no}"
-													<c:forTokens items="${category}" delims="," var="ct">
+												<td colspan=2 class="flex-container-category"><c:if
+										test="${category==null}">
+										<c:forEach items="${bCategoryList}" var="ctg">
+											<span class="col-md-2"><input type="checkbox"
+												name="category" class="category" value="${ctg.no}" checked>${ctg.categoryName}
+											</span>
+										</c:forEach>
+									</c:if> <c:if test="${category!=null}">
+										<c:forEach items="${bCategoryList}" var="ctg">
+											<span class="col-md-2"> <input type="checkbox"
+												name="category" class="category" value="${ctg.no}"
+												<c:forTokens items="${category}" delims="," var="ct">
 													<c:if test="${ct==ctg.no}">checked</c:if>
 													</c:forTokens>>${ctg.categoryName}
-												</span>
-											</c:forEach>
+											</span>
+										</c:forEach>
 
-										</c:if></td>
+									</c:if></td>
 								</tr>
 								<tr>
 									<td style="background-color: #FFFFF0;" colspan=2 align="right"><input
@@ -179,6 +191,8 @@
 
 							<div style="margin-top: 30px">
 								<span> <a href="tradeDetail.mb?sellerid=${board.writer}">${board.writer}</a>
+								<span>${board.address1}&nbsp${board.address2}</span>
+								<br>
 								</span> <i class="fa fa-calendar-o"></i>
 								<!-- 시간 바꿔서 출력하기 Javascript코드 -->
 								<span><script type="text/javascript">

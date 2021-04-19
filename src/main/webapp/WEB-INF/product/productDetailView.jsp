@@ -44,6 +44,7 @@ textarea {
 	height: 350px;
 	width: 350px;
 }
+
 </style>
 <script type="text/javascript" src="<%=source%>/resources/js/jquery.js"></script>
 <script type="text/javascript">

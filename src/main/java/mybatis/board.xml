@@ -47,7 +47,7 @@
 	<!-- no조건 댓글 가져오기 -->
 	<select id="getReplyByNo" resultType="board.model.BoardBean">
 		select * from town_board
-		where ref=#{no} and re_level!=1 order by reg_date asc
+		where ref=#{no} and re_level!=1 order by re_level asc, re_step asc
 	</select>
 	<!-- category+keyword검색 -->
 	<select id="getBoardByCategoryKeyword"
@@ -119,8 +119,8 @@
 	<!-- 댓글쓰기 -->
 	<insert id="insertReply">
 		insert into
-		town_board(no,writer,contents,ref,re_level)
-		values(town_board_seq.nextval,#{writer},#{contents},#{ref},#{reLevel})
+		town_board(no,writer,contents,ref,re_level,re_step)
+		values(town_board_seq.nextval,#{writer},#{contents},#{ref},#{reLevel},#{reStep})
 	</insert>
 	<!-- 이미지 하나만 가져오기 -->
 	<select id="getThumnailName" resultType="String">
@@ -157,6 +157,8 @@
 		</if>
 		order by no desc
 	</select>
-
-
+	<!-- 대댓글 이전 스텝 가져오기 -->
+	<select id="getpreStep" resultType="Integer">
+	select max(re_step) from town_board where ref=#{ref}
+	</select>
 </mapper>

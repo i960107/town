@@ -24,7 +24,8 @@
 
 .flex-container-category {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
+	margin:20px;
 	width: 100%;
 	flex-wrap: wrap;
 }

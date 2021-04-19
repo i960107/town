@@ -77,7 +77,7 @@ public class MemberDao {
 	}
 
 	public void insertDealReview(MemberDealReviewBean bean) {
-		sqlSessionTemplate.selectList(nameSpace+".insertDealReview", bean);
+		sqlSessionTemplate.insert(nameSpace+".insertDealReview", bean);
 	}
 
 	public void updateMannertemp(String sellerId, int rating) {
