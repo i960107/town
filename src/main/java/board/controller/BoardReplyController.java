@@ -10,7 +10,7 @@ import board.model.BoardDao;
 @Controller
 public class BoardReplyController {
 	private final String command = "/reply.bd";
-	private String getPage = "redirect:/detailView.bd";
+	
 	@Autowired
 	BoardDao dao;
 	@RequestMapping(command)
@@ -20,6 +20,7 @@ public class BoardReplyController {
 			@RequestParam("ref") int ref,
 			@RequestParam("reLevel") int reLevel
 			) {
+		String getPage = "redirect:/detailView.bd";
 		dao.insertReply(writer,contents,ref,reLevel);
 		getPage+="?no="+ref;
 		return getPage;

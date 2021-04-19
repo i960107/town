@@ -108,6 +108,7 @@ public class PUpdateController {
 		int cnt = pDao.updateProduct(pbean);
 		int delcnt = 0;
 		//데이터 입력확인 > 파일 입력
+		System.out.println("----1 단계----");
 		if(cnt==1) {
 			List<MultipartFile> mf = pbean.getUpload(); //이미지 list로 받음
 			List<String> pf = fbean.getFiletemp();
@@ -115,17 +116,19 @@ public class PUpdateController {
 			if (!dir.isDirectory()) { //파일충돌 방지?
 	            dir.mkdirs();
 	        }
-			
+			System.out.println("----2 단계----");
 			if(pf!=null) {
 				for (int i = 0; i < pf.size(); i++) { //삭제할 이미지 처리
 					System.out.println("delfile name : " + pf.get(i));
 					File f = new File(uploadPath+"/"+pf.get(i)); //폴더에서 파일 삭제
 					f.delete();
-					delcnt += pDao.deleteFile(pf.get(i));
+					fbean.setFilename(pf.get(i));
+					System.out.println("----3 단계----");
+					delcnt += pDao.deleteFile(fbean);
 				}
 			}
+			System.out.println("----4 단계----");
 			System.out.println("삭제한 파일 수 : " + delcnt);
-			
 			int pno = pbean.getNo();
 			if(mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) { //파일 넘어왔는지 체크
 				
@@ -136,7 +139,8 @@ public class PUpdateController {
 					String originalfileName = mf.get(i).getOriginalFilename();  //파일 이름 받아옴
 					String saveFileName = genId + "." + originalfileName; //저장 파일 이름
 					if(i==0) {
-						saveName = genId + "." + originalfileName; //대표 이미지 저장용 임시 변수
+						ProductFileBean bean = pDao.getFileNameMin(pno); //대표 이미지 저장용 임시 변수
+						saveName = bean.getFilename();
 					}
 					String savePath = uploadPath+saveFileName; //저장 경로
 					mf.get(i).transferTo(new File(savePath)); //파일 폴더에 입력
