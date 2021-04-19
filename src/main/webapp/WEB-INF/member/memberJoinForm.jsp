@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-MJoinController -> memberJoinForm.jsp
 <br>
 <%@ include file="./../common/common.jsp"%>
 <%@ include file="./../common/main_top.jsp"%>
