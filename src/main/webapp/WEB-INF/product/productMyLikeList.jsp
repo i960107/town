@@ -15,7 +15,7 @@
 	<center>
 	<table>
 		<tr >
-		<td align="center"> <h4> 찜한 상품이 없습니다. </h4> </td>
+		<td align="center"> <h4> 찜한 상품이 없습니다. </h4> <br><br></td>
 		</tr>
 	</table>
 	</center>				
