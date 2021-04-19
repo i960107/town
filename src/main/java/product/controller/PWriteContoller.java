@@ -32,7 +32,7 @@ public class PWriteContoller {
 	// 상품 올리기
 	private final String command = "pWrite.prd";
 	private final String getPage = "productWriteForm";
-	private final String gotoPage = "redirect:saleList.prd";
+	private final String gotoPage = "redirect:/saleList.prd";
 	
 	@Autowired
 	ProductDao pDao;
@@ -48,22 +48,14 @@ public class PWriteContoller {
 		ModelAndView mav = new ModelAndView();
 
 		
-		//글쓰기 로그인 체크
 		MemberBean member = (MemberBean) session.getAttribute("loginInfo");
 
-		if (member == null) {
-			//로그인 페이지 로그인하고 다시 나의당근으로 가기 
-			mav.setViewName("redirect:memberlogin.mb");
-			mav.addObject("plzLogin", false);
-			session.setAttribute("destination", "redirect:pWrite.prd");
-			return mav;
-		}else {
-			mav.setViewName(getPage);	
-		}
+
 		MemberBean mbean = pDao.getSellerInfo(member.getId()); //판매자 정보 조회
 		List<ProdCateBean> cateList = pDao.getAllCategory(); //카테고리 목록 호출
 		mav.addObject("mbean", mbean);
 		mav.addObject("cateList", cateList);
+		mav.setViewName(getPage);
 		return mav;
 	}
 	
@@ -75,7 +67,6 @@ public class PWriteContoller {
 			MultipartHttpServletRequest mhsq) throws IllegalStateException, IOException {
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(gotoPage);
 		
 		MemberBean mbean = pDao.getSellerInfo(pbean.getSellerid()); //판매자 정보 조회
 		List<ProdCateBean> cateList = pDao.getAllCategory(); //카테고리 목록 호출

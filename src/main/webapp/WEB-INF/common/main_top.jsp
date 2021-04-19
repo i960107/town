@@ -117,6 +117,7 @@
 		<!-- 검색 영역 시작 -->
 		<form action="${requestPage}" method="post" name="searchform"
 			id="mainForm">
+		
 			<div class="container">
 				<div class="inner-header">
 					<div class="row">

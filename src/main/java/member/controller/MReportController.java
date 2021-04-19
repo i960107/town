@@ -23,7 +23,7 @@ public class MReportController {
 	
 	private final String command = "report.mb";
 	private final String getPage = "memberReport";
-	private final String gotoPage = "redirect:saleList.prd";
+	private final String gotoPage = "redirect:main.mk";
 	private final String go2Page = "memberLoginForm";
 	
 	@Autowired
