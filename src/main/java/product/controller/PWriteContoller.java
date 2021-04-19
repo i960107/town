@@ -121,6 +121,7 @@ public class PWriteContoller {
 					String originalfileName = mf.get(i).getOriginalFilename();  //파일 이름 받아옴
 					String saveFileName = genId + "." + originalfileName; //저장 파일 이름
 					if(i==0) {
+						System.out.println("여기로 오세요~");
 						saveName = genId + "." + originalfileName; //대표 이미지 저장용 임시 변수
 					}
 					String savePath = uploadPath+saveFileName; //저장 경로
