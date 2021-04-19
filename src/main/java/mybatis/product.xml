@@ -188,9 +188,9 @@
 		#{contents}, price = #{price},
 		refund_availability =
 		#{refundavailability},
-		reg_date = sysdate, deal_status = ${dealstatus},
+		reg_date = sysdate, deal_status = #{dealstatus},
 		image1 = #{image1}
-		where no = ${no}
+		where no = #{no}
 	</update>
 
 	<!-- 상품 삭제 -->
@@ -201,13 +201,13 @@
 	<!-- 판매상태 업데이트 -->
 	<update id="upDealStatus">
 		update product set deal_status = #{dealstatus} where
-		no = ${no}
+		no = #{no}
 
 	</update>
 
 	<delete id="deleteFile" parameterType="product.model.ProductFileBean">
 		delete from product_file
-		where filename = ${filename}
+		where filename = #{filename}
 	</delete>
 
 	<!-- 채팅방 체크 -->
@@ -310,8 +310,19 @@
 		order by no
 	</select>
 	
-	<select id="getFileNameMin" resultType="product.model.ProductFileBean">
+	<select id="getFileNameMin" resultType="int">
 		select min(no) no from product_file
 		where pno = #{pno}
 	</select>
+	
+	<select id="getFileByNo" resultType="product.model.ProductFileBean">
+		select * from product_file
+		where no = #{minno}
+	</select>
+	
+	<update id="PUpdateRegDate">
+		update product
+		set reg_date = sysdate
+		where no = #{no}
+	</update>
 </mapper>

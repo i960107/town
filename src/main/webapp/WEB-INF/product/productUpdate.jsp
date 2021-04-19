@@ -74,6 +74,9 @@ function handleFiles(fileList) {
 				<!-- 다중 파일 선택: multiple="multiple" -->
 				<label for="upload_file" class="fileupload-img"></label><br>
 				<input multiple="multiple" type="file" name="upload" id="upload_file" hidden="" onchange="handleFiles(this.files)">
+				<div id="select_img">
+							
+				</div>
 				<form:errors cssClass="err" path="image1"/>
 			</td>
 		</tr>

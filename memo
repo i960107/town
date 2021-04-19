@@ -311,3 +311,12 @@ start with 0
 increment by 1
 minvalue 0
 nocache;
+
+
+-- member_deal 시퀀스
+drop sequence memdeal_seq;
+create sequence memdeal_seq
+start with 0
+increment by 1
+minvalue 0
+nocache;
