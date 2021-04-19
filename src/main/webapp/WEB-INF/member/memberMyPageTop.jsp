@@ -20,7 +20,7 @@
 
 </style>
 
-<br><br>
+<br><br><br>
 <center>
 	<div class="section-title">
                         <h2>나의 당근(MY PAGE)</h2>
@@ -30,7 +30,7 @@
 <br>
 
 
-	<table width="70%" border="1" align="center">
+	<table width="70%"  align="center">
 		<tr rowspan="3" height="300">
 			<td colspan="2" align="center">
 				<div class="box">
@@ -54,6 +54,7 @@
 						</a>
 					</c:if>
 				</div>
+				<br><br><br><br>
 			</td>
 			<td colspan="6">
                  <div class="cart-buttons" align="left" style="margin-left: 30px">
