@@ -1,6 +1,7 @@
 package member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -43,7 +44,14 @@ public class MTradeDetailView {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(getPage);
 		//판매자 정보
+		
+		response.setContentType("text/plain;charset=UTF-8");
+	    PrintWriter out = response.getWriter();
+	    
 		MemberBean mbean = mDao.getMember(sellerid);
+		if(mbean.getMemberstatus().equals("0")) { // 활동 불가
+			System.out.println("계정정지됨");
+		}
 		//판매자 상품리스트
 		List<ProductBean> pList = mDao.getAllProductByID(sellerid);
 		//판매자 게시글 리스트

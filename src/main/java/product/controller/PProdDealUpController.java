@@ -1,7 +1,11 @@
 package product.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +31,8 @@ public class PProdDealUpController {
 	public String doAction(@RequestParam(value="no",required = true) int pno,
 			@RequestParam(value="deal",required = true) int deal,
 			@RequestParam(value="sellerid",required = true) String sellerid,
-			@RequestParam(value="buyerid",required = true) String buyerid) {
+			@RequestParam(value="buyerid",required = true) String buyerid,
+			HttpServletResponse response) throws IOException {
 		
 		System.out.println("수정 no:"+ pno);
 		System.out.println("수정 deal:"+ deal);
@@ -49,10 +54,17 @@ public class PProdDealUpController {
 		MemberDealBean mdbean = new MemberDealBean(0, pno, sellerid, buyerid, 0, "0");
 		int insertCnt = pdao.insertDeal(mdbean);
 		
+		PrintWriter pwriter = response.getWriter();
+		response.setContentType("text/html; charset=UTF-8");
 		
+		if(insertCnt == 1) {
+			pwriter.println("<script>"
+					+ "alert('거래 완료 되었습니다.');"
+					 + "history.go(-1);"
+					 + "</script>");
+		}
 		
-		
-		return getPage;
+		return null;
 	}
 
 }

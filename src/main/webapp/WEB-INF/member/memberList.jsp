@@ -5,7 +5,6 @@
 <%-- <%@ include file="../../WEB-INF/member/memberMyPageTop.jsp"%> --%>
 
 
-MListController -> memberList.jsp
 <br>
 
 <form action="memberReportUpdate.mb" method="post" name="myform">

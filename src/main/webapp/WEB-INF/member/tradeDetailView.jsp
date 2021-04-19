@@ -101,6 +101,12 @@ keyframes animate-positive { 0% {
 #mylist {
 	align-items: center;
 }
+
+.memberstatus{
+	font-size:16pt;
+	color:red;
+	font-wieght: bold;
+}
 </style>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
@@ -145,6 +151,10 @@ keyframes animate-positive { 0% {
 				</div>
 				<div>
 					<b><font size="10px">${mbean.id}</font></b> 님의 정보
+						<!-- 계정 정지 시 아이디 옆 text 노출 -->
+						<c:if test="${mbean.memberstatus == '0'}">
+							<span class="memberstatus">[신고로 인해 정지된 계정입니다]</span>
+						</c:if>
 				</div>
 			</div>
 			<!-- 매너온도 -->
