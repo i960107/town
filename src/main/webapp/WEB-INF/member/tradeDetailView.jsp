@@ -42,13 +42,16 @@
 	right: 8px;
 }
 
-@-webkit-keyframes animate-positive { 
-0% {width: 0%;}
+@
+-webkit-keyframes animate-positive { 0% {
+	width: 0%;
+}
 
 }
 @
-keyframes animate-positive {
- 0% {width: 0%;}
+keyframes animate-positive { 0% {
+	width: 0%;
+}
 
 }
 .profile {
@@ -77,14 +80,15 @@ keyframes animate-positive {
 	justify-content: center;
 }
 
-#pList, #bList {
+#pList, #bList, #reviewList {
 	flex-wrap: wrap;
 	width: 70%;
 	justify-content: center;
 	align-items: flex-start;
 }
-#bList div{
-width:100%;
+
+#bList div {
+	width: 100%;
 }
 
 .flex-container-column {
@@ -104,14 +108,23 @@ width:100%;
 	$(function() {
 		$("#pList").hide();
 		$("#bList").hide();
+		$("#reviewList").hide();
 	});
 	function callPlist() {
 		$("#pList").show();
 		$("#bList").hide();
+		$("#reviewList").hide();
 	}
 	function callBlist() {
 		$("#pList").hide();
 		$("#bList").show();
+		$("#reviewList").hide();
+	}
+	function callReviewList() {
+		$("#pList").hide();
+		$("#bList").hide();
+		$("#reviewList").show();
+
 	}
 </script>
 </head>
@@ -127,8 +140,7 @@ width:100%;
 							src="<%=request.getContextPath()%>/resources/members/${mbean.image}">
 					</c:if>
 					<c:if test="${mbean.sitestatus==1 }">
-						<img class="profile"
-							src="${mbean.image}">
+						<img class="profile" src="${mbean.image}">
 					</c:if>
 				</div>
 				<div>
@@ -173,8 +185,9 @@ width:100%;
 						<span onmouseover="style='cursor:pointer'" onclick="callPlist()"
 							class="list-table">판매 상품 목록</span> / <span onclick="callBlist()"
 							onmouseover="style='cursor:pointer'" class="list-table">동네생활
-							게시글 목록</span>/<span onclick="callBlist()"
-							onmouseover="style='cursor:pointer'" class="list-table">유저 리뷰</span>
+							게시글 목록</span>/<span onclick="callReviewList()"
+							onmouseover="style='cursor:pointer'" class="list-table">유저
+							리뷰</span>
 					</h2>
 				</div>
 				<div id="pList" class="flex-container-row">
@@ -210,22 +223,21 @@ width:100%;
 								<td>원글 번호</td>
 								<td>제목</td>
 								<td>내용</td>
-								<td>조회수</td>
 								<td>작성일</td>
+								<td>조회수</td>
 							</tr>
 							<c:if test="${fn:length(bList)==0}">
 								<tr>
-									<td colspan=4>등록한 글이 없습니다</td></tr>
+									<td colspan=4>등록한 글이 없습니다</td>
+								</tr>
 							</c:if>
 							<c:forEach var="i" items="${bList}">
 								<tr>
-									<a href="detailView.bd?no=${i.ref}">
-										<td>${i.no}</td>
-										<td>${i.subject}</td>
-										<td>${fn:substring(i.contents,0,20)}</td>
-										<td>${i.regDate}</td>
-										<td>${i.readcount}</td>
-									</a>
+									<td>${i.no}</td>
+									<td><a href="location.href='detailView.bd?no=${i.ref}'">${i.subject}</a></td>
+									<td>${fn:substring(i.contents,0,20)}</td>
+									<td>${i.regDate}</td>
+									<td>${i.readcount}</td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -235,23 +247,46 @@ width:100%;
 					<div style="padding: 15px;">
 						<h3>동네생활 댓글</h3>
 						<table class="table">
+							<tr>
+								<td>원글 번호</td>
+								<td>내용</td>
+								<td>작성일</td>
+							</tr>
+							<c:if test="${fn:length(rList)==0}">
 								<tr>
-									<td>원글 번호</td>
-									<td>내용</td>
-									<td>작성일</td>
+									<td colspan=4>등록한 댓글이 없습니다</td>
 								</tr>
-									<c:if test="${fn:length(rList)==0}">
-										<tr>
-											<td colspan=4>등록한 댓글이 없습니다</td>
-										</tr>
-									</c:if>
+							</c:if>
 							<c:forEach var="i" items="${rList}">
 								<tr>
 									<a href="detailView.bd?no=${i.ref}">
-									<td>${i.ref}</td>
-									<td>${fn:substring(i.contents,0,20)}</td>
-									<td>${i.regDate}</td>
+										<td>${i.ref}</td>
+										<td>${fn:substring(i.contents,0,20)}</td>
+										<td>${i.regDate}</td>
 									</a>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+				</div>
+				<div id="reviewList" >
+					<div style="padding: 15px;">
+						<table class="table">
+							<tr>
+								<td>리뷰</td>
+								<td>별점</td>
+								<td>작성일</td>
+							</tr>
+							<c:if test="${fn:length(reviewList)==0}">
+								<tr>
+									<td colspan=3 align="center">등록된 리뷰가 없습니다</td>
+								</tr>
+							</c:if>
+							<c:forEach var="i" items="${reviewList}">
+								<tr>
+									<td>${i.contents}</td>
+									<td><c:forEach begin="0" end="${i.rating-1}">❤</c:forEach></td>
+									<td>${i.regDate}</td>
 								</tr>
 							</c:forEach>
 						</table>
