@@ -264,11 +264,7 @@
 
 <script type="text/javascript">
 	function updateDealStatus(sellerid,buyerid){
-		alert("딜수정해");
-		//alert("상품번호:"+ ${pno }+","+"거래상태"+${pbean.dealstatus});
-		//alert("판매자:"+sellerid);
-		//alert("구매자:"+buyerid);
-		location.href="updateDeal.prd?no="+${pno }+"&deal="+${pbean.dealstatus}
+		location.href="updateDeal.prd?no="+${pno}+"&deal="+${pbean.dealstatus}
 					+"&sellerid="+sellerid+"&buyerid="+buyerid;
 						
 	}
@@ -373,7 +369,7 @@
 							name="rating-movie">
 							<h6>${sbean.id }님과의거래는어떠셨나요?</h6>
 							<input type="hidden" value="1" name="productNo"> <input
-								type="hidden" value="kim" name="sellerId"> <input
+								type="hidden" value="${sbean.id}" name="sellerId"> <input
 								type="hidden" value="${loginInfo.id}" name="buyerId">
 							<fieldset class="form-group">
 								<div class="form-item">
