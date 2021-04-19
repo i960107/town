@@ -5,8 +5,12 @@
 <%-- <%@ include file="../../WEB-INF/member/memberMyPageTop.jsp"%> --%>
 
 
-<br>
 
+<br>
+<div style="width: 80%; margin: 0 auto;" > 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cart-table">
 <form action="memberReportUpdate.mb" method="post" name="myform">
 	<table align="center">
 		<tr>
@@ -31,7 +35,7 @@
 								</tr>
 
 								<c:forEach var="mlist" items="${lists }">
-									<tr align="center">
+									<tr align="center" valign="bottom">
 										<td class="group-input"><label> <c:if
 													test="${mlist.authority == 0 }"> 관리자 </c:if> <c:if
 													test="${mlist.authority != 0 }"> user </c:if>
@@ -75,6 +79,9 @@
 		</tr>
 	</table>
 </form>
+</div>
+</div>
+</div></div>
 
 <br>
 <br>

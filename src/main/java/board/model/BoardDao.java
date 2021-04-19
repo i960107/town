@@ -5,23 +5,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.sql.DataSource;
-
-import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import member.model.MemberBean;
+import member.model.MemberDao;
 
 @Component
 public class BoardDao {
-	@Autowired
-	DataSource dataSource;
-	@Autowired
-	SqlSessionFactoryBean sqlSessionFactoryBean;
+
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
+	@Autowired
+	MemberDao mdao;
 	private String namespace = "board.BoardBean";
 
 	public List<BoardCategoryBean> getAllCategory() {
@@ -30,34 +27,39 @@ public class BoardDao {
 		return category_list;
 	}
 
-	public List<BoardBean> getBoardList(String keyword,String category,String address1, String address2) {
+	public List<BoardBean> getBoardList(String keyword, String category, String address1, String address2) {
+		
 		List<BoardBean> boardList = new ArrayList<BoardBean>();
+		
+		
 		Map<String, Object> map = new HashMap<String, Object>();
-		if(keyword!=null) {
-		map.put("keyword", "%"+keyword+"%");
-		}else {
+		if (keyword != null) {
+			map.put("keyword", "%" + keyword + "%");
+		} else {
 			map.put("keyword", null);
 		}
-		
+
 		List<String> cateList = null;
-		  if(category!=null) { 
-			  cateList=new ArrayList<String>();
-			  String[]cateArr=category.split(","); for(String
-		  c:cateArr) {
-			
-			  cateList.add(c); 
-			  }
-		  }
-		map.put("category",cateList);
+		if (category != null) {
+			cateList = new ArrayList<String>();
+			String[] cateArr = category.split(",");
+			for (String c : cateArr) {
+
+				cateList.add(c);
+			}
+		}
+		//블락된 아이디 가져오기
+		List<String> blockedId=new ArrayList<String>();
+		blockedId=mdao.getBlockedId();
+		map.put("category", cateList);
 		map.put("address1", address1);
 		map.put("address2", address2);
+		map.put("blockedId", blockedId);
 		System.out.println(map);
 		boardList = sqlSessionTemplate.selectList(namespace + ".getBoardList", map);
 		return boardList;
 	}
-
-
-
+	
 	public void insertBoard(BoardBean board) {
 		sqlSessionTemplate.selectList(namespace + ".insertBoard", board);
 	}
@@ -127,6 +129,7 @@ public class BoardDao {
 	public void deleteBoard(int no) {
 		sqlSessionTemplate.delete(namespace + ".deleteBoard", no);
 	}
+
 //댓글 입력
 	public void insertReply(String writer, String contents, int ref, int reLevel) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -134,17 +137,18 @@ public class BoardDao {
 		map.put("contents", contents);
 		map.put("ref", ref);
 		map.put("reLevel", reLevel);
-		int prevStep=getpreStep(ref);
-		map.put("reStep", prevStep+1);
+		int prevStep = getpreStep(ref);
+		map.put("reStep", prevStep + 1);
 		System.out.println(writer + contents + ref + reLevel);
 		sqlSessionTemplate.insert(namespace + ".insertReply", map);
 	}
 
 	/* 대댓글 이전 스텝 가져오기 */
 	private int getpreStep(int ref) {
-		int prevStep=sqlSessionTemplate.selectOne(namespace + ".getpreStep", ref);
+		int prevStep = sqlSessionTemplate.selectOne(namespace + ".getpreStep", ref);
 		return prevStep;
 	}
+
 //댓글 가져오기
 	public List<BoardBean> getReplyByNo(int no) {
 		List<BoardBean> lists = new ArrayList<BoardBean>();
@@ -157,9 +161,10 @@ public class BoardDao {
 		String thumbailName = sqlSessionTemplate.selectOne(namespace + ".getThumnailName", no);
 		return thumbailName;
 	}
-	//게시글 업데이트 
+
+	// 게시글 업데이트
 	public int updateBoard(BoardBean board) {
-		int cnt=sqlSessionTemplate.update(namespace + ".updateBoard", board);
+		int cnt = sqlSessionTemplate.update(namespace + ".updateBoard", board);
 		return cnt;
 	}
 
@@ -167,12 +172,11 @@ public class BoardDao {
 		sqlSessionTemplate.update(namespace + ".fileDelete", bno);
 	}
 
-
 	public MemberBean getMemberById(String id) {
-		MemberBean mbean = sqlSessionTemplate.selectOne(namespace+".getMemberById", id);
+		MemberBean mbean = sqlSessionTemplate.selectOne(namespace + ".getMemberById", id);
 		return mbean;
 	}
-	
+
 	// 우리동네 검색
 	public List<BoardBean> getSearchBoardList(Map<Object, String> map) {
 		List<BoardBean> searchBoardList = new ArrayList<BoardBean>();

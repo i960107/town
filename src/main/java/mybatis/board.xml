@@ -30,12 +30,19 @@
 			and address2 = #{address2}
 		</if>
 		<if test="category!=null">
-		and(
-		<foreach item="item" index="index" collection="category"
-			separator="or" >
-			 category like '%'||#{item}||'%'
-		</foreach>
-		)
+			and(
+			<foreach item="item" index="index" collection="category"
+				separator="or">
+				category like '%'||#{item}||'%'
+			</foreach>
+			)
+		</if>
+		<if test="blockedId!=null">
+			and writer not in
+			<foreach item="id" index="index" collection="blockedId"
+				separator="," open="(" close=")">
+				#{id}
+			</foreach>
 		</if>
 		order by reg_date desc
 	</select>
@@ -124,16 +131,19 @@
 	</insert>
 	<!-- 이미지 하나만 가져오기 -->
 	<select id="getThumnailName" resultType="String">
-		select filename from town_board_file where bno=#{no} and rownum=1 order by
+		select filename from
+		town_board_file where bno=#{no} and rownum=1 order by
 		no desc
 	</select>
 	<!-- 게시글 업데이트 -->
 	<update id="updateBoard">
-		update town_board set subject =#{subject} , address1=#{address1},
-		address2=#{address2}, contents=#{contents}, category=#{category} where
+		update town_board set subject =#{subject} ,
+		address1=#{address1},
+		address2=#{address2}, contents=#{contents},
+		category=#{category} where
 		no=#{no}
 	</update>
-	
+
 	<delete id="fileDelete">
 		delete town_board_file where bno=#{bno}
 	</delete>
@@ -159,6 +169,6 @@
 	</select>
 	<!-- 대댓글 이전 스텝 가져오기 -->
 	<select id="getpreStep" resultType="Integer">
-	select max(re_step) from town_board where ref=#{ref}
+		select max(re_step) from town_board where ref=#{ref}
 	</select>
 </mapper>
