@@ -124,6 +124,7 @@ public class PUpdateController {
 					f.delete();
 					fbean.setFilename(pf.get(i));
 					System.out.println("----3 단계----");
+					System.out.println(fbean.getFilename());
 					delcnt += pDao.deleteFile(fbean);
 				}
 			}
@@ -138,15 +139,17 @@ public class PUpdateController {
 					String genId = UUID.randomUUID().toString(); //파일이름 난수 생성
 					String originalfileName = mf.get(i).getOriginalFilename();  //파일 이름 받아옴
 					String saveFileName = genId + "." + originalfileName; //저장 파일 이름
-					if(i==0) {
-						ProductFileBean bean = pDao.getFileNameMin(pno); //대표 이미지 저장용 임시 변수
-						saveName = bean.getFilename();
-					}
 					String savePath = uploadPath+saveFileName; //저장 경로
 					mf.get(i).transferTo(new File(savePath)); //파일 폴더에 입력
 					
 					pDao.fileUpload(originalfileName, saveFileName, pno); //파일 테이블 입력 - product_file table
 				}
+				int minno = pDao.getFileNameMin(pno); //대표 이미지 저장용 임시 변수
+				ProductFileBean bean = pDao.getFileByNo(minno);
+				saveName = bean.getFilename();
+				pno = bean.getPno();
+				System.out.println(saveName);
+				System.out.println(pno);
 				pDao.fileUpload2(saveName, pno); //대표 이미지 주소 업데이트 - product table
 			}
 
