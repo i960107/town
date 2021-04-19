@@ -115,10 +115,6 @@
 		
 		<tr>
 		<td colspan="8">
-		</td>
-		</tr>
-		</table>
+		
 		
 
-
-<%@ include file="./../common/main_bottom.jsp"%>
