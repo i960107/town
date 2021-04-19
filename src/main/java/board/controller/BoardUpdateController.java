@@ -47,6 +47,12 @@ public class BoardUpdateController {
 	@RequestMapping(value = command, method = RequestMethod.POST)
 	private String doActionPost(MultipartHttpServletRequest mhsq, @ModelAttribute("board") @Valid BoardBean board,
 			BindingResult result) throws Exception, IOException {
+		System.out.println("no"+board.getNo());
+		System.out.println("address1"+board.getAddress1());
+		System.out.println("address2"+board.getAddress2());
+		System.out.println("category"+board.getCategory());
+		System.out.println("subject"+board.getSubject());
+		System.out.println("contents"+board.getContents());
 		if (result.hasErrors()) {
 			System.out.println("오류인데");
 			return getPage;
@@ -55,9 +61,10 @@ public class BoardUpdateController {
 		}
 			//DB 업데이트
 			int cnt=dao.updateBoard(board);
+			System.out.println("삭제");
 			//DB 업데이트 성공시
 			if(cnt==1) {	
-			
+				System.out.println("db업데이트?");
 				String uploadPath = servletContext.getRealPath("resources");
 			List<MultipartFile> mf = mhsq.getFiles("uploadFile");
 			//선택한 사진 있을때

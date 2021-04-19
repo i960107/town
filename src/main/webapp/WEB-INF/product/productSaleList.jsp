@@ -22,25 +22,26 @@
 	justify-content: space-between;
 }
 
-.flex-container-category{
+.flex-container-category {
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
 	flex-wrap: wrap;
 }
+
 .flex-container-product {
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
 	flex-wrap: wrap;
 }
-.flex-container-product-item{
+
+.flex-container-product-item {
 	font-size: 20px;
 	font-family: FontAwesome;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
-	font-weight:bold;
-
+	font-weight: bold;
 }
 </style>
 <!-- PSaleController -> productSaleList.jsp -->
@@ -68,8 +69,8 @@
 						</script>
 						<table>
 							<tr style="background-color: #FFFFF0;">
-								<td colspan=2 align="center" style="padding-top: 10px;padding-bottom:10px"
-									valign="middle"><h5>
+								<td colspan=2 align="center"
+									style="padding-top: 10px; padding-bottom: 10px" valign="middle"><h5>
 										<b>카테고리</b>
 									</h5></td>
 							</tr>
@@ -144,20 +145,34 @@
 		</div>
 		<div class="flex-container-product">
 			<c:forEach var="i" items="${searchList}">
-				<div class="flex-container-product-item" style="background-color: #dcdcdc; margin-bottom: 40px">
-					<a href="detail.prd?no=${i.no}&sellerid=${i.sellerid}"> <img
-						alt="" src="<%=request.getContextPath()%>/resources/${i.image1}"
-						height="300" width="300">
-					</a> <br>
-					<font color="green">
-					<script>
-						document
-								.write(displayTime('<c:out value="${i.regdate}"/>'));
-					</script></font><font color="orange">&nbsp&nbsp&nbsp${i.sellerid }
-					</font>
-					<br> ${i.subject} <br> ${i.price } 원 <br>
-					${i.address1 } ${i.address2 }<br>
+
+				<div class="flex-container-product-item"
+					style="background-color: #dcdcdc; margin-bottom: 40px">
+
+					<div>
+
+						<a href="detail.prd?no=${i.no}&sellerid=${i.sellerid}"> <img
+							alt="" src="<%=request.getContextPath()%>/resources/${i.image1}"
+							height="300" width="300">
+						</a> <br> <font color="green"> <script>
+							document
+									.write(displayTime('<c:out value="${i.regdate}"/>'));
+						</script></font><font color="orange">&nbsp&nbsp&nbsp${i.sellerid } </font> <br>
+						${i.subject} <br> ${i.price } 원 <br> ${i.address1 }
+						${i.address2 }<br>
+					</div>
+					<div>
+						<c:forTokens items="${i.category}" delims="," var="ctg">
+							<c:forEach begin="0" end="${fn:length(categoryList)-1}" var="i">
+								<c:if test="${categoryList[i].no==ctg}">
+									<button type="button" class="btn btn-danger"
+										style="margin: 10px 5px;">${categoryList[i].categoryName}</button>
+								</c:if>
+							</c:forEach>
+						</c:forTokens>
+					</div>
 				</div>
+
 			</c:forEach>
 
 		</div>
