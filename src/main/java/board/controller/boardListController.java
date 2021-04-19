@@ -45,7 +45,7 @@ public class boardListController {
 
 		// 카테고리 들고오기
 		List<BoardCategoryBean> categoryList = dao.getAllCategory();
-
+		context.setAttribute("bCategoryList", categoryList);
 		// 카테고리 하나이상 선택 필수
 		if (isCategorySelected == true && category == null) {
 			System.out.println("여기");
@@ -72,7 +72,7 @@ public class boardListController {
 			int bno = boardList.get(i).getNo();
 			boardFileList = dao.getFileBeans(boardFileList, bno);
 		}
-		mav.addObject("categoryList", categoryList);
+	
 
 		mav.addObject("boardList", boardList);
 		mav.addObject("keyword", keyword);

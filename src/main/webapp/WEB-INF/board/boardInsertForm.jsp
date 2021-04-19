@@ -94,7 +94,7 @@ font-size:15px;
 				<tr>
 					<td width="200px" rowspan=2><label>카테고리 선택</label></td>
 					<td width="500px" class="checkbox">
-					<c:forEach var="ctg" varStatus="i" items="${categoryList}" >
+					<c:forEach var="ctg" varStatus="i" items="${bCategoryList}" >
 					<span>
 							<input type="checkbox" style="diplay: inline-block; width: 50px;" name="category" value="${ctg.no}"
 							<c:forTokens var="cate" items="${board.category}" delims=",">

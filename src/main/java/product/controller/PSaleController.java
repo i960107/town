@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -34,7 +35,8 @@ public class PSaleController {
 
 	@Autowired
 	ProductDao pDao;
-
+	@Autowired
+	ServletContext context;
 	@RequestMapping(value = command)
 	public ModelAndView doAction(@RequestParam(value = "address1", required = false) String address1,
 			@RequestParam(value = "address2", required = false) String address2,
@@ -44,7 +46,7 @@ public class PSaleController {
 			ProductKeywordBean keywordBean, HttpSession session) throws IOException {
 		ModelAndView mav = new ModelAndView();
 		List<ProdCategoryBean> clist = pDao.getAllPrdCategory();
-		
+		context.setAttribute("pCategoryList", clist);
 		// 카테고리 1이상 선택 필수
 		if (isCategorySelected == true && category == null) {
 			System.out.println("여기");
@@ -55,7 +57,6 @@ public class PSaleController {
 			pwriter.print("</script>");
 			pwriter.flush();
 			mav.addObject("category", null);
-			mav.addObject("categoryList", clist);
 			mav.addObject("keyword", keyword);
 			mav.addObject("address1", address1);
 			mav.addObject("address2", address2);
@@ -97,7 +98,7 @@ public class PSaleController {
 		}
 
 		// 카테고리 리스트
-		mav.addObject("categoryList", clist);
+		mav.addObject("keyword", keyword);
 		mav.addObject("category", category);
 		return mav;
 	}

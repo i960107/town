@@ -44,7 +44,13 @@ textarea {
 	height: 350px;
 	width: 350px;
 }
+.memberstatus{
+	font-size:10pt;
+	color:red;
+	font-wieght: bold;
+}
 </style>
+
 <script type="text/javascript" src="<%=source%>/resources/js/jquery.js"></script>
 <script type="text/javascript">
 	/* 좋아요 싫어요 함수 호출 */
@@ -55,26 +61,15 @@ textarea {
 		location.href = "unlike.prd?no=${pBean.no}&like=" + liker;
 	}
 
-    function updateProduct() {
-        location.href = "update.prd?no=${pBean.no}";
-    }
-    function chat() {
-    	window.open("reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}", "구매연락하기", "width=650, height=700, left=100, top=50");
+	function updateProduct() {
+		location.href = "update.prd?no=${pBean.no}";
 	}
-	
-
-	/* 신고하기 함수 호출 */
-	/* 	function report(sellerid){
-	 alert("신고하기 버튼 클릭");
-	
-	 if(sellerid == loginid){
-	 alert("될까....?...");
-	 }
-	 여기서 아이디 비교하고 똑같으면 location.href=-1;
-	 아니면 ....
-	 }
-	 */
+	function chat() {
+		window.open("reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}",
+				"구매연락하기", "width=650, height=700, left=100, top=50");
+	}
 </script>
+
 <script
 	src="${pageContext.request.contextPath}/resources/script/timeFormat.js"></script>
 <%@include file="prdStyle.jsp"%>
@@ -123,8 +118,21 @@ textarea {
 							<!-- 상품정보 -->
 							<td>
 								<table>
-									<tr height="72">
-										<td colspan="3"><span class="subject">${pBean.subject }</span></td>
+									<tr>
+									
+									<tr height="72"><td colspan="3">
+									<c:forTokens items="${pBean.category}" delims=","
+												var="ctg">
+												<c:forEach begin="0" end="${fn:length(pCategoryList)-1}"
+													var="i">
+													<c:if test="${pCategoryList[i].no==ctg}">
+														<button type="button" class="btn btn-danger"
+															style="margin: 10px 5px;">${pCategoryList[i].categoryName}</button>
+													</c:if>
+												</c:forEach>
+											</c:forTokens>
+											<br>
+										<span class="subject">${pBean.subject }</span></td>
 									</tr>
 									<tr height="72">
 										<td colspan="3"><span class="price"> <fmt:formatNumber
@@ -136,11 +144,24 @@ textarea {
 										<!-- 회원 정보 -->
 										<td><a href="tradeDetail.mb?sellerid=${mbean.id }">
 												<div class="box">
-													<img class="profile"
-														src="<%=request.getContextPath()%>/resources/members/${mbean.image}">
+												<c:if test="${mbean.sitestatus==1 }">
+													<img class="profile" src="${mbean.image}">
+												</c:if>
+												<c:if test="${mbean.sitestatus==0 }">
+													<img class="profile" src="<%=request.getContextPath()%>/resources/members/${mbean.image}">
+												</c:if>
 												</div>
 										</a></td>
-										<td valign="top"><a href="tradeDetail.mb?sellerid=${mbean.id }"><span class="subject">${mbean.id }</span></a></td>
+										<td valign="top">
+											<a href="tradeDetail.mb?sellerid=${mbean.id }">
+												<span class="subject">${mbean.id }</span>
+											</a>
+											<br>
+											<!-- 계정 정지 시 아이디 옆 text 노출 -->
+											<c:if test="${mbean.memberstatus == '0'}">
+												<span class="memberstatus">[신고로 인해 정지된 계정입니다]</span>
+											</c:if>
+										</td>
 									</tr>
 									<tr height="72">
 										<!-- 조회수 / 등록일 / 신고 -->
@@ -225,9 +246,26 @@ textarea {
 				</td>
 			</tr>
 			<tr>
-				<td colspan=2 align="center"><input type="button"
+				<td colspan=2 align="center">
+				<input type="button"
 					style="margin-bottom: 10px" onClick="location.href='saleList.prd'"
-					value="목록보기"></td>
+					value="목록보기" class="site-btn register-btn">
+					<c:if test="${loginId==pBean.sellerid }">
+					<script>
+					function delPrd() {
+						var ckDelete = confirm("삭제하시겠습니까?");
+						if(ckDelete){
+							location.href='delete.prd?no=${pBean.no}';
+						}else{
+							return;
+						}
+					}
+					</script>
+					<input type="button"
+					style="margin-bottom: 10px" onClick="return delPrd()"
+					value="삭제하기" class="site-btn register-btn">
+					</c:if>
+					</td>
 			</tr>
 		</table>
 </body>

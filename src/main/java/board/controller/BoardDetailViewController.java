@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import board.model.BoardBean;
+import board.model.BoardCategoryBean;
 import board.model.BoardDao;
 import board.model.BoardFileBean;
 import board.model.BoardLikeBean;
@@ -71,7 +72,7 @@ public class BoardDetailViewController {
 			model.addAttribute("nextImage", nextImage);
 		}
 			
-		
+		List<BoardCategoryBean> categoryList = dao.getAllCategory();
 		//공감하기 가져오기
 		List<BoardLikeBean> likeList = new ArrayList<BoardLikeBean>();
 		likeList = dao.getLike(no);
