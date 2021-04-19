@@ -237,6 +237,7 @@
 		border: 5px solid #FFC19E;
 		border-radius: 10%;
 		align-content: center;		
+		overflow: scroll;
 	}
 	img{
 		margin-left: auto;
@@ -246,6 +247,7 @@
 	.chat-div{
 		width: auto;
 		height: auto;
+		/* overflow: scroll; */
 	}
 	.div-saleInfo{
 		width: 75px;
@@ -257,6 +259,10 @@
 		border-radius: 10%;
 		align-content: center;	
 		margin-bottom: 50;
+	}
+	.chatArea{
+	width: 350px;
+	border-radius: 8px;
 	}
 
 </style>
@@ -272,12 +278,15 @@
 	function saleCompleted(){
 		alert("이미 판매완료 된 상품입니다.");
 	}
-	
+	function goDetail() {
+		var no = "<c:out value="${sbean.id }"/>";
+		var id = "<c:out value="${pbean.no }"/>";
+		window.opener.location.href="detail.prd?no=${pbean.no }&sellerid=${sbean.id }";
+	}
 </script>
 
 </head>
 <body>
-
 
 <br>
 <img src="<%=request.getContextPath()%>/resources/img/logo.png" >
@@ -290,10 +299,10 @@
 			<div class="chat-div">
 			<c:forEach var="chat" items="${clist }">
 			<c:if test="${login==chat.talker }">
-			<p align="right" >${chat.contents }</p>
+			<p style="opacity: 0.9; background-color: #DADADA" class="chatArea" align="right" ><span style="opacity: 1.0; font-weight: bold;">${chat.contents }</span></p>
 			</c:if>
 			<c:if test="${login!=chat.talker }">
-			<p align="left" >${chat.contents }</p>
+			<p style="opacity: 0.9; background-color: #E5EFFF" class="chatArea" align="left" ><span style="opacity: 1.0; font-weight: bold;">${chat.contents }</span></p>
 			</c:if>
 			</c:forEach>
 			</div>
@@ -332,7 +341,7 @@
 		</c:if>
 	
 
-		<input type="submit" value="전송">
+		<input class="btn btn-warning" type="submit" value="전송">
 	</td>
 	</tr>
 	<tr align="center">
@@ -342,7 +351,8 @@
 		<button type="button" value="구매 리뷰 등록" data-toggle="modal"
 		data-target="#myModal"> 구매리뷰 등록 </button>
 		</c:if>
-		<input type="button" onclick="self.close()" value="대화창 닫기" >
+		<input type="button" onclick="goDetail()" value="상품보기" class="btn btn-warning">
+		<input type="button" onclick="self.close()" value="대화닫기" class="btn btn-warning">
 	
 	</td>
 	</tr>
