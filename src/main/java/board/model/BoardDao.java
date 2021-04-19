@@ -30,32 +30,33 @@ public class BoardDao {
 		return category_list;
 	}
 
-	public List<BoardBean> getAllBoard(String address1, String address2) {
+	public List<BoardBean> getBoardList(String keyword,String category,String address1, String address2) {
 		List<BoardBean> boardList = new ArrayList<BoardBean>();
-	
-		Map<String, String> map = new HashMap<String, String>();
+		List<String> cateList = null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(keyword!=null) {
+		map.put("keyword", "%"+keyword+"%");
+		}else {
+			map.put("keyword", null);
+		}
+		
+		  if(category!=null) { 
+			  cateList=new ArrayList<String>();
+			  String[]cateArr=category.split(","); for(String
+		  c:cateArr) {
+			
+			  cateList.add(c); 
+			  }
+		  }
+		map.put("category",cateList);
 		map.put("address1", address1);
 		map.put("address2", address2);
-		boardList = sqlSessionTemplate.selectList(namespace + ".getAllBoard", map);
+		System.out.println(map);
+		boardList = sqlSessionTemplate.selectList(namespace + ".getBoardList", map);
 		return boardList;
 	}
 
-	public List<BoardBean> getBoardByCategoryKeyword(String category, String keyword) {
-		List<BoardBean> boardList = new ArrayList<BoardBean>();
-		/*
-		 * List<String> categoryList=new ArrayList<String>(); try { String
-		 * categoryArr[]=category.split(","); for(String ctg:categoryArr) {
-		 * categoryList.add(ctg); } }catch(IndexOutOfBoundsException e) {
-		 * System.out.println("그럼 여기로 와야지"); categoryList.add(category); }
-		 */
-		String cate = "(" + category + ")";
-		System.out.println(cate);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("cate", cate);
-		map.put("keyword", "%" + keyword + "%");
-		boardList = sqlSessionTemplate.selectList(namespace + ".getBoardByCategoryKeyword", map);
-		return boardList;
-	}
+
 
 	public void insertBoard(BoardBean board) {
 		sqlSessionTemplate.selectList(namespace + ".insertBoard", board);

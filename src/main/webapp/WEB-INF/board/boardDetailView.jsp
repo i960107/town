@@ -47,8 +47,8 @@
 }
 
 .profile {
-	width: 100%;
-	height: 100%;
+	width: 120px;
+	height: 120px;
 	object-fit: cover;
 }
 
@@ -61,12 +61,14 @@
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
+	font-size:20px;
 }
 
 .flex-container-start {
 	display: flex;
 	justify-content: flex-start;
 	width: 100%;
+	font-size:20px;
 }
 </style>
 <section class="blog-details spad">
@@ -167,9 +169,9 @@
 							value="목록보기">
 							<c:if test="${loginInfo.id==board.writer}">
 							
-								<input type="button" onClick="location.href='update.bd?no=${board.no}'"
+								<%-- <input type="button" onClick="location.href='update.bd?no=${board.no}'"
 							value="수정하기">
-								<input type="button" onClick="location.href='delete.bd?no=${board.no}'"
+ --%>								<input type="button" onClick="location.href='delete.bd?no=${board.no}'"
 							value="삭제하기">
 							
 							</c:if>

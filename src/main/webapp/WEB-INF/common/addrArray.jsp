@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="./../common/common.jsp"%>
-
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <script type="text/javascript">
 	//사용시 주의점 myform 안에 include 해야함
 	//selected 기능은 session loginid에를 기준으로 MemberBean mbean;을 넘겨야 사용 가능
@@ -41,7 +42,6 @@
 			[ "거제시", "김해시", "마산시", "밀양시", "사천시", "양산시", "진주시", "진해시", "창원시",
 					"통영시", "거창군", "고성군", "남해군", "산청군", "의령군", "창녕군", "하동군",
 					"함안군", "함양군", "합천군" ], [ "서귀포시", "제주시", "남제주군", "북제주군" ] ];
- 	
 
 	function changeSelect() {
 		var s_sel = myform.address2;
@@ -59,8 +59,8 @@
 		var f_sel = myform.address1.value;
 		var s_sel = myform.address2.value;
 		var page = myform.request.value;
-		if(page!=null){
-		location.href = page + "?address1=" + f_sel + "&address2=" + s_sel;
+		if (page != null) {
+			document.myform.submit();
 		}
 	}
 </script>
@@ -69,8 +69,12 @@
 	display: flex;
 	flex-direction: row;
 }
+#address1, #address2{
+height:40px;
+}
 </style>
 <div class="flex-container-addr">
+	
 	<div>
 		<select name="address1" id="address1" onchange="changeSelect()"
 			class="nice-select ">
@@ -86,7 +90,7 @@
 			onchange="changeSelect2()">
 			<option value="0">시/군/구 선택
 				<c:if test="${address2!=null}">
-					<option value="${address2}" selected="selected">${searchAddress2}
+					<option value="${address2}" selected="selected">${address2}
 				</c:if>
 				<c:if test="${address2==null and mbean.address2!=null}">
 					<option value="${mbean.address2 }" selected="selected">${mbean.address2 }
