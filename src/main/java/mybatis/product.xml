@@ -319,4 +319,10 @@
 		select * from product_file
 		where no = #{minno}
 	</select>
+	
+	<update id="PUpdateRegDate">
+		update product
+		set reg_date = sysdate
+		where no = #{no}
+	</update>
 </mapper>

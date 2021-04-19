@@ -264,4 +264,8 @@ public class ProductDao {
 		return fbean;
 	}
 
+	public void PUpdateRegDate(int no) {
+		sqlSessionTemplate.update(nameSpace+".PUpdateRegDate", no);
+	}
+
 }
