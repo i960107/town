@@ -65,7 +65,7 @@
 <span><h3><b>카테고리 관리</b></h3></span>
 
 
-<div class="filter-control" style="margin: 0 auto; width: 80%">
+<div class="filter-control" style="margin: 0 auto; width:80%">
      <ul>
      <li class="active" onmouseover="style='cursor:pointer'" onclick="townCateList()">동네생활 카테고리</li>
      <li class="active" onmouseover="style='cursor:pointer'" onclick="townInsert()">동네생활 카테고리 등록</li>
@@ -73,6 +73,10 @@
      <li class="active" onmouseover="style='cursor:pointer'" onclick="productInsert()">중고거래 카테고리 등록</li>
      </ul>
  </div>
+ 
+ 
+ <br><br><br><br>
+
 
 <div id="boardCateList">
 <table align="center">
@@ -219,4 +223,11 @@
 </table>
 </div>
 
-<%--  <%@ include file="./../../WEB-INF/common/main_bottom.jsp"%>  --%>
+
+ </td>
+</tr>
+</table>
+
+<br><br>
+
+<%@ include file="./../../WEB-INF/common/main_bottom.jsp"%>  
