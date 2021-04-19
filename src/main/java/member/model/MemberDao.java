@@ -155,4 +155,10 @@ public class MemberDao {
 		return blockedId;
 	}
 
+	public MemberBean getPwbyId(String findId) {
+		MemberBean mbean = sqlSessionTemplate.selectOne(nameSpace+".getPwbyId",findId);
+		
+		return mbean;
+	}
+
 }
