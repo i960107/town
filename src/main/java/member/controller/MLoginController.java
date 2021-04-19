@@ -68,6 +68,7 @@ public class MLoginController {
 				mav.addObject("mbean", midBean);
 				if (session.getAttribute("destination") != null) {
 					gotoPage = (String) session.getAttribute("destination");
+					System.out.println(gotoPage);
 					session.removeAttribute("destination");
 				}
 				mav.setViewName(gotoPage);

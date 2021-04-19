@@ -71,7 +71,7 @@
 			<c:forEach var="key" items="${klist }">
 				<td>
 					<font size="4pt">
-					#<a href="detail.prd?no=${key.no}&sellerid=${sellerid}">${key.keyword}</a>
+					#<a href="saleList.prd?keyword=${key.keyword}">${key.keyword}</a>
 					</font>
 				</td>
 			</c:forEach>

@@ -176,13 +176,13 @@ flex-container-reply {
 							</c:if>
 						</c:forEach>
 						<input type="button" name="like" value="${heart }공감하기 ${likeCnt}"
-							onclick="${likecondition}" class="btn_img_like"> <a
-							href="report.mb?reported_userid=${board.writer}"> <c:if
+							onclick="${likecondition}" class="btn_img_like">  <c:if
 								test="${loginInfo.id==board.writer}">
 								<input type="button"
 									onClick="location.href='update.bd?no=${board.no}'" value="수정하기"
 									class="btn_img_nomal">
-							</c:if> <span class="mcontent">신고하기</span></a>
+							</c:if> <a
+							href="report.mb?reporteduserid=${board.writer}"><span class="mcontent">신고하기</span></a>
 					</div>
 				</div>
 				<div align="center">
@@ -290,7 +290,7 @@ flex-container-reply {
 							</c:if>
 						</div>
 						<div>
-							<a href="tradeDetail?sellerid=${reply.writer}"
+							<a href="tradeDetail.mb?sellerid=${reply.writer}"
 								style="display: inline"> ${reply.writer}</a><span><script
 									type="text/javascript">
 									document

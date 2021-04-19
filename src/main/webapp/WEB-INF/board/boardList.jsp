@@ -12,9 +12,11 @@
 	font-size: 20px;
 	color: #CCCCCC;
 }
-.contents{
-font-size:20px;
+
+.contents {
+	font-size: 20px;
 }
+
 .board {
 	margin-bottom: 30px;
 	background-color: #F8F9FA;
@@ -34,25 +36,26 @@ font-size:20px;
 
 .flex-container-boardlist {
 	display: flex;
-	flex-direction: column;
+	flex-grow: 1; flex-direction : column;
 	justify-content: space-between;
 	width: 100%;
-	align-items: center
+	align-items: center;
+	flex-direction: column;
 }
 
 .flex-container-board {
 	display: flex;
 	flex-direction: row;
-	font-size: 25px; 
+	font-size: 25px;
 	margin-bottom: 15px;
 	background-color: #eee;
-	width: 100%;
 	border-radius: 10px;
 }
+
 .flex-container-category {
 	display: flex;
 	justify-content: flex-start;
-	margin:20px;
+	margin: 20px;
 	width: 100%;
 	flex-wrap: wrap;
 }
@@ -91,24 +94,24 @@ font-size:20px;
 										</h5></td>
 								</tr>
 								<tr style="background-color: #FFFFF0">
-												<td colspan=2 class="flex-container-category"><c:if
-										test="${category==null}">
-										<c:forEach items="${bCategoryList}" var="ctg">
-											<span class="col-md-2"><input type="checkbox"
-												name="category" class="category" value="${ctg.no}" checked>${ctg.categoryName}
-											</span>
-										</c:forEach>
-									</c:if> <c:if test="${category!=null}">
-										<c:forEach items="${bCategoryList}" var="ctg">
-											<span class="col-md-2"> <input type="checkbox"
-												name="category" class="category" value="${ctg.no}"
-												<c:forTokens items="${category}" delims="," var="ct">
+									<td colspan=2 class="flex-container-category"><c:if
+											test="${category==null}">
+											<c:forEach items="${bCategoryList}" var="ctg">
+												<span class="col-md-2"><input type="checkbox"
+													name="category" class="category" value="${ctg.no}" checked>${ctg.categoryName}
+												</span>
+											</c:forEach>
+										</c:if> <c:if test="${category!=null}">
+											<c:forEach items="${bCategoryList}" var="ctg">
+												<span class="col-md-2"> <input type="checkbox"
+													name="category" class="category" value="${ctg.no}"
+													<c:forTokens items="${category}" delims="," var="ct">
 													<c:if test="${ct==ctg.no}">checked</c:if>
 													</c:forTokens>>${ctg.categoryName}
-											</span>
-										</c:forEach>
+												</span>
+											</c:forEach>
 
-									</c:if></td>
+										</c:if></td>
 								</tr>
 								<tr>
 									<td style="background-color: #FFFFF0;" colspan=2 align="right"><input
@@ -170,10 +173,10 @@ font-size:20px;
 						<c:forEach var="bean" items="${boardFileList}">
 							<c:if test="${flag==false}">
 								<c:if test="${bean.bno==board.no}">
-									<div style="width:340px; height:340px;" >
+									<div style="width: 340px; height: 340px;">
 										<img
 											src="${pageContext.request.contextPath}/resources/${bean.fileName}"
-											style="width:310px; height:310px;margin:10px;"/>
+											style="width: 310px; height: 310px; margin: 10px;" />
 									</div>
 									<c:set var="flag" value="true" />
 								</c:if>
@@ -189,14 +192,13 @@ font-size:20px;
 									</c:if>
 								</c:forEach>
 							</c:forTokens>
-							<br> <font color="orange"><b> ${board.subject} </b>
-							</font> <br> <span class="contents">${fn:substring(board.contents,0,10)} </span><a
-								href='detailView.bd?no=${board.no}'>...더보기</a>
+							<br> <font color="orange"><b> ${board.subject} </b> </font>
+							<br> <span class="contents">${fn:substring(board.contents,0,10)}
+							</span><a href='detailView.bd?no=${board.no}'>...더보기</a>
 
 							<div style="margin-top: 30px" class="mcontent">
 								<span> <a href="tradeDetail.mb?sellerid=${board.writer}">${board.writer}</a>
-								<span>${board.address1}&nbsp${board.address2}</span>
-								<br>
+									<span>${board.address1}&nbsp${board.address2}</span> <br>
 								</span> <i class="fa fa-calendar-o"></i>
 								<!-- 시간 바꿔서 출력하기 Javascript코드 -->
 								<span><script type="text/javascript">
