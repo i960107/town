@@ -44,7 +44,13 @@ textarea {
 	height: 350px;
 	width: 350px;
 }
+.memberstatus{
+	font-size:10pt;
+	color:red;
+	font-wieght: bold;
+}
 </style>
+
 <script type="text/javascript" src="<%=source%>/resources/js/jquery.js"></script>
 <script type="text/javascript">
 	/* 좋아요 싫어요 함수 호출 */
@@ -62,19 +68,8 @@ textarea {
 		window.open("reply.prd?no=${pBean.no}&sellerid=${pBean.sellerid}",
 				"구매연락하기", "width=650, height=700, left=100, top=50");
 	}
-
-	/* 신고하기 함수 호출 */
-	/* 	function report(sellerid){
-	 alert("신고하기 버튼 클릭");
-	
-	 if(sellerid == loginid){
-	 alert("될까....?...");
-	 }
-	 여기서 아이디 비교하고 똑같으면 location.href=-1;
-	 아니면 ....
-	 }
-	 */
 </script>
+
 <script
 	src="${pageContext.request.contextPath}/resources/script/timeFormat.js"></script>
 <%@include file="prdStyle.jsp"%>
@@ -153,9 +148,16 @@ textarea {
 														src="<%=request.getContextPath()%>/resources/members/${mbean.image}">
 												</div>
 										</a></td>
-										<td valign="top"><a
-											href="tradeDetail.mb?sellerid=${mbean.id }"><span
-												class="subject">${mbean.id }</span></a></td>
+										<td valign="top">
+											<a href="tradeDetail.mb?sellerid=${mbean.id }">
+												<span class="subject">${mbean.id }</span>
+											</a>
+											<br>
+											<!-- 계정 정지 시 아이디 옆 text 노출 -->
+											<c:if test="${mbean.memberstatus == '0'}">
+												<span class="memberstatus">[신고로 인해 정지된 계정입니다]</span>
+											</c:if>
+										</td>
 									</tr>
 									<tr height="72">
 										<!-- 조회수 / 등록일 / 신고 -->
