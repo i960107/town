@@ -14,7 +14,7 @@
 	});
 
 	function townInsert(){
-		alert('동네생활 눌렀니');
+		//alert('동네생활 눌렀니');
 		$('#productInsert').hide();
 		$('#boardCateList').hide();
 		$('#prodCateList').hide();
@@ -22,7 +22,7 @@
 	}
 	
 	function townCateList(){
-	 	alert("동네생활 리스트");
+	 	//alert("동네생활 리스트");
 		$('#boardCateList').show();
 	 	$('#townInsert').hide();
 	 	$('#productInsert').hide();
@@ -31,7 +31,7 @@
 	}
 	
 	function productInsert(){
-		alert('중고거래 눌렀지');
+		//alert('중고거래 눌렀지');
 		$('#townInsert').hide();
 		$('#boardCateList').hide();
 		$('#prodCateList').hide();
@@ -39,7 +39,7 @@
 	}
 	
 	function prodCateList(){
-		alert("중고거래 리스트");
+		//alert("중고거래 리스트");
 		$('#townInsert').hide();
 		$('#productInsert').hide();
 		$('#boardCateList').hide();
@@ -63,7 +63,7 @@
 		position: absolute;
 		width: 80%;
 		height : 100px;
-		margin: 0 22.5%;
+		margin: 0 27%;
 		text-align: center;
 	}
 
