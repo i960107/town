@@ -60,7 +60,7 @@ public class PProdDealUpController {
 		if(insertCnt == 1) {
 			pwriter.println("<script>"
 					+ "alert('거래 완료 되었습니다.');"
-					 + "history.go(-1);"
+					 + "self.close();"
 					 + "</script>");
 		}
 		
