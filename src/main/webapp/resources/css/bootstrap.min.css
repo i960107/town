@@ -3564,7 +3564,8 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 	-ms-flex: 1 1 0%;
 	flex: 1 1 0%;
 	min-width: 0;
-	margin-bottom: 0
+	margin-bottom: 0;
+	height: 49px; /* 추가 */
 }
 
 .input-group>.custom-file+.custom-file, .input-group>.custom-file+.custom-select,
