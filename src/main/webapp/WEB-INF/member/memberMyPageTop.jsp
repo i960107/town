@@ -5,6 +5,10 @@
 
 
 <style>
+
+.cate_tr{
+	width: 90%;
+}
 .box {
 	width: 250px;
 	height: 250px;
@@ -66,7 +70,7 @@
 			</td>
 		</tr>
 
-		<tr>
+		<tr class="cate_tr">
 			<td class="tab-item" width="16%">
 				<ul class="nav" role="tablist">
 					<li><a class="active" href="mySaleList.prd">My Sale</a></li>
