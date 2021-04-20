@@ -89,11 +89,18 @@ textarea {
 		<table>
 			<tr>
 				<td>
-					<!-- 이미지 carousel -->
+					<!-- 이미지 carousel --> <!-- 이미지 없을때  --> <c:if
+						test="${fn:length(fileList)==0 }">
+
+					</c:if>
 					<div>
 						<div id="carousel-example-generic" class="carousel slide">
 							<!-- Indicators(이미지 하단의 동그란것->class="carousel-indicators") -->
 							<ol class="carousel-indicators">
+								<c:if test="${fn:length(fileList)==0}">
+									<li data-target="#carousel-example-generic" data-slide-to="1"
+										class="active"></li>
+								</c:if>
 								<c:forEach var="item" items="${fileList}" varStatus="i">
 									<li data-target="#carousel-example-generic"
 										data-slide-to="i.index"
@@ -103,8 +110,9 @@ textarea {
 							<!-- Carousel items -->
 
 							<div class="carousel-inner">
-								<c:if test="${length:fileList==0 }">
-									<div class="carousel-item set-bg"
+								<c:if test="${fn:length(fileList)==0}">
+									<div
+										class="carousel-item active set-bg"
 										data-setbg="${pageContext.request.contextPath}/resources/noimage.png">
 									</div>
 								</c:if>

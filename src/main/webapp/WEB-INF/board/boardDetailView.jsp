@@ -250,8 +250,7 @@ flex-container-reply {
 							<div class="row">
 								<input type="hidden" name="writer" value="${loginInfo.id}">
 								<input type="hidden" name="ref" value="${board.no}"> <input
-									type="hidden" name="reStep" value="1">
-									 <input
+									type="hidden" name="reStep" value="1"> <input
 									type="hidden" name="reLevel" value="0">
 								<div class="col-lg-6">
 									<a href='tradeDetail.mb?sellerid=${loginInfo.id}'>
@@ -290,7 +289,9 @@ flex-container-reply {
 						<div class="pb-pic">
 							<c:set var="reLevel" value="${reply.reLevel}" />
 							<c:if test="${reply.reStep!=1}">
-								<img src="${pageContext.request.contextPath}/resources/level.gif" width="${(reply.reStep-1)*50}">
+								<img
+									src="${pageContext.request.contextPath}/resources/level.gif"
+									width="${(reply.reStep-1)*50}">
 								<img
 									src="${pageContext.request.contextPath}/resources/right-arrow.png"
 									width="50">
