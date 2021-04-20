@@ -39,7 +39,15 @@
 		from product
 		where
 		deal_status = 1
+		<if test="blockedId!=null">
+			and seller_id not in
+			<foreach item="id" index="index" collection="blockedId"
+				separator="," open="(" close=")">
+				#{id}
+			</foreach>
+		</if>
 		)
+		
 		where rank between 1 and 10
 	</select>
 
