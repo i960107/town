@@ -30,6 +30,10 @@
 	margin: 0 32.5%;
 	text-align: center;
 }
+.main-table{
+	border-bottom: 1px solid #EAEAEA;
+	text-align: center;
+}
 </style>
 
 
@@ -67,7 +71,7 @@
 				<div class="register-form">
 					<table width="850px" class="sectable listTable">
 						<div class="group-input">
-							<tr align="center">
+							<tr class="main-table">
 								<th class="group-input"><label>NO </label></th>
 									<th class="group-input"><label>제목</label></th>
 									<th class="group-input"><label>카테고리</label></th>
@@ -82,17 +86,17 @@
 							<c:forEach var="mblist" items="${mblists }">
 
 								<tr align="center">
-									<th class="group-input"><label>${mblist.no } </label></th>
-									<th class="group-input"><label><a href="detailView.bd?no=${mblist.no}"> ${mblist.subject }</a> </label></th>
-									<th class="group-input"><label>${mblist.category } </label></th>
-									<th class="group-input"><label>${fn:replace(mblist.contents,"<br>","")} </label></th>
-									<th class="group-input"><label>
+									<td class="group-input"><label>${mblist.no } </label></td>
+									<td class="group-input"><label><a href="detailView.bd?no=${mblist.no}"> ${mblist.subject }</a> </label></td>
+									<td class="group-input"><label>${mblist.category } </label></td>
+									<td class="group-input"><label>${fn:replace(mblist.contents,"<br>","")} </label></td>
+									<td class="group-input"><label>
 									<fmt:parseDate value="${mblist.regDate } " var="regdate" pattern="yyyy-MM-dd"/>
 									<fmt:formatDate value="${regdate }" pattern="yyyy-MM-dd"/>
-									</label></th>
-									<th class="group-input"><label>${mblist.readcount } </label></th>
-									<th class="group-input"><label><a href="update.bd?no=${mblist.no }">수정</a></label></th>
-									<th class="group-input"><label><a href="delete.bd?no=${mblist.no }">삭제</a></label></th>
+									</label></td>
+									<td class="group-input"><label>${mblist.readcount } </label></td>
+									<td class="group-input"><label><a href="update.bd?no=${mblist.no }">수정</a></label></td>
+									<td class="group-input"><label><a href="delete.bd?no=${mblist.no }">삭제</a></label></td>
 								</tr>
 							</c:forEach>
 				
@@ -117,7 +121,7 @@
 				<div class="register-form">
 					<table width="850px" class="sectable listTable">
 						<div class="group-input">
-							<tr align="center">
+							<tr class="main-table">
 								<th class="group-input"><label>NO </label></th>
 									<th class="group-input"><label>원글 번호</label></th>
 									<th class="group-input"><label>댓글 내용</label></th>
@@ -127,7 +131,6 @@
 							</tr>
 
 							<c:forEach var="mbrlist" items="${mbrlists }">
-<<<<<<< HEAD
 								<tr align="center">
 									<th class="group-input"><label>${mbrlist.no } </label></th>
 									<th class="group-input"><label>${mbrlist.subject } </label></th>
@@ -165,4 +168,4 @@
 <br>
 
 <%@ include file="./../../WEB-INF/common/main_bottom.jsp"%>
->>>>>>> b9f980eadc0ae84d02b9a61105d18ea94adb6ee3
+
