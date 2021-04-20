@@ -54,7 +54,9 @@
 	
 </script>
 
-<h2><b> 사용자 신고하기</b></h2>
+<div class="section-title">
+	<h2 align="center">사용자 신고하기</h2>
+</div>
 
 	<!-- Faq Section Begin -->
     <div class="faq-section spad">
