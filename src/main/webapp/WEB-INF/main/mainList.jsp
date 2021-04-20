@@ -51,6 +51,7 @@
 	justify-content: flex-start;
 	width: 100%;
 	flex-wrap: wrap;
+	al
 }
 
 .flex-container-product-item {
