@@ -37,14 +37,22 @@ public class MUpdateController {
 	ServletContext servletContext;
 
 	@RequestMapping(value = command, method = RequestMethod.GET)
-	public String doActionGet(HttpSession session, Model model) {
+	public String doActionGet(HttpSession session, Model model,
+			HttpServletResponse response) throws IOException {
 
 		// 로그인한 아이디 가져오기
 		MemberBean midBean = (MemberBean) session.getAttribute("loginInfo");
 
 		MemberBean mbean = mdao.loginCkId(midBean);
 
-		model.addAttribute("mbean", mbean);
+		
+		if(mbean.getsitestatus()==1) {
+			model.addAttribute("loginKakao", "kaka");	
+			return gotoPage;
+			
+		}else {
+			model.addAttribute("mbean", mbean);			
+		}
 
 		return getPage;
 	}

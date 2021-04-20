@@ -335,4 +335,14 @@
 		set reg_date = sysdate
 		where no = #{no}
 	</update>
+	
+	<delete id="deleteChatByNo">
+		delete from prd_reply
+		where pno = #{pno}
+	</delete>
+	
+	<delete id="deleteLikeByNo">
+		delete from product_like
+		where product_no = #{pno}
+	</delete>
 </mapper>

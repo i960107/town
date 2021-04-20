@@ -195,6 +195,8 @@ public class ProductDao {
 	public int deleteByNo(int pno) {
 		System.out.println("삭제하러 dao왔어?");
 		int delCnt = sqlSessionTemplate.delete(nameSpace + ".deleteByNo", pno);
+		sqlSessionTemplate.delete(nameSpace + ".deleteLikeByNo", pno);
+		sqlSessionTemplate.delete(nameSpace + ".deleteChatByNo", pno);
 		return delCnt;
 	}
 

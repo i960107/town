@@ -57,13 +57,13 @@ public class MOAuthLoginController {
 		header.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 		System.out.println("----TEST-----");
 		System.out.println(request.getServerPort());
-		String requestUri = "http://localhost:"+request.getServerPort()+request.getContextPath()+"/kakaologin.mb";
-		System.out.println(requestUri);
+		String requestURI = "http://localhost:"+request.getServerPort()+request.getContextPath()+"/kakaologin.mb";
+		System.out.println(requestURI);
 		System.out.println("----TEST-----");
 		//http object 토큰과 코드들
 		params.add("grant_type", "authorization_code");
 		params.add("client_id", "6a065330b97f7755c569892d3485de7b");
-		params.add("redirect_uri", requestUri);
+		params.add("redirect_uri", requestURI);
 		params.add("code", code);
 		
 		//http로 넘길 map파일
@@ -75,7 +75,7 @@ public class MOAuthLoginController {
 				); //토큰 발급 요청주소, 요청방식, 넘길 데이터, 받을 데이터 타입
 		mav.setViewName(gotoPage);
 		
-		//요청한 http 결과값 받음
+		//요청한 http 결과값 받음 objmapper library
 		ObjectMapper objectMapper = new ObjectMapper();
 		OAuthTokenBean otoken = objectMapper.readValue(response.getBody(), OAuthTokenBean.class);
 		System.out.println(otoken.getAccess_token()); //oauth 토큰
