@@ -293,7 +293,8 @@
 	<!-- 인기 키워드 리스트 -->
 	<select id="getKeywordList"
 		resultType="product.model.ProductKeywordBean">
-		select * from (select * from product_keyword order by count desc) where rownum between 1 and 5
+		select * from (select * from product_keyword order by count desc, no asc)
+		where rownum between 1 and 5
 	</select>
 
 	<!-- memberDeal 삽입 -->
