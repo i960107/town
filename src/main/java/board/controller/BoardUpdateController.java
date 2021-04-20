@@ -36,6 +36,8 @@ public class BoardUpdateController {
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	private String doActionGet(@RequestParam("no") int no, Model model) {
 		BoardBean board = dao.getBoardByNo(no);
+		model.addAttribute("address1",board.getAddress1());
+		model.addAttribute("address2",board.getAddress2());
 		List<BoardFileBean> boardFileList=new ArrayList<BoardFileBean>();
 		boardFileList= dao.getFileBeans(boardFileList, no);
 		model.addAttribute("board", board);

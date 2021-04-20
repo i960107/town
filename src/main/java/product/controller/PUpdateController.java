@@ -60,6 +60,8 @@ public class PUpdateController {
             pbean.setContents(temp);
         }
         //변수넘김
+        mav.addObject("address1",pbean.getAddress1());
+        mav.addObject("address2",pbean.getAddress2());
         mav.addObject("mbean", mbean);
         mav.addObject("flist", flist);
         mav.addObject("cateList", cateList);
