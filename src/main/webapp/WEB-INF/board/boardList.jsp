@@ -114,8 +114,8 @@
 										</c:if></td>
 								</tr>
 								<tr>
-									<td style="background-color: #FFFFF0;" colspan=2 align="right"><input
-										type="submit" value="카테고리 조건 검색"></td>
+									<td style="background-color: #FFFFF0; " colspan=2 align="right"><input
+										style="font-weight: bold;" class="btn btn-warning" type="submit" value="카테고리 조건 검색"></td>
 							</table>
 						</form>
 					</div>

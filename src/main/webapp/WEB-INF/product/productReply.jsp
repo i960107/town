@@ -324,7 +324,7 @@
 	<td>
 		<!-- 판매자 -->
 		<c:if test="${sbean.id eq login && pbean.dealstatus == 1 }">
-		<input type="button" value="거래완료" onclick="updateDealStatus('${sbean.id }','${bbean.id }')"><br><br>
+		<input class="div-saleInfo" type="button" value="거래완료" onclick="updateDealStatus('${sbean.id }','${bbean.id }')"><br><br>
 		</c:if>
 		
 		<c:if test="${sbean.id eq login && pbean.dealstatus == 0 }">
@@ -349,7 +349,7 @@
 		<br>
 		<c:if test="${sbean.id ne login && pbean.dealstatus == 0 }">
 		<button type="button" value="구매 리뷰 등록" data-toggle="modal"
-		data-target="#myModal"> 구매리뷰 등록 </button>
+		data-target="#myModal" class="btn btn-warning"> 구매리뷰 등록 </button>
 		</c:if>
 		<input type="button" onclick="goDetail()" value="상품보기" class="btn btn-warning">
 		<input type="button" onclick="self.close()" value="대화닫기" class="btn btn-warning">
@@ -415,7 +415,7 @@
 							<div>
 								<textarea name="contents" class="textarea-review"></textarea>
 							</div>
-							<input type="submit" value="구매리뷰 등록" />
+							<input type="submit" value="구매리뷰 등록" class="btn btn-warning"/>
 						</form>
 
 					</div>
