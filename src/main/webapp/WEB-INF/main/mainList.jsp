@@ -45,6 +45,44 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/style.css"
 	type="text/css">
+<style type="text/css">
+.flex-container-product {
+	display: flex;
+	justify-content: flex-start;
+	width: 100%;
+	flex-wrap: wrap;
+}
+
+.flex-container-product-item {
+	font-size: 20px;
+	border-radius: 10px;
+	font-weight: bold;
+	margin: 30px;
+	padding: 10px;
+	font-weight: bold;
+	background-color: #eee;
+}
+
+.id {
+	font-size: 20px;
+}
+
+.subject {
+	font-size: 25px;
+	font-weight: bold;
+	color: orange;
+}
+
+.price {
+	font-size: 20px;
+	color: #BBBBBB;
+}
+
+.regdate {
+	font-size: 15px;
+	color: #CCCCCC;
+}
+</style>
 </head>
 <body>
 	<!-- 
@@ -110,30 +148,25 @@
 		<h2 align="center">인기 매물 리스트</h2>
 	</div>
 
-	<table border="0" align="center" width="1200px">
-		<tr align="center">
-			<c:set var="step" value="0" />
-			<c:forEach var="i" items="${list }">
-				<c:set var="step" value="${step+1 }" />
-				<td height="200px" align="center">
-					<p>
-						<a href="detail.prd?no=${i.no}&sellerid=${i.sellerid}"
-							class=".popkeyword"> <img
-							src="<%=request.getContextPath()%>/resources/${i.image1}"
-							width="200" height="200" alt="상품사진"> <br>
-						</a>
-					</p> <font size="4pt"> 제목 : ${i.subject} <br> 가격 : <fmt:formatNumber
-							value="${i.price }" pattern="###,###" /> <br> 주소 :
-						${i.address1} ${i.address2 } <br> 조회수 : ${i.readcount} <br>
-				</font>
-				</td>
-				<c:if test="${(step%5) == 0 }">
-		</tr>
-		<tr>
-			</c:if>
-			</c:forEach>
-		</tr>
-	</table>
+	<div class="flex-container-product" align="center">
+		<c:set var="step" value="0" />
+		<c:forEach var="i" items="${list }">
+			<c:set var="step" value="${step+1 }" />
+			<div class="flex-container-product-item">
+				<p>
+					<a href="detail.prd?no=${i.no}&sellerid=${i.sellerid}"
+						class=".popkeyword"> <img
+						src="<%=request.getContextPath()%>/resources/${i.image1}"
+						width="200" height="200" alt="상품사진"> <br>
+					</a>
+				</p> <span class="subject"><font size="4pt"> 제목 : ${i.subject} </span>
+				<br> <span class="price">가격 : <fmt:formatNumber
+						value="${i.price }" pattern="###,###" /> </span><br> 주소 :
+					${i.address1} ${i.address2 } <br> 조회수 : ${i.readcount} <br>
+			</font>
+			</div>
+		</c:forEach>
+	</div>
 	<!-- 인기매물 끝 -->
 
 	<!-- Js Plugins -->

@@ -107,6 +107,27 @@ keyframes animate-positive { 0% {
 	color:red;
 	font-wieght: bold;
 }
+.flex-container-product {
+	display: flex;
+	justify-content: flex-start;
+	width: 100%;
+	flex-wrap: wrap;
+}
+
+.flex-container-product-item {
+	font-size: 20px;
+	border-radius: 10px;
+	font-weight: bold;
+	margin: 30px;
+	padding: 10px;
+	font-weight: bold;
+	background-color: #eee;
+}
+.subject {
+	font-size: 25px;
+	font-weight: bold;
+	color: orange;
+}
 </style>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
@@ -200,17 +221,17 @@ keyframes animate-positive { 0% {
 							리뷰</span>
 					</h2>
 				</div>
-				<div id="pList" class="flex-container-row">
+				<div id="pList" class="flex-container-product">
 					<!-- 판매상품 리스트 이미지 -->
 					<c:if test="${fn:length(pList)==0}">
 						<div>판매한 상품이 없습니다</div>
 					</c:if>
 					<c:forEach var="i" items="${pList}">
-						<div style="padding: 15px;">
+						<div style="padding: 15px;" class="flex-container-product-item">
 							<a href="detail.prd?no=${i.no }&sellerid=${i.sellerid}"> <img
 								src="<%=request.getContextPath()%>/resources/${i.image1}"
 								height="200" width="200">
-							</a> <br> <span class="list-font"> ${i.subject }</span> <br>
+							</a> <br> <span class="subject"> ${i.subject }</span> <br>
 							<span class="list-font"> 가격 : ${i.price } 원</span><br> <span
 								class="list-font"> &#128065; : ${i.readcount }</span> <br>
 							<span class="list-font"> 작성일 : <fmt:parseDate
