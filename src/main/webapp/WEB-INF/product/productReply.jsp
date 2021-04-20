@@ -231,13 +231,20 @@
 
 
 <style>
+
+	.div-out{
+		width : 100%;
+		height: 85%;
+		/* background-color: blue; */
+			overflow: scroll;
+	}
 	.div-style{
 		width: 100%;
-		height: 90%;
+		height: auto;
 		border: 5px solid #FFC19E;
 		border-radius: 10%;
 		align-content: center;		
-		overflow: scroll;
+	
 	}
 	img{
 		margin-left: auto;
@@ -278,6 +285,7 @@
 	function saleCompleted(){
 		alert("이미 판매완료 된 상품입니다.");
 	}
+	
 	function goDetail() {
 		var no = "<c:out value="${sbean.id }"/>";
 		var id = "<c:out value="${pbean.no }"/>";
@@ -291,6 +299,7 @@
 <br>
 <img src="<%=request.getContextPath()%>/resources/img/logo.png" >
 <br>
+<div class="div-out">
 <div class="div-style">
 <table align="center">
 	<tr>
@@ -341,7 +350,7 @@
 		</c:if>
 	
 
-		<input class="btn btn-warning" type="submit" value="전송">
+		<input class="btn btn-warning btn-sm" type="submit" value="전송">
 	</td>
 	</tr>
 	<tr align="center">
@@ -349,16 +358,17 @@
 		<br>
 		<c:if test="${sbean.id ne login && pbean.dealstatus == 0 }">
 		<button type="button" value="구매 리뷰 등록" data-toggle="modal"
-		data-target="#myModal"> 구매리뷰 등록 </button>
+		data-target="#myModal" class="btn btn-danger btn-sm"><b>구매리뷰 등록 </b> </button>
 		</c:if>
-		<input type="button" onclick="goDetail()" value="상품보기" class="btn btn-warning">
-		<input type="button" onclick="self.close()" value="대화닫기" class="btn btn-warning">
+		<input type="button" onclick="goDetail()" value="상품보기" class="btn btn-warning btn-sm">
+		<input type="button" onclick="self.close()" value="대화닫기" class="btn btn-warning btn-sm">
 	
 	</td>
 	</tr>
 	</table>
 		<br>
 </form>
+</div>
 </div>
 
 <!-- 거래후기 남기기 -->
@@ -415,7 +425,7 @@
 							<div>
 								<textarea name="contents" class="textarea-review"></textarea>
 							</div>
-							<input type="submit" value="구매리뷰 등록" />
+							<button type="submit" class="btn btn-danger btn-sm"><b>구매리뷰 등록</b></button>
 						</form>
 
 					</div>
