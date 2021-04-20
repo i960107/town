@@ -86,19 +86,20 @@ flex-container-reply {
 
 						<p>
 						<div class="box">
-							<a href='tradeDetail.mb?sellerid=${board.writer}'> 
-							<c:if test="${writer.sitestatus==0}">
+							<a href='tradeDetail.mb?sellerid=${board.writer}'> <c:if
+									test="${writer.sitestatus==0}">
 									<img
 										src="${pageContext.request.contextPath}/resources/members/${writer.image}"
 										class="profile" />
-							</c:if>
-							<c:if test="${writer.sitestatus==1}"> 
-								<img src="${writer.image}" class="profile" />
-							</c:if>
-							</a>
 						</div>
 						${writer.id }
+						</c:if>
+						<c:if test="${writer.sitestatus==1}">
+							<img src="${writer.image}" class="profile" />
 					</div>
+					${writer.id }
+					</c:if>
+					</a>
 
 
 					<!-- 시간 바꿔서 출력하기 Javascript코드 -->
@@ -261,9 +262,17 @@ flex-container-reply {
 								<div class="col-lg-6">
 									<a href='tradeDetail.mb?sellerid=${loginInfo.id}'>
 										<div class="box">
+										<c:if test="${loginInfo.sitestatus==0 }">
 											<img
 												src="${pageContext.request.contextPath}/resources/members/${loginInfo.image}"
-												class="profile" /> ${loginInfo.id}
+												class="profile" />
+										</c:if>
+										<c:if test="${loginInfo.sitestatus==1 }">
+											<img
+												src="${loginInfo.image}"
+												class="profile" /> 
+										</c:if>
+												${loginInfo.id}
 									</a>
 								</div>
 							</div>
