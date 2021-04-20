@@ -32,7 +32,6 @@
 .flex-container {
 	display: flex;
 	justify-content: space-between;
-	
 }
 
 .flex-container-boardlist {
@@ -46,12 +45,12 @@
 
 .flex-container-board {
 	display: flex;
+	width: 100%;
 	flex-direction: row;
 	font-size: 25px;
 	margin-bottom: 15px;
 	background-color: #eee;
 	border-radius: 10px;
-	width:100%;
 }
 
 .flex-container-category {
@@ -122,7 +121,6 @@
 											<b>카테고리 재검색</b>
 										</button>
 									</td>
-
 							</table>
 						</form>
 					</div>
@@ -177,13 +175,6 @@
 				<c:forEach var="board" items="${boardList}">
 					<div class="flex-container-board">
 
-						<c:if test="${fn:length(boardFileList)==0 }">
-							<div>
-								<img
-									src="${pageContext.request.contextPath}/resources/noimage.png"
-									style="width: 310px; height: 310px; margin: 10px;" />
-							</div>
-						</c:if>
 
 
 						<c:set var="flag" value="false" />
@@ -199,6 +190,13 @@
 								</c:if>
 							</c:if>
 						</c:forEach>
+						<c:if test="${flag==false}">
+							<div>
+								<img
+									src="${pageContext.request.contextPath}/resources/noimage.png"
+									style="width: 310px; height: 310px; margin: 10px;" />
+							</div>
+						</c:if>
 						<!-- 내용 출력 -->
 						<div style="margin-left: 30px">
 							<c:forTokens items="${board.category }" delims="," var="ctg">
@@ -230,6 +228,7 @@
 					</div>
 				</c:forEach>
 			</div>
+		</div>
 	</section>
 
 
