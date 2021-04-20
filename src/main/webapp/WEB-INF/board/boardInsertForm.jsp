@@ -37,8 +37,9 @@ font-size:15px;
 				</tr>
 				<tr>
 					<td class="group-input" width="200px"><label>작성자 </label></td>
-					<td class="group-input" width="500px"><input type="text"
-						name="writer" readOnly value="${loginInfo.id}"></td>
+					<td class="group-input" width="500px">
+					<input type="text"	name="writer" readOnly value="${loginInfo.id}">
+					</td>
 				</tr>
 				<tr>
 					<td class="group-input" width="200px"><label>주소</label></td>
