@@ -76,6 +76,7 @@ flex-container-reply {
 	font-size: 20px;
 }
 </style>
+
 <section class="blog-details spad">
 	<div class="container">
 		<div class="row">
@@ -186,9 +187,10 @@ flex-container-reply {
 									onClick="location.href='update.bd?no=${board.no}'" value="수정하기"
 									class="btn_img_nomal">
 							</c:if>
-							<a href="report.mb?reporteduserid=${sellerid}"><span
-								class="mcontent">신고하기</span> </a>
-
+							<a href="report.mb?reporteduserid=${sellerid}">
+							<span class="mcontent" style="color: red; font-weight: bold;">신고하기</span>
+							</a>
+							
 						</div>
 					</div>
 					<div align="center">

@@ -182,8 +182,8 @@ textarea {
 										</script> </span></td>
 										<td width="120"><a
 											href="report.mb?reporteduserid=${sellerid}"
-											onclick="return confirm('이 사용자를 신고하시겠습니까?');"> <span
-												class="mcontent" style="color: red; font-weight: bold;">신고하기</span>
+											onclick="return confirm('이 사용자를 신고하시겠습니까?');">
+											<span class="mcontent" style="color: red; font-weight: bold;">신고하기</span>
 										</a></td>
 
 									</tr>
