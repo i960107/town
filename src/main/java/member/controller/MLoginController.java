@@ -3,7 +3,6 @@ package member.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +29,7 @@ public class MLoginController {
 
 	@Autowired
 	ServletContext servletContext;
-	
+
 	@RequestMapping(value = command, method = RequestMethod.GET)
 	public String doActionG() {
 
@@ -51,7 +50,7 @@ public class MLoginController {
 		response.setContentType("text/html; charset=UTF-8");
 
 		ModelAndView mav = new ModelAndView();
-
+		
 		// 아이디 없음
 		if (midBean == null) {
 			pwriter.print("<script type='text/javascript'>");
@@ -64,14 +63,14 @@ public class MLoginController {
 		else {
 			// id + pw
 			if (pw.equals(midBean.getPw())) {
-				session.setAttribute("loginInfo", midBean);
 				mav.addObject("mbean", midBean);
 				if (session.getAttribute("destination") != null) {
-					gotoPage = (String) session.getAttribute("destination");
-					System.out.println(gotoPage);
-					session.removeAttribute("destination");
-				}
-				mav.setViewName(gotoPage);
+					mav.setViewName((String) session.getAttribute("destination"));
+				
+				session.setAttribute("destination", null);
+				}else {
+					mav.setViewName(gotoPage);}
+				session.setAttribute("loginInfo", midBean);
 			}
 			// id o, pw x
 			else {
@@ -85,10 +84,8 @@ public class MLoginController {
 
 			}
 		}
-
+		String desination = (String) session.getAttribute("destination");
 		return mav;
 	}
-	
-	
 
 }

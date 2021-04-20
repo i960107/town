@@ -72,7 +72,7 @@
 									<th class="group-input"><label>${mblist.no } </label></th>
 									<th class="group-input"><label>${mblist.subject } </label></th>
 									<th class="group-input"><label>${mblist.category } </label></th>
-									<th class="group-input"><label>${mblist.contents } </label></th>
+									<th class="group-input"><label>${fn:replace(mblist.contents,"<br>","")} </label></th>
 									<th class="group-input"><label>
 									<fmt:parseDate value="${mblist.regDate } " var="regdate" pattern="yyyy-MM-dd"/>
 									<fmt:formatDate value="${regdate }" pattern="yyyy-MM-dd"/>
@@ -117,7 +117,7 @@
 									<th class="group-input"><label>${mbrlist.no } </label></th>
 									<th class="group-input"><label>${mbrlist.subject } </label></th>
 									<th class="group-input"><label>${mbrlist.category } </label></th>
-									<th class="group-input"><label>${mbrlist.contents } </label></th>
+									<th class="group-input"><label>${fn:replace(mbrlist.contents,"<br>","")} </label></th>
 									<th class="group-input"><label>
 									<fmt:parseDate value="${mbrlist.regDate } " var="regdate" pattern="yyyy-MM-dd"/>
 									<fmt:formatDate value="${regdate }" pattern="yyyy-MM-dd"/>

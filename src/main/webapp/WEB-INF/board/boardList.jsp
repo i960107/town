@@ -32,11 +32,12 @@
 .flex-container {
 	display: flex;
 	justify-content: space-between;
+	
 }
 
 .flex-container-boardlist {
 	display: flex;
-	flex-grow: 1; flex-direction : column;
+	flex-direction: column;
 	justify-content: space-between;
 	width: 100%;
 	align-items: center;
@@ -50,6 +51,7 @@
 	margin-bottom: 15px;
 	background-color: #eee;
 	border-radius: 10px;
+	width:100%;
 }
 
 .flex-container-category {
@@ -114,8 +116,12 @@
 										</c:if></td>
 								</tr>
 								<tr>
-									<td style="background-color: #FFFFF0;" colspan=2 align="right"><input
-										type="submit" value="카테고리 조건 검색"></td>
+									<td style="background-color: #FFFFF0;" colspan=2 align="right">
+										<button type="submit" class="btn btn-warning"
+											style="align: right;">
+											<b>카테고리 재검색</b>
+										</button>
+									</td>
 							</table>
 						</form>
 					</div>
@@ -169,6 +175,16 @@
 			<div class="flex-container-boardlist">
 				<c:forEach var="board" items="${boardList}">
 					<div class="flex-container-board">
+
+						<c:if test="${fn:length(boardFileList)==0 }">
+							<div>
+								<img
+									src="${pageContext.request.contextPath}/resources/noimage.png"
+									style="width: 310px; height: 310px; margin: 10px;" />
+							</div>
+						</c:if>
+
+
 						<c:set var="flag" value="false" />
 						<c:forEach var="bean" items="${boardFileList}">
 							<c:if test="${flag==false}">
@@ -182,7 +198,7 @@
 								</c:if>
 							</c:if>
 						</c:forEach>
-
+						<!-- 내용 출력 -->
 						<div style="margin-left: 30px">
 							<c:forTokens items="${board.category }" delims="," var="ctg">
 								<c:forEach begin="0" end="${fn:length(bCategoryList)-1}" var="i">
@@ -195,9 +211,9 @@
 							<br> <font color="orange"><b> ${board.subject} </b> </font>
 							<br> <span class="contents">${fn:substring(board.contents,0,10)}
 							</span><a href='detailView.bd?no=${board.no}'>...더보기</a>
-
 							<div style="margin-top: 30px" class="mcontent">
 								<span> <a href="tradeDetail.mb?sellerid=${board.writer}">${board.writer}</a>
+
 									<span>${board.address1}&nbsp${board.address2}</span> <br>
 								</span> <i class="fa fa-calendar-o"></i>
 								<!-- 시간 바꿔서 출력하기 Javascript코드 -->
@@ -213,7 +229,6 @@
 					</div>
 				</c:forEach>
 			</div>
-		</div>
 	</section>
 
 

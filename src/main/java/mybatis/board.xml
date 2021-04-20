@@ -167,9 +167,9 @@
 		</if>
 		order by no desc
 	</select>
-	<!-- 대댓글 이전 스텝 가져오기 -->
-	<select id="getpreStep" resultType="Integer">
-		select max(re_step) from
+	<!-- 댓글 레벨 가져오기 -->
+	<select id="getMaxReLevel" resultType="Integer">
+		select max(re_level) from
 		town_board where ref=#{ref}
 	</select>
 </mapper>

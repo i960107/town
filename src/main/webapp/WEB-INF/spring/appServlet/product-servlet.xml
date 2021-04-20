@@ -44,8 +44,7 @@
 			<mvc:mapping path="/unlike.prd" />
 			<mvc:mapping path="/pWrite.prd" />
 			<mvc:mapping path="/update.prd" />
-			<mvc:mapping path="/mySaleList.prd" />
-			<mvc:mapping path="/myPurchaselist.prd" />
+		
 			<ref bean="AuthorityInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

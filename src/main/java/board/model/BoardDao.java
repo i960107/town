@@ -28,10 +28,9 @@ public class BoardDao {
 	}
 
 	public List<BoardBean> getBoardList(String keyword, String category, String address1, String address2) {
-		
+
 		List<BoardBean> boardList = new ArrayList<BoardBean>();
-		
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (keyword != null) {
 			map.put("keyword", "%" + keyword + "%");
@@ -48,10 +47,10 @@ public class BoardDao {
 				cateList.add(c);
 			}
 		}
-		//블락된 아이디 가져오기
+		// 블락된 아이디 가져오기
 		List<String> blockedId = mdao.getBlockedId();
-		if(blockedId.size()==0) {
-			blockedId=null;
+		if (blockedId.size() == 0) {
+			blockedId = null;
 		}
 		map.put("category", cateList);
 		map.put("address1", address1);
@@ -61,7 +60,7 @@ public class BoardDao {
 		boardList = sqlSessionTemplate.selectList(namespace + ".getBoardList", map);
 		return boardList;
 	}
-	
+
 	public void insertBoard(BoardBean board) {
 		sqlSessionTemplate.selectList(namespace + ".insertBoard", board);
 	}
@@ -133,21 +132,23 @@ public class BoardDao {
 	}
 
 //댓글 입력
-	public void insertReply(String writer, String contents, int ref, int reLevel) {
+	public void insertReply(String writer, String contents, int ref, int reLevel, int reStep) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("writer", writer);
 		map.put("contents", contents);
 		map.put("ref", ref);
+		if (reLevel == 0) {
+			reLevel = getMaxReLevel(ref) + 1;
+		}
 		map.put("reLevel", reLevel);
-		int prevStep = getpreStep(ref);
-		map.put("reStep", prevStep + 1);
-		System.out.println(writer + contents + ref + reLevel);
+		map.put("reStep", reStep);
+		System.out.println(writer + contents + ref + reLevel+ reStep);
 		sqlSessionTemplate.insert(namespace + ".insertReply", map);
 	}
 
-	/* 대댓글 이전 스텝 가져오기 */
-	private int getpreStep(int ref) {
-		int prevStep = sqlSessionTemplate.selectOne(namespace + ".getpreStep", ref);
+	/* 댓글 레벨 가져오기 */
+	private int getMaxReLevel(int ref) {
+		int prevStep = sqlSessionTemplate.selectOne(namespace + ".getMaxReLevel", ref);
 		return prevStep;
 	}
 

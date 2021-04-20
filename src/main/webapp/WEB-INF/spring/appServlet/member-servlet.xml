@@ -22,10 +22,6 @@
 			<ref bean="AuthLoginInterceptor" />
 		</mvc:interceptor>
 		<!-- 인터셉터:일반사용자만 -->
-		<mvc:interceptor>
-			<mvc:mapping path="/tradeReview.mb" />
-			<ref bean="AuthorityInterceptor" />
-		</mvc:interceptor>
 	</mvc:interceptors>
 
 	<bean

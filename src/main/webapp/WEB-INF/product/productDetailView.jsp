@@ -45,9 +45,9 @@ textarea {
 	width: 350px;
 }
 
-.memberstatus{
-	font-size:10pt;
-	color:red;
+.memberstatus {
+	font-size: 10pt;
+	color: red;
 	font-wieght: bold;
 }
 </style>
@@ -103,6 +103,11 @@ textarea {
 							<!-- Carousel items -->
 
 							<div class="carousel-inner">
+								<c:if test="${length:fileList==0 }">
+									<div class="carousel-item set-bg"
+										data-setbg="${pageContext.request.contextPath}/resources/noimage.png">
+									</div>
+								</c:if>
 								<c:forEach var="item" items="${fileList}" varStatus="i">
 									<div
 										class="carousel-item <c:if test="${i.index==0}">active</c:if> set-bg"
@@ -120,10 +125,9 @@ textarea {
 							<td>
 								<table>
 									<tr>
-									
-									<tr height="72"><td colspan="3">
-									<c:forTokens items="${pBean.category}" delims=","
-												var="ctg">
+									<tr height="72">
+										<td colspan="3"><c:forTokens items="${pBean.category}"
+												delims="," var="ctg">
 												<c:forEach begin="0" end="${fn:length(pCategoryList)-1}"
 													var="i">
 													<c:if test="${pCategoryList[i].no==ctg}">
@@ -131,9 +135,7 @@ textarea {
 															style="margin: 10px 5px;">${pCategoryList[i].categoryName}</button>
 													</c:if>
 												</c:forEach>
-											</c:forTokens>
-											<br>
-										<span class="subject">${pBean.subject }</span></td>
+											</c:forTokens> <br> <span class="subject">${pBean.subject }</span></td>
 									</tr>
 									<tr height="72">
 										<td colspan="3"><span class="price"> <fmt:formatNumber
@@ -145,24 +147,22 @@ textarea {
 										<!-- 회원 정보 -->
 										<td><a href="tradeDetail.mb?sellerid=${mbean.id }">
 												<div class="box">
-												<c:if test="${mbean.sitestatus==1 }">
-													<img class="profile" src="${mbean.image}">
-												</c:if>
-												<c:if test="${mbean.sitestatus==0 }">
-													<img class="profile" src="<%=request.getContextPath()%>/resources/members/${mbean.image}">
-												</c:if>
+													<c:if test="${mbean.sitestatus==1 }">
+														<img class="profile" src="${mbean.image}">
+													</c:if>
+													<c:if test="${mbean.sitestatus==0 }">
+														<img class="profile"
+															src="<%=request.getContextPath()%>/resources/members/${mbean.image}">
+													</c:if>
 												</div>
 										</a></td>
-										<td valign="top">
-											<a href="tradeDetail.mb?sellerid=${mbean.id }">
-												<span class="subject">${mbean.id }</span>
-											</a>
-											<br>
-											<!-- 계정 정지 시 아이디 옆 text 노출 -->
-											<c:if test="${mbean.memberstatus == '0'}">
+										<td valign="top"><a
+											href="tradeDetail.mb?sellerid=${mbean.id }"> <span
+												class="subject">${mbean.id }</span>
+										</a> <br> <!-- 계정 정지 시 아이디 옆 text 노출 --> <c:if
+												test="${mbean.memberstatus == '0'}">
 												<span class="memberstatus">[신고로 인해 정지된 계정입니다]</span>
-											</c:if>
-										</td>
+											</c:if></td>
 									</tr>
 									<tr height="72">
 										<!-- 조회수 / 등록일 / 신고 -->
@@ -172,12 +172,11 @@ textarea {
 											document
 													.write(displayTime('<c:out value="${pBean.regdate}"/>'));
 										</script> </span></td>
-										<td width="120">
-											<a href="report.mb?reporteduserid=${sellerid}"
-											onclick="return confirm('이 사용자를 신고하시겠습니까?');">
-												<span class="mcontent" style="color: red; font-weight: bold;">신고하기</span>
-											</a>
-										</td>
+										<td width="120"><a
+											href="report.mb?reporteduserid=${sellerid}"
+											onclick="return confirm('이 사용자를 신고하시겠습니까?');"> <span
+												class="mcontent" style="color: red; font-weight: bold;">신고하기</span>
+										</a></td>
 
 									</tr>
 									<tr height="72">
@@ -244,33 +243,32 @@ textarea {
 			</tr>
 			<tr>
 				<td colspan=2 height="400" valign="top">
-					<hr> <span style="font-weight: bold; color: #000000; font-size: 17px;">${pBean.contents }</span>
+					<hr> <span
+					style="font-weight: bold; color: #000000; font-size: 17px;">${pBean.contents }</span>
 				</td>
 			</tr>
 			<tr>
-				<td colspan=2 align="center">
-				<input type="button"
+				<td colspan=2 align="center"><input type="button"
 					style="margin-bottom: 10px" onClick="location.href='saleList.prd'"
-					value="목록보기" class="site-btn register-btn">
-					<c:if test="${loginId==pBean.sellerid }">
-					<script>
-					function delPrd() {
-						var ckDelete = confirm("삭제하시겠습니까?");
-						if(ckDelete){
-							location.href='delete.prd?no=${pBean.no}';
-						}else{
-							return;
-						}
-					}
-					</script>
-					<input type="button"
-					style="margin-bottom: 10px" onClick="return delPrd()"
-					value="삭제하기" class="site-btn register-btn">
-					<input type="button"
-					style="margin-bottom: 10px" onClick="javascript:location.href='updateRegDate.prd?no=${pBean.no}&sellerid=${mbean.id }'"
-					value="끌올하기" class="site-btn register-btn">
-					</c:if>
-					</td>
+					value="목록보기" class="site-btn register-btn"> <c:if
+						test="${loginId==pBean.sellerid }">
+						<script>
+							function delPrd() {
+								var ckDelete = confirm("삭제하시겠습니까?");
+								if (ckDelete) {
+									location.href = 'delete.prd?no=${pBean.no}';
+								} else {
+									return;
+								}
+							}
+						</script>
+						<input type="button" style="margin-bottom: 10px"
+							onClick="return delPrd()" value="삭제하기"
+							class="site-btn register-btn">
+						<input type="button" style="margin-bottom: 10px"
+							onClick="javascript:location.href='updateRegDate.prd?no=${pBean.no}&sellerid=${mbean.id }'"
+							value="끌올하기" class="site-btn register-btn">
+					</c:if></td>
 			</tr>
 		</table>
 </body>

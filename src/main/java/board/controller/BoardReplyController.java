@@ -18,10 +18,11 @@ public class BoardReplyController {
 			@RequestParam("writer") String writer,
 			@RequestParam("contents") String contents,
 			@RequestParam("ref") int ref,
-			@RequestParam("reLevel") int reLevel
+			@RequestParam(value="reLevel",required=false) int reLevel,
+			@RequestParam("reStep") int reStep
 			) {
 		String getPage = "redirect:/detailView.bd";
-		dao.insertReply(writer,contents,ref,reLevel);
+		dao.insertReply(writer,contents,ref,reLevel,reStep);
 		getPage+="?no="+ref;
 		return getPage;
 	}

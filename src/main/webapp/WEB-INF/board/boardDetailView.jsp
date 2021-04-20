@@ -176,15 +176,15 @@ flex-container-reply {
 							</c:if>
 						</c:forEach>
 						<input type="button" name="like" value="${heart }공감하기 ${likeCnt}"
-
 							onclick="${likecondition}" class="btn_img_like">
-							<%-- <a href="report.mb?reported_userid=${board.writer}"> --%>
-							<a href="report.mb?reporteduserid=${sellerid}">
-								<c:if test="${loginInfo.id==board.writer}">
-								<input type="button" onClick="location.href='update.bd?no=${board.no}'" value="수정하기" class="btn_img_nomal">
-								</c:if>
-								<span class="mcontent">신고하기</span>
-							</a>
+						<%-- <a href="report.mb?reported_userid=${board.writer}"> --%>
+						<a href="report.mb?reporteduserid=${sellerid}"> <c:if
+								test="${loginInfo.id==board.writer}">
+								<input type="button"
+									onClick="location.href='update.bd?no=${board.no}'" value="수정하기"
+									class="btn_img_nomal">
+							</c:if> <span class="mcontent">신고하기</span>
+						</a>
 					</div>
 				</div>
 				<div align="center">
@@ -249,7 +249,9 @@ flex-container-reply {
 							<div class="row">
 								<input type="hidden" name="writer" value="${loginInfo.id}">
 								<input type="hidden" name="ref" value="${board.no}"> <input
-									type="hidden" name="reLevel" value="2">
+									type="hidden" name="reStep" value="1">
+									 <input
+									type="hidden" name="reLevel" value="0">
 								<div class="col-lg-6">
 									<a href='tradeDetail.mb?sellerid=${loginInfo.id}'>
 										<div class="box">
@@ -285,7 +287,9 @@ flex-container-reply {
 				<c:forEach var="reply" items="${replyList}">
 					<div class="posted-by flex-container-row">
 						<div class="pb-pic">
-							<c:if test="${reply.reLevel>=3}">
+							<c:set var="reLevel" value="${reply.reLevel}" />
+							<c:if test="${reply.reStep!=1}">
+								<img src="${pageContext.request.contextPath}/resources/level.gif" width="${(reply.reStep-1)*50}">
 								<img
 									src="${pageContext.request.contextPath}/resources/right-arrow.png"
 									width="50">
@@ -299,43 +303,45 @@ flex-container-reply {
 											.write(displayTime('<c:out value="${reply.regDate}"/>'));
 								</script></span>
 							<p>${reply.contents}
-								<input data-toggle="modal" data-target="#myModal" type="button"
-									value="답글 달기">
+								<input data-toggle="modal" data-target="#myModal${reply.no}"
+									type="button" value="답글 달기">
 							</p>
 						</div>
 					</div>
+					<div class="modal fade" id="myModal${reply.no}" tabindex="-1"
+						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form name="myform" action="reply.bd">
+										<input type="hidden" name="writer" value="${loginInfo.id}">
+										<input type="hidden" name="ref" value="${board.no}"> <input
+											type="hidden" name="reLevel" value="${reply.reLevel}">
+										<input type="hidden" name="reStep" value="${reply.reStep+1}">
+										<textarea name="contents" cols="40"></textarea>
+										<button type="submit" class="btn btn-primary">답글달기</button>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Close</button>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
 				</c:forEach>
 			</div>
 		</div>
 	</div>
-	</div>
 </section>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<form name="myform" action="reply.bd">
-					<input type="hidden" name="writer" value="${loginInfo.id}">
-					<input type="hidden" name="ref" value="${board.no}"> <input
-						type="hidden" name="reLevel" value="3">
-					<textarea name="contents" cols="40"></textarea>
-					<button type="submit" class="btn btn-primary">답글달기</button>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-			</div>
-		</div>
-	</div>
-</div>
 
 
 <%@ include file="./../common/main_bottom.jsp"%>
