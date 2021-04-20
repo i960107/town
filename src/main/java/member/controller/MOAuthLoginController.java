@@ -48,7 +48,7 @@ public class MOAuthLoginController {
 			HttpServletRequest request) throws IllegalStateException, IOException {
 		System.out.println(code);
 		ModelAndView mav = new ModelAndView();
-		RestTemplate rt = new RestTemplate(); //httpsURLConnection post방식으로 java에서 넘기기
+		RestTemplate rt = new RestTemplate(); //Spring내장객체 httpsURLConnection post방식으로 java에서 넘기기 json 형식
 		HttpHeaders header = new HttpHeaders();//header object
 		
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>(); //map으로 param값 받음
@@ -60,16 +60,16 @@ public class MOAuthLoginController {
 		String requestURI = "http://localhost:"+request.getServerPort()+request.getContextPath()+"/kakaologin.mb";
 		System.out.println(requestURI);
 		System.out.println("----TEST-----");
-		//http object 토큰과 코드들
+		//http object 식별키와 코드들
 		params.add("grant_type", "authorization_code");
 		params.add("client_id", "6a065330b97f7755c569892d3485de7b");
 		params.add("redirect_uri", requestURI);
 		params.add("code", code);
 		
-		//http로 넘길 map파일
+		//http로 넘길 map파일 parameter 과 header을 넘길 수 있는 spring 객체
 		HttpEntity<MultiValueMap<String, String>> kakaoToken = new HttpEntity<MultiValueMap<String, String>>(params, header);
 		
-		// post 방식으로 http 요청
+		// post 방식으로 http 카카오에 토큰 요청 
 		ResponseEntity<String> response = rt.exchange(
 				"https://kauth.kakao.com/oauth/token", HttpMethod.POST, kakaoToken, String.class
 				); //토큰 발급 요청주소, 요청방식, 넘길 데이터, 받을 데이터 타입
@@ -96,8 +96,9 @@ public class MOAuthLoginController {
 				HttpMethod.POST,
 				kakaoProfile,
 				String.class
-				); //토큰 발급 요청주소, 요청방식, 넘길 데이터, 받을 데이터 타입
+				); //데이터 요청, 요청방식, 넘길 데이터, 받을 데이터 타입
 
+		System.out.println("-----getBody------");
 		System.out.println(response2.getBody());
 		
 		ObjectMapper objectMapper2 = new ObjectMapper();
