@@ -30,7 +30,16 @@
 		no,seller_id, subject, price, readcount,
 		category, address1, address2, image1, reg_date
 		from product
-		where deal_status = 1)
+		where deal_status = 1
+		<if test="blockedId!=null">
+			and seller_id not in
+			<foreach item="id" index="index" collection="blockedId"
+				separator="," open="(" close=")">
+				#{id}
+			</foreach>
+		</if>
+		)
+		
 		where rank between 1 and 10
 	</select>
 
