@@ -40,7 +40,8 @@
                             <tbody>
                             	<c:forEach var="chat" items="${clist }">
 								<tr align="center">
-									<td class="group-input"><label><a onclick="chat('${chat.pno }', '${chat.sellerid}', '${chat.buyerid}')" style="cursor: pointer;">${chat.subject }</a></label></td>
+									<td class="group-input"><label><a onclick="chat('${chat.pno }', '${chat.sellerid}', '${chat.buyerid}')" style="cursor: pointer;">
+									<font style="color: #EDA900;" >${chat.subject }</font> </a></label></td>
 									<td ><label>${chat.sellerid }</label></td>
 									<td><label>${chat.buyerid }
 									</label></td>

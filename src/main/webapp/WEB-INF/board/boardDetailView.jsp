@@ -185,6 +185,7 @@ flex-container-reply {
 									class="btn_img_nomal">
 							</c:if> <span class="mcontent">신고하기</span>
 						</a>
+
 					</div>
 				</div>
 				<div align="center">

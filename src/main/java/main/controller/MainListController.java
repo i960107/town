@@ -34,6 +34,8 @@ public class MainListController {
 				
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(getPage);
+		
+		// 인기 매물 리스트
 		List<ProductBean> list = pDao.getPopList();
 		mav.addObject("list", list);
 		//System.out.println("메인리스트 prd no:"+ list.get(0).getNo()); //null이 맞음  rank 별칭선언으로 넘어오는거 rank로 받아옴
@@ -42,6 +44,7 @@ public class MainListController {
 		List<ProdCategoryBean> clist = pDao.getAllPrdCategory();
 		context.setAttribute("pCategoryList", clist);
 		
+		// 중고거래 인기 키워드 리스트
 		List<ProductBean> klist = pDao.getKeywordList();
 		mav.addObject("klist", klist);
 		

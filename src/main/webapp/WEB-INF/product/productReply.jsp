@@ -231,12 +231,20 @@
 
 
 <style>
+
+	.div-out{
+		width : 100%;
+		height: 85%;
+		/* background-color: blue; */
+			overflow: scroll;
+	}
 	.div-style{
 		width: 100%;
-		height: 90%;
+		height: auto;
 		border: 5px solid #FFC19E;
 		border-radius: 10%;
 		align-content: center;		
+	
 	}
 	img{
 		margin-left: auto;
@@ -246,6 +254,7 @@
 	.chat-div{
 		width: auto;
 		height: auto;
+		/* overflow: scroll; */
 	}
 	.div-saleInfo{
 		width: 75px;
@@ -257,6 +266,10 @@
 		border-radius: 10%;
 		align-content: center;	
 		margin-bottom: 50;
+	}
+	.chatArea{
+	width: 350px;
+	border-radius: 8px;
 	}
 
 </style>
@@ -273,15 +286,20 @@
 		alert("이미 판매완료 된 상품입니다.");
 	}
 	
+	function goDetail() {
+		var no = "<c:out value="${sbean.id }"/>";
+		var id = "<c:out value="${pbean.no }"/>";
+		window.opener.location.href="detail.prd?no=${pbean.no }&sellerid=${sbean.id }";
+	}
 </script>
 
 </head>
 <body>
 
-
 <br>
 <img src="<%=request.getContextPath()%>/resources/img/logo.png" >
 <br>
+<div class="div-out">
 <div class="div-style">
 <table align="center">
 	<tr>
@@ -290,10 +308,10 @@
 			<div class="chat-div">
 			<c:forEach var="chat" items="${clist }">
 			<c:if test="${login==chat.talker }">
-			<p align="right" >${chat.contents }</p>
+			<p style="opacity: 0.9; background-color: #DADADA" class="chatArea" align="right" ><span style="opacity: 1.0; font-weight: bold;">${chat.contents }</span></p>
 			</c:if>
 			<c:if test="${login!=chat.talker }">
-			<p align="left" >${chat.contents }</p>
+			<p style="opacity: 0.9; background-color: #E5EFFF" class="chatArea" align="left" ><span style="opacity: 1.0; font-weight: bold;">${chat.contents }</span></p>
 			</c:if>
 			</c:forEach>
 			</div>
@@ -315,7 +333,7 @@
 	<td>
 		<!-- 판매자 -->
 		<c:if test="${sbean.id eq login && pbean.dealstatus == 1 }">
-		<input type="button" value="거래완료" onclick="updateDealStatus('${sbean.id }','${bbean.id }')"><br><br>
+		<button class="btn btn-danger btn-sm" type="button" onclick="updateDealStatus('${sbean.id }','${bbean.id }')"><b>거래완료하기</b></button><br><br>
 		</c:if>
 		
 		<c:if test="${sbean.id eq login && pbean.dealstatus == 0 }">
@@ -332,7 +350,7 @@
 		</c:if>
 	
 
-		<input type="submit" value="전송">
+		<input class="btn btn-warning btn-sm" type="submit" value="전송">
 	</td>
 	</tr>
 	<tr align="center">
@@ -340,15 +358,17 @@
 		<br>
 		<c:if test="${sbean.id ne login && pbean.dealstatus == 0 }">
 		<button type="button" value="구매 리뷰 등록" data-toggle="modal"
-		data-target="#myModal"> 구매리뷰 등록 </button>
+		data-target="#myModal" class="btn btn-danger btn-sm"><b>구매리뷰 등록 </b> </button>
 		</c:if>
-		<input type="button" onclick="self.close()" value="대화창 닫기" >
+		<input type="button" onclick="goDetail()" value="상품보기" class="btn btn-warning btn-sm">
+		<input type="button" onclick="self.close()" value="대화닫기" class="btn btn-warning btn-sm">
 	
 	</td>
 	</tr>
 	</table>
 		<br>
 </form>
+</div>
 </div>
 
 <!-- 거래후기 남기기 -->
@@ -405,7 +425,8 @@
 							<div>
 								<textarea name="contents" class="textarea-review"></textarea>
 							</div>
-							<input type="submit" value="구매리뷰 등록" />
+
+							<button type="submit" class="btn btn-danger btn-sm"><b>등록하기</b></button>
 						</form>
 
 					</div>

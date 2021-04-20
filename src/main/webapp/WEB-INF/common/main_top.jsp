@@ -14,39 +14,18 @@
 <title>main</title>
 
 <!-- Google Font -->
-
-<link
-	href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/themify-icons.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/elegant-icons.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/nice-select.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/jquery-ui.min.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/slicknav.min.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/style.css"
-	type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/themify-icons.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/nice-select.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">
 </head>
 <body>
 
@@ -101,10 +80,8 @@
 						</c:if>
 
 						<c:if test="<%=loginInfo != null%>">
-							<a href="<%=logout%>" class="login-panel"><i
-								class="fa fa-user"></i>LogOut</a>
-							<a href="<%=myPage%>" class="login-panel"><%=loginInfo.getName()%>
-								님</a>
+							<a href="<%=logout%>" class="login-panel"><i class="fa fa-user"></i>LogOut</a>
+							<a href="<%=myPage%>" class="login-panel"><%=loginInfo.getName()%>님</a>
 						</c:if>
 					</div>
 				</div>
@@ -123,16 +100,15 @@
 					<div class="row">
 						<div class="col-lg-2 col-md-2">
 							<div class="logo">
-								<a href="<%=viewMain%>"> <img
-									src="<%=request.getContextPath()%>/resources/img/logo.png"
-									alt="logo">
+								<a href="<%=viewMain%>">
+									<img src="<%=request.getContextPath()%>/resources/img/logo.png" alt="logo">
 								</a>
 							</div>
 						</div>
 						<div class="col-lg-7 col-md-7">
 							<div class="advanced-search">
 								<div class="input-group">
-									<select name="whatColumn" onchange="searchWhere()">
+									<select name="whatColumn" onchange="searchWhere()" class="form-control">
 										<!-- <option value="all">전체검색</option> -->
 										<option value="saleList.prd"
 											<c:if test="${requestPage=='saleList.prd'}">selected="selected"</c:if>>중고거래
@@ -140,8 +116,9 @@
 										<option value="list.bd"
 											<c:if test="${requestPage!='saleList.prd'}">selected="selected"</c:if>>동네생활
 										</option>
-									</select> <input type="text" id="keyword" name="keyword"
-										placeholder="검색어를 입력하세요." value="${keyword}">
+									</select>
+									
+									<input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요." value="${keyword}">
 									<button type="submit">
 										<i class="ti-search"></i>
 									</button>
@@ -197,24 +174,15 @@
 	<!-- Header End -->
 
 	<!-- Js Plugins -->
-	<script
-		src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/jquery-ui.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/jquery.countdown.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/jquery.nice-select.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/jquery.zoom.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/jquery.dd.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/jquery.slicknav.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/owl.carousel.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/jquery-3.3.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/jquery-ui.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/jquery.countdown.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/jquery.nice-select.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/jquery.zoom.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/jquery.dd.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/jquery.slicknav.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/owl.carousel.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/main.js"></script>
 
 </body>

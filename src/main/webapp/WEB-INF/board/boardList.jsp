@@ -122,6 +122,7 @@
 											<b>카테고리 재검색</b>
 										</button>
 									</td>
+
 							</table>
 						</form>
 					</div>
