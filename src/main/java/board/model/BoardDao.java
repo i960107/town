@@ -131,6 +131,10 @@ public class BoardDao {
 		sqlSessionTemplate.delete(namespace + ".deleteBoard", no);
 	}
 
+	public void deleteLike(int no) {
+		sqlSessionTemplate.delete(namespace + ".deleteLike", no);
+	}
+
 //댓글 입력
 	public void insertReply(String writer, String contents, int ref, int reLevel, int reStep) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -142,7 +146,7 @@ public class BoardDao {
 		}
 		map.put("reLevel", reLevel);
 		map.put("reStep", reStep);
-		System.out.println(writer + contents + ref + reLevel+ reStep);
+		System.out.println(writer + contents + ref + reLevel + reStep);
 		sqlSessionTemplate.insert(namespace + ".insertReply", map);
 	}
 

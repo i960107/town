@@ -203,7 +203,7 @@ increment by 1
 minvalue 0
 nocache;
 
-
+--프로덕트 파일 시퀀스
 drop table product_file;
 create table product_file(
 	no number primary key,
@@ -211,7 +211,7 @@ create table product_file(
 	filename varchar2(100)
 );
 
---프로덕트 파일 시퀀스
+--키워드 시퀀스
 drop sequence keyword_seq;   
 create sequence keyword_seq
 start with 0
