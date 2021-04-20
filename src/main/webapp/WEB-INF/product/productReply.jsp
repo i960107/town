@@ -333,7 +333,7 @@
 	<td>
 		<!-- 판매자 -->
 		<c:if test="${sbean.id eq login && pbean.dealstatus == 1 }">
-		<input class="div-saleInfo" type="button" value="거래완료" onclick="updateDealStatus('${sbean.id }','${bbean.id }')"><br><br>
+		<button class="btn btn-danger btn-sm" type="button" onclick="updateDealStatus('${sbean.id }','${bbean.id }')"><b>거래완료하기</b></button><br><br>
 		</c:if>
 		
 		<c:if test="${sbean.id eq login && pbean.dealstatus == 0 }">
