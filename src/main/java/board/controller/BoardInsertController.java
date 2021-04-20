@@ -23,7 +23,7 @@ import board.model.BoardDao;
 import member.model.MemberBean;
 
 @Controller
-public class boardInsertController {
+public class BoardInsertController {
 	private final String command = "/insert.bd";
 	private String getPage = "boardInsertForm";
 	private String goToPage = "redirect:/list.bd";
