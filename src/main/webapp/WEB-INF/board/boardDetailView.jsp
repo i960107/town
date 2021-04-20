@@ -202,12 +202,16 @@ flex-container-reply {
 					<c:if test="${previousBoard!=null}">
 						<div>
 							<a href="detailView.bd?no=${previousBoard.no}" class="prev-blog">
+
 								<div class="pb-pic">
-									<div class="box">
-										<i class="ti-arrow-left"></i> <img
-											src="${pageContext.request.contextPath}/resources/${prevImage}"
-											alt="" class="profile">
-									</div>
+									<c:if test="${prevImage!=null }">
+										<div class="box">
+											<i class="ti-arrow-left"></i> <img
+												src="${pageContext.request.contextPath}/resources/${prevImage}"
+												alt="" class="profile">
+										</div>
+									</c:if>
+									<c:if test="${prevImage==null }"><i class="ti-arrow-left"></i></c:if>
 								</div>
 								<div class="pb-text">
 									<span>Previous Post:</span>
@@ -223,12 +227,15 @@ flex-container-reply {
 						<div>
 							<a href="detailView.bd?no=${nextBoard.no}" class="next-blog">
 								<div class="pb-pic">
-									<div class="box">
-										<img
-											src="${pageContext.request.contextPath}/resources/${nextImage}"
-											alt="" class="profile">
-									</div>
-									<i class="ti-arrow-right"></i>
+									<c:if test="${nextImage!=null }">
+										<div class="box">
+											<img
+												src="${pageContext.request.contextPath}/resources/${nextImage}"
+												alt="" class="profile">
+										</div>
+										<i class="ti-arrow-right"></i>
+									</c:if>
+										<c:if test="${nextImage!=null }"><i class="ti-arrow-right"></i></c:if>
 								</div>
 								<div class="nb-text">
 									<span>Next Post:</span>

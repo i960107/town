@@ -21,7 +21,7 @@ import board.model.BoardDao;
 import board.model.BoardFileBean;
 
 @Controller
-public class boardListController {
+public class BoardListController {
 	private final String command = "/list.bd";
 	private String goToPage = "boardList";
 	@Autowired
