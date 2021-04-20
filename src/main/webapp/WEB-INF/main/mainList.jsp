@@ -49,8 +49,8 @@
 .flex-container-product {
 	display: flex;
 	justify-content: flex-start;
-	width: 100%;
 	flex-wrap: wrap;
+	width: 70%;
 }
 
 .flex-container-product-item {
@@ -62,7 +62,10 @@
 	font-weight: bold;
 	background-color: #eee;
 }
-
+.flex-container{
+display:flex;
+justify-content: center;
+}
 .id {
 	font-size: 20px;
 }
@@ -147,25 +150,27 @@
 	<div class="section-title">
 		<h2 align="center">인기 매물 리스트</h2>
 	</div>
-
-	<div class="flex-container-product" align="center">
-		<c:set var="step" value="0" />
-		<c:forEach var="i" items="${list }">
-			<c:set var="step" value="${step+1 }" />
-			<div class="flex-container-product-item">
-				<p>
-					<a href="detail.prd?no=${i.no}&sellerid=${i.sellerid}"
-						class=".popkeyword"> <img
-						src="<%=request.getContextPath()%>/resources/${i.image1}"
-						width="200" height="200" alt="상품사진"> <br>
-					</a>
-				</p> <span class="subject"><font size="4pt"> 제목 : ${i.subject} </span>
-				<br> <span class="price">가격 : <fmt:formatNumber
-						value="${i.price }" pattern="###,###" /> </span><br> 주소 :
-					${i.address1} ${i.address2 } <br> 조회수 : ${i.readcount} <br>
-			</font>
-			</div>
-		</c:forEach>
+	<div class="flex-container">
+		<div class="flex-container-product" align="center">
+			<c:set var="step" value="0" />
+			<c:forEach var="i" items="${list }">
+				<c:set var="step" value="${step+1 }" />
+				<div class="flex-container-product-item">
+					<p>
+						<a href="detail.prd?no=${i.no}&sellerid=${i.sellerid}"
+							class=".popkeyword"> <img
+							src="<%=request.getContextPath()%>/resources/${i.image1}"
+							width="200" height="200" alt="상품사진"> <br>
+						</a>
+					</p>
+					<span class="subject"><font size="4pt"> 제목 :
+							${i.subject} </span> <br> <span class="price">가격 : <fmt:formatNumber
+							value="${i.price }" pattern="###,###" />
+					</span><br> 주소 : ${i.address1} ${i.address2 } <br> 조회수 :
+					${i.readcount} <br> </font>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
 	<!-- 인기매물 끝 -->
 
