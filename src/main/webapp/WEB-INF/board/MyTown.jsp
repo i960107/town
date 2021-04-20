@@ -27,7 +27,7 @@
 	position: absolute;
 	width: 60%;
 	height: 100px;
-	margin: 0 38%;
+	margin: 0 32.5%;
 	text-align: center;
 }
 </style>
