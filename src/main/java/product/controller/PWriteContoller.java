@@ -67,7 +67,7 @@ public class PWriteContoller {
 			MultipartHttpServletRequest mhsq) throws IllegalStateException, IOException {
 		
 		ModelAndView mav = new ModelAndView();
-		
+		mav.setViewName(gotoPage);
 		MemberBean mbean = pDao.getSellerInfo(pbean.getSellerid()); //판매자 정보 조회
 		List<ProdCateBean> cateList = pDao.getAllCategory(); //카테고리 목록 호출
 		mav.addObject("mbean", mbean);
