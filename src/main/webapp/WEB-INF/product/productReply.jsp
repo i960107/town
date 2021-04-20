@@ -426,10 +426,7 @@
 								<textarea name="contents" class="textarea-review"></textarea>
 							</div>
 
-							<button type="submit" class="btn btn-danger btn-sm"><b>구매리뷰 등록</b></button>
-
-							<input type="submit" value="구매리뷰 등록" class="btn btn-warning"/>
-
+							<button type="submit" class="btn btn-danger btn-sm"><b>등록하기</b></button>
 						</form>
 
 					</div>
