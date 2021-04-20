@@ -80,10 +80,10 @@
 							</tr>
 
 							<c:forEach var="mblist" items="${mblists }">
-<<<<<<< HEAD
+
 								<tr align="center">
 									<th class="group-input"><label>${mblist.no } </label></th>
-									<th class="group-input"><label>${mblist.subject } </label></th>
+									<th class="group-input"><label><a href="detailView.bd?no=${mblist.no}"> ${mblist.subject }</a> </label></th>
 									<th class="group-input"><label>${mblist.category } </label></th>
 									<th class="group-input"><label>${fn:replace(mblist.contents,"<br>","")} </label></th>
 									<th class="group-input"><label>
@@ -96,29 +96,8 @@
 								</tr>
 							</c:forEach>
 				
-=======
-									<tr align="center">
-										<td class="group-input"><label>${mblist.no } </label></td>
-										<td class="group-input"><label><a href="detailView.bd?no=${mblist.no}">${mblist.subject }</a>
-										</label></td>
-										<td class="group-input"><label>${mblist.category }
-										</label></td>
-										<td class="group-input"><label>${mblist.contents }
-										</label></td>
-										<td class="group-input"><label> <fmt:parseDate
-													value="${mblist.regDate } " var="regdate"
-													pattern="yyyy-MM-dd" /> <fmt:formatDate value="${regdate }"
-													pattern="yyyy-MM-dd" />
-										</label></td>
-										<td class="group-input"><label>${mblist.readcount }
-										</label></td>
-										<td class="group-input"><label><a
-												href="update.bd?no=${mblist.no }">수정</a></label></td>
-										<td class="group-input"><label><a
-												href="delete.bd?no=${mblist.no }">삭제</a></label></td>
-									</tr>
-								</c:forEach>
->>>>>>> e927a4167a6fe6fb3208e4c6a64e4d6e446b9860
+
+
 						</div>
 					</table>
 
