@@ -179,10 +179,10 @@ flex-container-reply {
 
 							onclick="${likecondition}" class="btn_img_like">
 							<%-- <a href="report.mb?reported_userid=${board.writer}"> --%>
-							<a href="report.mb?reporteduserid=${sellerid}">
 								<c:if test="${loginInfo.id==board.writer}">
 								<input type="button" onClick="location.href='update.bd?no=${board.no}'" value="수정하기" class="btn_img_nomal">
 								</c:if>
+							<a href="report.mb?reporteduserid=${board.writer}">
 								<span class="mcontent">신고하기</span>
 							</a>
 					</div>
