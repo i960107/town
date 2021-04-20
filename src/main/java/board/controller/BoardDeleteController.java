@@ -37,6 +37,7 @@ public class BoardDeleteController {
 			file.delete();
 			System.out.println("삭제성공");
 		}
+		dao.deleteLike(no);
 		return getPage;
 	}
 

@@ -121,7 +121,11 @@
 	<!-- 게시글 지우기 -->
 	<delete id="deleteBoard">
 		delete from town_board
-		where no =#{no}
+		where ref =#{no}
+	</delete>
+	<delete id="deleteLike">
+		delete from town_board_like
+		where town_board_no=#{no}
 	</delete>
 	<!-- 댓글쓰기 -->
 	<insert id="insertReply">
