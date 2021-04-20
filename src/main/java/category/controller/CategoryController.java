@@ -34,7 +34,7 @@ public class CategoryController {
 		model.addAttribute("bcbean", bcbean);
 		model.addAttribute("pcbean", pcbean);
 		
-		return "Category";
+		return "category";
 	}
 
 	
