@@ -53,7 +53,8 @@
 }
 
 .id {
-	font-size: 20px;
+	font-size: 15px;
+	color: #000042;
 }
 
 .subject {
@@ -147,10 +148,11 @@
 				<c:set var="step" value="${step+1 }" />
 				<div class="flex-container-product-item">
 					<p>
-			    		<a href="detail.prd?no=${i.rank}&sellerid=${i.sellerid}">
+			    		<a href="detail.prd?no=${i.no}&sellerid=${i.sellerid}">
 							<img src="<%=request.getContextPath()%>/resources/${i.image1}" width="150" height="150" alt="상품사진"> <br>
 			    		</a>
 		    		</p>
+		    		<span class="id">${i.sellerid }</span> <br>
 					<span class="subject">제목: ${i.subject}</span> <br>
 					<span class="price">가격: <fmt:formatNumber value="${i.price }" pattern="###,###" /></span> <br>
 					<span class="address">주소: ${i.address1} ${i.address2 }</span> <br>
