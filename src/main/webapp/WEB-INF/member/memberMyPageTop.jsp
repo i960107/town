@@ -23,7 +23,14 @@
 }
 
 </style>
-
+<script>
+var rukakao = ${loginInfo.sitestatus};
+function updateMember() {
+	if(rukakao==1){
+		alert("카카오 이용자는 카카오를 통해 회원정보를 변경해 주시기 바랍니다");
+	}	
+}
+</script>
 <br><br><br>
 <center>
 	<div class="section-title">
@@ -53,7 +60,7 @@
 					</c:if>
 
 					<c:if test="${loginInfo.image == null}">
-						<a href="memberUpdate.mb"> <img class="profile"
+						<a href="memberUpdate.mb"> <img class="profile" onclick="updateMember()"
 							src="<%=request.getContextPath()%>/resources/img.jpg">
 						</a>
 					</c:if>
@@ -62,9 +69,9 @@
 			</td>
 			<td colspan="6">
                  <div class="cart-buttons" align="left" style="margin-left: 30px">
-                        <a href="memberUpdate.mb" class="primary-btn up-cart">프로필 수정하기 </a>
+                        <a href="memberUpdate.mb" class="primary-btn up-cart" onclick="updateMember()">프로필 수정하기 </a>
 				<br><br><br>
-				 <h4><b>${loginInfo.id}</b>님 </h4><br>
+				 <h4><b>${loginInfo.id}</b>님 ${loginKakao}</h4><br>
 				  ${loginInfo.address }<br><br>
 				  </div>
 			</td>

@@ -27,7 +27,7 @@
 	position: absolute;
 	width: 60%;
 	height: 100px;
-	margin: 0 32.5%;
+	margin: 0 31%;
 	text-align: center;
 }
 .main-table{
@@ -132,16 +132,14 @@
 
 							<c:forEach var="mbrlist" items="${mbrlists }">
 								<tr align="center">
-									<th class="group-input"><label>${mbrlist.no } </label></th>
-									<th class="group-input"><label>${mbrlist.subject } </label></th>
-									<th class="group-input"><label>${mbrlist.category } </label></th>
-									<th class="group-input"><label>${fn:replace(mbrlist.contents,"<br>","")} </label></th>
-									<th class="group-input"><label>
+									<td class="group-input"><label>${mbrlist.no } </label></td>
+									<td class="group-input"><label>${mbrlist.ref } </label></td>
+									<td class="group-input"><label>${fn:replace(mbrlist.contents,"<br>","")} </label></td>
+									<td class="group-input"><label>
 									<fmt:parseDate value="${mbrlist.regDate } " var="regdate" pattern="yyyy-MM-dd"/>
 									<fmt:formatDate value="${regdate }" pattern="yyyy-MM-dd"/>
-									</label></th>
-									<th class="group-input"><label>삭제</label></th>
-									<th class="group-input"><label>수정</label></th>
+									</label></td>
+									<td class="group-input"><a href="delete.bd?no=${mblist.no }"><label>삭제</label></a></td>
 								</tr>
 							</c:forEach>
 				
