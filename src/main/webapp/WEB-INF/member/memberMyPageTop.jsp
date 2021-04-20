@@ -101,13 +101,13 @@
 			<c:if test="${loginInfo.authority == 0 }">
 				<td class="tab-item">
 					<ul class="nav" role="tablist">
-						<li><a class="active" href="categoryList.ct">Category</a></li>
+						<li><a class="active" href="categoryList.ct">Category &nbsp;</a></li>
 					</ul>
 				</td>
 
 				<td class="tab-item">
 					<ul class="nav" role="tablist">
-						<li><a class="active" href="memberList.mb">Member</a></li>
+						<li><a class="active" href="memberList.mb">Member &nbsp;</a></li>
 					</ul>
 				</td>
 			</c:if>
