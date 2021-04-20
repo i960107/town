@@ -33,7 +33,13 @@ public class ProductDao {
 	// 메인 인기상품
 	public List<ProductBean> getPopList() {
 		List<ProductBean> lists = new ArrayList<ProductBean>();
-		lists = sqlSessionTemplate.selectList(nameSpace + ".getPopList");
+		List<String> blockedId=getBlockedId();
+		if(blockedId.size()==0) {
+			blockedId=null;
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("blockedId",blockedId );
+		lists = sqlSessionTemplate.selectList(nameSpace + ".getPopList",map);
 		return lists;
 	}
 
